@@ -28,3 +28,51 @@ php artisan key:generate
 點擊以下連結
 http://localhost/TravelMaker/Backend/public/
 
+
+## Git 操作指南
+
+如何更新 branch 到最新進度
+
+情境: Eric 剛剛 push 了最新進度到 branch `development` , Jeff 現在想要更新自己的 branch `Jeff_so_handsome` 到最新進度
+### Step 0. Check local branch
+確認是否有追蹤 `development` branch (local branch 中是否有 `development`) 
+
+```bash
+git branch
+```
+
+```
+* Jeff_so_handsome
+  development
+  main
+```
+
+如果沒有 `development`, 複製與追蹤 `development` 分支
+```bash
+git checkout -b development origin/development
+```
+
+輸入方式如下
+```bash
+git checkout -b <new-local-branch-name> origin/<remote-branch-name>
+```
+
+
+### Step 1. Get lastest change
+```bash
+git checkout development
+```
+
+`pull` 最新進度
+```bash
+git pull
+```
+
+### Step 2. Update branch
+```bash
+git checkout Jeff_so_handsome
+```
+更新 `development` 進度到現在分支 `Jeff_so_handsome` 
+```bash
+git merge development
+```

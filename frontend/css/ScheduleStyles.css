@@ -1,9 +1,47 @@
 .bg-blue-1 {
     background-color: #2F4E63;
 }
+
 .bg-blue-2 {
     background-color: #B2D2E8;
 }
+
 .bg-blue-3 {
     background-color: #6BB3E3;
+}
+
+
+.sidebar-link:hover {
+    background-color: var(--bs-primary);
+}
+
+.active-text:hover {
+    color: var(--bs-primary);
+}
+
+
+.nav-link {
+    color: white;
+    position: relative;
+}
+
+.nav-link::after {
+    content: "";
+    display: block;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    background-color: #6BB3E3;
+    position: absolute;
+    right: 0;
+    transition: .2s .2s;
+}
+
+.nav-link:hover {
+    color: white;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
 }

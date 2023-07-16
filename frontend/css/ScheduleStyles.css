@@ -45,3 +45,8 @@
     width: 100%;
     left: 0;
 }
+
+.rm-link-style {
+    text-decoration: none;
+    color: black;
+}

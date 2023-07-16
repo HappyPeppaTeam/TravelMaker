@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScheduleBuilder</title>
+    <!-- bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+    <!-- bootstrap icon CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./css/ScheduleStyles.css">
+</head>
+
+<body class="bg-light">
+    <div class="bg-white" id="navbar-container">
+        <header
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-bottom bg-white px-3 container">
+            <div class="col-md-3 mb-2 mb-md-0">
+                <a href="#" class="d-inline-flex link-body-emphasis text-decoration-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" role="img" fill="currentColor"
+                        class="bi bi-bootstrap" viewBox="0 0 16 16">
+                        <path
+                            d="M5.062 12h3.475c1.804 0 2.888-.908 2.888-2.396 0-1.102-.761-1.916-1.904-2.034v-.1c.832-.14 1.482-.93 1.482-1.816 0-1.3-.955-2.11-2.542-2.11H5.062V12zm1.313-4.875V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23H6.375zm0 3.762V8.162h1.822c1.236 0 1.887.463 1.887 1.348 0 .896-.627 1.377-1.811 1.377H6.375z" />
+                        <path
+                            d="M0 4a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4zm4-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V4a3 3 0 0 0-3-3H4z" />
+                    </svg>
+                </a>
+            </div>
+
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="#" class="nav-link px-2">Features</a></li>
+                <li><a href="#" class="nav-link px-2">Pricing</a></li>
+                <li><a href="#" class="nav-link px-2">FAQs</a></li>
+                <li><a href="#" class="nav-link px-2">About</a></li>
+            </ul>
+
+            <div class="col-md-3 text-end">
+                <button type="button" class="btn btn-outline-primary me-2">Login</button>
+                <button type="button" class="btn btn-primary">Sign-up</button>
+            </div>
+
+        </header>
+    </div>
+    </div>
+    <div class="container shadow p-0" id="body-container">
+        <div class="d-flex" id="content-container">
+            <div class="d-flex flex-column flex-shrink-0 p-3 bg-blue-1" id="sidebar-container"
+                style="width: 280px; min-height: calc(100vh - 73px)">
+                <!-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <svg class="bi pe-none me-2" width="40" height="32">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                    <span class="fs-4">Sidebar</span>
+                </a>
+                <hr> -->
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active d-flex align-items-center" aria-current="page">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-person-vcard-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5ZM9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8Zm1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5Zm-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96c.026-.163.04-.33.04-.5ZM7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z" />
+                            </svg>
+                            <span class="px-2">
+                                基本資料
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                            </svg>
+                            <span class="px-2">
+                                我的信箱
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-calendar-week" viewBox="0 0 16 16">
+                                <path
+                                    d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+                                <path
+                                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                            </svg>
+                            <span class="px-2">
+                                我的行程
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-image" viewBox="0 0 16 16">
+                                <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                <path
+                                    d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z" />
+                            </svg>
+                            <span class="px-2">
+                                我的相簿
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-collection-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1z" />
+                            </svg>
+                            <span class="px-2">
+                                我的收藏
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                        <strong>mdo</strong>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-fill" id="content" style="border: solid lightblue;">
+                <div class="m-5">
+                    <div class="d-flex align-items-end">
+                        <div class="h1">我的行程</div>
+                        <div class="h5 ms-auto"><i class="bi bi-plus-lg"></i><span class="ms-1">建立行程</span></div>
+                    </div>
+                    <hr>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-3 p-2 d-flex align-items-center justify-content-center" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <img src="./images/street.jpg" class="rounded shadow"
+                                    style="width: 200px; height: 200px; object-fit: cover;">
+                            </div>
+                            <div class="col-3 p-2 d-flex align-items-center justify-content-center">
+                                <img src="./images/street.jpg" class="rounded shadow"
+                                    style="width: 200px; height: 200px; object-fit: cover;">
+                            </div>
+                            <div class="col-3 p-2 d-flex align-items-center justify-content-center">
+                                <img src="./images/street.jpg" class="rounded shadow"
+                                    style="width: 200px; height: 200px; object-fit: cover;">
+                            </div>
+                            <div class="col-3 p-2 d-flex align-items-center justify-content-center">
+                                <img src="./images/street.jpg" class="rounded shadow"
+                                    style="width: 200px; height: 200px; object-fit: cover;">
+                            </div>
+                            <div class="col-3 p-2 d-flex align-items-center justify-content-center">
+                                <img src="./images/street.jpg" class="rounded shadow"
+                                    style="width: 200px; height: 200px; object-fit: cover;">
+                            </div>
+                            <div class="col-3 p-2 d-flex align-items-center justify-content-center">
+                                <img src="./images/street.jpg" class="rounded shadow"
+                                    style="width: 200px; height: 200px; object-fit: cover;">
+                            </div>
+                            <div class="col-3 p-2 d-flex align-items-center justify-content-center">
+                                <img src="./images/street.jpg" class="rounded shadow"
+                                    style="width: 200px; height: 200px; object-fit: cover;">
+                            </div>
+                            <div class="col-3 p-2 d-flex align-items-center justify-content-center">
+                                <img src="./images/street.jpg" class="rounded shadow"
+                                    style="width: 200px; height: 200px; object-fit: cover;">
+                            </div>
+                            <div class="col-3 p-2 d-flex align-items-center justify-content-center">
+                                <img src="./images/street.jpg" class="rounded shadow"
+                                    style="width: 200px; height: 200px; object-fit: cover;">
+                            </div>
+                            <div class="col-3 p-2 d-flex align-items-center justify-content-center">
+                                <div style="width: 200px; height: 200px;  background-color: gray;"
+                                    class="d-flex align-items-center justify-content-center rounded shadow">
+                                    <i class="bi bi-plus-lg" style="font-size: 2rem; color: #2F4E63"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+            </ul>
+            <p class="text-center text-body-secondary">© 2023 HappyPeppaTeam, Inc</p>
+        </footer>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="schedule-container" style="width: 100%; height: 500px; border: lightcoral solid;">
+                </div>
+                <div id="map-container" style="width: 100%; height: 500px; border: lightblue solid;" class="mt-3"></div>
+
+                <div id="text-content" class="mt-3">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem, recusandae? Veniam, error iure et voluptas quae enim! Amet consequuntur dolorum odit, vero nulla mollitia suscipit libero, iste ullam, inventore quisquam?
+                    Saepe doloremque labore rem cum reprehenderit totam, maxime eaque. Repudiandae maiores eligendi consequuntur laudantium. Mollitia reprehenderit eius asperiores iusto nisi. Voluptate deleniti neque ducimus reiciendis magni at rerum perferendis vel.
+                    Quod similique, dolor perspiciatis voluptatem autem nostrum itaque labore, aut quia cupiditate aspernatur consectetur! Nam placeat ea inventore quas earum quia unde impedit! Debitis earum distinctio alias ipsa quaerat eius!
+                    Reprehenderit molestias eveniet, impedit, rem aliquid nulla illum hic architecto culpa dolor, laudantium consequatur atque sit ut delectus aut temporibus iste vero? Harum cumque consectetur veniam tempora, ex vel ullam.
+                    Est illum corrupti accusantium commodi corporis ad eius, ducimus adipisci laudantium delectus distinctio, laboriosam velit harum! Quaerat exercitationem, doloribus consequatur, aperiam esse veritatis iusto consequuntur perspiciatis dolorum doloremque earum odio.
+                    Veniam deleniti similique, pariatur modi nobis in, dolore inventore rem cum impedit ipsam, cupiditate adipisci ipsum animi omnis error repellat maiores est laboriosam quisquam totam unde corrupti vel. Dicta, dolorem.
+                    Architecto ut quis animi molestias unde, placeat illum modi, cupiditate, perferendis perspiciatis quaerat aspernatur ad tempora pariatur neque vero minus reiciendis aut repellat vitae harum impedit. Ut aspernatur commodi possimus?
+                    Sint dolore illum deserunt. Exercitationem, delectus? Doloribus alias sint nobis dolorum unde voluptates iusto veritatis aliquam voluptas dicta saepe rem ratione aspernatur vitae inventore quos quam libero, repellendus, perspiciatis voluptatibus.
+                    Minima tenetur harum officiis distinctio quam qui vel aliquid amet a, eos, molestiae quis vero iusto doloribus. Nemo alias provident sed quidem corporis, nihil tenetur soluta minus ipsa sequi eos.
+                    Iure accusamus dolorum earum quis rem consectetur, quam fuga repudiandae reiciendis tempore numquam magni vitae ipsam repellendus facilis aliquid laudantium amet voluptas minima provident nobis. Corrupti asperiores praesentium minus sint.
+                    Libero aut tempora qui inventore et animi porro laudantium voluptatem cupiditate dicta commodi accusantium ad assumenda ex esse, reiciendis sed quae dolore quas, sequi aliquid consequuntur eveniet. Nesciunt, repellendus quae.
+                    Corrupti rerum consequuntur ratione quod voluptas velit pariatur fugiat, quisquam hic totam aliquid, quos perferendis quia provident numquam earum beatae similique dolor et! Aspernatur alias est ducimus, veritatis provident doloremque.
+                    Suscipit obcaecati aut, nesciunt culpa et quibusdam corporis reiciendis voluptas consequuntur autem tempora voluptatum similique nam dolorum inventore corrupti. Perspiciatis id sed officiis corporis ex expedita, quos aut maiores perferendis?
+                    Dicta aliquid harum laborum earum rem. Ad neque dolorum dignissimos quis deleniti odit ipsa, rerum architecto maxime, dicta excepturi error, iure expedita! Quod perferendis facere odit fuga. Expedita, repellat officia.
+                    Similique labore explicabo, iusto fugit quis accusamus itaque repellat modi deserunt vero laboriosam commodi, sapiente cumque quae aperiam vel excepturi molestiae! Possimus eius reprehenderit hic iusto, quia pariatur animi perspiciatis.
+                    Saepe vero quas in nemo reiciendis cupiditate consequatur excepturi voluptate enim unde impedit repellat sed soluta quos, asperiores facere ratione. Laudantium, doloribus optio! Obcaecati saepe doloremque, magni et quae eaque!
+                    Distinctio omnis, libero porro a ullam, assumenda tempora quos mollitia labore, esse praesentium aperiam aspernatur odio. Necessitatibus, sint sit. Deserunt molestiae reprehenderit eum deleniti dolorum tenetur, pariatur cumque voluptate necessitatibus.
+                    Debitis doloremque deleniti neque maxime assumenda amet quae excepturi. Exercitationem sed eum, debitis dolore dolorem ea sequi at. Ipsa explicabo et maxime eveniet enim officiis odio quo molestias qui? Voluptate.
+                    Officia recusandae et deserunt repudiandae corrupti reiciendis cumque eius, distinctio ab. Et, possimus recusandae. Nisi recusandae repellat amet iure ea saepe cumque adipisci, earum iste excepturi sed dolorum unde esse!
+                    Deserunt, maxime. Error, magnam sunt eos eveniet, eum porro delectus cupiditate quae fugit ipsum nulla a explicabo, ea quas repellat eaque. Minus, officiis. Rem, dicta consectetur odio mollitia facere nemo.
+                    Illo fugiat incidunt mollitia dignissimos magni, eum corrupti aspernatur autem laudantium blanditiis, sint doloribus, aperiam fugit? Doloribus voluptate tenetur eum, consequatur voluptates deleniti enim facilis praesentium molestiae, autem accusamus incidunt.
+                    Voluptate facilis consequatur at deserunt, dolorum tempora perspiciatis doloribus quisquam veritatis dolorem quae iste molestiae tenetur eum quaerat velit ratione. Sint, praesentium consequatur consectetur aliquid commodi unde harum modi odio?
+                    Et odit explicabo quod. Suscipit voluptas molestias asperiores incidunt facilis ad mollitia inventore est esse, dicta, magnam vitae, illum animi officia illo laboriosam accusantium sequi blanditiis accusamus architecto! Maiores, expedita.
+                    Ipsam, voluptatum tempore quas aliquid necessitatibus minus perferendis exercitationem repellendus eum hic esse voluptates aspernatur atque nisi in ratione totam corrupti distinctio soluta facilis. Earum veniam harum libero similique accusantium?
+                    Quae, soluta eos quod maxime earum recusandae eaque incidunt quidem, saepe hic ab! Repellat earum quisquam atque perspiciatis error possimus quae quidem? Perspiciatis cum dolorum enim laborum quas repellat rem?
+                    Vitae nostrum fugiat modi dolorem nesciunt delectus eum voluptatem esse, fugit harum cupiditate, magni eligendi mollitia pariatur perspiciatis quisquam, itaque placeat consequatur dolores eos repudiandae tenetur sequi. At, debitis culpa.
+                    Deleniti quae sit assumenda adipisci temporibus recusandae qui voluptas nostrum? Consequatur, fuga officiis ullam quo veritatis, sequi repellendus accusantium, possimus nisi reprehenderit quod? Deserunt libero sequi nemo dignissimos, dolore veniam.
+                    Dolorem recusandae atque vitae iusto. Beatae sit unde facere rem error adipisci sint voluptates, architecto aspernatur aut optio in officia earum nulla tempore voluptate, modi sed eligendi debitis iusto? Voluptatem.
+                    Quas quisquam magni facere iste necessitatibus labore consequatur laborum est nemo, quae aliquam corporis vero repudiandae, totam voluptatem quaerat temporibus vitae neque dolore? Harum eius deserunt sint molestiae voluptatibus neque.
+                    Nobis deserunt nam voluptatum excepturi doloribus molestiae. Iusto quisquam voluptas iste maiores cum aspernatur consequuntur doloremque nisi tempora neque est nesciunt corporis numquam perspiciatis fugiat eius culpa odio, fuga accusantium?
+                </div>
+                <div id="album-container" style="width: 100%; height: 200px; border: lightgreen solid;" class="mt-3">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -91,7 +91,7 @@ example
 /Applications/XAMPP/bin/mysqldump -u root  -B AddressBook -R -r backup.sql
 ```
 
-### Window
+### Windows
 
 ```bash
 C:\xampp\mysql\bin\mysqldump -u root  -B [BackupDB_Name] -R -r [path/to/Backup_file_name.sql]

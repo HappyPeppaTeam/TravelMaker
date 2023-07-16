@@ -76,3 +76,28 @@ git checkout Jeff_so_handsome
 ```bash
 git merge development
 ```
+
+
+
+## Backup Database
+
+### Mac
+```bash
+/Applications/XAMPP/bin/mysqldump -u root  -B [BackupDB_Name] -R -r [path/to/Backup_file_name.sql]
+```
+
+example
+```bash
+/Applications/XAMPP/bin/mysqldump -u root  -B AddressBook -R -r backup.sql
+```
+
+### Window
+
+```bash
+C:\xampp\mysql\bin\mysqldump -u root  -B [BackupDB_Name] -R -r [path/to/Backup_file_name.sql]
+```
+
+example
+```bash
+C:\xampp\mysql\bin\mysqldump -u root  -B AddressBook -R -r backup.sql
+```

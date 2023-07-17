@@ -11,6 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
     <!-- navbar -->
@@ -32,10 +33,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <a class="ms-auto me-3 d-none d-lg-block" href="#"
-            ><img
-              src="./images/dark-mode.png"
-              style="height: 40px"
-              alt=""
+            ><img src="./images/dark-mode.png" style="height: 40px" alt=""
           /></a>
           <ul class="navbar-nav py-3">
             <li class="nav-item">
@@ -50,7 +48,214 @@
     </nav>
 
     <!-- 內容請自行替換 -->
-    <div class="main"></div>
+    <div class="main">
+      <div class="container">
+        <div class="filter d-flex justify-content-evenly mt-4 mx-auto">
+          <a href="#">餐廳</a>
+          <a href="#">景點</a>
+          <a href="#">討論區</a>
+          <a href="#">自助旅遊排程</a>
+        </div>
+
+        <div
+          id="carouselExampleSlidesOnly"
+          class="carousel slide header my-5"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner h-100">
+            <div class="carousel-item active h-100">
+              <img
+                src="https://images.unsplash.com/photo-1682687219640-b3f11f4b7234?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                class="d-block w-100"
+                alt="..."
+              />
+            </div>
+            <div class="carousel-item h-100">
+              <img
+                src="https://images.unsplash.com/photo-1682695795557-17447f921f79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                class="d-block w-100"
+                alt="..."
+              />
+            </div>
+            <div class="carousel-item h-100">
+              <img
+                src="https://images.unsplash.com/photo-1612278675615-7b093b07772d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80"
+                class="d-block w-100"
+                alt="..."
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="travelGuide mb-5">
+          <h2 class="fw-bold">精選旅遊攻略</h2>
+          <p>沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
+          <div class="row row-cols-2 g-3">
+            <div class="col">
+              <a href="#" class="cardLink"
+                ><div class="card">
+                  <div class="row g-0">
+                    <div class="col-lg-4">
+                      <img
+                        src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        class="img-fluid round h-100"
+                        alt="..."
+                      />
+                    </div>
+                    <div class="col-lg-8">
+                      <div class="card-body p-0">
+                        <h4 class="card-title fw-bold mx-4 mb-4 mt-3">
+                          好吃好喝又好玩!南投星空露營場
+                        </h4>
+                        <p class="card-text mx-4 mb-3">
+                          <small class="text-muted"
+                            ><span class="travelSort me-2">野餐</span
+                            ><span class="travelSort">親子同樂</span></small
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div></a
+              >
+            </div>
+            <div class="col">
+              <a href="#" class="cardLink"
+                ><div class="card">
+                  <div class="row g-0">
+                    <div class="col-lg-4">
+                      <img
+                        src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        class="img-fluid round h-100"
+                        alt="..."
+                      />
+                    </div>
+                    <div class="col-lg-8">
+                      <div class="card-body p-0">
+                        <h4 class="card-title fw-bold mx-4 mb-4 mt-3">
+                          好吃好喝又好玩!南投星空露營場
+                        </h4>
+                        <p class="card-text mx-4 mb-3">
+                          <small class="text-muted"
+                            ><span class="travelSort me-2">野餐</span
+                            ><span class="travelSort">親子同樂</span></small
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div></a
+              >
+            </div>
+            <div class="col">
+              <a href="#" class="cardLink"
+                ><div class="card">
+                  <div class="row g-0">
+                    <div class="col-lg-4">
+                      <img
+                        src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        class="img-fluid round h-100"
+                        alt="..."
+                      />
+                    </div>
+                    <div class="col-lg-8">
+                      <div class="card-body p-0">
+                        <h4 class="card-title fw-bold mx-4 mb-4 mt-3">
+                          好吃好喝又好玩!南投星空露營場
+                        </h4>
+                        <p class="card-text mx-4 mb-3">
+                          <small class="text-muted"
+                            ><span class="travelSort me-2">野餐</span
+                            ><span class="travelSort">親子同樂</span></small
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div></a
+              >
+            </div>
+            <div class="col">
+              <a href="#" class="cardLink"
+                ><div class="card">
+                  <div class="row g-0">
+                    <div class="col-lg-4">
+                      <img
+                        src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        class="img-fluid round h-100"
+                        alt="..."
+                      />
+                    </div>
+                    <div class="col-lg-8">
+                      <div class="card-body p-0">
+                        <h4 class="card-title fw-bold mx-4 mb-4 mt-3">
+                          好吃好喝又好玩!南投星空露營場
+                        </h4>
+                        <p class="card-text mx-4 mb-3">
+                          <small class="text-muted"
+                            ><span class="travelSort me-2">野餐</span
+                            ><span class="travelSort">親子同樂</span></small
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="popularRestaurant mb-5">
+          <h2 class="fw-bold">熱門餐廳</h2>
+          <p>沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
+          <div class="row row-cols-2 mt-4">
+            <div class="col">
+              <a href="#"
+                ><div class="restaurantImg">
+                  <img
+                    class="w-100"
+                    src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+                    alt=""
+                  />
+                  <div class="mask w-100 h-100"></div>
+                  <h4 class="restaurantType">平價小吃</h4>
+                </div></a
+              >
+            </div>
+            <div class="col">
+              <a href="#"
+                ><div class="restaurantImg">
+                  <img
+                    class="w-100"
+                    src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+                    alt=""
+                  />
+                  <div class="mask w-100 h-100"></div>
+                  <h4 class="restaurantType">平價小吃</h4>
+                </div></a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="popularSpot">
+          <h2 class="fw-bold">熱門景點</h2>
+          <p>沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
+          <div class="row">
+            <div class="col">
+              <div class="card" style="width: 18rem;">
+                <img src="https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- footer  -->
     <footer class="bg-main py-3">

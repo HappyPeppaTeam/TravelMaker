@@ -76,3 +76,33 @@ git checkout Jeff_so_handsome
 ```bash
 git merge development
 ```
+
+
+
+## Backup Database
+
+
+### Google Cloud Shell
+```bash
+mysqldump -u root  -B [BackupDB_Name] -R -r [path/to/Backup_file_name.sql]
+```
+
+example
+```bash
+mysqldump -u root  -B AddressBook -R -r backup.sql
+```
+
+說明文件可以在 google clould shell `/home/happypeppa0401/DBbackup_guide.txt` 找到
+
+
+### Mac
+```bash
+/Applications/XAMPP/bin/mysqldump -u root  -B [BackupDB_Name] -R -r [path/to/Backup_file_name.sql]
+```
+
+### Windows
+
+```bash
+C:\xampp\mysql\bin\mysqldump -u root  -B [BackupDB_Name] -R -r [path/to/Backup_file_name.sql]
+```
+

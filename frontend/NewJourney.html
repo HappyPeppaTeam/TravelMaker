@@ -139,11 +139,8 @@
                 <div class="m-5">
                     <div class="d-flex align-items-end">
                         <a href="" class="rm-link-style">
-                            <div class="h1">建立行程</div>
+                            <div class="h1">建立行程 <span class="d-none">- 金瓜石之旅</span></div>
                         </a>
-
-                        <!-- <div class="h5 ms-auto active-text"><i class="bi bi-plus-lg"></i><span class="ms-1">建立行程</span>
-                        </div> -->
                     </div>
                     <div class="progress my-3" role="progressbar" aria-label="Basic example" aria-valuenow="25"
                         aria-valuemin="0" aria-valuemax="100" style="height: 2px;">
@@ -175,23 +172,69 @@
 
                         </form>
 
-                        <div id="newJourneyForm2" class="">
-                            <div id="calendarContainer" class="w-100 mb-3" style="height: 500px; border: grey solid;"></div>
+                        <div id="newJourneyForm2" class="d-none">
+                            <div id="calendarContainer" class="w-100 mb-3" style="height: 500px; border: grey solid;">
+                            </div>
                             <div id="mapContainer" class="w-100" style="height: 300px; border: lightblue solid;"></div>
                         </div>
 
-                        <form action="" id="newJourneyForm3">
+                        <form action="" id="newJourneyForm3" class="d-none">
+                            <div class="mb-3">
 
+                                <div class="mb-3">
+                                    <label for="formFileMultiple" class="form-label">上傳圖片</label>
+                                    <input class="form-control" type="file" id="formFileMultiple" multiple>
+                                    <div class="container-fluid mt-3" style="height: 300px; border: lightgrey solid;">
+
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="publicRadio" class="form-label">公開設定</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="privacyRadio" value=""
+                                            id="publicRadio">
+                                        <label class="form-check-label" for="publicRadio">
+                                            Public
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="privacyRadio" value=""
+                                            id="privateRadio" checked>
+                                        <label class="form-check-label" for="privateRadio">
+                                            Private
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="inputNoteJourney" class="form-label">備註</label>
+                                    <textarea class="form-control" id="inputNoteJourney" rows="3"></textarea>
+                                </div>
+                            </div>
                         </form>
 
-
+                        <div id="browseJourney">
+                            <div id="browseCalendarContainer" class="w-100 mb-3" style="height: 500px; border: grey solid;">
+                                <h2>Calendar</h2>
+                            </div>
+                            <div id="browserMapContainer" class="w-100 mb-3" style="height: 300px; border: lightblue solid;">
+                                <h2>Map</h2>
+                            </div>
+                            <div id="browseTextContainer" class="w-100 mb-3" style="height: 300px; border: lightgrey solid;">
+                                <h2>Note</h2>
+                            </div>
+                            <div id="browserImageContainer" class="w-100 mb-3" style="height: 200px; border: lightcoral solid;">
+                                <h2>Image</h2>
+                            </div>
+                        </div>
 
                         <div class="mt-5 d-flex">
                             <div class="active-text">
                                 <i class="bi bi-arrow-left"></i><span class="ps-1">上一步</span>
                             </div>
-                            <div class="ms-auto active-text">                                  
-                                <span class="pe-1">下一步</span><i class="bi bi-arrow-right"></i>                           
+                            <div class="ms-auto active-text">
+                                <span class="pe-1">下一步</span><i class="bi bi-arrow-right"></i>
                             </div>
                         </div>
                     </div>

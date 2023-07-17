@@ -50,3 +50,10 @@
     text-decoration: none;
     color: black;
 }
+
+
+.rm-ul-style {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}

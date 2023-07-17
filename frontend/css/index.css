@@ -9,6 +9,7 @@ body {
 }
 
 .filter a {
+  background: white;
   border: 2px solid #e0e0e0;
   border-radius: 12px;
   padding: 16px;
@@ -114,4 +115,16 @@ body {
 
 .popularRestaurant a {
   text-decoration: none;
+}
+
+.spotImg {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.sortIcon {
+  width: 10px;
+  height: 10px;
+  background: #6BB3E3;
+  border-radius: 5px;
 }

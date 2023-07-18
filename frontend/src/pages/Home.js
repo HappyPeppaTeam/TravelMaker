@@ -190,95 +190,9 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="popularSpot mb-5">
+        <div className="popularSpot">
           <h2 className="fw-bold">熱門景點</h2>
           <p className="mb-0">沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
-          <div className="row mt-4">
-            <div className="col">
-              <a href="#" className="cardLink"
-                ><div className="card">
-                  <img
-                    src="https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-                    className="card-img-top spotImg"
-                    alt=""
-                  />
-                  <div className="card-body">
-                    <h4 className="card-title fw-bold">野柳地質公園</h4>
-                    <p className="card-text">
-                      擁有奇岩美石的野柳地質公園,是揚名國際的天然風景名勝地。
-                    </p>
-                    <p className="d-flex align-items-center mb-0">
-                      <span className="sortIcon me-2"></span
-                      ><span className="d-block">景點</span>
-                    </p>
-                  </div>
-                </div></a
-              >
-            </div>
-            <div className="col">
-              <a href="#" className="cardLink"
-                ><div className="card">
-                  <img
-                    src="https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-                    className="card-img-top spotImg"
-                    alt=""
-                  />
-                  <div className="card-body">
-                    <h4 className="card-title fw-bold">野柳地質公園</h4>
-                    <p className="card-text">
-                      擁有奇岩美石的野柳地質公園,是揚名國際的天然風景名勝地。
-                    </p>
-                    <p className="d-flex align-items-center mb-0">
-                      <span className="sortIcon me-2"></span
-                      ><span className="d-block">景點</span>
-                    </p>
-                  </div>
-                </div></a
-              >
-            </div>
-            <div className="col">
-              <a href="#" className="cardLink"
-                ><div className="card">
-                  <img
-                    src="https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-                    className="card-img-top spotImg"
-                    alt=""
-                  />
-                  <div className="card-body">
-                    <h4 className="card-title fw-bold">野柳地質公園</h4>
-                    <p className="card-text">
-                      擁有奇岩美石的野柳地質公園,是揚名國際的天然風景名勝地。
-                    </p>
-                    <p className="d-flex align-items-center mb-0">
-                      <span className="sortIcon me-2"></span
-                      ><span className="d-block">景點</span>
-                    </p>
-                  </div>
-                </div></a
-              >
-            </div>
-            <div className="col">
-              <a href="#" className="cardLink"
-                ><div className="card">
-                  <img
-                    src="https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-                    className="card-img-top spotImg"
-                    alt=""
-                  />
-                  <div className="card-body">
-                    <h4 className="card-title fw-bold">野柳地質公園</h4>
-                    <p className="card-text">
-                      擁有奇岩美石的野柳地質公園,是揚名國際的天然風景名勝地。
-                    </p>
-                    <p className="d-flex align-items-center mb-0">
-                      <span className="sortIcon me-2"></span
-                      ><span className="d-block">景點</span>
-                    </p>
-                  </div>
-                </div></a
-              >
-            </div>
-          </div>
         </div>
         </>
     )

@@ -120,6 +120,14 @@ body {
 .spotImg {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  height: 150px;
+  object-fit: cover;
+}
+
+@media (min-width:992px) {
+  .spotImg {
+    height: 200px;
+  }
 }
 
 .sortIcon {

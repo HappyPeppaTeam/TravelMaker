@@ -1,44 +1,63 @@
-* {
-    list-style: none;
-}
-
 .bg-blue-1 {
     background-color: #2F4E63;
 }
+
 .bg-blue-2 {
     background-color: #B2D2E8;
 }
+
 .bg-blue-3 {
     background-color: #6BB3E3;
 }
+
 /* 導覽列 */
 .discussion-board {
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
 }
-.discussion-board a {
-    text-decoration: none;
-}
+
 .discussion-board ul {
+    list-style: none;
+    display: flex;
+}
+
+.discussion-board ul li {
+    position: relative;
+}
+
+.discussion-board ul li a {
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.discussion-board ul li a:hover {
+    color: white
+}
+
+.sub-discussion {
     display: none;
-    padding: 0;
 }
-.sub-discussion li{
-    border: 1px #B2D2E8 solid;
-}
-.main-discussion {
-    padding: 0.3em;
-    margin: 1em;
-}
-.main-discussion:hover .sub-discussion{
+
+.discussion-board ul li:hover .sub-discussion {
     display: block;
-    transition: 0.5s;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 999;
 }
+.discussion-board ul li:hover .sub-discussion ul {
+    display: block;
+    margin: 1em;
+    width:100%;
+}
+
 /* 輪播圖 */
 .forum-carousel {
     display: flex;
     margin: auto;
-    width: 70%;
 }
-.imageSize{
+
+.imageSize {
     height: 100%;
 }
+

@@ -153,9 +153,9 @@
                             <div class="h1">建立行程 <span class="d-none">- 金瓜石之旅</span></div>
                         </a>
                     </div>
-                    <div class="progress my-3" role="progressbar" aria-label="Basic example" aria-valuenow="25"
+                    <div class="progress my-3" role="progressbar"  aria-label="Basic example" aria-valuenow="25"
                         aria-valuemin="0" aria-valuemax="100" style="height: 2px;">
-                        <div class="progress-bar" style="width: 25%"></div>
+                        <div class="progress-bar" id="progressBar" style="width: 50%"></div>
                     </div>
                     <div class="container px-0">
 
@@ -246,10 +246,10 @@
                         </div>
 
                         <div class="mt-5 d-flex">
-                            <div class="active-text" id="prevButton" onclick="nextPrev(-1)">
+                            <div class="active-text" id="prevButton">
                                 <i class="bi bi-arrow-left"></i><span class="ps-1">上一步</span>
                             </div>
-                            <div class="ms-auto active-text" id="nextButton" onclick="nextPrev(1)">
+                            <div class="ms-auto active-text" id="nextButton">
                                 <span class="pe-1" id="nextStepText">下一步</span><i class="bi bi-arrow-right" id="nextStepIcon"></i>
                             </div>
                         </div>
@@ -437,9 +437,16 @@
             showTab(currentTab);
             
             function showTab(n) {
+                
                 const tabs = document.getElementsByClassName('tab');
                 const prevButton = document.getElementById('prevButton');
                 const nextButton = document.getElementById('nextButton');
+                const progressBar = document.getElementById('progressBar');
+
+                // set progress bar
+                let progressPercent = (100/tabs.length) * (n+1);
+                progressBar.setAttribute('style', `width: ${progressPercent}%`);
+                
         
                 tabs[n].style.display = "block";
         
@@ -466,11 +473,23 @@
                 currentTab += n;
 
                 if (currentTab >= tabs.length || currentTab < 0) {
-                    return false;
+                    currentTab = 0;
+                    // return false;
                 }
-                console.log(currentTab)
+
+                // console.log(currentTab)
                 showTab(currentTab);
             }
+            
+            let prevButton = document.getElementById('prevButton');
+            let nextButton = document.getElementById('nextButton');
+            
+            prevButton.addEventListener("click", function(){
+                nextPrev(-1);
+            });
+            nextButton.addEventListener("click", function(){
+                nextPrev(1);
+            });
 
         }
     </script>

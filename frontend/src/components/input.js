@@ -2,7 +2,7 @@ const Input = () => {
     return ( <nav className="navbar navbar-expand-lg bg-main px-2">
     <div className="container-fluid">
       <a className="navbar-brand me-auto" href="#"
-        ><img src="images/logo.png" style={{height: '70px'}} alt=""
+        ><img src="../images/logo.png" style={{height: '70px'}} alt=""
       /></a>
       <button
         className="navbar-toggler"
@@ -17,7 +17,7 @@ const Input = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <a className="ms-auto me-3 d-none d-lg-block" href="#"
-          ><img src="images/dark-mode.png" style={{height: '40px'}} alt=""
+          ><img src="../images/dark-mode.png" style={{height: '40px'}} alt=""
         /></a>
         <ul className="navbar-nav py-3">
           <li className="nav-item">

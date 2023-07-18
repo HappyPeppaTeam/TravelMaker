@@ -26,8 +26,10 @@
 
     <!-- navbar css -->
     <link rel="stylesheet" href="./css/navbar.css">
-    <!-- sheduler css -->
+    <!-- sidebar css -->
     <link rel="stylesheet" href="./css/sidebar.css">
+    <!-- sidebar css -->
+    <!-- <link rel="stylesheet" href="./css/ScheduleStyles.css"> -->
 </head>
 
 <body class="bg-blue-1">
@@ -56,19 +58,18 @@
     </nav>
 
 
-    <div class="container shadow p-0 bg-white" id="body-container">
+    <div class="container-lg shadow bg-white" id="bodyContainer">
         <!-- <div class="d-flex" id="content-container"> -->
-        <div class="d-flex flex-nowrap row" id="content-container">
+        <div class="d-flex flex-nowrap row" id="contentContainer">
 
             <!-- side bar -->
-            <div class="col-auto col-md-3 col-xl-2 pe-0">
+            <div class="col-auto col-md-3 col-xl-2 px-0 d-none d-sm-block">
                 <div class="d-flex flex-column flex-shrink-0 p-3 bg-blue-1 align-items-center" id="sidebar-container"
                     style="height: 100%; min-height: calc(100vh - 70px);">
     
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white d-flex align-items-center sidebar-link"
-                                aria-current="page">
+                            <a href="#" class="nav-link text-white d-flex align-items-center sidebar-link">
                                 <i class="bi bi-person-vcard-fill"></i>
                                 <span class="d-none d-sm-inline px-2">
                                     基本資料
@@ -143,7 +144,7 @@
             </div>
 
             <!-- main content -->
-            <div class="flex-fill ps-0 pe-sm-0" id="content">
+            <div class="flex-fill ps-0 pe-0 pe-lg-3 justify-content-center" id="content">
                 <div class="m-5">
                     <div class="d-flex align-items-end">
                         <a href="" class="rm-link-style">
@@ -157,7 +158,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center" type="button"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                data-bs-toggle="modal" data-bs-target="#journeyModal">
                                 <div class="rounded shadow"
                                     style="background-image: url(./images/street.jpg); background-size: cover; height: 200px; width: 100%;">
 
@@ -217,6 +218,8 @@
         </div>
     </div>
 
+    
+
     <!-- footer -->
     <footer class="bg-main py-3 shadow mt-3">
         <p class="mb-0 text-center text-white">
@@ -224,15 +227,46 @@
         </p>
     </footer>
 
+    <div class="container-fluid bg-blue-1 shadow fixed-bottom d-flex d-sm-none align-items-center" style="height: 50px;">
+        <div class="w-100">
+            <ul class="d-flex rm-ul-style justify-content-around" style="list-style-type: none;" id="sidebarBottom">
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <i class="bi bi-person-vcard-fill"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <i class="bi bi-envelope-fill"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <i class="bi bi-calendar-week"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <i class="bi bi-image"></i>
+                    </a>
+                </li>   
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <i class="bi bi-star-fill"></i>
+                    </a>
+                </li>   
+            </ul>
+        </div>
+    </div>
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="journeyModal" tabindex="-1" aria-labelledby="journeyModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl">
             <div class="modal-content">
                 <div class="modal-header"
                     style="height: 200px; background-image: url(./images/street.jpg); background-size: cover;">
-                    <h1 class="modal-title fs-5 align-self-end text-white" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5 align-self-end text-white" id="journeyModalLabel">Modal title</h1>
                     <button type="button" class="btn-close btn-close-white align-self-start" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>

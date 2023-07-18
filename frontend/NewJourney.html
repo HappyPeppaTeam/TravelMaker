@@ -54,12 +54,12 @@
     </nav>
 
 
-    <div class="container shadow p-0 bg-white" id="body-container">
+    <div class="container-lg shadow p-0 bg-white" id="body-container">
         <!-- <div class="d-flex" id="content-container"> -->
         <div class="d-flex flex-nowrap row" id="content-container">
 
             <!-- side bar -->
-            <div class="col-auto col-md-3 col-xl-2 pe-0">
+            <div class="col-auto col-md-3 col-xl-2 px-0 d-none d-sm-block">
                 <div class="d-flex flex-column flex-shrink-0 p-3 bg-blue-1 align-items-center" id="sidebar-container"
                     style="height: 100%; min-height: calc(100vh - 70px);">
 
@@ -257,6 +257,39 @@
         </p>
     </footer>
 
+    
+    <div class="container-fluid bg-blue-1 shadow fixed-bottom d-flex d-sm-none align-items-center" style="height: 50px;">
+        <div class="w-100">
+            <ul class="d-flex rm-ul-style justify-content-around" style="list-style-type: none;" id="sidebarBottom">
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <i class="bi bi-person-vcard-fill"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <i class="bi bi-envelope-fill"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <i class="bi bi-calendar-week"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <i class="bi bi-image"></i>
+                    </a>
+                </li>   
+                <li>
+                    <a href="#" class="nav-link text-white">
+                        <i class="bi bi-star-fill"></i>
+                    </a>
+                </li>   
+            </ul>
+        </div>
+    </div>
+
 
 
     <!-- Modal -->
@@ -384,6 +417,9 @@
             </div>
         </div>
     </div>
+
+
+
 </body>
 
 </html>

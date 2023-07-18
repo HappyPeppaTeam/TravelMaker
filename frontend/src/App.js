@@ -1,12 +1,23 @@
-// import logo from '../images/logo.png';
-import './css/index.css';
 import './css/navbar.css';
-import Input from './components/input';
-import './asset/all.scss';
+import './css/index.css';
+import Navbar from "./components/Navbar";
+import Footer from './components/Footer';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Album from './pages/Album';
 
 function App() {
   return (
-        <Input></Input>
+    <div className="App">
+      <Navbar></Navbar>
+      <div className="container mt-3">
+        <Routes>
+          <Route path='/' element={<Home/>}></Route>
+          <Route path='/album' element={<Album/>}></Route>
+        </Routes>
+      </div>
+      <Footer/>
+    </div>
   );
 }
 

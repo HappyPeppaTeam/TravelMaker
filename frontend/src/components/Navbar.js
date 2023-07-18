@@ -1,9 +1,11 @@
-const Input = () => {
+import { Link } from 'react-router-dom';
+
+export default function Navbar() {
     return ( <nav className="navbar navbar-expand-lg bg-main px-2">
     <div className="container-fluid">
-      <a className="navbar-brand me-auto" href="#"
+      <Link className="navbar-brand me-auto" to='/'
         ><img src="../images/logo.png" style={{height: '70px'}} alt=""
-      /></a>
+      /></Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -21,7 +23,7 @@ const Input = () => {
         /></a>
         <ul className="navbar-nav py-3">
           <li className="nav-item">
-            <a className="nav-link" href="#">註冊</a>
+            <Link className="nav-link" to='/album'>註冊</Link>
           </li>
           <li className="nav-item ms-lg-2">
             <a className="nav-link" href="#">登入</a>
@@ -31,5 +33,3 @@ const Input = () => {
     </div>
   </nav>)
 }
-
-export default Input;

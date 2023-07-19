@@ -163,7 +163,12 @@
 
                                 <div class="rounded shadow"
                                     style="background-image: url(./images/street.jpg); background-size: cover; height: 200px; width: 100%;">
-                                    <div class="overlay rounded d-flex justify-content-center align-items-center" id="overlay"><div>金瓜石之旅</div></div>
+                                    <div class="overlay rounded d-flex justify-content-center align-items-center position-relative" id="overlay">
+                                        <div class="position-absolute top-0 end-0 p-3">
+                                            <i class="bi bi-three-dots text-secondary fs-5"></i>
+                                        </div>
+                                        <div>金瓜石之旅</div>
+                                    </div>
                                 </div>
                             </div>
                             <div
@@ -443,23 +448,23 @@
         const journeyElement = document.getElementById('journey1');
         const dropdownMenu = document.getElementById('journeyDropdown');
 
-        journeyElement.addEventListener('contextmenu', function (event) {
-            event.preventDefault();
+        // journeyElement.addEventListener('contextmenu', function (event) {
+        //     event.preventDefault();
 
-            // Position the dropdown menu based on the mouse coordinates
-            dropdownMenu.style.top = event.clientY + 'px';
-            dropdownMenu.style.left = event.clientX + 'px';
+        //     // Position the dropdown menu based on the mouse coordinates
+        //     dropdownMenu.style.top = event.clientY + 'px';
+        //     dropdownMenu.style.left = event.clientX + 'px';
 
-            // Show the dropdown menu
-            dropdownMenu.classList.add('show');
-        });
+        //     // Show the dropdown menu
+        //     dropdownMenu.classList.add('show');
+        // });
 
-        document.addEventListener('click', function (event) {
-            if (!dropdownMenu.contains(event.target)) {
-                // Hide the dropdown menu if a click occurs outside of it
-                dropdownMenu.classList.remove('show');
-            }
-        });
+        // document.addEventListener('click', function (event) {
+        //     if (!dropdownMenu.contains(event.target)) {
+        //         // Hide the dropdown menu if a click occurs outside of it
+        //         dropdownMenu.classList.remove('show');
+        //     }
+        // });
     }
 
 

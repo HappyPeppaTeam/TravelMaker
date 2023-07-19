@@ -18,6 +18,17 @@
     transition: .5s ease;
 }
 
-.overlay:hover {    
+.overlay:hover {
     opacity: 0.8;
+}
+
+.image-overflow {
+    background-color: #333;
+    overflow: auto;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+.image-overflow>img {
+    display: inline-block;
 }

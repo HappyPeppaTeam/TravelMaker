@@ -23,7 +23,8 @@
 }
 
 .image-overflow {
-    background-color: rgb(178, 210, 232, 0.5);
+    background: rgb(107,179,227);
+    background: radial-gradient(circle, rgba(107,179,227,0.2) 0%, rgba(178,226,232,0.8) 50%, rgba(107,179,227,0.2) 100%);
     overflow: auto;
     white-space: nowrap;
     padding: 10px;
@@ -32,4 +33,23 @@
 .image-overflow>img {
     /* display: inline-block; */
     padding: 4px;
+    
+}
+
+.image-modal {
+    display: block;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.815);;
+}
+
+#closeButton {
+    right: 0;
+    top: 0;
+    position: fixed;
+    margin: 20px;
 }

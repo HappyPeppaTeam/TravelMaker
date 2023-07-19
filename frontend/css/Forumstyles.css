@@ -9,83 +9,23 @@
 .bg-blue-3 {
     background-color: #6BB3E3;
 }
-.main ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-ul.drop-down-discussion {
-    display: flex;
-    justify-content: center;
-    font-size: 14px;
-}
-
-ul.drop-down-discussion li {
-   position: relative;
-   white-space: nowrap;
-}
-
-ul.drop-down-discussion>li:last-child {
-    border-right: none;
-}
-
-ul.drop-down-discussion>li {
-    float: left;
-}
-
-ul.drop-down-discussion a {
-    background-color: #ccc;
-    color: #123;
-    display: block;
-    padding: 0 30px;
-    text-decoration: none;
-    line-height: 40px;
-}
-
-ul.drop-down-discussion a:hover {
-    background-color: lightgreen;
-    color: #fff;
-}
-
-ul.drop-down-discussion ul {
-    border: #ccc 1px solid;
-    position: absolute;
-    z-index: 99;
-    
-    top:100%;
-
-}
-
-ul.drop-down-discussion ul li{
-    border: #ccc 1px solid;
-}
-
-ul.drop-down-discussion ul li:last-child{
-    border-bottom: none;
-}
-
-ul.drop-down-discussion ul{
-    display: none;
-}
-
-ul.drop-down-discussion li:hover>ul{
-    display: block;
-}
-
-
-
-
 
 /* 導覽列 */
+.sub-discussion-board {
+    margin: 0.5em;
+}
+
+.sub-discussion-board a {
+    text-decoration: none;
+    color: white;
+}
 
 /* 輪播圖 */
-.forum-carousel {
-    display: flex;
-    margin: auto;
+.forum-carousel img{
+    object-fit: cover;
 }
 
-.imageSize {
-    height: 50%;
+/* 精選文章 */
+.article {
+    /* margin: 0.5em; */
 }
-

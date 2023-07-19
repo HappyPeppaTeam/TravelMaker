@@ -23,12 +23,13 @@
 }
 
 .image-overflow {
-    background-color: #333;
+    background-color: rgb(178, 210, 232, 0.5);
     overflow: auto;
     white-space: nowrap;
     padding: 10px;
 }
 
 .image-overflow>img {
-    display: inline-block;
+    /* display: inline-block; */
+    padding: 4px;
 }

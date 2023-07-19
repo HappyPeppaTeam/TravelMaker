@@ -9,47 +9,75 @@
 .bg-blue-3 {
     background-color: #6BB3E3;
 }
-
-/* 導覽列 */
-.discussion-board {
-    display: flex;
-    justify-content: space-between;
-}
-
-.discussion-board ul {
+.main ul {
+    margin: 0;
+    padding: 0;
     list-style: none;
+}
+
+ul.drop-down-discussion {
     display: flex;
+    justify-content: center;
+    font-size: 14px;
 }
 
-.discussion-board ul li {
-    position: relative;
+ul.drop-down-discussion li {
+   position: relative;
+   white-space: nowrap;
 }
 
-.discussion-board ul li a {
+ul.drop-down-discussion>li:last-child {
+    border-right: none;
+}
+
+ul.drop-down-discussion>li {
+    float: left;
+}
+
+ul.drop-down-discussion a {
+    background-color: #ccc;
+    color: #123;
+    display: block;
+    padding: 0 30px;
     text-decoration: none;
-    transition: all 0.3s;
+    line-height: 40px;
 }
 
-.discussion-board ul li a:hover {
-    color: white
+ul.drop-down-discussion a:hover {
+    background-color: lightgreen;
+    color: #fff;
 }
 
-.sub-discussion {
+ul.drop-down-discussion ul {
+    border: #ccc 1px solid;
+    position: absolute;
+    z-index: 99;
+    
+    top:100%;
+
+}
+
+ul.drop-down-discussion ul li{
+    border: #ccc 1px solid;
+}
+
+ul.drop-down-discussion ul li:last-child{
+    border-bottom: none;
+}
+
+ul.drop-down-discussion ul{
     display: none;
 }
 
-.discussion-board ul li:hover .sub-discussion {
+ul.drop-down-discussion li:hover>ul{
     display: block;
-    position: absolute;
-    left: 0;
-    top: 100%;
-    z-index: 999;
 }
-.discussion-board ul li:hover .sub-discussion ul {
-    display: block;
-    margin: 1em;
-    width:100%;
-}
+
+
+
+
+
+/* 導覽列 */
 
 /* 輪播圖 */
 .forum-carousel {
@@ -58,6 +86,6 @@
 }
 
 .imageSize {
-    height: 100%;
+    height: 50%;
 }
 

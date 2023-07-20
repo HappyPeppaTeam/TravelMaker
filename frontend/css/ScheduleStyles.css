@@ -53,3 +53,29 @@
     position: fixed;
     margin: 20px;
 }
+
+
+#moreDetail:hover {
+    background-color: rgba(211, 211, 211, 0.582);
+}
+
+a {
+    text-decoration: none;
+}
+
+#addNewBox  {
+    transition: .5s;
+}
+
+#addNewBox:hover {
+    z-index: 2;
+    transform: scale(1.05);
+}
+
+.bi-plus-lg {
+    transition: .5s;
+}
+
+#addNewBox:hover .bi-plus-lg {
+    transform: scale(1.3);
+}

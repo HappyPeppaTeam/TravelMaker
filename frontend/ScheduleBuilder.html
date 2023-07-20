@@ -283,6 +283,7 @@
         </p>
     </footer>
 
+    <!-- rwd sidebar -->
     <div class="container-fluid bg-blue-1 shadow fixed-bottom d-flex d-sm-none align-items-center"
         style="height: 50px;">
         <div class="w-100">
@@ -333,8 +334,7 @@
                         <div class="h5 ms-auto active-text"><i class="bi bi-pencil-square"></i><span
                                 class="ms-2">編輯</span></div>
                     </div>
-                    <div id="scheduleContainer" class=""
-                        style="width: 100%; min-height: 500px; border: lightcoral solid;">
+                    <div id="scheduleContainer" class="p-3 rounded shadow" style="width: 100%; min-height: 500px;">
 
                     </div>
                     <div id="map-container" style="width: 100%; height: 500px; border: lightblue solid;" class="mt-3">
@@ -433,28 +433,23 @@
 
         var schedule = new FullCalendar.Calendar(scheduleContainer, {
             themeSystem: 'bootstrap5',
-            // headerToolbar: {
-            //     center: 'dayGridMonth,timeGridFourDay' // buttons for switching between views
-            // },
-            // views: {
-            //     timeGridFourDay: {
-            //         type: 'timeGrid',
-            //         duration: { days: 4 },
-            //         buttonText: '4 day'
-            //     }
-            // }
+            initialView: 'dayGridMonth', // the name of a generic view
+            headerToolbar: {
+                // end: 'list'
+                left: "prev,next today", // 左邊放置上一頁、下一頁和今天
+                center: "title", // 中間放置標題
+                end: "list" // 右邊放置月、周、天
+            },
+            events: [
+                {
+                    title: 'Meeting',
+                    start: '2023-07-21T10:00:00', // Start date and time in ISO format
+                    end: '2023-07-21T12:00:00',   // End date and time in ISO format
+                    // You can add more properties as needed, such as 'color', 'url', etc.
+                },
+            ]
 
-            // initialView: 'timeGrid',
-            // visibleRange: {
-            //     start: '2020-03-22',
-            //     end: '2020-03-25'
-            // }
 
-            // initialView: 'timeGrid',
-            // duration: { days: 4 }
-
-            initialView: 'timeGrid', // the name of a generic view
-            duration: { days: 3 }
         });
 
 

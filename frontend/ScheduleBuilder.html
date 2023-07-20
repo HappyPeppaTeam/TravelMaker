@@ -33,6 +33,7 @@
 
     <!-- FullCalendar -->
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.8/index.global.min.js"></script>
 </head>
 
 <body class="bg-blue-1">
@@ -260,7 +261,8 @@
                             <div
                                 class="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center">
                                 <div style="width: 100%; height: 200px;  background-color: gray;"
-                                    class="d-flex align-items-center justify-content-center rounded shadow" id="addNewBox">
+                                    class="d-flex align-items-center justify-content-center rounded shadow"
+                                    id="addNewBox">
                                     <i class="bi bi-plus-lg" style="font-size: 2rem; color: #2F4E63"></i>
                                 </div>
                             </div>
@@ -317,7 +319,7 @@
 
     <!-- Journey Modal -->
     <div class="modal fade" id="journeyModal" tabindex="-1" aria-labelledby="journeyModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
             <div class="modal-content">
                 <div class="modal-header"
                     style="height: 200px; background-image: url(./images/street.jpg); background-size: cover;">
@@ -387,9 +389,6 @@
         </div>
     </div>
 
-    <!-- <div id="test" class="bg-light p-5" style="text-decoration: none;">
-
-    </div> -->
 </body>
 
 <script>
@@ -421,7 +420,7 @@
             dropdownMenu.classList.add('show');
         })
 
-        
+
         document.addEventListener('click', function (event) {
             if (!dropdownMenu.contains(event.target)) {
                 // Hide the dropdown menu if a click occurs outside of it
@@ -434,31 +433,30 @@
 
         var schedule = new FullCalendar.Calendar(scheduleContainer, {
             themeSystem: 'bootstrap5',
-            headerToolbar: {
-                center: 'dayGridMonth,timeGridFourDay' // buttons for switching between views
-            },
-            views: {
-                timeGridFourDay: {
-                    type: 'timeGrid',
-                    duration: { days: 4 },
-                    buttonText: '4 day'
-                }
-            }
+            // headerToolbar: {
+            //     center: 'dayGridMonth,timeGridFourDay' // buttons for switching between views
+            // },
+            // views: {
+            //     timeGridFourDay: {
+            //         type: 'timeGrid',
+            //         duration: { days: 4 },
+            //         buttonText: '4 day'
+            //     }
+            // }
+
+            // initialView: 'timeGrid',
+            // visibleRange: {
+            //     start: '2020-03-22',
+            //     end: '2020-03-25'
+            // }
+
+            // initialView: 'timeGrid',
+            // duration: { days: 4 }
+
+            initialView: 'timeGrid', // the name of a generic view
+            duration: { days: 3 }
         });
-        // schedule.render();
-        // const testE = document.getElementById('test');
-        // var test = new FullCalendar.Calendar(testE, {
-        //     timeZone: 'UTC',
-        //     themeSystem: 'bootstrap5',
-        //     headerToolbar: {
-        //         left: 'prev,next today',
-        //         center: 'title',
-        //         right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-        //     },
-        //     weekNumbers: true,
-        //     dayMaxEvents: true
-        // });
-        // test.render();
+
 
 
     }

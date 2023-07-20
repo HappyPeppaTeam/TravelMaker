@@ -11,8 +11,16 @@
 }
 
 /* 導覽列 */
+.discussion-board {
+    padding: 0.5em;
+}
 .sub-discussion-board {
-    margin: 0.5em;
+    display: flex;
+    justify-content: left;
+}
+.sub-discussion-board button{
+    width: 145px;
+    height: 35px;
 }
 
 .sub-discussion-board a {
@@ -26,6 +34,13 @@
 }
 
 /* 精選文章 */
-.article {
-    /* margin: 0.5em; */
+/* .article {
+    margin: 0.5em;
+} */
+
+/* 分頁 */
+.page {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
 }

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon_io/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon_io/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon_io/favicon-16x16.png" />
+  <link rel="manifest" href="./images/favicon_io/site.webmanifest" />
+
+  <title>New Journey</title>
+  <!-- bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+
+  <!-- bootstrap icon CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+    <!-- navbar css -->
+    <link rel="stylesheet" href="./src/css/navbar.css">
+    <!-- sidebar css -->
+    <link rel="stylesheet" href="./src/css/sidebar.css">
+    <!-- newJourney css -->
+    <link rel="stylesheet" href="./src/css/newJourney.css">
+
+
+</head>
+
+<body class="bg-blue-1">
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg bg-main px-2 shadow">
+    <div class="container-fluid">
+      <a class="navbar-brand me-auto" href="#"><img src="./images/logo.png" style="height: 70px" alt="" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <a class="ms-auto me-3 d-none d-lg-block" href="#"><img src="./images/dark-mode.png" style="height: 40px"
+            alt="" /></a>
+        <ul class="navbar-nav py-3">
+          <li class="nav-item">
+            <a class="nav-link" href="#">註冊</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="nav-link" href="#">登入</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-lg shadow p-0 bg-white" id="body-container">
+    <!-- <div class="d-flex" id="content-container"> -->
+    <div class="d-flex flex-nowrap row container-fluid m-0 p-0" id="content-container">
+      <!-- side bar -->
+      <div class="col-auto col-md-3 col-xl-2 d-none d-sm-block p-0">
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-blue-1 align-items-center" id="sidebar-container"
+          style="height: 100%; min-height: calc(100vh - 70px)">
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+              <a href="#" class="nav-link text-white d-flex align-items-center sidebar-link" aria-current="page">
+                <i class="bi bi-person-vcard-fill"></i>
+                <span class="d-none d-sm-inline px-2"> 基本資料 </span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link text-white d-flex align-items-center sidebar-link">
+                <i class="bi bi-envelope-fill"></i>
+                <span class="d-none d-sm-inline px-2"> 我的信箱 </span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link text-white d-flex align-items-center sidebar-link">
+                <i class="bi bi-calendar-week"></i>
+                <span class="d-none d-sm-inline px-2"> 我的行程 </span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link text-white d-flex align-items-center sidebar-link">
+                <i class="bi bi-image"></i>
+                <span class="d-none d-sm-inline px-2"> 我的相簿 </span>
+              </a>
+            </li>
+            <li>
+              <a href="#my-collection-submenu" class="nav-link text-white d-flex align-items-center sidebar-link"
+                data-bs-toggle="collapse" role="button">
+                <i class="bi bi-star-fill"></i>
+                <span class="d-none d-sm-inline px-2"> 我的收藏 </span>
+              </a>
+
+              <div class="collapse text-white" id="my-collection-submenu">
+                <ul style="list-style-type: none; padding: 0" class="d-flex align-items-center flex-column">
+                  <li>
+                    <a href="#" class="nav-link px-0">
+                      <i class="bi bi-stack"></i>
+                      <span class="d-none d-sm-inline ms-1">全部</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link px-0">
+                      <i class="bi bi-calendar-heart"></i>
+                      <span class="d-none d-sm-inline ms-1">行程</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link px-0">
+                      <i class="bi bi-camera"></i>
+                      <span class="d-none d-sm-inline ms-1">景點</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-link px-0">
+                      <i class="bi bi-cup-straw"></i>
+                      <span class="d-none d-sm-inline ms-1">餐廳</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- main content -->
+      <div class="flex-fill px-0 justify-content-center" id="content"
+        style="height: 100%; min-height: calc(100vh - 70px)">
+        <div class="m-5">
+          <div class="d-flex align-items-end">
+            <a href="" class="rm-link-style">
+              <div class="h1">
+                建立行程 <span class="d-none">- 金瓜石之旅</span>
+              </div>
+            </a>
+          </div>
+          <div class="progress my-3" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0"
+            aria-valuemax="100" style="height: 2px">
+            <div class="progress-bar" id="progressBar" style="width: 50%"></div>
+          </div>
+          <div class="container px-0">
+            <form action="" id="newJourneyForm1" class="tab">
+              <div class="mb-3">
+                <label for="inputJourneyName" class="form-label">行程名稱</label>
+                <input type="text" class="form-control" id="inputJourneyName" aria-describedby="inputJourneyName"
+                  placeholder="ex. 金瓜石兩日遊" />
+              </div>
+              <div class="mb-3">
+                <label for="inputJourneyDestination" class="form-label">行程目的地</label>
+                <input type="text" class="form-control" id="inputJourneyDestination"
+                  aria-describedby="inputJourneyDestination" placeholder="ex. 台北" />
+              </div>
+              <div class="mb-3">
+                <label for="inputJourneyStart" class="form-label">開始日期</label>
+                <input type="date" class="form-control" id="inputJourneyStart" aria-describedby="inputJourneyStart" />
+              </div>
+              <div class="mb-3">
+                <label for="inputJourneyDays" class="form-label">行程天數</label>
+                <input type="number" class="form-control" id="inputJourneyDays" aria-describedby="inputJourneyDays" />
+              </div>
+            </form>
+
+            <div id="newJourneyForm2" class="tab">
+              <div id="calendarContainer" class="w-100 mb-3" style="height: 500px; border: grey solid"></div>
+              <div id="mapContainer" class="w-100" style="height: 300px; border: lightblue solid"></div>
+            </div>
+
+            <form action="" id="newJourneyForm3" class="tab">
+              <div class="mb-3">
+                <div class="mb-3">
+                  <div class="mb-1">加入圖片</div>
+                  <label for="formFileMultiple" class="form-label">本機上傳</label>
+                  <input class="form-control mb-2" type="file" id="formFileMultiple" multiple />
+
+                  <label for="fromAlbum" class="form-label">相簿上傳</label>
+
+                  <div class="input-group mb-3">
+                    <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" type="button"
+                      id="fromAlbum" aria-expanded="false">
+                      選擇相簿
+                    </button>
+                    <ul class="dropdown-menu" id="albumMenu">
+                      <li><a class="dropdown-item" href="#">Album 1</a></li>
+                      <li><a class="dropdown-item" href="#">Album 2</a></li>
+                      <li><a class="dropdown-item" href="#">Album 3</a></li>
+                    </ul>
+                    <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon"
+                      aria-describedby="button-addon1" />
+                  </div>
+
+                  <div class="container-fluid mt-3" style="height: 300px; border: lightgrey solid"></div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="publicRadio" class="form-label">公開設定</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="privacyRadio" value="" id="publicRadio" />
+                    <label class="form-check-label" for="publicRadio">
+                      公開
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="privacyRadio" value="" id="privateRadio"
+                      checked />
+                    <label class="form-check-label" for="privateRadio">
+                      不公開
+                    </label>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="inputNoteJourney" class="form-label">備註</label>
+                  <textarea class="form-control" id="inputNoteJourney" rows="3"></textarea>
+                </div>
+              </div>
+            </form>
+
+            <div id="browseJourney" class="tab">
+              <div id="browseCalendarContainer" class="w-100 mb-3" style="height: 500px; border: grey solid">
+                <h2>Calendar</h2>
+              </div>
+              <div id="browserMapContainer" class="w-100 mb-3" style="height: 300px; border: lightblue solid">
+                <h2>Map</h2>
+              </div>
+              <div id="browseTextContainer" class="w-100 mb-3" style="height: 300px; border: lightgrey solid">
+                <h2>Note</h2>
+              </div>
+              <div id="browserImageContainer" class="w-100 mb-3" style="height: 200px; border: lightcoral solid">
+                <h2>Image</h2>
+              </div>
+            </div>
+
+            <div class="mt-5 d-flex">
+              <div class="active-text" id="prevButton">
+                <i class="bi bi-arrow-left"></i><span class="ps-1">上一步</span>
+              </div>
+              <div class="ms-auto active-text" id="nextButton">
+                <span class="pe-1" id="nextStepText">下一步</span><i class="bi bi-arrow-right" id="nextStepIcon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <footer class="bg-main py-3 shadow mt-3">
+    <p class="mb-0 text-center text-white">
+      © 2023 Travel Maker All Rights Reserved.
+    </p>
+  </footer>
+
+  <div class="container-fluid bg-blue-1 shadow fixed-bottom d-flex d-sm-none align-items-center" style="height: 50px">
+    <div class="w-100">
+      <ul class="d-flex rm-ul-style justify-content-around" style="list-style-type: none" id="sidebarBottom">
+        <li>
+          <a href="#" class="nav-link text-white">
+            <i class="bi bi-person-vcard-fill"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-white">
+            <i class="bi bi-envelope-fill"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-white">
+            <i class="bi bi-calendar-week"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-white">
+            <i class="bi bi-image"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-white">
+            <i class="bi bi-star-fill"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="
+              height: 200px;
+              background-image: url(./images/street.jpg);
+              background-size: cover;
+            ">
+          <h1 class="modal-title fs-5 align-self-end text-white" id="exampleModalLabel">
+            Modal title
+          </h1>
+          <button type="button" class="btn-close btn-close-white align-self-start" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="content-header" class="d-flex align-items-center">
+            <h1>Model</h1>
+            <div class="h5 ms-auto active-text">
+              <i class="bi bi-pencil-square"></i><span class="ms-2">編輯</span>
+            </div>
+          </div>
+          <div id="schedule-container" style="width: 100%; height: 500px; border: lightcoral solid"></div>
+          <div id="map-container" style="width: 100%; height: 500px; border: lightblue solid" class="mt-3"></div>
+
+          <div id="text-content" class="mt-3">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem,
+            recusandae? Veniam, error iure et voluptas quae enim! Amet
+            consequuntur dolorum odit, vero nulla mollitia suscipit libero,
+            iste ullam, inventore quisquam? Saepe doloremque labore rem cum
+            reprehenderit totam, maxime eaque. Repudiandae maiores eligendi
+            consequuntur laudantium. Mollitia reprehenderit eius asperiores
+            iusto nisi. Voluptate deleniti neque ducimus reiciendis magni at
+            rerum perferendis vel. Quod similique, dolor perspiciatis
+            voluptatem autem nostrum itaque labore, aut quia cupiditate
+            aspernatur consectetur! Nam placeat ea inventore quas earum quia
+            unde impedit! Debitis earum distinctio alias ipsa quaerat eius!
+            Reprehenderit molestias eveniet, impedit, rem aliquid nulla illum
+            hic architecto culpa dolor, laudantium consequatur atque sit ut
+            delectus aut temporibus iste vero? Harum cumque consectetur veniam
+            tempora, ex vel ullam. Est illum corrupti accusantium commodi
+            corporis ad eius, ducimus adipisci laudantium delectus distinctio,
+            laboriosam velit harum! Quaerat exercitationem, doloribus
+            consequatur, aperiam esse veritatis iusto consequuntur
+            perspiciatis dolorum doloremque earum odio. Veniam deleniti
+            similique, pariatur modi nobis in, dolore inventore rem cum
+            impedit ipsam, cupiditate adipisci ipsum animi omnis error
+            repellat maiores est laboriosam quisquam totam unde corrupti vel.
+            Dicta, dolorem. Architecto ut quis animi molestias unde, placeat
+            illum modi, cupiditate, perferendis perspiciatis quaerat
+            aspernatur ad tempora pariatur neque vero minus reiciendis aut
+            repellat vitae harum impedit. Ut aspernatur commodi possimus? Sint
+            dolore illum deserunt. Exercitationem, delectus? Doloribus alias
+            sint nobis dolorum unde voluptates iusto veritatis aliquam
+            voluptas dicta saepe rem ratione aspernatur vitae inventore quos
+            quam libero, repellendus, perspiciatis voluptatibus. Minima
+            tenetur harum officiis distinctio quam qui vel aliquid amet a,
+            eos, molestiae quis vero iusto doloribus. Nemo alias provident sed
+            quidem corporis, nihil tenetur soluta minus ipsa sequi eos. Iure
+            accusamus dolorum earum quis rem consectetur, quam fuga
+            repudiandae reiciendis tempore numquam magni vitae ipsam
+            repellendus facilis aliquid laudantium amet voluptas minima
+            provident nobis. Corrupti asperiores praesentium minus sint.
+            Libero aut tempora qui inventore et animi porro laudantium
+            voluptatem cupiditate dicta commodi accusantium ad assumenda ex
+            esse, reiciendis sed quae dolore quas, sequi aliquid consequuntur
+            eveniet. Nesciunt, repellendus quae. Corrupti rerum consequuntur
+            ratione quod voluptas velit pariatur fugiat, quisquam hic totam
+            aliquid, quos perferendis quia provident numquam earum beatae
+            similique dolor et! Aspernatur alias est ducimus, veritatis
+            provident doloremque. Suscipit obcaecati aut, nesciunt culpa et
+            quibusdam corporis reiciendis voluptas consequuntur autem tempora
+            voluptatum similique nam dolorum inventore corrupti. Perspiciatis
+            id sed officiis corporis ex expedita, quos aut maiores
+            perferendis? Dicta aliquid harum laborum earum rem. Ad neque
+            dolorum dignissimos quis deleniti odit ipsa, rerum architecto
+            maxime, dicta excepturi error, iure expedita! Quod perferendis
+            facere odit fuga. Expedita, repellat officia.
+          </div>
+          <div id="image-container" style="width: 100%; height: 200px; border: lightgreen solid" class="mt-3"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.onload = function () {
+      var currentTab = 0;
+      showTab(currentTab);
+
+      function showTab(n) {
+        const tabs = document.getElementsByClassName("tab");
+        const prevButton = document.getElementById("prevButton");
+        const nextButton = document.getElementById("nextButton");
+        const progressBar = document.getElementById("progressBar");
+
+        // set progress bar
+        let progressPercent = (100 / tabs.length) * (n + 1);
+        progressBar.setAttribute("style", `width: ${progressPercent}%`);
+
+        tabs[n].style.display = "block";
+
+        if (n == 0) {
+          prevButton.style.display = "none";
+        } else {
+          prevButton.style.display = "block";
+        }
+
+        if (n == tabs.length - 1) {
+          nextButton.getElementsByTagName("span")[0].innerText = "完成";
+          // nextButton.getElementsByTagName('i').style.display = 'none';
+        } else {
+          nextButton.getElementsByTagName("span")[0].innerText = "下一步";
+        }
+      }
+
+      function nextPrev(n) {
+        const tabs = document.getElementsByClassName("tab");
+        tabs[currentTab].style.display = "none";
+        currentTab += n;
+
+        if (currentTab >= tabs.length || currentTab < 0) {
+          currentTab = 0;
+          // return false;
+        }
+
+        // console.log(currentTab)
+        showTab(currentTab);
+      }
+
+      let prevButton = document.getElementById("prevButton");
+      let nextButton = document.getElementById("nextButton");
+
+      prevButton.addEventListener("click", function () {
+        nextPrev(-1);
+      });
+      nextButton.addEventListener("click", function () {
+        nextPrev(1);
+      });
+    };
+  </script>
+</body>
+
+</html>

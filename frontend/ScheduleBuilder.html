@@ -149,7 +149,7 @@
             </div>
 
             <!-- main content -->
-            <div class="flex-fill px-0 pe-lg-3 justify-content-center" id="content">
+            <div class="flex-fill px-0 justify-content-center" id="content">
                 <div class="m-5">
                     <div class="d-flex align-items-end">
                         <a href="" class="rm-link-style">
@@ -433,7 +433,7 @@
 
         var schedule = new FullCalendar.Calendar(scheduleContainer, {
             themeSystem: 'bootstrap5',
-            initialView: 'dayGridMonth', // the name of a generic view
+            initialView: 'listWeek', // the name of a generic view
             headerToolbar: {
                 // end: 'list'
                 left: "prev,next today", // 左邊放置上一頁、下一頁和今天
@@ -445,6 +445,24 @@
                     title: 'Meeting',
                     start: '2023-07-21T10:00:00', // Start date and time in ISO format
                     end: '2023-07-21T12:00:00',   // End date and time in ISO format
+                    // You can add more properties as needed, such as 'color', 'url', etc.
+                },
+                {
+                    title: 'Meeting',
+                    start: '2023-07-21T13:00:00', // Start date and time in ISO format
+                    end: '2023-07-21T14:00:00',   // End date and time in ISO format
+                    // You can add more properties as needed, such as 'color', 'url', etc.
+                },
+                {
+                    title: 'Meeting',
+                    start: '2023-07-21T15:00:00', // Start date and time in ISO format
+                    end: '2023-07-21T16:00:00',   // End date and time in ISO format
+                    // You can add more properties as needed, such as 'color', 'url', etc.
+                },
+                {
+                    title: 'Meeting',
+                    start: '2023-07-21T17:00:00', // Start date and time in ISO format
+                    end: '2023-07-21T18:00:00',   // End date and time in ISO format
                     // You can add more properties as needed, such as 'color', 'url', etc.
                 },
             ]

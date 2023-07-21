@@ -1,6 +1,9 @@
+import '../css/index.css';
+import Slider from '../components/Slick';
+
 export default function Home() {
     return (
-        <>
+        <div className="container mt-3">
         <div className="filter d-flex justify-content-evenly mt-4 mx-auto">
           <a href="#">餐廳</a>
           <a href="#">景點</a>
@@ -193,7 +196,8 @@ export default function Home() {
         <div className="popularSpot">
           <h2 className="fw-bold">熱門景點</h2>
           <p className="mb-0">沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
+          <Slider/>
         </div>
-        </>
+        </div>
     )
 }

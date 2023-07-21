@@ -37,10 +37,3 @@
 /* .article {
     margin: 0.5em;
 } */
-
-/* 分頁 */
-.page {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
-}

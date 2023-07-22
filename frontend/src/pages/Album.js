@@ -1,6 +1,62 @@
 import '../css/sidebar.css';
+import '../css/album.css';
+import React from 'react';
 
-export default function Album() {
+const { useState, useRef, useEffect } = React;
+
+function useImage() {
+    const inputRef = useRef(null);
+    const [images, setImages] = useState([]);
+  
+    // 上傳圖片
+    const handleUpload = (e) => {
+      const images = [...e.target.files].map((file) => {
+        return {
+        name: file.name,
+        url: URL.createObjectURL(file),
+        }
+      });
+      setImages(images);
+    }
+  
+    // 移除單一圖片
+    const handleRemove = (e,imgIndex) => {
+        e.preventDefault();
+        setImages(images.filter((img,index) => {
+            if(index === imgIndex) {
+                URL.revokeObjectURL(img.url);
+            }
+            return index !== imgIndex;
+        }))
+    }
+
+    // 移除全部圖片
+    const handleRemoveAll = (e) => {
+        e.preventDefault();
+        images.forEach((img) => {
+            URL.revokeObjectURL(img.url);
+        });
+        setImages([]);
+    }
+
+    useEffect(() => {
+        if(images.length === 0 && inputRef.current){
+            inputRef.current.value = "";
+        }
+    },[images])
+  
+    return {
+      images,
+      handleUpload,
+      handleRemove,
+      handleRemoveAll,
+      inputRef,
+    }
+}
+
+const Album = () => {
+    const { images, handleUpload, handleRemove, handleRemoveAll, inputRef } = useImage();
+
     return (
         <>
         <div className="container-fluid shadow p-0 bg-white" id="body-container">
@@ -90,31 +146,55 @@ export default function Album() {
                     <div className='wrap m-5'>
                         <h1>建立相簿</h1>
 
-                        <form action="" id="newJourneyForm1" class="tab">
+                        <form action="" id="newJourneyForm1" className="tab mt-4">
 
                             <div className="mb-3">
-                                <label htmlFor="albumName" className="form-label">相簿名稱</label>
+                                <label htmlFor="albumName" className="form-label fs-4">相簿名稱</label>
                                 <input type="text" className="form-control" id="albumName"
-                                    aria-describedby="albumName" placeholder="ex. 金瓜石兩日遊" />
+                                    aria-describedby="albumName" placeholder="如 : 金瓜石兩日遊" />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="albumSort" className="form-label">分類</label>
+                                <label htmlFor="albumSort" className="form-label fs-4">分類</label>
                                 <input type="text" className="form-control" id="albumSort"
-                                    aria-describedby="albumSort" placeholder="ex. 台北" />
+                                    aria-describedby="albumSort" placeholder="如 : 台北" />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="note" className="form-label">備註</label>
-                                <textarea class="form-control" id="note" rows="5"></textarea>
+                                <label htmlFor="note" className="form-label fs-4">備註</label>
+                                <textarea className="form-control" id="note" rows="5"></textarea>
                             </div>
 
                             <label htmlFor="file-input">
-                            <input
-                                type="file"
-                                id="file-input"
-                                accept="image/*"
-                            />
-                            <span className='btn btn-outline-primary'>Upload One Image</span>
+                                <p className='fs-4 mb-2'>選擇相片</p>
+                                <input
+                                    type="file"
+                                    id="file-input"
+                                    accept="image/*"
+                                    className="d-none ab"
+                                    multiple
+                                    onChange={handleUpload}
+                                    ref={inputRef}
+                                />
+                                <span className='btn btn-outline-primary me-2'>上傳圖片</span>
                             </label>
+                            <span className='btn btn-outline-danger' onClick={(e) => handleRemoveAll(e)}>移除全部圖片</span>
+
+                            <div className='row row-cols-2 row-cols-lg-3 mt-3 g-3'>
+                                {images.map((image,index) => {
+                                    return (
+                                    <div className='col' key={index}>
+                                        <img className='selectedImg w-100' src={image.url} />
+                                        <div className='imgInfo'>
+                                            <div className='fileName w-100 d-flex justify-content-between align-items-center'>
+                                                <p className='m-0 py-2 text-white text-center'>{image.name}</p>
+                                                <button className='btn remove' onClick={(e) => handleRemove(e,index)}><i className="bi bi-x-circle fs-4"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    )
+                                })}
+                                
+                            </div>
+
                         </form>
                     </div>
                 </div>
@@ -154,3 +234,5 @@ export default function Album() {
         </>
     )
 }
+
+export default Album;

@@ -440,6 +440,7 @@
         var schedule = new FullCalendar.Calendar(scheduleContainer, {
             themeSystem: 'bootstrap5',
             initialView: 'listAll', // the name of a generic view
+            initialDate: '2023-05-13T08:00:00',
             headerToolbar: {
                 // end: 'list'
                 left: "prev,next today", // 左邊放置上一頁、下一頁和今天
@@ -462,7 +463,8 @@
                     start: '2023-05-13T08:00:00', // Start date and time in ISO format
                     end: '2023-05-13T09:00:00',   // End date and time in ISO format
                     // You can add more properties as needed, such as 'color', 'url', etc.
-                    description: 'Breakfast yum yum yum yum'
+                    description: 'Breakfast yum yum yum yum',
+                    editable: true
                 },
                 {
                     title: '成功大學',

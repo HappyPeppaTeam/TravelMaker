@@ -179,14 +179,22 @@
                   <label for="fromAlbum" class="form-label">相簿上傳</label>
 
                   <div class="input-group mb-3">
-                    <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" type="button"
+                    <button class="btn btn-outline-secondary dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" type="button"
                       id="fromAlbum" aria-expanded="false">
                       選擇相簿
                     </button>
                     <ul class="dropdown-menu" id="albumMenu">
-                      <li><a class="dropdown-item" href="#">金瓜石之旅</a></li>
+
                       <li><a class="dropdown-item" href="#">新北兩日遊</a></li>
                       <li><a class="dropdown-item" href="#">我的收藏</a></li>
+                      <li class="dropend">
+                        <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#">Submenu</a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#" class="dropdown-item">Item 1</a></li>
+                          <li><a href="#" class="dropdown-item">Item 1</a></li>
+                          <li><a href="#" class="dropdown-item">Item 1</a></li>
+                        </ul>
+                      </li>
                     </ul>
                     <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon"
                       aria-describedby="button-addon1" />

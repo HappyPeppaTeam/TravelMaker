@@ -23,10 +23,10 @@ export default function Navbar() {
         /></a>
         <ul className="navbar-nav py-3">
           <li className="nav-item">
-            <Link className="nav-link" to='/album'>註冊</Link>
+            <a className="nav-link" href='#'>註冊</a>
           </li>
           <li className="nav-item ms-lg-2">
-            <a className="nav-link" href="#">登入</a>
+            <Link className="nav-link" to='/album'>登入</Link>
           </li>
         </ul>
       </div>

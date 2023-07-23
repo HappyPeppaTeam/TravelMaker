@@ -1,47 +1,45 @@
-.imgInfo {
+.album {
+    height: 200px;
+    background-size: cover;
+}
+
+.albumLink:hover .card-title {
+    bottom: 20px;
+    transform: scale(1.2);
+}
+
+.card-body {
     position: relative;
 }
 
-.fileName {
+.card-title {
     position: absolute;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);;
+    transition: all .4s;
 }
 
-.fileName p {
-    overflow:hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.selectedImg {
-    height: 150px;
+.wrap img{
+    width: 100%;
+    height: 300px;
     object-fit: cover;
 }
 
-@media (min-width:768px) {
-    .selectedImg {
-        height: 200px;
-    }
+.slick-dots {
+    position: static ;
+    margin-top: 10px;
+}
+
+.slick-thumb li {
+    width: 60px;
+    height: 45px;
+    margin-bottom: 10px;
+}
+
+.slick-prev, .slick-next {
+    top: 40%;
 }
 @media (min-width:992px) {
-    .selectedImg {
-        height: 250px;
+    .slick-prev, .slick-next {
+        top: 45%;
     }
 }
-@media (min-width:1200px) {
-    .selectedImg {
-        height: 300px;
-    }
-}
-
-.remove {
-    color: white;
-    transition: transform .2s;
-}
-
-.remove:hover {
-    color: red;
-    transform: scale(1.3,1.3);
-}
-

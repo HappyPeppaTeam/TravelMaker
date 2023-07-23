@@ -1,32 +1,64 @@
 import '../css/sidebar.css';
-import '../css/album.css';
+import '../css/createAlbum.css';
 import React from 'react';
-import AlbumModal from '../components/AlbumModal';
-import { Modal } from 'bootstrap';
-import { Link } from 'react-router-dom';
 
-const { useRef, useEffect } = React;
+const { useState, useRef, useEffect } = React;
+
+function useImage() {
+    const inputRef = useRef(null);
+    const [images, setImages] = useState([]);
+  
+    // 上傳圖片
+    const handleUpload = (e) => {
+      const images = [...e.target.files].map((file) => {
+        return {
+        name: file.name,
+        url: URL.createObjectURL(file),
+        }
+      });
+      setImages(images);
+    }
+  
+    // 移除單一圖片
+    const handleRemove = (e,imgIndex) => {
+        e.preventDefault();
+        setImages(images.filter((img,index) => {
+            if(index === imgIndex) {
+                URL.revokeObjectURL(img.url);
+            }
+            return index !== imgIndex;
+        }))
+    }
+
+    // 移除全部圖片
+    const handleRemoveAll = (e) => {
+        e.preventDefault();
+        images.forEach((img) => {
+            URL.revokeObjectURL(img.url);
+        });
+        setImages([]);
+    }
+
+    useEffect(() => {
+        if(images.length === 0 && inputRef.current){
+            inputRef.current.value = "";
+        }
+    },[images])
+  
+    return {
+      images,
+      handleUpload,
+      handleRemove,
+      handleRemoveAll,
+      inputRef,
+    }
+}
 
 const Album = () => {
-
-    const albumModal = useRef(null);
-    useEffect(() => {
-        albumModal.current = new Modal('#albumModal',{
-            backdrop: 'static',
-        });
-    })
-    
-    const openAlbumModal = () => {
-        albumModal.current.show();
-    }
-
-    const closeAlbumModal = () => {
-        albumModal.current.hide();
-    }
+    const { images, handleUpload, handleRemove, handleRemoveAll, inputRef } = useImage();
 
     return (
         <>
-        <AlbumModal closeAlbumModal={closeAlbumModal}/>
         <div className="container-fluid shadow p-0 bg-white" id="body-container">
             <div className="d-flex flex-nowrap row container-fluid m-0 p-0" id="content-container">
                 <div className="col-auto col-md-3 col-xl-2 d-none d-sm-block p-0">
@@ -112,29 +144,62 @@ const Album = () => {
 
                 <div className="flex-fill px-0 justify-content-center" id="content" style={{height: "100%", minHeight: "calc(100vh - 70px)"}}>
                     <div className='wrap m-5'>
-                        <div className="d-flex justify-content-between align-items-center mb-3">
-                            <h1 className='m-0'>相簿</h1>
-                            <Link className='btn btn-outline-primary' to='/album/create'>建立新相簿</Link>
-                        </div>
-                        {/* 相簿總覽 */}
-                        <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-                            <div className="col">
-                            <a href="#" className="albumLink" onClick={openAlbumModal}>
-                                <div className="card m-2 album" style={{backgroundImage:'url(https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80)'}}>
-                                    <div className="card-body">
-                                        <h4 className="card-title fw-bold text-white ps-3">野柳地質公園</h4>
-                                    </div>
-                                </div>
-                            </a>
-                            </div>
-                        </div>
+                        <h1>建立相簿</h1>
 
+                        <form action="" id="newJourneyForm1" className="tab mt-4">
+
+                            <div className="mb-3">
+                                <label htmlFor="albumName" className="form-label fs-4">相簿名稱</label>
+                                <input type="text" className="form-control" id="albumName"
+                                    aria-describedby="albumName" placeholder="如 : 金瓜石兩日遊" />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="albumSort" className="form-label fs-4">分類</label>
+                                <input type="text" className="form-control" id="albumSort"
+                                    aria-describedby="albumSort" placeholder="如 : 台北" />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="note" className="form-label fs-4">備註</label>
+                                <textarea className="form-control" id="note" rows="5"></textarea>
+                            </div>
+
+                            <label htmlFor="file-input">
+                                <p className='fs-4 mb-2'>選擇相片</p>
+                                <input
+                                    type="file"
+                                    id="file-input"
+                                    accept="image/*"
+                                    className="d-none ab"
+                                    multiple
+                                    onChange={handleUpload}
+                                    ref={inputRef}
+                                />
+                                <span className='btn btn-outline-primary me-2'>上傳圖片</span>
+                            </label>
+                            <span className='btn btn-outline-danger' onClick={(e) => handleRemoveAll(e)}>移除全部圖片</span>
+
+                            <div className='row row-cols-2 row-cols-lg-3 mt-3 g-3'>
+                                {images.map((image,index) => {
+                                    return (
+                                    <div className='col' key={index}>
+                                        <img className='selectedImg w-100' src={image.url} />
+                                        <div className='imgInfo'>
+                                            <div className='fileName w-100 d-flex justify-content-between align-items-center'>
+                                                <p className='m-0 py-2 text-white text-center'>{image.name}</p>
+                                                <button className='btn remove' onClick={(e) => handleRemove(e,index)}><i className="bi bi-x-circle fs-4"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    )
+                                })}
+                                
+                            </div>
+
+                        </form>
                     </div>
                 </div>
-
             </div>
         </div>
-        
         <div className="container-fluid bg-blue-1 shadow fixed-bottom d-flex d-sm-none align-items-center" style={{height: "50px"}}>
             <div className="w-100">
                 <ul className="d-flex rm-ul-style justify-content-around" style={{listStyleType: "none"}} id="sidebarBottom">

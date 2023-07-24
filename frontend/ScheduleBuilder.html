@@ -156,7 +156,7 @@
                             <div class="h1">我的行程</div>
                         </a>
 
-                        <div class="h5 ms-auto active-text"><i class="bi bi-plus-lg"></i><span class="ms-1">建立行程</span>
+                        <div class="h5 ms-auto active-text add-new-journey"><i class="bi bi-plus-lg"></i><span class="ms-1">建立行程</span>
                         </div>
                     </div>
                     <hr>
@@ -261,7 +261,7 @@
                             <div
                                 class="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center">
                                 <div style="width: 100%; height: 200px;  background-color: gray;"
-                                    class="d-flex align-items-center justify-content-center rounded shadow"
+                                    class="d-flex align-items-center justify-content-center rounded shadow add-new-journey"
                                     id="addNewBox">
                                     <i class="bi bi-plus-lg" style="font-size: 2rem; color: #2F4E63"></i>
                                 </div>
@@ -553,12 +553,22 @@
         });
 
 
-        const addNewJourney = document.getElementById('addNewBox');
+        // const addNewJourney = document.getElementById('addNewBox');
 
-        addNewJourney.addEventListener('click', function(event){
-            event.preventDefault();
-            location.href = "./NewJourney.html";
-        });
+        // addNewJourney.addEventListener('click', function(event){
+        //     event.preventDefault();
+        //     location.href = "./NewJourney.html";
+        // });
+
+
+        const addNewJourneyClass = document.getElementsByClassName('add-new-journey');
+        for (var i=0; i<addNewJourneyClass.length; i++) {
+            addNewJourneyClass[i].addEventListener('click', function(event){
+                event.preventDefault();
+                location.href = "./NewJourney.html";
+            })
+        }
+        
 
 
     }

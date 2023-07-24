@@ -92,3 +92,8 @@
     background: rgb(235, 244, 245, 0.5);
     background: linear-gradient(135deg, rgba(235,244,245,0.5) 57%, rgba(181,198,224,0.5) 100%);
 }
+
+
+.edit-view {
+    display: none;
+}

@@ -185,43 +185,38 @@
                     </button>
                     <ul class="dropdown-menu" id="albumMenu">
 
-                      <li><a class="dropdown-item" href="#">新北兩日遊</a></li>
+                      <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#albumModal">新北兩日遊</a></li>
                       <li><a class="dropdown-item" href="#">我的收藏</a></li>
                       <li class="dropend">
                         <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#">金瓜石之旅</a>
                         <ul class="dropdown-menu" id="albumSubMenu">
-                          <div class="d-flex container-fluid p-3 justify-content-center overflow-auto" style="height: 500px; width: 500px;">
+                          <div class="d-flex p-3 justify-content-center overflow-auto" style="height: 500px; width: 500px;">
                             <div class="row g-3 w-100">
                               <div class="col-4">
                                 <div class="image-box bg-light w-100">
-                                  <input type="checkbox" id="albImg1">
-                                  <label for="albImg1"><img src="./src/images/street.jpg" class="img-fluid"></label>
+                                  <input type="checkbox" id="imgCheck1" class="form-check-input imgCheck">
+                                  <label for="imgCheck1" id="imgLabel1" class="form-check-label imgLabel">
+                                    <img src="./src/images/street.jpg" class="img-fluid">
+                                  </label>
                                 </div>
                               </div>
                               <div class="col-4">
-                                <div class="image-box bg-light w-100"></div>
+                                <div class="image-box bg-light w-100">
+                                  <input type="checkbox" id="imgCheck2" class="form-check-input imgCheck">
+                                  <label for="imgCheck2" id="imgLabel3" class="form-check-label imgLabel w-100 h-100" style="background-image: url(./src/images/street.jpg); background-size: cover;">
+                                  </label>
+                                </div>
                               </div>
                               <div class="col-4">
-                                <div class="image-box bg-light w-100"></div>
+                                <div class="image-box bg-light w-100">
+                                  <input type="checkbox" id="imgCheck3" class="form-check-input imgCheck">
+                                  <label for="imgCheck3" id="imgLabel3" class="form-check-label imgLabel">
+                                    <img src="./src/images/street.jpg" class="img-fluid">
+                                  </label>
+                                </div>
                               </div>
-                              <div class="col-4">
-                                <div class="image-box bg-light w-100"></div>
-                              </div>
-                              <div class="col-4">
-                                <div class="image-box bg-light w-100"></div>
-                              </div>
-                              <div class="col-4">
-                                <div class="image-box bg-light w-100"></div>
-                              </div>
-                              <div class="col-4">
-                                <div class="image-box bg-light w-100"></div>
-                              </div>
-                              <div class="col-4">
-                                <div class="image-box bg-light w-100"></div>
-                              </div>
-                              <div class="col-4">
-                                <div class="image-box bg-light w-100"></div>
-                              </div>
+                             
+                              
                               <div class="col-4">
                                 <div class="image-box bg-light w-100"></div>
                               </div>
@@ -300,6 +295,8 @@
               </div>
               <div id="browseTextContainer" class="w-100 mb-3" style="height: 300px; border: lightgrey solid">
                 <h2>Note</h2>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus in provident vitae id? Repudiandae sit maiores expedita. Veniam nulla, atque, expedita pariatur natus, debitis at explicabo consectetur nobis sequi perferendis?
+                Necessitatibus culpa perspiciatis aut. Eaque corporis ullam porro, provident modi voluptatibus praesentium amet aliquam veritatis cum ipsam hic impedit dicta sint dolorem iure excepturi aut unde exercitationem libero officia possimus?</p>
               </div>
               <div id="browserImageContainer" class="w-100 mb-3" style="height: 200px; border: lightcoral solid">
                 <h2>Image</h2>
@@ -451,6 +448,52 @@
     </div>
   </div>
 
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="albumModal" tabindex="-1" aria-labelledby="albumModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="albumModalTitle">新北兩日遊</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid px-0">
+            <div class="row g-3">
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="w-100 h-100 position-relative">
+                  <input type="checkbox" class="form-check-input position-absolute top-0 start-0" id="img1">
+                  <label class="w-100 shadow rounded image-box" for="img1"></label>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="w-100 shadow rounded image-box"></div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="w-100 shadow rounded image-box"></div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="w-100 shadow rounded image-box"></div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="w-100 shadow rounded image-box"></div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="w-100 shadow rounded image-box"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <script>
     window.onload = function () {
       var currentTab = 0;
@@ -506,6 +549,8 @@
         nextPrev(1);
       });
     };
+
+    
   </script>
 </body>
 

@@ -1,105 +1,203 @@
 .backgroundmountain {
-    background-size: cover;
-    background-position: right bottom;
-    height: 300px;
-    background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right bottom;
+  height: 300px;
+  background-repeat: no-repeat;
 }
 
 .wrap {
-    position: relative;
-    top: 50%;
-    left: 30%;
+  position: relative;
+  top: 50%;
+  left: 30%;
 }
 
 .search-bar {
-    width: 40%;
-    height: 32px;
-    font-size: 20px;
-    background-color: #efe9e7;
-    text-align: center;
-    border-radius: 5px;
+  width: 40%;
+  height: 32px;
+  font-size: 20px;
+  background-color: #efe9e7;
+  text-align: center;
+  border-radius: 5px;
 }
 
 .img-thumbnail2 {
-    padding: 0.75rem;
-    max-width: 100%;
+  padding: 0.75rem;
+  max-width: 100%;
 }
 
 .image-container img {
-    transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 .image-container img:hover {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .sidenav {
-    height: 100%;
-    width: 200px;
-    position: relative;
-    top: 0;
-    left: 0;
-    background-color: darkolivegreen;
-    overflow-x: hidden;
-    padding-top: 20px;
+  height: 100%;
+  width: 200px;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: #203f54;
+  overflow-x: hidden;
+  padding-top: 20px;
 }
 
 /* Style the sidenav links and the dropdown button */
 .sidenav a,
 .dropdown-btn {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 20px;
-    color: white;
-    display: block;
-    border: none;
-    background: none;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-    outline: none;
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
 }
 
 /* On mouse-over */
 .sidenav a:hover,
 .dropdown-btn:hover {
-    color: black;
+  color: black;
 }
 
 /* Main content */
 .main {
-    margin-left: 200px;
-    /* Same as the width of the sidenav */
-    font-size: 20px;
-    /* Increased text to enable scrolling */
-    padding: 0px 10px;
+  margin-left: 200px;
+  /* Same as the width of the sidenav */
+  font-size: 20px;
+  /* Increased text to enable scrolling */
+  padding: 0px 10px;
 }
 
 /* Add an active class to the active dropdown button */
 .active2 {
-    background-color: green;
-    color: white;
+  background-color: #43525c;
+  color: white;
 }
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
-    display: none;
-    background-color: darkcyan;
-    padding-left: 8px;
+  display: none;
+  background-color: #717171;
+  padding-left: 8px;
 }
 
 /* Optional: Style the caret down icon */
 .fa-caret-down {
-    float: right;
-    padding-right: 8px;
+  float: right;
+  padding-right: 8px;
 }
 
 .carousel-item>img {
-    width: 100%;
-    height: 500px;
-    object-fit: contain;
+  width: 100%;
+  height: 500px;
+  object-fit: contain;
 }
 
 .rm-fieldset {
-    border: gray solid;
+  border: gray solid;
 }
+
+.attraction-message {
+  margin-bottom: 1%;
+  border-radius: 15px;
+}
+
+.img-fluid-message {
+  max-width: 30%;
+  height: auto;
+  float: left;
+  padding: 1%
+}
+
+.bottom-line {
+  text-decoration: none;
+  color: black;
+}
+
+#colorChangeSVG {
+  cursor: pointer;
+}
+
+#colorChangeSVG path {
+  fill: white;
+  /* 黑框內的內容填充為白色 */
+  stroke: black;
+  /* 外框為黑色 */
+  transition: fill 0.5s ease;
+  /* 添加填滿效果的CSS過渡 */
+}
+
+#colorChangeSVG.active path {
+  fill: red;
+  /* 填滿的顏色，您可以根據需要更改為其他顏色 */
+}
+
+/* modal */
+.review-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: #fff;
+  max-width: 500px;
+  width: 100%;
+}
+
+.review-modal h3 {
+  margin-top: 0;
+}
+
+.review-modal .rating {
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.review-modal .rating span i {
+  transition: color 0.2s;
+}
+
+.review-modal .rating span i.rated {
+  color: #ffce00;
+}
+
+.review-modal textarea {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.review-modal button {
+  margin-top: 10px;
+}
+/* ----------------------- */
+
+.pagination a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  text-align: center;
+}
+
+.pagination-wrapper {
+display: flex;
+justify-content: center;
+}
+
+.pagination a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}

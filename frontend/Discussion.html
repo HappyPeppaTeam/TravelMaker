@@ -1,201 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./src/css/navbar.css" />
+    <link rel="stylesheet" href="./src/css/Forumstyles.css" />
+    <link rel="stylesheet" href="./src/css/Discussion.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
-  <link rel="stylesheet" href="./src/css/navbar.css" />
-  <link rel="stylesheet" href="./src/css/Forumstyles.css" />
-  <link rel="stylesheet" href="./src/css/Discussion.css">
-</head>
-
-<body>
-  <!-- navbar -->
-  <nav class="navbar navbar-expand-lg bg-main px-2">
-    <div class="container-fluid">
-      <a class="navbar-brand me-auto" href="#"><img src="./images/logo.png" style="height: 70px" alt="" /></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <a class="ms-auto me-3 d-none d-lg-block" href="#"><img src="./images/dark-mode.png" style="height: 40px"
-            alt="" /></a>
-        <ul class="navbar-nav py-3">
-          <li class="nav-item">
-            <a class="nav-link" href="#">註冊</a>
-          </li>
-          <li class="nav-item ms-lg-2">
-            <a class="nav-link" href="#">登入</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- 內容請自行替換 -->
-  <div class="main container">
-    <!-- 導覽列 -->
-    <div class="discussion-board bg-blue-3 mx-0 row gy-2">
-      <div class="sub-discussion-board col-6 col-md">
-        <button class="btn btn-secondary" type="button" id="defaultDropdown">
-          <a href="">首頁</a>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg bg-main px-2">
+      <div class="container-fluid">
+        <a class="navbar-brand me-auto" href="#"
+          ><img src="./src/images/logo.png" style="height: 70px" alt=""
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
         </button>
-      </div>
-      <div class="sub-discussion-board col-6 col-md">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown"
-          data-bs-auto-close="true" aria-expanded="false">
-          北部討論版
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-          <li><a class="dropdown-item" href="#">北部綜合討論版</a></li>
-          <li><a class="dropdown-item" href="#">臺北市</a></li>
-          <li><a class="dropdown-item" href="#">新北市</a></li>
-          <li><a class="dropdown-item" href="#">宜蘭縣</a></li>
-          <li><a class="dropdown-item" href="#">基隆市</a></li>
-          <li><a class="dropdown-item" href="#">桃園市</a></li>
-          <li><a class="dropdown-item" href="#">新竹市</a></li>
-          <li><a class="dropdown-item" href="#">新竹縣</a></li>
-        </ul>
-      </div>
-      <div class="sub-discussion-board col-6 col-md">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown"
-          data-bs-auto-close="true" aria-expanded="false">
-          中部討論版
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-          <li><a class="dropdown-item" href="#">中部綜合討論版</a></li>
-          <li><a class="dropdown-item" href="#">臺中市</a></li>
-          <li><a class="dropdown-item" href="#">苗栗縣</a></li>
-          <li><a class="dropdown-item" href="#">彰化縣</a></li>
-          <li><a class="dropdown-item" href="#">南投縣</a></li>
-          <li><a class="dropdown-item" href="#">雲林縣</a></li>
-        </ul>
-      </div>
-      <div class="sub-discussion-board col-6 col-md">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown"
-          data-bs-auto-close="true" aria-expanded="false">
-          南部討論版
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-          <li><a class="dropdown-item" href="#">南部綜合討論版</a></li>
-          <li><a class="dropdown-item" href="#">嘉義市</a></li>
-          <li><a class="dropdown-item" href="#">嘉義縣</a></li>
-          <li><a class="dropdown-item" href="#">臺南市</a></li>
-          <li><a class="dropdown-item" href="#">高雄市</a></li>
-          <li><a class="dropdown-item" href="#">屏東縣</a></li>
-        </ul>
-      </div>
-      <div class="sub-discussion-board col-6 col-md">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown"
-          data-bs-auto-close="true" aria-expanded="false">
-          花東離島討論版
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-          <li><a class="dropdown-item" href="#">花東離島綜合討論版</a></li>
-          <li><a class="dropdown-item" href="#">花蓮縣</a></li>
-          <li><a class="dropdown-item" href="#">臺東縣</a></li>
-          <li><a class="dropdown-item" href="#">澎湖縣</a></li>
-          <li><a class="dropdown-item" href="#">金門縣</a></li>
-          <li><a class="dropdown-item" href="#">連江縣</a></li>
-        </ul>
-      </div>
-    </div>
-    <!-- 功能列 -->
-    <div class="d-flex" style="border: 1px red solid;">
-      <button class="btn new">最新</button>
-      <button class="btn featured">精選</button>
-      <button class="btn ms-auto post-article"><a href="">我要發文</a></button>
-    </div>
-    <!-- 上分頁 -->
-    <div class="page">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">4</a></li>
-          <li class="page-item"><a class="page-link" href="#">5</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    
-    <!-- 討論串 -->
-    <div class="row mx-0" style="border: 1px blue solid;">
-      <div class="tage col-12 col-md-3 col-lg-2 row" style="border: 1px peru solid;">
-        <h4>標籤</h4>
-        <div class="form-check col col-md col-lg-12">
-          <input class="form-check-input" type="checkbox" value="" id="親子" checked>
-          <label class="form-check-label" for="親子">
-            親子
-          </label>
-        </div>
-        <div class="form-check col col-md col-lg-12">
-          <input class="form-check-input" type="checkbox" value="" id="露營" checked>
-          <label class="form-check-label" for="露營">
-            露營
-          </label>
-        </div>
-        <div class="form-check col col-md col-lg-12">
-          <input class="form-check-input" type="checkbox" value="" id="登山" checked>
-          <label class="form-check-label" for="登山">
-            登山
-          </label>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <a class="ms-auto me-3 d-none d-lg-block" href="#"
+            ><img src="./src/images/dark-mode.png" style="height: 40px" alt=""
+          /></a>
+          <ul class="navbar-nav py-3">
+            <li class="nav-item">
+              <a class="nav-link" href="#">註冊</a>
+            </li>
+            <li class="nav-item ms-lg-2">
+              <a class="nav-link" href="#">登入</a>
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="discussion-page col-12 col-md-9 col-lg" style="border: 1px darkmagenta solid;">
-        123
+    </nav>
+
+    <!-- 內容請自行替換 -->
+    <div class="main container">
+      <!-- 導覽列 -->
+      <div class="discussion-board bg-blue-3 mx-0 row gy-2">
+        <div class="sub-discussion-board col-6 col-md">
+          <button class="btn btn-secondary" type="button" id="defaultDropdown">
+            <a href="">首頁</a>
+          </button>
+        </div>
+        <div class="sub-discussion-board col-6 col-md">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="defaultDropdown"
+            data-bs-toggle="dropdown"
+            data-bs-auto-close="true"
+            aria-expanded="false"
+          >
+            北部討論版
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+            <li><a class="dropdown-item" href="#">北部綜合討論版</a></li>
+            <li><a class="dropdown-item" href="#">臺北市</a></li>
+            <li><a class="dropdown-item" href="#">新北市</a></li>
+            <li><a class="dropdown-item" href="#">宜蘭縣</a></li>
+            <li><a class="dropdown-item" href="#">基隆市</a></li>
+            <li><a class="dropdown-item" href="#">桃園市</a></li>
+            <li><a class="dropdown-item" href="#">新竹市</a></li>
+            <li><a class="dropdown-item" href="#">新竹縣</a></li>
+          </ul>
+        </div>
+        <div class="sub-discussion-board col-6 col-md">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="defaultDropdown"
+            data-bs-toggle="dropdown"
+            data-bs-auto-close="true"
+            aria-expanded="false"
+          >
+            中部討論版
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+            <li><a class="dropdown-item" href="#">中部綜合討論版</a></li>
+            <li><a class="dropdown-item" href="#">臺中市</a></li>
+            <li><a class="dropdown-item" href="#">苗栗縣</a></li>
+            <li><a class="dropdown-item" href="#">彰化縣</a></li>
+            <li><a class="dropdown-item" href="#">南投縣</a></li>
+            <li><a class="dropdown-item" href="#">雲林縣</a></li>
+          </ul>
+        </div>
+        <div class="sub-discussion-board col-6 col-md">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="defaultDropdown"
+            data-bs-toggle="dropdown"
+            data-bs-auto-close="true"
+            aria-expanded="false"
+          >
+            南部討論版
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+            <li><a class="dropdown-item" href="#">南部綜合討論版</a></li>
+            <li><a class="dropdown-item" href="#">嘉義市</a></li>
+            <li><a class="dropdown-item" href="#">嘉義縣</a></li>
+            <li><a class="dropdown-item" href="#">臺南市</a></li>
+            <li><a class="dropdown-item" href="#">高雄市</a></li>
+            <li><a class="dropdown-item" href="#">屏東縣</a></li>
+          </ul>
+        </div>
+        <div class="sub-discussion-board col-6 col-md">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="defaultDropdown"
+            data-bs-toggle="dropdown"
+            data-bs-auto-close="true"
+            aria-expanded="false"
+          >
+            花東離島討論版
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+            <li><a class="dropdown-item" href="#">花東離島綜合討論版</a></li>
+            <li><a class="dropdown-item" href="#">花蓮縣</a></li>
+            <li><a class="dropdown-item" href="#">臺東縣</a></li>
+            <li><a class="dropdown-item" href="#">澎湖縣</a></li>
+            <li><a class="dropdown-item" href="#">金門縣</a></li>
+            <li><a class="dropdown-item" href="#">連江縣</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- 功能列 -->
+      <div class="d-flex discussion-item">
+        <button class="btn btn-primary">最新</button>
+        <button class="btn btn-primary">精選</button>
+        <button class="btn btn-primary ms-auto">
+          <a href="">我要發文</a>
+        </button>
+      </div>
+      <!-- 上分頁 -->
+      <div class="page">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
 
+      <!-- 討論串 -->
+      <div class="row flex mx-0">
+        <div class="tage col-12 col-lg-2 mx-0 my-0 bg-blue-2">
+          <div class="row">
+            <h2>標籤</h2>
+            <div class="form-check tag-item col-3 col-md col-lg-12">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="親子"
+                checked
+              />
+              <label class="form-check-label" for="親子"> 親子 </label>
+            </div>
+            <div class="form-check tag-item col-3 col-md col-lg-12">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="露營"
+                checked
+              />
+              <label class="form-check-label" for="露營"> 露營 </label>
+            </div>
+            <div class="form-check tag-item col-3 col-md col-lg-12">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="登山"
+                checked
+              />
+              <label class="form-check-label" for="登山"> 登山 </label>
+            </div>
+            <div class="form-check tag-item col-3 col-md col-lg-12">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="老街"
+                checked
+              />
+              <label class="form-check-label" for="老街"> 老街 </label>
+            </div>
+            <div class="form-check tag-item col-3 col-md col-lg-12">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="溫泉"
+                checked
+              />
+              <label class="form-check-label" for="溫泉"> 溫泉 </label>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="discussion-page col-12 col-md col-lg mx-0 my-0 bg-blue-3"
+          style="border: 1px red solid"
+        >
+          <div class="row">
+            <h1>最新討埨串</h1>
+
+            <table class="table table-striped table-bordered">
+              <tr>
+                <th>標題</th>
+                <th>回覆</th>
+                <th>點閱率</th>
+                <th>發表日期</th>
+              </tr>
+              <tr class="discussion-page-list">
+                <td>
+                  <a href="https://google.com" class="d-flex">
+                    <div
+                      class="discussion-page-list-image"
+                      style="
+                        background-image: url(../frontend/src/images/taipei.jpg);
+                      "
+                    ></div>
+                    <div>
+                      <div class="discussion-page-list-title">
+                        <p href="https://google.com">第一篇文章</p>
+                      </div>
+                      <p class="discussion-page-list-text" style="border: 1px rebeccapurple solid;">AaaaaaaaaaAaaaaaaaaaAaaaaaaaaaAaaaaaaaaaAaaaaaaaaaAaaaaaaaaaAaaaaaaaaaAaaaaaaaaaAaaaaaaaaaAaaaaaaaaaAaaaaaaaaaAaaaaaaaaaAaaaaaaaaaAaaaaaaaaaAaaaaaaaaa</p>
+                    </div>
+                  </a>
+                </td>
+                <td>user</td>
+                <td>點閱率</td>
+                <td>2023.7.20</td>
+              </tr>
+              <tr>
+                <td><a href="">第二篇文章</a></td>
+                <td>user</td>
+                <td>點閱率</td>
+                <td>2023.7.20</td>
+              </tr>
+              <tr>
+                <td><a href="">第三篇文章</a></td>
+                <td>user</td>
+                <td>點閱率</td>
+                <td>2023.7.20</td>
+              </tr>
+              <tr>
+                <td><a href="">第四篇文章</a></td>
+                <td>user</td>
+                <td>點閱率</td>
+                <td>2023.7.20</td>
+              </tr>
+              <tr>
+                <td><a href="">第五篇文章</a></td>
+                <td>user</td>
+                <td>點閱率</td>
+                <td>2023.7.20</td>
+              </tr>
+              <tr>
+                <td><a href="">第六篇文章</a></td>
+                <td>user</td>
+                <td>點閱率</td>
+                <td>2023.7.20</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- 下分頁 -->
+      <div class="page">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
-    <!-- 下分頁 -->
-    <div class="page">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">4</a></li>
-          <li class="page-item"><a class="page-link" href="#">5</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
 
+    <!-- footer  -->
+    <footer class="bg-main py-3">
+      <p class="mb-0 text-center text-white">
+        © 2023 Travel Maker All Rights Reserved.
+      </p>
+    </footer>
 
-  <!-- footer  -->
-  <footer class="bg-main py-3">
-    <p class="mb-0 text-center text-white">
-      © 2023 Travel Maker All Rights Reserved.
-    </p>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-    crossorigin="anonymous"></script>
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

@@ -1,3 +1,48 @@
 .tab {
     display: none;
 }
+
+.image-box {
+    /* border-radius: 4px; */
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../images/street.jpg);
+}
+
+/* .album-image-box {
+    min-width: 100px;
+    height: 100px;
+} */
+
+.img-check {
+    /* position: absolute; */
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* .imgLabel {
+    cursor: pointer;
+    position: relative;
+} */
+
+.img-check:checked + .img-label {
+    border: 3px solid #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* #imgLabel1 {
+    margin: 5px;   
+} */
+
+/* .image-box img {
+    border-radius: 4px;
+    box-shadow:  0 .5rem 1rem rgba(0,0,0,.15)
+} */
+
+
+#calendarContainer {
+
+    background: rgb(235, 244, 245, 0.5);
+    background: linear-gradient(135deg, rgba(235,244,245,0.5) 57%, rgba(181,198,224,0.5) 100%);
+}

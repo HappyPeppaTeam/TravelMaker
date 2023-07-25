@@ -329,7 +329,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div id="journeyRegView" class="d-none">
+                    <div id="journeyRegView" class="">
                         <div id="contentHeader" class="d-flex align-items-center">
                             <h1>Model</h1>
                             <div class="h5 ms-auto active-text"><i class="bi bi-pencil-square"></i><span
@@ -362,7 +362,7 @@
                         </div>
                     </div>
 
-                    <div id="journeyEditView" class="edit-view d-block">
+                    <!-- <div id="journeyEditView" class="edit-view d-block">
                         <form action="">
                             <div class="mb-3">
                                 <label for="inputJourneyName" class="form-label">行程名稱</label>
@@ -373,7 +373,7 @@
                                 <div id="callendarEdit" class="p-3"></div>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -431,7 +431,7 @@
 
         journeyModal.addEventListener('shown.bs.modal', function(e){
             schedule.render();
-            journeyObj.render();
+            // journeyObj.render();
         })
 
         detail.addEventListener('click', function (e) {
@@ -586,28 +586,28 @@
         }
         
 
-        const editJourney = document.getElementById('callendarEdit');
-        var journeyObj = new FullCalendar.Calendar(editJourney, {
-            themeSystem: 'bootstrap5',
-            initialView: 'weekView', // the name of a generic view
-            initialDate: '2023-05-13T08:00:00',
-            headerToolbar: {
-                // end: 'list'
-                left: "prev,next today", // 左邊放置上一頁、下一頁和今天
-                center: "title", // 中間放置標題
-                end: "weekView listAll" // 右邊放置月、周、天
-            },
-            views: {
-                weekView: {
-                    type: "timeGridWeek"
-                },
-                listAll: {
-                    type: "list",
-                    duration: { years: 1 }
-                }
+        // const editJourney = document.getElementById('callendarEdit');
+        // var journeyObj = new FullCalendar.Calendar(editJourney, {
+        //     themeSystem: 'bootstrap5',
+        //     initialView: 'weekView', // the name of a generic view
+        //     initialDate: '2023-05-13T08:00:00',
+        //     headerToolbar: {
+        //         // end: 'list'
+        //         left: "prev,next today", // 左邊放置上一頁、下一頁和今天
+        //         center: "title", // 中間放置標題
+        //         end: "weekView listAll" // 右邊放置月、周、天
+        //     },
+        //     views: {
+        //         weekView: {
+        //             type: "timeGridWeek"
+        //         },
+        //         listAll: {
+        //             type: "list",
+        //             duration: { years: 1 }
+        //         }
 
-            },
-        }) 
+        //     },
+        // }) 
 
 
     }

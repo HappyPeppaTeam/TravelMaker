@@ -15,19 +15,19 @@
     height: 100px;
 } */
 
-.imgCheck {
-    position: absolute;
+.img-check {
+    /* position: absolute; */
     opacity: 0;
     cursor: pointer;
 }
 
-.imgLabel {
+/* .imgLabel {
     cursor: pointer;
     position: relative;
-}
+} */
 
-.imgCheck:checked + .imgLabel img{
-    border: 2px solid #007bff;
+.img-check:checked + .img-label {
+    border: 3px solid #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
@@ -35,7 +35,14 @@
     margin: 5px;   
 } */
 
-.image-box img {
+/* .image-box img {
     border-radius: 4px;
     box-shadow:  0 .5rem 1rem rgba(0,0,0,.15)
+} */
+
+
+#calendarContainer {
+
+    background: rgb(235, 244, 245, 0.5);
+    background: linear-gradient(135deg, rgba(235,244,245,0.5) 57%, rgba(181,198,224,0.5) 100%);
 }

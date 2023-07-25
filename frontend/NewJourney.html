@@ -11,6 +11,7 @@
   <link rel="manifest" href="./src/images/favicon_io/site.webmanifest" />
 
   <title>New Journey</title>
+
   <!-- bootstrap CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
@@ -21,13 +22,20 @@
   <!-- bootstrap icon CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
 
-    <!-- navbar css -->
-    <link rel="stylesheet" href="./src/css/navbar.css">
-    <!-- sidebar css -->
-    <link rel="stylesheet" href="./src/css/sidebar.css">
-    <!-- newJourney css -->
-    <link rel="stylesheet" href="./src/css/newJourney.css">
 
+  <!-- FullCalendar -->
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.8/index.global.min.js"></script>
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script> -->
+
+
+  <!-- navbar css -->
+  <link rel="stylesheet" href="./src/css/navbar.css">
+  <!-- sidebar css -->
+  <link rel="stylesheet" href="./src/css/sidebar.css">
+  <!-- newJourney css -->
+  <link rel="stylesheet" href="./src/css/newJourney.css">
 
 </head>
 
@@ -143,101 +151,113 @@
             <div class="progress-bar" id="progressBar" style="width: 50%"></div>
           </div>
           <div class="container px-0">
-            <form action="" id="newJourneyForm1" class="tab">
-              <div class="mb-3">
-                <label for="inputJourneyName" class="form-label">行程名稱</label>
-                <input type="text" class="form-control" id="inputJourneyName" aria-describedby="inputJourneyName"
-                  placeholder="ex. 金瓜石兩日遊" />
+            <form id="newJourneyForm">
+              <div id="newJourneyForm1" class="tab">
+                <div class="mb-3">
+                  <label for="inputJourneyName" class="form-label">行程名稱</label>
+                  <input type="text" class="form-control" id="inputJourneyName" aria-describedby="inputJourneyName"
+                    placeholder="ex. 金瓜石兩日遊" />
+                </div>
+                <div class="mb-3">
+                  <label for="inputJourneyDestination" class="form-label">行程目的地</label>
+                  <input type="text" class="form-control" id="inputJourneyDestination"
+                    aria-describedby="inputJourneyDestination" placeholder="ex. 台北" />
+                </div>
+                <div class="mb-3">
+                  <label for="inputJourneyStart" class="form-label">開始日期</label>
+                  <input type="date" class="form-control" id="inputJourneyStart" aria-describedby="inputJourneyStart" />
+                </div>
+                <div class="mb-3">
+                  <label for="inputJourneyDays" class="form-label">行程天數</label>
+                  <input type="number" class="form-control" id="inputJourneyDays" aria-describedby="inputJourneyDays" />
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="inputJourneyDestination" class="form-label">行程目的地</label>
-                <input type="text" class="form-control" id="inputJourneyDestination"
-                  aria-describedby="inputJourneyDestination" placeholder="ex. 台北" />
+
+              <div id="newJourneyForm2" class="tab">
+                <div id="calendarContainer" class="w-100 mb-3 p-3 rounded shadow" style="min-height: 500px;"></div>
+                <div id="mapContainer" class="w-100" style="height: 300px; border: lightblue solid">Map</div>
               </div>
-              <div class="mb-3">
-                <label for="inputJourneyStart" class="form-label">開始日期</label>
-                <input type="date" class="form-control" id="inputJourneyStart" aria-describedby="inputJourneyStart" />
+
+              <div id="newJourneyForm3" class="tab">
+                <div class="mb-3">
+                  <div class="mb-3">
+                    <div class="mb-1">加入圖片</div>
+                    <label for="formFileMultiple" class="form-label">本機上傳</label>
+                    <input class="form-control mb-2" type="file" id="formFileMultiple" multiple />
+
+                    <label for="fromAlbum" class="form-label">相簿上傳</label>
+
+                    <div class="input-group mb-3">
+                      <button class="btn btn-outline-secondary dropdown-toggle" data-bs-auto-close="outside"
+                        data-bs-toggle="dropdown" type="button" id="fromAlbum" aria-expanded="false">
+                        選擇相簿
+                      </button>
+                      <ul class="dropdown-menu" id="albumMenu">
+
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                            data-bs-target="#albumModal">新北兩日遊</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                            data-bs-target="#albumModal">金瓜石之旅</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                            data-bs-target="#albumModal">安平好熱</a></li>
+                        <li><a class="dropdown-item" href="#">我的收藏</a></li>
+
+                      </ul>
+                      <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon"
+                        aria-describedby="button-addon1" />
+                    </div>
+
+                    <div class="container-fluid mt-3" style="height: 300px; border: lightgrey solid"></div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="publicRadio" class="form-label">公開設定</label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="privacyRadio" value="" id="publicRadio" />
+                      <label class="form-check-label" for="publicRadio">
+                        公開
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="privacyRadio" value="" id="privateRadio"
+                        checked />
+                      <label class="form-check-label" for="privateRadio">
+                        不公開
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="inputNoteJourney" class="form-label">備註</label>
+                    <textarea class="form-control" id="inputNoteJourney" rows="3"></textarea>
+                  </div>
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="inputJourneyDays" class="form-label">行程天數</label>
-                <input type="number" class="form-control" id="inputJourneyDays" aria-describedby="inputJourneyDays" />
+
+              <div id="newJourneyBrowse" class="tab">
+                <div id="browseCalendarContainer" class="w-100 mb-3" style="height: 500px; border: grey solid">
+                  <h2>Calendar</h2>
+                </div>
+                <div id="browserMapContainer" class="w-100 mb-3" style="height: 300px; border: lightblue solid">
+                  <h2>Map</h2>
+                </div>
+                <div id="browseTextContainer" class="w-100 mb-3" style="height: 300px; border: lightgrey solid">
+                  <h2>Note</h2>
+                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus in provident vitae id?
+                    Repudiandae sit maiores expedita. Veniam nulla, atque, expedita pariatur natus, debitis at explicabo
+                    consectetur nobis sequi perferendis?
+                    Necessitatibus culpa perspiciatis aut. Eaque corporis ullam porro, provident modi voluptatibus
+                    praesentium amet aliquam veritatis cum ipsam hic impedit dicta sint dolorem iure excepturi aut unde
+                    exercitationem libero officia possimus?</p>
+                </div>
+                <div id="browserImageContainer" class="w-100 mb-3" style="height: 200px; border: lightcoral solid">
+                  <h2>Image</h2>
+                </div>
               </div>
             </form>
 
-            <div id="newJourneyForm2" class="tab">
-              <div id="calendarContainer" class="w-100 mb-3" style="height: 500px; border: grey solid">Calendar</div>
-              <div id="mapContainer" class="w-100" style="height: 300px; border: lightblue solid">Map</div>
-            </div>
 
-            <form action="" id="newJourneyForm3" class="tab">
-              <div class="mb-3">
-                <div class="mb-3">
-                  <div class="mb-1">加入圖片</div>
-                  <label for="formFileMultiple" class="form-label">本機上傳</label>
-                  <input class="form-control mb-2" type="file" id="formFileMultiple" multiple />
 
-                  <label for="fromAlbum" class="form-label">相簿上傳</label>
-
-                  <div class="input-group mb-3">
-                    <button class="btn btn-outline-secondary dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" type="button"
-                      id="fromAlbum" aria-expanded="false">
-                      選擇相簿
-                    </button>
-                    <ul class="dropdown-menu" id="albumMenu">
-
-                      <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#albumModal">新北兩日遊</a></li>
-                      <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#albumModal">金瓜石之旅</a></li>
-                      <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#albumModal">安平好熱</a></li>
-                      <li><a class="dropdown-item" href="#">我的收藏</a></li>
-      
-                    </ul>
-                    <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon"
-                      aria-describedby="button-addon1" />
-                  </div>
-
-                  <div class="container-fluid mt-3" style="height: 300px; border: lightgrey solid"></div>
-                </div>
-
-                <div class="mb-3">
-                  <label for="publicRadio" class="form-label">公開設定</label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="privacyRadio" value="" id="publicRadio" />
-                    <label class="form-check-label" for="publicRadio">
-                      公開
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="privacyRadio" value="" id="privateRadio"
-                      checked />
-                    <label class="form-check-label" for="privateRadio">
-                      不公開
-                    </label>
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <label for="inputNoteJourney" class="form-label">備註</label>
-                  <textarea class="form-control" id="inputNoteJourney" rows="3"></textarea>
-                </div>
-              </div>
-            </form>
-
-            <div id="browseJourney" class="tab">
-              <div id="browseCalendarContainer" class="w-100 mb-3" style="height: 500px; border: grey solid">
-                <h2>Calendar</h2>
-              </div>
-              <div id="browserMapContainer" class="w-100 mb-3" style="height: 300px; border: lightblue solid">
-                <h2>Map</h2>
-              </div>
-              <div id="browseTextContainer" class="w-100 mb-3" style="height: 300px; border: lightgrey solid">
-                <h2>Note</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus in provident vitae id? Repudiandae sit maiores expedita. Veniam nulla, atque, expedita pariatur natus, debitis at explicabo consectetur nobis sequi perferendis?
-                Necessitatibus culpa perspiciatis aut. Eaque corporis ullam porro, provident modi voluptatibus praesentium amet aliquam veritatis cum ipsam hic impedit dicta sint dolorem iure excepturi aut unde exercitationem libero officia possimus?</p>
-              </div>
-              <div id="browserImageContainer" class="w-100 mb-3" style="height: 200px; border: lightcoral solid">
-                <h2>Image</h2>
-              </div>
-            </div>
 
             <div class="mt-5 d-flex">
               <div class="active-text" id="prevButton">
@@ -293,7 +313,7 @@
     </div>
   </div>
 
- 
+
   <!-- Modal -->
   <div class="modal fade" id="albumModal" tabindex="-1" aria-labelledby="albumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
@@ -306,16 +326,21 @@
           <div class="container-fluid px-0">
             <div class="row g-3">
               <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="w-100 h-100 position-relative">
-                  <input type="checkbox" class="form-check-input position-absolute top-0 start-0 translate-middle" id="img1">
-                  <label class="w-100 shadow rounded image-box" for="img1"></label>
-                </div>
+                <input type="checkbox" class="form-check-input position-absolute img-check"
+                  id="img1">
+                <label class="w-100 shadow rounded image-box img-label" for="img1"></label>
               </div>
+
               <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="w-100 shadow rounded image-box"></div>
+                <input type="checkbox" class="form-check-input position-absolute img-check"
+                    id="img2">
+                <label class="w-100 shadow rounded image-box img-label" for="img2"></label>
               </div>
+
               <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="w-100 shadow rounded image-box"></div>
+                <input type="checkbox" class="form-check-input position-absolute img-check"
+                    id="img3">
+                <label class="w-100 shadow rounded image-box img-label" for="img3"></label>
               </div>
               <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="w-100 shadow rounded image-box"></div>
@@ -355,6 +380,7 @@
 
         tabs[n].style.display = "block";
 
+
         if (n == 0) {
           prevButton.style.display = "none";
         } else {
@@ -367,6 +393,10 @@
         } else {
           nextButton.getElementsByTagName("span")[0].innerText = "下一步";
         }
+
+        // if (n === 1){
+        //   calender.render();
+        // }
       }
 
       function nextPrev(n) {
@@ -390,12 +420,52 @@
       prevButton.addEventListener("click", function () {
         nextPrev(-1);
       });
+
       nextButton.addEventListener("click", function () {
         nextPrev(1);
       });
+
+
+
+      const calContainerEl = document.getElementById('calendarContainer');
+      // console.log(calContainerEl);
+
+      var calender = new FullCalendar.Calendar(calContainerEl, {
+        themeSystem: 'bootstrap5',
+        initialView: 'timeGrid',
+        selectable: true,
+
+        
+
+        visibleRange: {
+          start: '2023-07-22',
+          end: '2023-07-25'
+        }
+
+      });
+
+
+
+
+      const newJourneyForm2El = document.getElementById('newJourneyForm2');
+
+      nextButton.addEventListener("click", function () {
+        // nextPrev(1);
+        console.log(calender);
+        if (newJourneyForm2El.style.display == 'block') {
+          calender.render();
+        }
+      });
+
+
+
+
+
+
+
     };
 
-    
+
   </script>
 </body>
 

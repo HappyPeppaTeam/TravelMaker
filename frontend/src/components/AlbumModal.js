@@ -32,7 +32,6 @@ function AlbumModal({closeAlbumModal}) {
     const settings = {
         
         customPaging: (i) => {
-            console.log(i);
             return (
               <a>
                 <img className='w-100 h-100' src={data[i].url}/>

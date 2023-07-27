@@ -4,8 +4,9 @@ import React from 'react';
 import AlbumModal from '../components/AlbumModal';
 import { Modal } from 'bootstrap';
 import { Link } from 'react-router-dom';
+// import axios from 'axios';
 
-const { useRef, useEffect } = React;
+const {  useRef, useEffect } = React;
 
 const Album = () => {
 
@@ -15,7 +16,7 @@ const Album = () => {
             backdrop: 'static',
         });
     })
-    
+
     const openAlbumModal = () => {
         albumModal.current.show();
     }

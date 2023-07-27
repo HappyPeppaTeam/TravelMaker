@@ -18,6 +18,7 @@ body {
 .nav-link::after {
   content: "";
   display: block;
+  bottom: 0;
   width: 0%;
   height: 2px;
   background-color: #6BB3E3;

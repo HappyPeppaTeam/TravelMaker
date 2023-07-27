@@ -1,0 +1,138 @@
+body {
+  background-image: url(https://www.toptal.com/designers/subtlepatterns/uploads/dust_scratches.png);
+}
+
+@media (min-width: 992px) {
+  .filter {
+    width: 700px;
+  }
+}
+
+.filter a {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  color: black;
+  text-decoration: none;
+}
+
+.filter a:hover {
+  background: #000;
+  color: white;
+  transition: all .4s;
+}
+
+.header {
+    height: 300px;
+}
+
+@media (min-width:768px) {
+    .header {
+        height: 400px;
+    }
+}
+
+@media (min-width:992px) {
+    .header {
+        height: 500px;
+    }
+}
+
+.carousel-item img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.card {
+  border-radius: 20px;
+}
+
+.card img {
+  object-fit: cover;
+}
+
+.round {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+@media (min-width:992px) {
+  .round {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+  }
+}
+
+.travelSort {
+  border: 1px solid #BDBDBD;
+  border-radius: 2px;
+  padding: 4px 10px;
+}
+
+.cardLink {
+  text-decoration: none;
+}
+
+.popularRestaurant img {
+  height: 180px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+@media (min-width:768px) {
+  .popularRestaurant img {
+    height: 240px;
+  }
+}
+
+@media (min-width:992px) {
+  .popularRestaurant img {
+    height: 280px;
+  }
+}
+
+.popularRestaurant .restaurantImg{
+  position: relative;
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 71.35%, rgba(0, 0, 0, 0.77) 100%);
+}
+
+.restaurantType {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  color: white;
+  font-weight: bold;
+}
+
+.popularRestaurant a {
+  text-decoration: none;
+}
+
+.spotImg {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 150px;
+  object-fit: cover;
+}
+
+@media (min-width:992px) {
+  .spotImg {
+    height: 200px;
+  }
+}
+
+.sortIcon {
+  width: 10px;
+  height: 10px;
+  background: #6BB3E3;
+  border-radius: 5px;
+}

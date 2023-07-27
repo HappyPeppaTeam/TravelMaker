@@ -51,6 +51,10 @@
   margin: 0.5em;
 }
 
+.discussion-page-title {
+  justify-self: center;
+}
+
 .discussion-page-list {
   border: 1px rgba(236, 236, 236, 0.5) solid;
 }
@@ -60,9 +64,10 @@
 }
 
 .discussion-page-list-image {
-  width: 120px;
-  height: 100px;
+  width: 150px;
+  height: 120px;
   margin-right: 10px;
+  border-radius: 5% 5%;
 }
 
 .discussion-page-list-title p {
@@ -74,9 +79,10 @@
 .discussion-page-list-text {
   display: -webkit-box;
   margin: 4px 0 2px 0;
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 1.5;
   color: gray;
-  width: 100px;
+  max-width: 600px;
   overflow: hidden;
   text-align: left;
   text-overflow: ellipsis;
@@ -87,6 +93,9 @@
 
 @media (max-width: 992px) {
   .discussion-page-list-image {
+    display: none;
+  }
+  .discussion-page-list-text {
     display: none;
   }
 }

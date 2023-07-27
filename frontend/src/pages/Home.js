@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import '../css/index.css';
 import Slider from '../components/Slick';
 
@@ -5,9 +6,9 @@ export default function Home() {
     return (
         <div className="container mt-3">
         <div className="filter d-flex justify-content-evenly mt-4 mx-auto">
-          <a href="#">餐廳</a>
-          <a href="#">景點</a>
-          <a href="#">討論區</a>
+          <Link to="/restaurant">餐廳</Link>
+          <Link to="/attractions">景點</Link>
+          <Link to="/forum">討論區</Link>
           <a href="#">自助旅遊排程</a>
         </div>
 

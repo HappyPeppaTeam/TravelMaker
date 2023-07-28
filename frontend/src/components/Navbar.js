@@ -78,7 +78,7 @@ export default function Navbar() {
             <Link className="nav-link" onClick={openRegisterModal}>註冊</Link>
           </li>
           <li className="nav-item ms-lg-2">
-            <a className="nav-link" onClick={openloginModal}>登入</a>
+            <Link className="nav-link" onClick={openloginModal}>登入</Link>
           </li>
         </ul>
       </div>

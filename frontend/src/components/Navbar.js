@@ -2,22 +2,38 @@ import { Link } from 'react-router-dom';
 import { Modal } from 'bootstrap';
 import RegisterModal from './Register';
 import LoginModal from './Login';
+import MessageModal from './MessageModal';
 import React from 'react';
 
-const {  useRef, useEffect } = React;
+const {  useRef, useEffect ,useState} = React;
 
 export default function Navbar() {
+  const [message, setMessage] = useState('');
   const registerModal = useRef(null);
   const loginModal = useRef(null);
+  const messageModal = useRef(null);
     useEffect(() => {
       registerModal.current = new Modal('#registerModal',{
             backdrop: 'static',
         });
       loginModal.current = new Modal('#loginModal',{
             backdrop: 'static',
-        });
-        
+        });  
+      messageModal.current = new Modal('#messageModal',{
+            backdrop: 'static',
+        });  
     })
+    const handleRegisterResponse = (data) => {
+      setMessage(data.message); // Assuming the backend returns a "message" field in the response
+      console.log(message);
+      openMessageModal();
+    };
+    const openMessageModal = () => {
+      messageModal.current.show();
+    };
+    const closeMessageModal = () => {
+      messageModal.current.hide();
+    };
 
     const openRegisterModal = () => {
       registerModal.current.show();
@@ -34,8 +50,9 @@ export default function Navbar() {
       loginModal.current.hide();
     }
     return (<nav className="navbar navbar-expand-lg bg-main px-2">
-      <RegisterModal closeRegisterModal={closeRegisterModal}/>
+      <RegisterModal closeRegisterModal={closeRegisterModal} onRegisterResponse={handleRegisterResponse}/>
       <LoginModal closeloginModal={closeloginModal}/>
+        <MessageModal messageData={message} closeMessageModal={closeMessageModal} />
     <div className="container-fluid">
       <Link className="navbar-brand me-auto" to='/'
         ><img src="../images/logo.png" style={{height: '70px'}} alt=""

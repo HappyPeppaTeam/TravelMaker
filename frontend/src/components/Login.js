@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const LoginModal = () => {
+const LoginModal = ({closeloginModal}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
@@ -35,7 +35,7 @@ const LoginModal = () => {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title w-100 text-center" id="exampleModalLabel">會員登入</h5>
-            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" className="btn-close" onClick={closeloginModal}></button>
           </div>
           <div className="modal-body">
             <div className="input-group mb-3">

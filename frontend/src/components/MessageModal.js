@@ -6,7 +6,7 @@ const MessageModal = ({messageData,closeMessageModal}) => {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title w-100 text-center" id="messageModalLabel">訊息通知</h5>
-            <button type="button" className="btn-close" onClick={closeMessageModal} aria-label="Close"></button>
+            <button type="button" className="btn-close" onClick={closeMessageModal}></button>
           </div>
           <div className="modal-body">
           <p>{messageData}</p>

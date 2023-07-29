@@ -8,11 +8,11 @@
     transform: scale(1.2);
 }
 
-.card-body {
+.albumBody {
     position: relative;
 }
 
-.card-title {
+.albumTitle {
     position: absolute;
     bottom: 0;
     transition: all .4s;

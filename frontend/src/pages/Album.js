@@ -122,8 +122,8 @@ const Album = () => {
                             <div className="col">
                             <a href="#" className="albumLink" onClick={openAlbumModal}>
                                 <div className="card m-2 album" style={{backgroundImage:'url(https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80)'}}>
-                                    <div className="card-body">
-                                        <h4 className="card-title fw-bold text-white ps-3">野柳地質公園</h4>
+                                    <div className="card-body albumBody">
+                                        <h4 className="card-title albumTitle fw-bold text-white ps-3">野柳地質公園</h4>
                                     </div>
                                 </div>
                             </a>

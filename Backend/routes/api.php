@@ -18,23 +18,34 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/album/get/{token}', function ($token) {
-    // 定義輸出參數
-    $userId = null;
+Route::get('/albums/{token}', function ($token) {
+    $albums = DB::select('CALL GetAlbumsAndPhotos(?)', [$token]);
 
-    // 執行 stored procedure，將輸入參數和輸出參數傳遞給 DB::select() 方法
-    DB::select('CALL GetUserIdByToken(?, @userId)', [$token]);
+    $result = [];
+    foreach ($albums as $album) {
+        $albumData = [
+            'album_id' => $album->album_id,
+            'album_name' => $album->album_name,
+            'tag' => $album->tag,
+            'description' => $album->description,
+            'photos' => [],
+        ];
 
-    // 從 MySQL 讀取輸出參數的值
-    $userId = DB::select('SELECT @userId AS user_id')[0]->user_id;
+        // 判斷相簿資料是否已經存在 results 內
+        if (!isset($result[$album->album_id])) {
+            $result[$album->album_id] = $albumData;
+        }
 
-    if (!$userId) {
-        // 如果找不到對應的使用者，回傳錯誤或其他處理方式
-        return response()->json(['error' => 'Token not found'], 404);
+        // 將相片資訊加入對應相簿中的 photos 陣列
+        $result[$album->album_id]['photos'][] = [
+            'image_id' => $album->image_id,
+            'image_name' => $album->image_name,
+            'image_data' => $album->image_data,
+        ];
     }
 
-    // 使用取得的 user_id 執行查詢
-    $results = DB::select('CALL GetAlbumsAndPhotos(?)', [$userId]);
+    // 重新索引陣列，以移除原始的 album_id 作為索引
+    $result = array_values($result);
 
-    return response()->json($results);
+    return response()->json(['data' => $result]);
 });

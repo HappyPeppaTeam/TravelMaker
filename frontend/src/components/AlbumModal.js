@@ -1,7 +1,8 @@
 import Slider from '../components/Slick';
+import { useEffect } from 'react';
 
 
-function AlbumModal({closeAlbumModal}) {
+function AlbumModal({ closeAlbumModal, albumData }) {
     const data = [
         {
           url:"https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
@@ -46,6 +47,9 @@ function AlbumModal({closeAlbumModal}) {
         slidesToScroll: 1
       };
 
+    useEffect(() => {
+      console.log(albumData);
+    },[albumData])
     const renderContent = data.map((item,index) => (
         <div className='wrap' key={index}>
             <img src={item.url}></img>
@@ -58,7 +62,7 @@ function AlbumModal({closeAlbumModal}) {
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-2" id="exampleModalLabel">野柳地質公園</h1>
+                            <h1 className="modal-title fs-2" id="exampleModalLabel">{albumData.album_name}</h1>
                             <button type="button" className="btn-close" aria-label="Close" onClick={closeAlbumModal}></button>
                         </div>
                         <div className="modal-body">
@@ -66,9 +70,9 @@ function AlbumModal({closeAlbumModal}) {
                                 <button type="button" className="btn btn-outline-secondary">編輯</button>
                             </div>
                             <Slider settings={settings} renderContent={renderContent}></Slider>
-                            <h2 className='fs-4 mb-3'>分類 : <span className="badge rounded-pill bg-warning text-dark">台南遊</span></h2>
+                            <h2 className='fs-4 mb-3'>分類 : <span className="badge rounded-pill bg-warning text-dark">{albumData.tag}</span></h2>
                             <h2 className='fs-4'>備註 :</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, repudiandae consequatur debitis iure, delectus veritatis voluptatem quam neque sit quidem veniam, distinctio nihil omnis aperiam maxime placeat itaque ab est!</p>
+                            <p>{albumData.description}</p>
                         </div>
                     </div>
                 </div>

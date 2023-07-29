@@ -4,20 +4,32 @@ import React from 'react';
 import AlbumModal from '../components/AlbumModal';
 import { Modal } from 'bootstrap';
 import { Link } from 'react-router-dom';
-// import axios from 'axios';
+import axios from 'axios';
 
-const {  useRef, useEffect } = React;
+const {  useState, useRef, useEffect } = React;
 
 const Album = () => {
 
+    const [ albumList, setAlbumList ] = useState([]);
+    const [ albumData, setAlbumData ] = useState([]);
     const albumModal = useRef(null);
+    const token = 'fgvuhbhinhhpi-bb876';
+
     useEffect(() => {
         albumModal.current = new Modal('#albumModal',{
             backdrop: 'static',
         });
-    })
+        
+        (async() => {
+            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/albums/${token}`);
+            const { data } = response.data;
+            console.log(data);
+            setAlbumList(data);
+        })();
+    },[])
 
-    const openAlbumModal = () => {
+    const openAlbumModal = (data) => {
+        setAlbumData(data);
         albumModal.current.show();
     }
 
@@ -27,7 +39,7 @@ const Album = () => {
 
     return (
         <>
-        <AlbumModal closeAlbumModal={closeAlbumModal}/>
+        <AlbumModal closeAlbumModal={closeAlbumModal} albumData={albumData}/>
         <div className="container-fluid shadow p-0 bg-white" id="body-container">
             <div className="d-flex flex-nowrap row container-fluid m-0 p-0" id="content-container">
                 <div className="col-auto col-md-3 col-xl-2 d-none d-sm-block p-0">
@@ -119,17 +131,20 @@ const Album = () => {
                         </div>
                         {/* 相簿總覽 */}
                         <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-                            <div className="col">
-                            <a href="#" className="albumLink" onClick={openAlbumModal}>
-                                <div className="card m-2 album" style={{backgroundImage:'url(https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80)'}}>
-                                    <div className="card-body albumBody">
-                                        <h4 className="card-title albumTitle fw-bold text-white ps-3">野柳地質公園</h4>
-                                    </div>
+                            { albumList.map((data) => {
+                                return (
+                                <div className="col" key={data.album_id}>
+                                    <a href="#" className="albumLink" onClick={() => openAlbumModal(data)}>
+                                        <div className="card m-2 album" style={{backgroundImage:`url(${data.photos[0].image_data})`}}>
+                                            <div className="card-body albumBody">
+                                                <h4 className="card-title albumTitle fw-bold text-white ps-3">{data.album_name}</h4>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
-                            </div>
+                                )
+                            })}
                         </div>
-
                     </div>
                 </div>
 

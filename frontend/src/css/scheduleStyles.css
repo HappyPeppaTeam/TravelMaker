@@ -91,3 +91,8 @@
 .edit-view {
     display: none;
 }
+
+body {
+    background-color: #2F4E63;
+    background-image: none;
+}

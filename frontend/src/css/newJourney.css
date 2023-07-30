@@ -10,10 +10,6 @@
     background-image: url(../images/street.jpg);
 }
 
-/* .album-image-box {
-    min-width: 100px;
-    height: 100px;
-} */
 
 .img-check {
     /* position: absolute; */
@@ -21,24 +17,11 @@
     cursor: pointer;
 }
 
-/* .imgLabel {
-    cursor: pointer;
-    position: relative;
-} */
 
 .img-check:checked + .img-label {
     border: 3px solid #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
-
-/* #imgLabel1 {
-    margin: 5px;   
-} */
-
-/* .image-box img {
-    border-radius: 4px;
-    box-shadow:  0 .5rem 1rem rgba(0,0,0,.15)
-} */
 
 
 #calendarContainer {

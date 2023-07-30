@@ -1,9 +1,11 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.css";
 import './css/navbar.css';
+import "bootstrap/dist/css/bootstrap.min.css"
 
 import Navbar from "./components/Navbar";
 import Footer from './components/Footer';
+import Sidebar from "./components/Sidebar";
 
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
@@ -26,6 +28,9 @@ function App() {
           <Route path='/restaurant' element={<Restaurant_main/>}></Route>
         </Routes>
       <Footer/>
+      <Routes>
+        <Route path='/journey' Component={Sidebar}></Route>
+      </Routes>
     </div>
   );
 }

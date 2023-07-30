@@ -13,6 +13,7 @@ import Attractions from './pages/Attractions';
 import Forum from './pages/Forum';
 import Restaurant_main from './pages/Restaurant_main';
 
+
 function App() {
   return (
     <div className="App">

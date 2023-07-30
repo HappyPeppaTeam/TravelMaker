@@ -23,7 +23,6 @@ const Album = () => {
         (async() => {
             const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/albums/${token}`);
             const { data } = response.data;
-            console.log(data);
             setAlbumList(data);
         })();
     },[])

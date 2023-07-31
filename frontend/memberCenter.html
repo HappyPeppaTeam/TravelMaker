@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemberCenter</title>
+    <!-- bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+    <!-- bootstrap icon CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <!-- navbar css -->
+    <link rel="stylesheet" href="./css/navbar.css">
+    <!-- sheduler css -->
+    <link rel="stylesheet" href="./css/sidebar.css">
+</head>
+
+
+<body class="bg-blue-1">
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg bg-main px-2 shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand me-auto" href="#"><img src="./images/logo.png" style="height: 70px" alt="" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <a class="ms-auto me-3 d-none d-lg-block" href="#"><img src="./images/dark-mode.png"
+                        style="height: 40px" alt="" /></a>
+                <ul class="navbar-nav py-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">註冊</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link" href="#">登入</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container shadow p-0 bg-white" id="body-container">
+        <!-- <div class="d-flex" id="content-container"> -->
+        <div class="d-flex flex-nowrap row" id="content-container">
+
+            <!-- side bar -->
+            <div class="col-auto col-md-3 col-xl-2 pe-0">
+                <div class="d-flex flex-column flex-shrink-0 p-3 bg-blue-1 align-items-center" id="sidebar-container"
+                    style="height: 100%; min-height: calc(100vh - 70px);">
+
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white d-flex align-items-center sidebar-link"
+                                aria-current="page">
+                                <i class="bi bi-person-vcard-fill"></i>
+                                <span class="d-none d-sm-inline px-2">
+                                    基本資料
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white d-flex align-items-center sidebar-link">
+                                <i class="bi bi-envelope-fill"></i>
+                                <span class="d-none d-sm-inline px-2">
+                                    通知中心
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white d-flex align-items-center sidebar-link">
+                                <i class="bi bi-calendar-week"></i>
+                                <span class="d-none d-sm-inline px-2">
+                                    我的行程
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white d-flex align-items-center sidebar-link">
+                                <i class="bi bi-image"></i>
+                                <span class="d-none d-sm-inline px-2">
+                                    我的相簿
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#my-collection-submenu"
+                                class="nav-link text-white d-flex align-items-center sidebar-link"
+                                data-bs-toggle="collapse" role="button">
+                                <i class="bi bi-star-fill"></i>
+                                <span class="d-none d-sm-inline px-2">
+                                    我的收藏
+                                </span>
+                            </a>
+
+                            <div class="collapse text-white" id="my-collection-submenu">
+                                <ul style="list-style-type: none; padding: 0;"
+                                    class="d-flex align-items-center flex-column">
+                                    <li>
+                                        <a href="#" class="nav-link px-0">
+                                            <i class="bi bi-stack"></i>
+                                            <span class="d-none d-sm-inline ms-1">全部</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="nav-link px-0">
+                                            <i class="bi bi-calendar-heart"></i>
+                                            <span class="d-none d-sm-inline ms-1">行程</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="nav-link px-0">
+                                            <i class="bi bi-camera"></i>
+                                            <span class="d-none d-sm-inline ms-1">景點</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="nav-link px-0 ">
+                                            <i class="bi bi-cup-straw"></i>
+                                            <span class="d-none d-sm-inline ms-1">餐廳</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- main content : 在這裡編輯內容-->
+            <div class="flex-fill" id="content">
+                <section class="bg-light">
+                    <div class="container">
+                        <h1 class="row">會員基本資料</h1>
+                        <div class="row">
+                            <div class="col-lg-12 mb-4 mb-sm-5">
+                                <div class="card card-style1 border-0">
+                                    <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-6 mb-4 mb-lg-0">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="...">
+                                                <div class="row col-lg-8 mb-4 mb-lg-0 ">
+                                                    <button class=btn-white>修改頭像</button>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-lg-6 px-xl-10">
+                                                <div
+                                                    class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                                                    <h3 class="h2 text-white mb-0">會員姓名：Kenneth</h3>
+                                                    <span class="text-white">會員暱稱：nickname</span>
+                                                </div>
+                                                <ul class="list-unstyled mb-1-9">
+                                                    <li class="mb-2 mb-xl-3 display-28"><span
+                                                            class="display-26 text-secondary me-2 font-weight-600">會員帳號:</span>
+                                                        Coach</li>
+                                                    <li class="mb-2 mb-xl-3 display-28"><span
+                                                            class="display-26 text-secondary me-2 font-weight-600">論壇身份:</span>
+                                                        普通</li>
+                                                    <li class="mb-2 mb-xl-3 display-28"><span
+                                                            class="display-26 text-secondary me-2 font-weight-600">會員密碼:</span>
+                                                        *******</li>
+                                                    <li class="mb-2 mb-xl-3 display-28">
+                                                        <button class="btn btn-danger">修改密碼</button>
+                                                        <li>
+                                                    <li class="mb-2 mb-xl-3 display-28"><span
+                                                            class="display-26 text-secondary me-2 font-weight-600">電子郵件:</span>
+                                                        edith@mail.com</li>
+                                                    <li class="mb-2 mb-xl-3 display-28"><span
+                                                            class="display-26 text-secondary me-2 font-weight-600">生日:</span>
+                                                        1987/09/19</li>
+                                                    <li class="display-28"><span
+                                                            class="display-26 text-secondary me-2 font-weight-600">性別:</span>
+                                                        男</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="custom-progress progress progress-medium" style="height: 4px;">
+                                <div class="animated custom-bar progress-bar slideInLeft bg-secondary" style="width:60%"
+                                    aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar"></div>
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </section>
+    </div>
+    </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="bg-main py-3 shadow mt-3">
+        <p class="mb-0 text-center text-white">
+            © 2023 Travel Maker All Rights Reserved.
+        </p>
+    </footer>
+
+
+
+</body>
+
+</html>

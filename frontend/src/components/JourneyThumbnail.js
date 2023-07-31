@@ -14,10 +14,10 @@ const moreDetailStyle = {
 }
 
 
-function JourneyThumbnail({onClick}) {
+function JourneyThumbnail() {
     return (
         <div
-            className="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center" onClick={onClick}>
+            className="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center">
             <div className="rounded shadow"
                 style={thumbNailStyle}>
                 <div className="overlay rounded d-flex justify-content-center align-items-center position-relative">

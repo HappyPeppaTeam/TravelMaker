@@ -86,6 +86,10 @@
             height: 20vh;
             object-fit: cover;
         }
+
+        .p-rest{
+            padding: 30px 50px 0px 50px;
+        }
     </style>
 </head>
 
@@ -118,12 +122,12 @@
         <!-- 麵包屑 -->
         <div class="p-5"><a class="rm-link-style" href="">餐廳</a>><a class="rm-link-style" href="">台中市</a>>西屯區</div>
         <!-- 輪播圖 carousel -->
-        <div id="apple" class="carousel slide" data-bs-interval="3000" data-bs-ride="carousel">
+        <div id="rest-carousel" class="carousel slide" data-bs-interval="3000" data-bs-ride="carousel">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#apple" data-bs-slide-to="0" class="active" aria-current="true"
+                <button type="button" data-bs-target="#rest-carousel" data-bs-slide-to="0" class="active" aria-current="true"
                     aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#apple" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#apple" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#rest-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#rest-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -136,17 +140,17 @@
                     <img src="./src/images/restaurant-banner.jpg">
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#apple" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#rest-carousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#apple" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#rest-carousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
         <!-- restaurant info -->
-        <div class="p-5">
+        <div class="p-rest">
             <h1 name="rest-name">森森燒肉</h1>
             <p name="point">★ ★ ★ ★ ☆ 9527條評論</p>
             <div class="d-flex flex-row">
@@ -156,7 +160,7 @@
                 <div class="p-2">官方網站 : <a class="rm-link-style" href="">www.1234.com</a></div>
             </div>
         </div>
-        <div class="row p-5">
+        <div class="row p-rest">
             <div class="col-12 p-3">
                 <div class="card p-3">
                     <h3>所有評論</h3>
@@ -173,11 +177,11 @@
                     <hr>
                     <div id="second-comment">
                         <div class="d-flex flex-row">
-                            <div class="p-2"><img src="./src/images/logo.png" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;" alt=""></div>
+                            <div class="p-2" style="width: 70px;"><img id="user-img" src="./src/images/logo.png" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;" alt=""></div>
                             <div class="p-2">★ ★ ★ ★ ☆ 一年前 </div>
                         </div>
                         <div class="d-flex flex-row">
-                            <div class="p-2">陳先生</div>
+                            <div class="p-2" style="width: 70px;">陳先生</div>
                             <div class="p-2">這邊是留下的所有評論</div>
                         </div>
                     </div>

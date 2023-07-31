@@ -7,6 +7,7 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
     <link rel="stylesheet" href="./src/css/navbar.css" />
     <link rel="stylesheet" href="./src/css/sidebar.css">
     <style>
@@ -108,79 +109,73 @@
     </nav>
 
     <!-- 內容請自行替換 -->
-    <div class="main" >
-        <div class="container" >
+    <div class="main">
+        <div class="container">
             <div class="p-5"><a class="rm-link-style" href="">餐廳</a>><a class="rm-link-style" href="">台中市</a>>西屯區</div>
             <aside class="p-4">
                 <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
                     <div class="position-sticky">
-                      <div class="list-group list-group-flush mx-3 mt-4">
-                        <!-- Collapse 1 -->
-                        <a
-                          class="list-group-item list-group-item-action py-2 ripple"
-                          aria-current="true"
-                          data-mdb-toggle="collapse"
-                          href="#collapseExample1"
-                          aria-expanded="true"
-                          aria-controls="collapseExample1"
-                        >
-                          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>餐廳類型</span>
-                        </a>
-                        <!-- Collapsed content -->
-                        <ul id="collapseExample1" class="collapse show list-group list-group-flush">
-                          <li class="list-group-item py-1">
-                            <input type="checkbox" id="rest-type-1" name="">
-                            <label for="rest-type-1">美式料理</label>
-                          </li>
-                          <li class="list-group-item py-1">
-                            <input type="checkbox" id="rest-type-2" name="">
-                            <label for="rest-type-1">日式料理</label>
-                          </li>
-                          <li class="list-group-item py-1">
-                            <input type="checkbox" id="rest-type-3" name="">
-                            <label for="rest-type-1">中式料理</label>
-                          </li>
-                          <li class="list-group-item py-1">
-                            <input type="checkbox" id="rest-type-1" name="">
-                            <label for="rest-type-1">泰式料理</label>
-                          </li>
-                        </ul>
-                        <!-- Collapse 1 -->
-                        <!-- Collapse 2 -->
-                        <a
-                          class="list-group-item list-group-item-action py-2 ripple"
-                          aria-current="true"
-                          data-mdb-toggle="collapse"
-                          href="#collapseExample1"
-                          aria-expanded="true"
-                          aria-controls="collapseExample1"
-                        >
-                          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>地區分類</span>
-                        </a>
-                        <!-- Collapsed content -->
-                        <ul id="collapseExample1" class="collapse show list-group list-group-flush">
-                          <li class="list-group-item py-1">
-                            <input type="checkbox" id="rest-area-1" name="">
-                            <label for="rest-type-1">基隆市</label>
-                          </li>
-                          <li class="list-group-item py-1">
-                            <input type="checkbox" id="rest-type-2" name="">
-                            <label for="rest-type-1">台北市</label>
-                          </li>
-                          <li class="list-group-item py-1">
-                            <input type="checkbox" id="rest-type-3" name="">
-                            <label for="rest-type-1">新北市</label>
-                          </li>
-                          <li class="list-group-item py-1">
-                            <input type="checkbox" id="rest-type-1" name="">
-                            <label for="rest-type-1">桃園市</label>
-                          </li>
-                        </ul>
-                        <!-- Collapse 1 -->
+                        <div class="list-group list-group-flush mx-3 mt-4">
+                            <!-- Collapse 1 -->
+                            <span class="text-center p-2">餐廳類型</span>
+                            <!-- Collapsed content -->
+                            <ul id="collapseExample1" class="collapse show list-group list-group-flush">
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-type-1" name="">
+                                    <label for="rest-type-1">美式料理</label>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-type-2" name="">
+                                    <label for="rest-type-1">日式料理</label>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-type-3" name="">
+                                    <label for="rest-type-1">中式料理</label>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-type-4" name="">
+                                    <label for="rest-type-1">泰式料理</label>
+                                </li>
+                            </ul>
+                            <!-- Collapse 1 -->
+                            <!-- Collapse 2 -->
+                            <span class="text-center p-2">地區分類</span>
+                            <!-- Collapsed content -->
+                            <ul id="collapseExample1" class="collapse show list-group list-group-flush">
+                                <li class="list-group-item py-1">
+                                    <div class="dropdown">
+                                        <div class="dropdown-toggle" data-bs-toggle="dropdown">
+                                          Dropdown button
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                          <li><a class="dropdown-item" href="#">Link 1</a></li>
+                                          <li><a class="dropdown-item" href="#">Link 2</a></li>
+                                          <li><a class="dropdown-item" href="#">Link 3</a></li>
+                                        </ul>
+                                      </div>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-area-1" name="">
+                                    <label for="rest-type-1">基隆市</label>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-type-2" name="">
+                                    <label for="rest-type-1">台北市</label>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-type-3" name="">
+                                    <label for="rest-type-1">新北市</label>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-type-1" name="">
+                                    <label for="rest-type-1">桃園市</label>
+                                </li>
+                            </ul>
+                            <!-- Collapse 1 -->
 
-                      </div>
+                        </div>
                     </div>
-                  </nav>
+                </nav>
             </aside>
             <section>
                 <div class="row">
@@ -526,12 +521,12 @@
                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                         <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                      </ul>
+                    </ul>
 
                 </div>
-                
+
             </section>
-            
+
         </div>
 
 

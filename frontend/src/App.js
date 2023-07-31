@@ -10,6 +10,7 @@ import Album from './pages/Album';
 import Attractions from './pages/Attractions';
 import Forum from './pages/Forum';
 import Restaurant_main from './pages/Restaurant_main';
+import Article from "./pages/Article";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/album' element={<Album/>}></Route>
           <Route path='/attractions' element={<Attractions/>}></Route>
           <Route path='/forum' element={<Forum/>}></Route>
+          <Route path='/forum/article' element={<Article/>}></Route>
           <Route path='/restaurant' element={<Restaurant_main/>}></Route>
         </Routes>
       <Footer/>

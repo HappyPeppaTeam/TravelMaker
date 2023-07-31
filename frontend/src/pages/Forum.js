@@ -113,7 +113,7 @@ export default function Forum() {
         <p>想看看網友是怎麼規劃的嗎</p>
         <div className="col-md-6 mb-1">
           <div className="card article">
-            <img src={require('../images/card-1.jpg')} className="card-img-top" alt="..." />
+            <img src={require('../images/card-1.jpg')} className="card-img-top card-img-size" alt="..." />
             <div className="card-body">
               <h5 className="card-title">精選文章1</h5>
               <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -126,7 +126,7 @@ export default function Forum() {
         </div>
         <div className="col-md-6 mb-1">
           <div className="card article">
-            <img src={require('../images/card-2.jpg')} className="card-img-top" alt="..." />
+            <img src={require('../images/card-2.jpg')} className="card-img-top card-img-size" alt="..." />
             <div className="card-body">
               <h5 className="card-title">精選文章2</h5>
               <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -143,48 +143,50 @@ export default function Forum() {
         <h1>最新討埨串</h1>
 
         <table className="table table-striped table-bordered">
-          <tr>
-            <th>標題</th>
-            <th>回覆</th>
-            <th>點閱率</th>
-            <th>發表日期</th>
-          </tr>
-          <tr>
-            <td><a href="">第一篇文章</a></td>
-            <td>user</td>
-            <td>點閱率</td>
-            <td>2023.7.20</td>
-          </tr>
-          <tr>
-            <td><a href="">第二篇文章</a></td>
-            <td>user</td>
-            <td>點閱率</td>
-            <td>2023.7.20</td>
-          </tr>
-          <tr>
-            <td><a href="">第三篇文章</a></td>
-            <td>user</td>
-            <td>點閱率</td>
-            <td>2023.7.20</td>
-          </tr>
-          <tr>
-            <td><a href="">第四篇文章</a></td>
-            <td>user</td>
-            <td>點閱率</td>
-            <td>2023.7.20</td>
-          </tr>
-          <tr>
-            <td><a href="">第五篇文章</a></td>
-            <td>user</td>
-            <td>點閱率</td>
-            <td>2023.7.20</td>
-          </tr>
-          <tr>
-            <td><a href="">第六篇文章</a></td>
-            <td>user</td>
-            <td>點閱率</td>
-            <td>2023.7.20</td>
-          </tr>
+          <tbody>
+            <tr>
+              <th>標題</th>
+              <th>回覆</th>
+              <th>點閱率</th>
+              <th>發表日期</th>
+            </tr>
+            <tr>
+              <td><a href="">第一篇文章</a></td>
+              <td>user</td>
+              <td>點閱率</td>
+              <td>2023.7.20</td>
+            </tr>
+            <tr>
+              <td><a href="">第二篇文章</a></td>
+              <td>user</td>
+              <td>點閱率</td>
+              <td>2023.7.20</td>
+            </tr>
+            <tr>
+              <td><a href="">第三篇文章</a></td>
+              <td>user</td>
+              <td>點閱率</td>
+              <td>2023.7.20</td>
+            </tr>
+            <tr>
+              <td><a href="">第四篇文章</a></td>
+              <td>user</td>
+              <td>點閱率</td>
+              <td>2023.7.20</td>
+            </tr>
+            <tr>
+              <td><a href="">第五篇文章</a></td>
+              <td>user</td>
+              <td>點閱率</td>
+              <td>2023.7.20</td>
+            </tr>
+            <tr>
+              <td><a href="">第六篇文章</a></td>
+              <td>user</td>
+              <td>點閱率</td>
+              <td>2023.7.20</td>
+            </tr>
+          </tbody>
         </table>
 
       </div>

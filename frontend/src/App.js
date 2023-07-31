@@ -7,7 +7,14 @@ import Footer from './components/Footer';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Album from './pages/Album';
-
+import Attractions from './pages/Attractions';
+import Forum from './pages/Forum';
+import Restaurant_main from './pages/Restaurant_main';
+import Attractionattraction from "./pages/Attractionattraction";
+import Attractioncountry from "./pages/Attractioncountry";
+import Attractionmore from "./pages/Attractionmore";
+import Attraction_innerpage from "./pages/Attraction_innerpage";
+import Attraction_forun from "./pages/Attraction_forun";
 function App() {
   return (
     <div className="App">
@@ -15,6 +22,14 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}></Route>
           <Route path='/album' element={<Album/>}></Route>
+          <Route path='/attractions' element={<Attractions/>}></Route>
+          <Route path='/attractions/Attractioncountry' element={<Attractioncountry/>}></Route>
+          <Route path='/attractions/Attractionattraction' element={<Attractionattraction/>}></Route>
+          <Route path='/attractions/Attractionmore' element={<Attractionmore/>}></Route>
+          <Route path='/Attractionmore/Attraction_innerpage' element={<Attraction_innerpage/>}></Route>
+          <Route path='/Attraction_innerpage/Attraction_forun' element={<Attraction_forun/>}></Route>
+          <Route path='/forum' element={<Forum/>}></Route>
+          <Route path='/restaurant' element={<Restaurant_main/>}></Route>
         </Routes>
       <Footer/>
     </div>

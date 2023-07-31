@@ -197,3 +197,30 @@ justify-content: center;
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
+
+.button-hyperlink {
+  background-color: #203f54;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.hyperlink-location {
+  display: flex; 
+  justify-content: space-between;
+}
+
+.inner-pagger-border {
+  margin-left: auto; 
+  margin-right: auto; 
+  border: 1px solid; 
+  border-color: black;
+  width: 100%;
+}

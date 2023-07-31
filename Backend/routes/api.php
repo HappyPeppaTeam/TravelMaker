@@ -1,7 +1,9 @@
 <?php
 
+namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +51,5 @@ Route::get('/albums/{token}', function ($token) {
 
     return response()->json(['data' => $result]);
 });
+
+Route::post('/albums/{token}', [AlbumController::class, 'createAlbum']);

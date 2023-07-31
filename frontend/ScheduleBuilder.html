@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="./images/favicon_io/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="./src/images/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./src/images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./src/images/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="./src/images/favicon_io/site.webmanifest">
 
 
 
@@ -156,7 +156,7 @@
                             <div class="h1">我的行程</div>
                         </a>
 
-                        <div class="h5 ms-auto active-text"><i class="bi bi-plus-lg"></i><span class="ms-1">建立行程</span>
+                        <div class="h5 ms-auto active-text add-new-journey"><i class="bi bi-plus-lg"></i><span class="ms-1">建立行程</span>
                         </div>
                     </div>
                     <hr>
@@ -261,7 +261,7 @@
                             <div
                                 class="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center">
                                 <div style="width: 100%; height: 200px;  background-color: gray;"
-                                    class="d-flex align-items-center justify-content-center rounded shadow"
+                                    class="d-flex align-items-center justify-content-center rounded shadow add-new-journey"
                                     id="addNewBox">
                                     <i class="bi bi-plus-lg" style="font-size: 2rem; color: #2F4E63"></i>
                                 </div>
@@ -323,42 +323,57 @@
         <div class="modal-dialog modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
             <div class="modal-content">
                 <div class="modal-header"
-                    style="height: 200px; background-image: url(./images/street.jpg); background-size: cover;">
+                    style="height: 200px; background-image: url(./src/images/street.jpg); background-size: cover;">
                     <h1 class="modal-title fs-5 align-self-end text-white" id="journeyModalLabel">Modal title</h1>
                     <button type="button" class="btn-close btn-close-white align-self-start" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div id="content-header" class="d-flex align-items-center">
-                        <h1>Model</h1>
-                        <div class="h5 ms-auto active-text"><i class="bi bi-pencil-square"></i><span
-                                class="ms-2">編輯</span></div>
+                    <div id="journeyRegView" class="">
+                        <div id="contentHeader" class="d-flex align-items-center">
+                            <h1>Model</h1>
+                            <div class="h5 ms-auto active-text"><i class="bi bi-pencil-square"></i><span
+                                    class="ms-2">編輯</span></div>
+                        </div>
+                        <div id="scheduleContainer" class="p-3 rounded shadow" style="width: 100%; min-height: 500px;">
+    
+                        </div>
+                        <div id="map-container" style="width: 100%; height: 500px; border: lightblue solid;" class="mt-3">
+                        </div>
+    
+                        <div class="h2 mt-3">備註</div>
+                        <div id="text-content" class="mt-3">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem, recusandae? Veniam, error
+                            iure et voluptas quae enim! Amet consequuntur dolorum odit, vero nulla mollitia suscipit libero,
+                            iste ullam, inventore quisquam?
+                            Saepe doloremque labore rem cum reprehenderit totam, maxime eaque. Repudiandae maiores eligendi
+                        </div>
+                        <div class="h2 mt-3">相片</div>
+                        <div id="image-container" class="mt-3 image-overflow rounded shadow"
+                            style="width: 100%; height: 200px;">
+                            <img src="./src/images/street.jpg" alt="" class="h-100">
+                            <img src="./src/images/street.jpg" alt="" class="h-100">
+                            <img src="./src/images/street.jpg" alt="" class="h-100">
+                            <img src="./src/images/street.jpg" alt="" class="h-100">
+                            <img src="./src/images/street.jpg" alt="" class="h-100">
+                            <img src="./src/images/street.jpg" alt="" class="h-100">
+                            <img src="./src/images/street.jpg" alt="" class="h-100">
+                            <img src="./src/images/street.jpg" alt="" class="h-100">
+                        </div>
                     </div>
-                    <div id="scheduleContainer" class="p-3 rounded shadow" style="width: 100%; min-height: 500px;">
 
-                    </div>
-                    <div id="map-container" style="width: 100%; height: 500px; border: lightblue solid;" class="mt-3">
-                    </div>
-
-                    <div class="h2 mt-3">備註</div>
-                    <div id="text-content" class="mt-3">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem, recusandae? Veniam, error
-                        iure et voluptas quae enim! Amet consequuntur dolorum odit, vero nulla mollitia suscipit libero,
-                        iste ullam, inventore quisquam?
-                        Saepe doloremque labore rem cum reprehenderit totam, maxime eaque. Repudiandae maiores eligendi
-                    </div>
-                    <div class="h2 mt-3">相片</div>
-                    <div id="image-container" class="mt-3 image-overflow rounded shadow"
-                        style="width: 100%; height: 200px;">
-                        <img src="./src/images/street.jpg" alt="" class="h-100">
-                        <img src="./src/images/street.jpg" alt="" class="h-100">
-                        <img src="./src/images/street.jpg" alt="" class="h-100">
-                        <img src="./src/images/street.jpg" alt="" class="h-100">
-                        <img src="./src/images/street.jpg" alt="" class="h-100">
-                        <img src="./src/images/street.jpg" alt="" class="h-100">
-                        <img src="./src/images/street.jpg" alt="" class="h-100">
-                        <img src="./src/images/street.jpg" alt="" class="h-100">
-                    </div>
+                    <!-- <div id="journeyEditView" class="edit-view d-block">
+                        <form action="">
+                            <div class="mb-3">
+                                <label for="inputJourneyName" class="form-label">行程名稱</label>
+                                <input type="text" class="form-control" id="inputJourneyName" aria-describedby="inputJourneyName"
+                                  value="金瓜石之旅" />
+                            </div>
+                            <div class="mb-3 container-fluid bg-light rounded shadow" style="min-height: 500px">
+                                <div id="callendarEdit" class="p-3"></div>
+                            </div>
+                        </form>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -385,7 +400,7 @@
             <button type="button" class="btn-close" aria-label="Close"></button>
         </div>
         <div class="d-flex container-fluid justify-content-center align-items-center h-100">
-            <img src="./images/street.jpg" alt="" style="height: 500px" class="">
+            <img src="./src/images/street.jpg" alt="" style="height: 500px" class="">
         </div>
     </div>
 
@@ -399,18 +414,25 @@
         const journeyElement = document.getElementById('journey1');
         const dropdownMenu = document.getElementById('journeyDropdown');
         const detail = document.getElementById('moreDetail');
+        const journeyModal = document.getElementById('journeyModal');
 
         var myModel = new bootstrap.Modal(document.getElementById('journeyModal'), {
             keyboard: false
         });
+        
+        
 
         // myModel.toggle();
         // myModel.hide();
 
         journeyElement.addEventListener('click', function (e) {
             myModel.toggle();
-            schedule.render();
         });
+
+        journeyModal.addEventListener('shown.bs.modal', function(e){
+            schedule.render();
+            // journeyObj.render();
+        })
 
         detail.addEventListener('click', function (e) {
             e.preventDefault();
@@ -433,43 +455,162 @@
 
         var schedule = new FullCalendar.Calendar(scheduleContainer, {
             themeSystem: 'bootstrap5',
-            initialView: 'listWeek', // the name of a generic view
+            initialView: 'weekView', // the name of a generic view
+            initialDate: '2023-05-13T08:00:00',
             headerToolbar: {
                 // end: 'list'
                 left: "prev,next today", // 左邊放置上一頁、下一頁和今天
                 center: "title", // 中間放置標題
-                end: "list" // 右邊放置月、周、天
+                end: "weekView listAll" // 右邊放置月、周、天
+            },
+            views: {
+                weekView: {
+                    type: "timeGridWeek"
+                },
+                listAll: {
+                    type: "list",
+                    duration: { years: 1 }
+                }
+
             },
             events: [
                 {
-                    title: 'Meeting',
-                    start: '2023-07-21T10:00:00', // Start date and time in ISO format
-                    end: '2023-07-21T12:00:00',   // End date and time in ISO format
+                    title: '勝利早點',
+                    start: '2023-05-13T08:00:00', // Start date and time in ISO format
+                    end: '2023-05-13T09:00:00',   // End date and time in ISO format
+                    // You can add more properties as needed, such as 'color', 'url', etc.
+                    description: 'Breakfast yum yum yum yum',
+                    editable: true
+                },
+                {
+                    title: '成功大學',
+                    start: '2023-05-13T09:00:00', // Start date and time in ISO format
+                    end: '2023-05-13T10:00:00',   // End date and time in ISO format
                     // You can add more properties as needed, such as 'color', 'url', etc.
                 },
                 {
-                    title: 'Meeting',
-                    start: '2023-07-21T13:00:00', // Start date and time in ISO format
-                    end: '2023-07-21T14:00:00',   // End date and time in ISO format
+                    title: '安平古堡',
+                    start: '2023-05-13T11:00:00', // Start date and time in ISO format
+                    end: '2023-05-13T14:00:00',   // End date and time in ISO format
                     // You can add more properties as needed, such as 'color', 'url', etc.
                 },
                 {
-                    title: 'Meeting',
-                    start: '2023-07-21T15:00:00', // Start date and time in ISO format
-                    end: '2023-07-21T16:00:00',   // End date and time in ISO format
+                    title: '赤崁樓',
+                    start: '2023-05-13T15:00:00', // Start date and time in ISO format
+                    end: '2023-05-13T16:00:00',   // End date and time in ISO format
                     // You can add more properties as needed, such as 'color', 'url', etc.
                 },
                 {
-                    title: 'Meeting',
-                    start: '2023-07-21T17:00:00', // Start date and time in ISO format
-                    end: '2023-07-21T18:00:00',   // End date and time in ISO format
+                    title: '晚餐',
+                    start: '2023-05-13T18:00:00', // Start date and time in ISO format
+                    end: '2023-05-13T19:00:00',   // End date and time in ISO format
                     // You can add more properties as needed, such as 'color', 'url', etc.
                 },
+                {
+                    title: 'xx大飯店',
+                    start: '2023-05-13T19:00:00', // Start date and time in ISO format
+                    end: '2023-05-13T24:00:00',   // End date and time in ISO format
+                    // You can add more properties as needed, such as 'color', 'url', etc.
+                },
+                {
+                    title: '吃早餐',
+                    start: '2023-05-14T08:00:00', // Start date and time in ISO format
+                    end: '2023-05-14T09:00:00',   // End date and time in ISO format
+                    // You can add more properties as needed, such as 'color', 'url', etc.
+                },
+                {
+                    title: '台南市立美術館',
+                    start: '2023-05-14T09:00:00', // Start date and time in ISO format
+                    end: '2023-05-14T12:00:00',   // End date and time in ISO format
+                    // You can add more properties as needed, such as 'color', 'url', etc.
+                },
+                {
+                    title: 'New Pasta',
+                    start: '2023-05-14T12:00:00', // Start date and time in ISO format
+                    end: '2023-05-14T13:00:00',   // End date and time in ISO format
+                    // You can add more properties as needed, such as 'color', 'url', etc.
+                },
+                {
+                    title: '奇美博物館',
+                    start: '2023-05-14T13:00:00', // Start date and time in ISO format
+                    end: '2023-05-14T16:00:00',   // End date and time in ISO format
+                    // You can add more properties as needed, such as 'color', 'url', etc.
+                },
+                {
+                    title: '府城牛肉湯',
+                    start: '2023-05-14T17:00:00', // Start date and time in ISO format
+                    end: '2023-05-14T18:00:00',   // End date and time in ISO format
+                    // You can add more properties as needed, such as 'color', 'url', etc.
+                },
+                {
+                    title: 'oo大飯店',
+                    start: '2023-05-14T18:00:00', // Start date and time in ISO format
+                    end: '2023-05-14T24:00:00',   // End date and time in ISO format
+                    // You can add more proprties as needed, such as 'color', 'url', etc.
+                },
+                {
+                    title: '吃早餐',
+                    start: '2023-05-15T08:00:00', // Start date and time in ISO format
+                    end: '2023-05-15T09:00:00',   // End date and time in ISO format
+                    // You can add more proprties as needed, such as 'color', 'url', etc.
+                },
+                {
+                    title: '回程',
+                    start: '2023-05-15T09:00:00', // Start date and time in ISO format
+                    end: '2023-05-15T12:00:00',   // End date and time in ISO format
+                    // You can add more proprties as needed, such as 'color', 'url', etc.
+                },
+                
+
+                
             ]
 
 
         });
 
+
+       
+        const addNewJourneyClass = document.getElementsByClassName('add-new-journey');
+        for (var i=0; i<addNewJourneyClass.length; i++) {
+            addNewJourneyClass[i].addEventListener('click', function(event){
+                event.preventDefault();
+                location.href = "./NewJourney.html";
+            })
+        }
+
+        // const addNewJourney = document.getElementById('addNewBox');
+
+
+
+        
+        // addNewJourney.addEventListener('click', function(event){
+        //     event.preventDefault();
+        //     location.href = "./NewJourney.html";
+        // });
+        
+
+        // const editJourney = document.getElementById('callendarEdit');
+        // var journeyObj = new FullCalendar.Calendar(editJourney, {
+        //     themeSystem: 'bootstrap5',
+        //     initialView: 'weekView', // the name of a generic view
+        //     initialDate: '2023-05-13T08:00:00',
+        //     headerToolbar: {
+        //         // end: 'list'
+        //         left: "prev,next today", // 左邊放置上一頁、下一頁和今天
+        //         center: "title", // 中間放置標題
+        //         end: "weekView listAll" // 右邊放置月、周、天
+        //     },
+        //     views: {
+        //         weekView: {
+        //             type: "timeGridWeek"
+        //         },
+        //         listAll: {
+        //             type: "list",
+        //             duration: { years: 1 }
+        //         }
+
+        //     },
+        // }) 
 
 
     }

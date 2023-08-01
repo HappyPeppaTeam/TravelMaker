@@ -1,0 +1,30 @@
+.UserImage {
+    display: flex;
+    align-items: center;
+}
+
+.UserImage img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 0.5em;
+}
+
+.UserImage form {
+    width: 100%;
+    display: flex;
+}
+
+.MessageText {
+    width: 100%;
+    margin-right: 0.5em;
+}
+
+
+.MessageSubmit {
+    width: 100%;
+    margin-right: 0.5em;
+    width: 60px;
+    height: 30px;
+    font-size: 12px;
+}

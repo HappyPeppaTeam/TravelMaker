@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Sidebar from '../components/Sidebar';
 import BotSidebar from '../components/BotSidebar';
-
+import 'bootstrap';
 import '../css/newJourney.css'
 
 function NewJourney() {
@@ -53,6 +53,62 @@ function NewJourney() {
         border: 'lightcoral solid,'
     }
 
+
+    const tabs = useRef(null);
+    const prevButton = useRef(null);
+    const nextButton = useRef(null);
+    const progressBar = useRef(null);
+
+    useEffect(() => {
+        tabs.current = document.getElementsByClassName("tab");
+        prevButton.current = document.getElementById("prevButton");
+        nextButton.current = document.getElementById("nextButton");
+        progressBar.current = document.getElementById("progressBar");
+        showTab(currentTab);
+    }, [])
+
+
+    let currentTab = 0;
+
+    const showTab = (n) => {
+        
+        // set progress bar
+        let progressPercent = (100 / tabs.current.length) * (n + 1);
+        progressBar.current.setAttribute("style", `width: ${progressPercent}%`);
+
+        tabs.current[n].style.display = "block";
+
+        if (n == 0) {
+            prevButton.current.style.display = "none";
+        } else {
+            prevButton.current.style.display = "block";
+        }
+
+        if (n == tabs.current.length - 1) {
+            nextButton.current.getElementsByTagName("span")[0].innerText = "完成";
+            // nextButton.getElementsByTagName('i').style.display = 'none';
+        } else {
+            nextButton.current.getElementsByTagName("span")[0].innerText = "下一步";
+        }
+    }
+
+    function nextPrev(n) {
+        tabs.current[currentTab].style.display = "none";
+        currentTab += n;
+
+        // for testing : return to first page after finished form 
+        if (currentTab >= tabs.current.length || currentTab < 0) {
+          currentTab = 0;
+          // return false;
+        }
+
+        showTab(currentTab);
+    }
+
+    
+
+
+    
     return (
         <div className="container-lg shadow p-0 mb-3 bg-white" id="bodyContainer">
             <div className="d-flex flex-nowrap row container-fluid m-0 p-0 bg-white" id="contentContainer">
@@ -75,21 +131,21 @@ function NewJourney() {
                             <form id="newJourneyForm">
                                 <div id="newJourneyForm1" className="tab">
                                     <div className="mb-3">
-                                        <label for="inputJourneyName" className="form-label">行程名稱</label>
+                                        <label htmlFor="inputJourneyName" className="form-label">行程名稱</label>
                                         <input type="text" className="form-control" id="inputJourneyName" aria-describedby="inputJourneyName"
                                             placeholder="ex. 金瓜石兩日遊" />
                                     </div>
                                     <div className="mb-3">
-                                        <label for="inputJourneyDestination" className="form-label">行程目的地</label>
+                                        <label htmlFor="inputJourneyDestination" className="form-label">行程目的地</label>
                                         <input type="text" className="form-control" id="inputJourneyDestination"
                                             aria-describedby="inputJourneyDestination" placeholder="ex. 台北" />
                                     </div>
                                     <div className="mb-3">
-                                        <label for="inputJourneyStart" className="form-label">開始日期</label>
+                                        <label htmlFor="inputJourneyStart" className="form-label">開始日期</label>
                                         <input type="date" className="form-control" id="inputJourneyStart" aria-describedby="inputJourneyStart" />
                                     </div>
                                     <div className="mb-3">
-                                        <label for="inputJourneyDays" className="form-label">行程天數</label>
+                                        <label htmlFor="inputJourneyDays" className="form-label">行程天數</label>
                                         <input type="number" className="form-control" id="inputJourneyDays" aria-describedby="inputJourneyDays" />
                                     </div>
                                 </div>
@@ -103,10 +159,10 @@ function NewJourney() {
                                     <div className="mb-3">
                                         <div className="mb-3">
                                             <div className="mb-1">加入圖片</div>
-                                            <label for="formFileMultiple" className="form-label">本機上傳</label>
+                                            <label htmlFor="formFileMultiple" className="form-label">本機上傳</label>
                                             <input className="form-control mb-2" type="file" id="formFileMultiple" multiple />
 
-                                            <label for="fromAlbum" className="form-label">相簿上傳</label>
+                                            <label htmlFor="fromAlbum" className="form-label">相簿上傳</label>
 
                                             <div className="input-group mb-3">
                                                 <button className="btn btn-outline-secondary dropdown-toggle" data-bs-auto-close="outside"
@@ -132,24 +188,24 @@ function NewJourney() {
                                         </div>
 
                                         <div className="mb-3">
-                                            <label for="publicRadio" className="form-label">公開設定</label>
+                                            <label htmlFor="publicRadio" className="form-label">公開設定</label>
                                             <div className="form-check">
                                                 <input className="form-check-input" type="radio" name="privacyRadio" value="" id="publicRadio" />
-                                                <label className="form-check-label" for="publicRadio">
+                                                <label className="form-check-label" htmlFor="publicRadio">
                                                     公開
                                                 </label>
                                             </div>
                                             <div className="form-check">
                                                 <input className="form-check-input" type="radio" name="privacyRadio" value="" id="privateRadio"
                                                     checked />
-                                                <label className="form-check-label" for="privateRadio">
+                                                <label className="form-check-label" htmlFor="privateRadio">
                                                     不公開
                                                 </label>
                                             </div>
                                         </div>
 
                                         <div className="mb-3">
-                                            <label for="inputNoteJourney" className="form-label">備註</label>
+                                            <label htmlFor="inputNoteJourney" className="form-label">備註</label>
                                             <textarea className="form-control" id="inputNoteJourney" rows="3"></textarea>
                                         </div>
                                     </div>
@@ -171,16 +227,16 @@ function NewJourney() {
                                             praesentium amet aliquam veritatis cum ipsam hic impedit dicta sint dolorem iure excepturi aut unde
                                             exercitationem libero officia possimus?</p>
                                     </div>
-                                    <div id="browseImageContainer" className="w-100 mb-3" style={browseTextContainerStyle}>
+                                    <div id="browseImageContainer" className="w-100 mb-3" style={browseImageContainerStyle}>
                                         <h2>Image</h2>
                                     </div>
                                 </div>
                             </form>
                             <div className="mt-5 d-flex">
-                                <div className="active-text" id="prevButton">
+                                <div className="active-text" id="prevButton" onClick={() => nextPrev(-1)}>
                                     <i className="bi bi-arrow-left"></i><span className="ps-1">上一步</span>
                                 </div>
-                                <div className="ms-auto active-text" id="nextButton">
+                                <div className="ms-auto active-text" id="nextButton" onClick={() => nextPrev(1)}>
                                     <span className="pe-1" id="nextStepText">下一步</span><i className="bi bi-arrow-right" id="nextStepIcon"></i>
                                 </div>
                             </div>

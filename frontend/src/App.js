@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 import Navbar from "./components/Navbar";
 import Footer from './components/Footer';
-import BotSidebar from "./components/BotSidebar";
 
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Modal } from 'bootstrap';
+import { Modal} from 'bootstrap';
 
 import '../css/journey.css';
 import JourneyThumbnail from '../components/JourneyThumbnail';
@@ -7,6 +7,21 @@ import Sidebar from '../components/Sidebar';
 import BotSidebar from '../components/BotSidebar';
 
 
+
+
+const MoreDropDown = ({handleOpenModal}) => {
+
+    return (
+        <div className="dropdown-menu" id="moreDropdown">
+            <a className="dropdown-item" onClick={handleOpenModal}><i
+                className="bi bi-arrow-up-right-square"></i><span className="ps-1">開啟</span></a>
+            <a className="dropdown-item" href="#"><i className="bi bi-pencil-square"></i><span className="ps-1">編輯</span></a>
+            <a className="dropdown-item" href="#"><i className="bi bi-pencil"></i><span className="ps-1">重新命名</span></a>
+            <a className="dropdown-item" href="#"><i className="bi bi-image"></i><span className="ps-1">更改封面圖片</span></a>
+            <a className="dropdown-item" href="#"><i className="bi bi-trash3"></i><span className="ps-1">刪除</span></a>
+        </div>
+    )
+}
 
 
 
@@ -63,52 +78,52 @@ const JourneyModel = ({ handleCloseModal }) => {
     }
 
     return (
-        <div class="modal fade" id="journeyModal" tabindex="-1" aria-labelledby="journeyModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
-                <div class="modal-content">
-                    <div class="modal-header"
+        <div className="modal fade" id="journeyModal" tabIndex="-1" aria-labelledby="journeyModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
+                <div className="modal-content">
+                    <div className="modal-header"
                         style={modalHeaderStyle}>
-                        <h1 class="modal-title fs-5 align-self-end text-white" id="journeyModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close btn-close-white align-self-start" onClick={handleCloseModal}
+                        <h1 className="modal-title fs-5 align-self-end text-white" id="journeyModalLabel">Modal title</h1>
+                        <button type="button" className="btn-close btn-close-white align-self-start" onClick={handleCloseModal}
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <div id="journeyRegView" class="">
-                            <div id="contentHeader" class="d-flex align-items-center">
+                    <div className="modal-body">
+                        <div id="journeyRegView" className="">
+                            <div id="contentHeader" className="d-flex align-items-center">
                                 <h1>Model</h1>
-                                <div class="h5 ms-auto active-text"><i class="bi bi-pencil-square"></i><span
-                                    class="ms-2">編輯</span></div>
+                                <div className="h5 ms-auto active-text"><i className="bi bi-pencil-square"></i><span
+                                    className="ms-2">編輯</span></div>
                             </div>
-                            <div id="journeyContainer" class="p-3 rounded shadow" style={journeyContainerStyle}>
+                            <div id="journeyContainer" className="p-3 rounded shadow" style={journeyContainerStyle}>
 
                             </div>
-                            <div id="mapContainer" style={mapContainerStyle} class="mt-3">
+                            <div id="mapContainer" style={mapContainerStyle} className="mt-3">
                             </div>
 
-                            <div class="h2 mt-3">備註</div>
-                            <div id="text-content" class="mt-3">
+                            <div className="h2 mt-3">備註</div>
+                            <div id="text-content" className="mt-3">
                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem, recusandae? Veniam, error
                                 iure et voluptas quae enim! Amet consequuntur dolorum odit, vero nulla mollitia suscipit libero,
                                 iste ullam, inventore quisquam?
                                 Saepe doloremque labore rem cum reprehenderit totam, maxime eaque. Repudiandae maiores eligendi
                             </div>
-                            <div class="h2 mt-3">相片</div>
-                            <div id="imageContainer" class="mt-3 image-overflow rounded shadow"
+                            <div className="h2 mt-3">相片</div>
+                            <div id="imageContainer" className="mt-3 image-overflow rounded shadow"
                                 style={imageContainerStyle}>
-                                <img src="../images/street.jpg" alt="" class="h-100" />
-                                <img src="../images/street.jpg" alt="" class="h-100" />
-                                <img src="../images/street.jpg" alt="" class="h-100" />
-                                <img src="../images/street.jpg" alt="" class="h-100" />
-                                <img src="../images/street.jpg" alt="" class="h-100" />
-                                <img src="../images/street.jpg" alt="" class="h-100" />
-                                <img src="../images/street.jpg" alt="" class="h-100" />
-                                <img src="../images/street.jpg" alt="" class="h-100" />
+                                <img src="../images/street.jpg" alt="" className="h-100" />
+                                <img src="../images/street.jpg" alt="" className="h-100" />
+                                <img src="../images/street.jpg" alt="" className="h-100" />
+                                <img src="../images/street.jpg" alt="" className="h-100" />
+                                <img src="../images/street.jpg" alt="" className="h-100" />
+                                <img src="../images/street.jpg" alt="" className="h-100" />
+                                <img src="../images/street.jpg" alt="" className="h-100" />
+                                <img src="../images/street.jpg" alt="" className="h-100" />
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" onClick={handleCloseModal}>Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>Close</button>
+                        <button type="button" className="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -121,6 +136,8 @@ const JourneyModel = ({ handleCloseModal }) => {
 function Journey() {
 
     const journeyModal = useRef(null);
+    const moreDropdown = useRef(null);
+
 
     useEffect(() => {
         journeyModal.current = new Modal('#journeyModal');
@@ -134,12 +151,10 @@ function Journey() {
         journeyModal.current.hide();
     }
 
-
-
     return (
         <div className="container-lg shadow p-0 mb-3 bg-white" id="bodyContainer">
-            <div className="d-flex flex-nowrap row container-fluid m-0 p-0 bg-white" id="contentContainer">  
-                <Sidebar/>
+            <div className="d-flex flex-nowrap row container-fluid m-0 p-0 bg-white" id="contentContainer">
+                <Sidebar />
 
                 {/* <!-- main content --> */}
                 <div className="flex-fill px-0 justify-content-center" id="content">
@@ -155,23 +170,24 @@ function Journey() {
                         <hr />
                         <div className="container-fluid">
                             <div className="row">
-                                <JourneyThumbnail key={1} handleOpenModal={handleOpenModal}/>
-                                <JourneyThumbnail key={2} handleOpenModal={handleOpenModal}/>
-                                <JourneyThumbnail key={3} handleOpenModal={handleOpenModal}/>
-                                <JourneyThumbnail key={4} handleOpenModal={handleOpenModal}/>
-                                <JourneyThumbnail key={5} handleOpenModal={handleOpenModal}/>
-                                <JourneyThumbnail key={6} handleOpenModal={handleOpenModal}/>
-                                <JourneyThumbnail key={7} handleOpenModal={handleOpenModal}/>
-                                <JourneyThumbnail key={8} handleOpenModal={handleOpenModal}/>
-                                <JourneyThumbnail key={9} handleOpenModal={handleOpenModal}/>
+                                <JourneyThumbnail key={1} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={2} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={3} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={4} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={5} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={6} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={7} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={8} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={9} handleOpenModal={handleOpenModal} />
                                 <AddNewJourney />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <BotSidebar/>
+            <BotSidebar />
             <JourneyModel handleCloseModal={handleCloseModal} />
+            {/* <MoreDropDown handleOpenModal={handleOpenModal}/> */}
         </div>
     );
 }

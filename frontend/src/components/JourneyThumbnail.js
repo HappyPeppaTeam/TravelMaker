@@ -15,14 +15,17 @@ const moreDetailStyle = {
 
 
 function JourneyThumbnail({handleOpenModal}) {
+
+    
+
     return (
         <div
             className="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center" onClick={handleOpenModal}>
             <div className="rounded shadow"
                 style={thumbNailStyle}>
                 <div className="overlay rounded d-flex justify-content-center align-items-center position-relative">
-                    <div className="position-absolute top-0 end-0 p-1 m-3 rounded more-detail"
-                        style={moreDetailStyle}>
+                    <div className="position-absolute top-0 end-0 p-1 m-3 rounded more-detail" style={moreDetailStyle}
+                        >
                         <i
                             className="bi bi-three-dots text-secondary fs-5 position-absolute top-50 start-50 translate-middle"></i>
                     </div>

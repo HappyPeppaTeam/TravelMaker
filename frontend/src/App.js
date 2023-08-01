@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 import Navbar from "./components/Navbar";
 import Footer from './components/Footer';
-import Sidebar from "./components/Sidebar";
 
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
@@ -14,6 +13,8 @@ import Forum from './pages/Forum';
 import Restaurant_main from './pages/Restaurant_main';
 import Article from "./pages/Article";
 import Discussion from "./pages/Discussion";
+import Journey from "./pages/Journey";
+import NewJourney from "./pages/NewJourney"; 
 
 function App() {
   return (
@@ -27,11 +28,10 @@ function App() {
           <Route path='/forum/discussion/article' element={<Article/>}></Route>
           <Route path='/forum/discussion' element={<Discussion/>}></Route>
           <Route path='/restaurant' element={<Restaurant_main/>}></Route>
+          <Route path="/journey" element={<Journey/>} ></Route>
+          <Route path="/journey/newjourney" element={<NewJourney/>} ></Route>
         </Routes>
       <Footer/>
-      <Routes>
-        <Route path='/journey' Component={Sidebar}></Route>
-      </Routes>
     </div>
   );
 }

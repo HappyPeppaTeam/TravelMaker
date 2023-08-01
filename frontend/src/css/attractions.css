@@ -130,8 +130,9 @@
   /* 添加填滿效果的CSS過渡 */
 }
 
-#colorChangeSVG.active path {
-  fill: red;
+.heart.active  {
+  /* fill: red; */
+  color: red;
   /* 填滿的顏色，您可以根據需要更改為其他顏色 */
 }
 

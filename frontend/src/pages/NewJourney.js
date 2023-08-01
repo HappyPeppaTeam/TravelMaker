@@ -78,15 +78,16 @@ function NewJourney() {
 
         tabs.current[n].style.display = "block";
 
-        if (n == 0) {
+        if (n === 0) {
             prevButton.current.style.display = "none";
         } else {
             prevButton.current.style.display = "block";
         }
 
-        if (n == tabs.current.length - 1) {
+        if (n === tabs.current.length - 1) {
             nextButton.current.getElementsByTagName("span")[0].innerText = "完成";
-            // nextButton.getElementsByTagName('i').style.display = 'none';
+            nextButton.current.setAttribute('type', 'submit');
+    
         } else {
             nextButton.current.getElementsByTagName("span")[0].innerText = "下一步";
         }
@@ -128,7 +129,7 @@ function NewJourney() {
                             <div className="progress-bar" id="progressBar" style={progressBarWidthStyle}></div>
                         </div>
                         <div className="container px-0">
-                            <form id="newJourneyForm">
+                            <form id="newJourneyForm" method='post'>
                                 <div id="newJourneyForm1" className="tab">
                                     <div className="mb-3">
                                         <label htmlFor="inputJourneyName" className="form-label">行程名稱</label>
@@ -197,7 +198,7 @@ function NewJourney() {
                                             </div>
                                             <div className="form-check">
                                                 <input className="form-check-input" type="radio" name="privacyRadio" value="" id="privateRadio"
-                                                    checked />
+                                                    defaultChecked />
                                                 <label className="form-check-label" htmlFor="privateRadio">
                                                     不公開
                                                 </label>
@@ -233,12 +234,12 @@ function NewJourney() {
                                 </div>
                             </form>
                             <div className="mt-5 d-flex">
-                                <div className="active-text" id="prevButton" onClick={() => nextPrev(-1)}>
+                                <button className="active-text btn btn-light" id="prevButton" onClick={() => nextPrev(-1)}>
                                     <i className="bi bi-arrow-left"></i><span className="ps-1">上一步</span>
-                                </div>
-                                <div className="ms-auto active-text" id="nextButton" onClick={() => nextPrev(1)}>
+                                </button>
+                                <button className="ms-auto active-text btn btn-light" id="nextButton" onClick={() => nextPrev(1)}>
                                     <span className="pe-1" id="nextStepText">下一步</span><i className="bi bi-arrow-right" id="nextStepIcon"></i>
-                                </div>
+                                </button>
                             </div>
                         </div>
                     </div>

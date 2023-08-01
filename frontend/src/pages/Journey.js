@@ -138,6 +138,55 @@ const JourneyModel = ({ handleCloseModal }) => {
 
 function Journey() {
 
+
+    const [journeyData, setJourneyData] = useState({
+        journeys: [
+            {
+                id: 1,
+                title: 'Trip to Taipei',
+                description: 'plan to stay from 5/23 to 5/25',
+                editTime: '2023/4/5 13:00',
+                journeyEvents: [
+                    {
+                        id: 1,
+                        name: 'breakfast',
+                        description: 'McDonald',
+                        start: '2023/5/23 8:00',
+                        end: '2023/5/23 9:00',
+                    },
+                    {
+                        id: 2,
+                        name: 'lunch',
+                        description: 'McDonald',
+                        start: '2023/5/23 12:00',
+                        end: '2023/5/23 13:00',
+                    },
+                ]
+            },
+            {
+                id: 3,
+                title: 'Trip to Taichung',
+                description: 'plan to stay from 5/26 to 5/27',
+                editTime: '2023/4/5 13:00',
+                journeyEvents: [
+                    {
+                        id: 4,
+                        name: 'breakfast',
+                        description: 'McDonald',
+                        start: '2023/5/26 8:00',
+                        end: '2023/5/26 9:00',
+                    },
+                    {
+                        id: 6,
+                        name: 'lunch',
+                        description: 'McDonald',
+                        start: '2023/5/27 12:00',
+                        end: '2023/5/27 13:00',
+                    },
+                ]
+            },
+        ],
+    });
     const journeyModal = useRef(null);
     const moreDropdown = useRef(null);
 

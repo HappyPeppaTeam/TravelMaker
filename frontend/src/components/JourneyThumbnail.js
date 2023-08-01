@@ -32,7 +32,6 @@ const MoreDropDown = () => {
 function JourneyThumbnail({handleOpenModal}) {
 
     const moreDropdown = useRef(null);
-    const page = useRef(null);
     
     useEffect(() => {
         moreDropdown.current = document.getElementById('moreDropdown');

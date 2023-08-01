@@ -9,19 +9,7 @@ import BotSidebar from '../components/BotSidebar';
 
 
 
-const MoreDropDown = ({handleOpenModal}) => {
 
-    return (
-        <div className="dropdown-menu" id="moreDropdown">
-            <a className="dropdown-item" onClick={handleOpenModal}><i
-                className="bi bi-arrow-up-right-square"></i><span className="ps-1">開啟</span></a>
-            <a className="dropdown-item" href="#"><i className="bi bi-pencil-square"></i><span className="ps-1">編輯</span></a>
-            <a className="dropdown-item" href="#"><i className="bi bi-pencil"></i><span className="ps-1">重新命名</span></a>
-            <a className="dropdown-item" href="#"><i className="bi bi-image"></i><span className="ps-1">更改封面圖片</span></a>
-            <a className="dropdown-item" href="#"><i className="bi bi-trash3"></i><span className="ps-1">刪除</span></a>
-        </div>
-    )
-}
 
 
 
@@ -156,6 +144,7 @@ function Journey() {
 
     useEffect(() => {
         journeyModal.current = new Modal('#journeyModal');
+        moreDropdown.current = document.getElementById('moreDropdown');
     }, [])
 
     const handleOpenModal = () => {
@@ -202,7 +191,6 @@ function Journey() {
             </div>
             <BotSidebar />
             <JourneyModel handleCloseModal={handleCloseModal} />
-            {/* <MoreDropDown handleOpenModal={handleOpenModal}/> */}
         </div>
     );
 }

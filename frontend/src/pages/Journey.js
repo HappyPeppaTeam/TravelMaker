@@ -51,6 +51,14 @@ const AddNewJourney = () => {
 }
 
 
+// const JourneyImage = () => {
+//     return (
+//         <React.Fragment>
+//             <img src=' ' />
+//         </React.Fragment>
+//     )
+// }
+
 
 const JourneyModel = ({ handleCloseModal }) => {
 
@@ -77,6 +85,16 @@ const JourneyModel = ({ handleCloseModal }) => {
         background: 'linear-gradient(135deg, rgba(235,244,245,0.5) 57%, rgba(181,198,224,0.5) 100%)',
     }
 
+    const [journeyData, setJourneyData]  = useState({
+        title: "Taiwan number one",
+        textContent: " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem, recusandae? Veniam, error?",
+        images: {
+            1: "../images/street.jpg",
+            2: "../images/street.jpg",
+            3: "../images/street.jpg",
+        }
+    });
+
     return (
         <div className="modal fade" id="journeyModal" tabIndex="-1" aria-labelledby="journeyModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
@@ -90,7 +108,7 @@ const JourneyModel = ({ handleCloseModal }) => {
                     <div className="modal-body">
                         <div id="journeyRegView" className="">
                             <div id="contentHeader" className="d-flex align-items-center">
-                                <h1>Model</h1>
+                                <h1>{journeyData.title}</h1>
                                 <div className="h5 ms-auto active-text"><i className="bi bi-pencil-square"></i><span
                                     className="ms-2">編輯</span></div>
                             </div>
@@ -102,10 +120,7 @@ const JourneyModel = ({ handleCloseModal }) => {
 
                             <div className="h2 mt-3">備註</div>
                             <div id="text-content" className="mt-3">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem, recusandae? Veniam, error
-                                iure et voluptas quae enim! Amet consequuntur dolorum odit, vero nulla mollitia suscipit libero,
-                                iste ullam, inventore quisquam?
-                                Saepe doloremque labore rem cum reprehenderit totam, maxime eaque. Repudiandae maiores eligendi
+                                {journeyData.textContent}
                             </div>
                             <div className="h2 mt-3">相片</div>
                             <div id="imageContainer" className="mt-3 image-overflow rounded shadow"

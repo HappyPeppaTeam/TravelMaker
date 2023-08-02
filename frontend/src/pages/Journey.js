@@ -46,7 +46,8 @@ const JourneyModel = ({ handleCloseModal }) => {
     const mapContainerStyle = {
         width: '100%',
         height: '500px',
-        border: 'lightblue solid',
+        // border: 'lightblue solid',
+        background: 'radial-gradient(circle, rgba(107, 179, 227, 0.2) 0%, rgba(178, 226, 232, 0.8) 50%, rgba(107, 179, 227, 0.2) 100%)',
     }
 
     const imageContainerStyle = {
@@ -75,8 +76,7 @@ const JourneyModel = ({ handleCloseModal }) => {
             <div className="modal-dialog modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
                 <div className="modal-content">
                     <div className="modal-header"
-                        style={modalHeaderStyle}>
-                        <h1 className="modal-title fs-5 align-self-end text-white" id="journeyModalLabel">Modal title</h1>
+                        style={modalHeaderStyle}>                 
                         <button type="button" className="btn-close btn-close-white align-self-start" onClick={handleCloseModal}
                             aria-label="Close"></button>
                     </div>
@@ -90,7 +90,7 @@ const JourneyModel = ({ handleCloseModal }) => {
                             <div id="journeyContainer" className="p-3 rounded shadow" style={journeyContainerStyle}>
 
                             </div>
-                            <div id="mapContainer" style={mapContainerStyle} className="mt-3">
+                            <div id="mapContainer" style={mapContainerStyle} className="mt-3 rounded shadow">
                             </div>
 
                             <div className="h2 mt-3">備註</div>

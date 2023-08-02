@@ -7,7 +7,19 @@ import Sidebar from '../components/Sidebar';
 import BotSidebar from '../components/BotSidebar';
 
 
+const MoreDropDown = ({handleOpenModal}) => {
 
+    return (
+        <div className="dropdown-menu" id="moreDropdown">
+            <a className="dropdown-item" onClick={handleOpenModal}><i
+                className="bi bi-arrow-up-right-square"></i><span className="ps-1">開啟</span></a>
+            <a className="dropdown-item" href="#"><i className="bi bi-pencil-square"></i><span className="ps-1">編輯</span></a>
+            <a className="dropdown-item" href="#"><i className="bi bi-pencil"></i><span className="ps-1">重新命名</span></a>
+            <a className="dropdown-item" href="#"><i className="bi bi-image"></i><span className="ps-1">更改封面圖片</span></a>
+            <a className="dropdown-item" href="#"><i className="bi bi-trash3"></i><span className="ps-1">刪除</span></a>
+        </div>
+    )
+}
 
 
 
@@ -194,6 +206,7 @@ function Journey() {
     useEffect(() => {
         journeyModal.current = new Modal('#journeyModal');
         moreDropdown.current = document.getElementById('moreDropdown');
+        handleCloseDropdown();
     }, [])
 
     const handleOpenModal = () => {
@@ -202,6 +215,23 @@ function Journey() {
 
     const handleCloseModal = () => {
         journeyModal.current.hide();
+    }
+
+    const handleOpenDropdown = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        moreDropdown.current.style.top = event.clientY + 'px';
+        moreDropdown.current.style.left = event.clientX + 'px';
+        moreDropdown.current.classList.add('show');
+    }
+
+    const handleCloseDropdown = () => {
+        document.addEventListener('click', function (event) {
+            if (!moreDropdown.current.contains(event.target)) {
+                // Hide the dropdown menu if a click occurs outside of it
+                moreDropdown.current.classList.remove('show');
+            }
+        });
     }
 
     return (
@@ -223,15 +253,15 @@ function Journey() {
                         <hr />
                         <div className="container-fluid">
                             <div className="row">
-                                <JourneyThumbnail key={1} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={2} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={3} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={4} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={5} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={6} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={7} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={8} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={9} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={1} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
+                                <JourneyThumbnail key={2} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
+                                <JourneyThumbnail key={3} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
+                                <JourneyThumbnail key={4} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
+                                <JourneyThumbnail key={5} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
+                                <JourneyThumbnail key={6} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
+                                <JourneyThumbnail key={7} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
+                                <JourneyThumbnail key={8} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
+                                <JourneyThumbnail key={9} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
                                 <AddNewJourney />
                             </div>
                         </div>
@@ -240,6 +270,7 @@ function Journey() {
             </div>
             <BotSidebar />
             <JourneyModel handleCloseModal={handleCloseModal} />
+            <MoreDropDown handleOpenModal={handleOpenModal}/>
         </div>
     );
 }

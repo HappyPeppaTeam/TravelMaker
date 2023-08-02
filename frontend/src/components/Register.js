@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 // const handleGoogleRegister = () => {
 //   // 將使用者導向 Google 登入畫面，取得授權
 //   window.location.href = 'YOUR_GOOGLE_AUTH_URL'; // 你需要提供授權的網址
 // };
 
-const RegisterModal = ({onRegisterResponse}) => {
+const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -15,8 +16,7 @@ const RegisterModal = ({onRegisterResponse}) => {
   const [birthday, setBirthday] = useState('');
   const [gender, setGender] = useState('');
 
-  
-    const register = () => {
+  const register = async () => {
       const userData = {
         username,
         password,
@@ -27,25 +27,37 @@ const RegisterModal = ({onRegisterResponse}) => {
         birthday,
         gender,
       };
-      // Send the data to the backend using Fetch API
-      fetch('http://localhost/public/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      })
-      .then(response => response.json())
-      .then(data => {
+
+      try {
+        const response = await axios.post('http://localhost/TravelMaker/Backend/public/api/register', userData, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true,
+        });
+  
+        if (!response.status === 200) {
+          throw new Error('Network response was not ok');
+        }
+        // window.location.reload()
+        // var token = response.data.token;
+        // document.cookie = `token=${token}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/localhost:3000`;
+        // sessionStorage.setItem('username', userData.username);
+        const data = response.data.message;
         // Handle the response from the backend, if needed
-        onRegisterResponse(data);
+        onResponse(data);
+        closeRegisterModal();
+        openMessageToast();
         console.log('Response from backend:', data);
-      })
-      .catch(error => {
+      } catch (error) {
         // Handle error, if any
-        console.error('Error:', error);
-      });
-    };
+        closeRegisterModal();
+        openMessageToast();
+        console.error(error);
+      }
+    }
+      
+      
 
   return (
     <div className="modal fade" id="registerModal" tabIndex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">

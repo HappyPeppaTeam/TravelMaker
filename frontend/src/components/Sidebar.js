@@ -1,42 +1,99 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Sidebar extends Component {
-    state = {}
-    render() {
-        return (
-            <div className="container-fluid bg-blue-1 shadow fixed-bottom d-flex d-sm-none align-items-center" style={{height: "50px"}}>
-                <div className="w-100">
-                    <ul className="d-flex rm-ul-style justify-content-around" style={{listStyleType: "none"}} id="sidebarBottom">
-                        <li>
-                            <a href="#" className="nav-link text-white">
-                                <i className="bi bi-person-vcard-fill"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="nav-link text-white">
-                                <i className="bi bi-envelope-fill"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="nav-link text-white">
-                                <i className="bi bi-calendar-week"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="nav-link text-white">
-                                <i className="bi bi-image"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="nav-link text-white">
-                                <i className="bi bi-star-fill"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        );
+function Sidebar() {
+
+
+    const sideBarStyle = {
+        height: '100%',
+        minHeight: 'calc(100vh - 70px)',
     }
+
+    const removeListDefault = {
+        listStyleType: 'none',
+    }
+
+    return (
+        <div className="col-auto col-md-3 col-xl-2 d-none d-sm-block p-0">
+            <div className="d-flex flex-column flex-shrink-0 p-3 bg-blue-1 align-items-center" id="sidebarContainer"
+                style={sideBarStyle}>
+
+                <ul className="nav nav-pills flex-column mb-auto">
+                    <li className="nav-item">
+                        <a href="#" className="nav-link text-white d-flex align-items-center">
+                            <i className="bi bi-person-vcard-fill"></i>
+                            <span className="d-none d-sm-inline px-2">
+                                基本資料
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" className="nav-link text-white d-flex align-items-center">
+                            <i className="bi bi-envelope-fill"></i>
+                            <span className="d-none d-sm-inline px-2">
+                                我的信箱
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" className="nav-link text-white d-flex align-items-center">
+                            <i className="bi bi-calendar-week"></i>
+                            <span className="d-none d-sm-inline px-2">
+                                我的行程
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" className="nav-link text-white d-flex align-items-center">
+                            <i className="bi bi-image"></i>
+                            <span className="d-none d-sm-inline px-2">
+                                我的相簿
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#my-collection-submenu"
+                            className="nav-link text-white d-flex align-items-center sidebar-link"
+                            data-bs-toggle="collapse" role="button">
+                            <i className="bi bi-star-fill"></i>
+                            <span className="d-none d-sm-inline px-2">
+                                我的收藏
+                            </span>
+                        </a>
+
+                        <div className="collapse text-white" id="my-collection-submenu">
+                            <ul style={removeListDefault}
+                                className="d-flex align-items-center flex-column p-0">
+                                <li>
+                                    <a href="#" className="nav-link px-0">
+                                        <i className="bi bi-stack"></i>
+                                        <span className="d-none d-sm-inline ms-1">全部</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" className="nav-link px-0">
+                                        <i className="bi bi-calendar-heart"></i>
+                                        <span className="d-none d-sm-inline ms-1">行程</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" className="nav-link px-0">
+                                        <i className="bi bi-camera"></i>
+                                        <span className="d-none d-sm-inline ms-1">景點</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" className="nav-link px-0 ">
+                                        <i className="bi bi-cup-straw"></i>
+                                        <span className="d-none d-sm-inline ms-1">餐廳</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    );
 }
 
 export default Sidebar;

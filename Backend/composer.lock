@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f7b04ff3bba8d50cb638e5dbed55b57b",
+    "content-hash": "476128778609e4bf7b84ba054cf5807a",
     "packages": [
         {
             "name": "brick/math",
@@ -5447,6 +5447,69 @@
                 }
             ],
             "time": "2022-03-08T17:03:00+00:00"
+        },
+        {
+            "name": "wapmorgan/php-code-fixer",
+            "version": "2.0.33",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wapmorgan/PhpDeprecationDetector.git",
+                "reference": "860e40c545acbd5c2aefdef416d09fb4639198bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wapmorgan/PhpDeprecationDetector/zipball/860e40c545acbd5c2aefdef416d09fb4639198bd",
+                "reference": "860e40c545acbd5c2aefdef416d09fb4639198bd",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-tokenizer": "*",
+                "php": ">=5.4",
+                "symfony/console": "^3.4|^4.0|^5.0|^6.0"
+            },
+            "suggest": {
+                "ext-json": "Adds ability to store report in JSON format"
+            },
+            "bin": [
+                "bin/phpdd"
+            ],
+            "type": "package",
+            "extra": {
+                "phar-builder": {
+                    "compression": "BZip2",
+                    "name": "phpdd-dev.phar",
+                    "output-dir": "./",
+                    "entry-point": "bin/phpdd",
+                    "include": [
+                        "bin",
+                        "data"
+                    ],
+                    "events": {
+                        "command.package.start": "git describe --tags > bin/version.txt",
+                        "command.package.end": "cp phpdd-dev.phar phpdd-`cat bin/version.txt`.phar && chmod +x phpdd-`cat bin/version.txt`.phar && rm bin/version.txt"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "wapmorgan\\PhpCodeFixer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Analyzer of PHP code to search issues with deprecated functionality in newer interpreter versions.",
+            "support": {
+                "issues": "https://github.com/wapmorgan/PhpDeprecationDetector/issues",
+                "source": "https://github.com/wapmorgan/PhpDeprecationDetector/tree/2.0.33"
+            },
+            "abandoned": "wapmorgan/php-deprecation-detector",
+            "time": "2023-04-23T09:23:34+00:00"
         },
         {
             "name": "webmozart/assert",

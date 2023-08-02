@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 import Navbar from "./components/Navbar";
 import Footer from './components/Footer';
-import Sidebar from "./components/Sidebar";
 
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
@@ -12,11 +11,16 @@ import Album from './pages/Album';
 import Attractions from './pages/Attractions';
 import Forum from './pages/Forum';
 import Restaurant_main from './pages/Restaurant_main';
+<<<<<<< HEAD
 import RestaurantArea from './pages/RestaurantArea';
 import RestaurantType from './pages/RestaurantType';
 import RestaurantSearch from './pages/RestaurantSearch';
 import RestaurantInner from './pages/RestaurantInner';
 import RestaurantComment from './pages/RestaurantComment';
+=======
+import Journey from "./pages/Journey";
+import NewJourney from "./pages/NewJourney"; 
+>>>>>>> development
 
 function App() {
   return (
@@ -28,16 +32,18 @@ function App() {
           <Route path='/attractions' element={<Attractions/>}></Route>
           <Route path='/forum' element={<Forum/>}></Route>
           <Route path='/restaurant' element={<Restaurant_main/>}></Route>
+<<<<<<< HEAD
           <Route path='/restaurant/area' element={<RestaurantArea/>}></Route>
           <Route path='/restaurant/type' element={<RestaurantType/>}></Route>
           <Route path='/restaurant/search' element={<RestaurantSearch/>}></Route>
           <Route path='/restaurant/inner' element={<RestaurantInner/>}></Route>
           <Route path='/restaurant/comment' element={<RestaurantComment/>}></Route>
+=======
+          <Route path="/journey" element={<Journey/>} ></Route>
+          <Route path="/journey/newjourney" element={<NewJourney/>} ></Route>
+>>>>>>> development
         </Routes>
       <Footer/>
-      <Routes>
-        <Route path='/journey' Component={Sidebar}></Route>
-      </Routes>
     </div>
   );
 }

@@ -15,6 +15,8 @@ import Restaurant_main from './pages/Restaurant_main';
 import RestaurantArea from './pages/RestaurantArea';
 import RestaurantType from './pages/RestaurantType';
 import RestaurantSearch from './pages/RestaurantSearch';
+import RestaurantInner from './pages/RestaurantInner';
+import RestaurantComment from './pages/RestaurantComment';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path='/restaurant/area' element={<RestaurantArea/>}></Route>
           <Route path='/restaurant/type' element={<RestaurantType/>}></Route>
           <Route path='/restaurant/search' element={<RestaurantSearch/>}></Route>
+          <Route path='/restaurant/inner' element={<RestaurantInner/>}></Route>
+          <Route path='/restaurant/comment' element={<RestaurantComment/>}></Route>
         </Routes>
       <Footer/>
       <Routes>

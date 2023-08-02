@@ -106,7 +106,7 @@ export default function Navbar() {
           <li className="nav-item">
             {/* <Link className="nav-link" to='/album'>註冊</Link> */}
             {checkToken ? (
-              <Link className="nav-link" onClick={openRegisterModal}>會員中心</Link>
+              <Link className="nav-link"  to='/memberCenter' >會員中心</Link>
             ) : (
                 <Link className="nav-link" onClick={openRegisterModal}>註冊</Link>
               )}

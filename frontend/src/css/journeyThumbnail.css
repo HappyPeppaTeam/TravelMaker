@@ -1,0 +1,17 @@
+.overlay {
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    background-color: #B2D2E8;
+    transition: .5s ease;
+}
+
+.overlay:hover {
+    opacity: 0.8;
+}
+
+
+
+.more-detail:hover {
+    background-color: rgba(211, 211, 211, 0.582);
+}

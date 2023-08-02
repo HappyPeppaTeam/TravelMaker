@@ -36,16 +36,21 @@ Route::post('/register',function(Request $request){
     $check_duble_email=DB::select('select user_id from users where email = ?;',[$email]);
 if (empty($check_duble_username)) {
     if (empty($check_duble_email)) {
-        $regsiterMessage = DB::select('call register_user(?,?,?,?,?,?,?,?);',[$userName, $hashedPassword,$email,$birthday,$fullName,$nickName,$gender,$registerTime]);
+        $DbResult = DB::select('call register_user(?,?,?,?,?,?,?,?);',[$userName, $hashedPassword,$email,$birthday,$fullName,$nickName,$gender,$registerTime]);
+        $regsiterMessage = $DbResult[0]->message;
     }else {
         // $regsiterMessage ='相同email已存在';
-        $regsiterMessage = array( "message" => '相同email已存在');
+        $regsiterMessage = '相同email已存在';
     }
 }else{
-    $regsiterMessage = array( "message" => '相同帳號已存在');
+    $regsiterMessage = '相同帳號已存在';
     // $regsiterMessage ='相同帳號已存在';
 }
-    return $regsiterMessage;
+        $data = [
+        "message"=>$regsiterMessage
+        ];
+    // return $regsiterMessage;
+    return response()->json($data, 200);
     // return $check_duble_username;
 });
 

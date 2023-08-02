@@ -1,27 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Modal} from 'bootstrap';
+import { Link } from 'react-router-dom';
+import { Modal } from 'bootstrap';
 
 import '../css/journey.css';
 import JourneyThumbnail from '../components/JourneyThumbnail';
 import Sidebar from '../components/Sidebar';
 import BotSidebar from '../components/BotSidebar';
-
-
-const MoreDropDown = ({handleOpenModal}) => {
-
-    return (
-        <div className="dropdown-menu" id="moreDropdown">
-            <a className="dropdown-item" onClick={handleOpenModal}><i
-                className="bi bi-arrow-up-right-square"></i><span className="ps-1">開啟</span></a>
-            <a className="dropdown-item" href="#"><i className="bi bi-pencil-square"></i><span className="ps-1">編輯</span></a>
-            <a className="dropdown-item" href="#"><i className="bi bi-pencil"></i><span className="ps-1">重新命名</span></a>
-            <a className="dropdown-item" href="#"><i className="bi bi-image"></i><span className="ps-1">更改封面圖片</span></a>
-            <a className="dropdown-item" href="#"><i className="bi bi-trash3"></i><span className="ps-1">刪除</span></a>
-        </div>
-    )
-}
-
-
 
 
 
@@ -39,25 +23,16 @@ const AddNewJourney = () => {
     }
 
     return (
-        <div
+        <Link to="/journey/newjourney"
             className="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center">
             <div style={addNewThumbnailStyle}
                 className="d-flex align-items-center justify-content-center rounded shadow add-new-journey"
                 id="addNewBox">
                 <i className="bi bi-plus-lg" style={plusIconStyle}></i>
             </div>
-        </div>
+        </Link>
     )
 }
-
-
-// const JourneyImage = () => {
-//     return (
-//         <React.Fragment>
-//             <img src=' ' />
-//         </React.Fragment>
-//     )
-// }
 
 
 const JourneyModel = ({ handleCloseModal }) => {
@@ -85,7 +60,7 @@ const JourneyModel = ({ handleCloseModal }) => {
         background: 'linear-gradient(135deg, rgba(235,244,245,0.5) 57%, rgba(181,198,224,0.5) 100%)',
     }
 
-    const [journeyData, setJourneyData]  = useState({
+    const [journeyData, setJourneyData] = useState({
         title: "Taiwan number one",
         textContent: " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem, recusandae? Veniam, error?",
         images: {
@@ -135,6 +110,19 @@ const JourneyModel = ({ handleCloseModal }) => {
                                 <img src="../images/street.jpg" alt="" className="h-100" />
                             </div>
                         </div>
+
+                        <form className='d-none' id="journeyEditView">
+                            <div class="mb-3">
+                                <label for="#editJourneyTitle" class="form-label">行程名稱</label>
+                                <input type="text" class="form-control" id="editJourneyTitle" value={journeyData.title} />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="#editJourneyDescription" class="form-label">備註</label>
+                                <textarea class="form-control" id="editJourneyDescription" rows="3" value={journeyData.textContent}></textarea>
+                            </div>
+                        </form>
+
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>Close</button>
@@ -173,6 +161,17 @@ function Journey() {
                         start: '2023/5/23 12:00',
                         end: '2023/5/23 13:00',
                     },
+                ],
+
+                images: [
+                    {
+                        image_id: 1,
+                        data: '../images/street.jpg',
+                    },
+                    {
+                        image_id: 2,
+                        data: '../images/street.jpg',
+                    },
                 ]
             },
             {
@@ -195,44 +194,39 @@ function Journey() {
                         start: '2023/5/27 12:00',
                         end: '2023/5/27 13:00',
                     },
+                ],
+
+                images: [
+                    {
+                        image_id: 4,
+                        data: '../images/street.jpg',
+                    },
+                    {
+                        image_id: 5,
+                        data: '../images/street.jpg',
+                    },
                 ]
             },
         ],
     });
-    const journeyModal = useRef(null);
-    const moreDropdown = useRef(null);
 
+    const journeyModalRef = useRef(null);
 
     useEffect(() => {
-        journeyModal.current = new Modal('#journeyModal');
-        moreDropdown.current = document.getElementById('moreDropdown');
-        handleCloseDropdown();
+        journeyModalRef.current = new Modal('#journeyModal');
+        // moreDropdown.current = document.getElementById('moreDropdown');
+        // handleCloseDropdown();
     }, [])
 
     const handleOpenModal = () => {
-        journeyModal.current.show();
+        journeyModalRef.current.show();
     }
 
     const handleCloseModal = () => {
-        journeyModal.current.hide();
+        journeyModalRef.current.hide();
     }
 
-    const handleOpenDropdown = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        moreDropdown.current.style.top = event.clientY + 'px';
-        moreDropdown.current.style.left = event.clientX + 'px';
-        moreDropdown.current.classList.add('show');
-    }
 
-    const handleCloseDropdown = () => {
-        document.addEventListener('click', function (event) {
-            if (!moreDropdown.current.contains(event.target)) {
-                // Hide the dropdown menu if a click occurs outside of it
-                moreDropdown.current.classList.remove('show');
-            }
-        });
-    }
 
     return (
         <div className="container-lg shadow p-0 mb-3 bg-white" id="bodyContainer">
@@ -243,25 +237,25 @@ function Journey() {
                 <div className="flex-fill px-0 justify-content-center" id="content">
                     <div className="m-5">
                         <div className="d-flex align-items-end">
-                            <a href="#" className="rm-link-style">
-                                <div className="h1">我的行程</div>
-                            </a>
 
-                            <div className="h5 ms-auto active-text add-new-journey"><i className="bi bi-plus-lg"></i><span className="ms-1">建立行程</span>
-                            </div>
+                            <Link to="/journey" className="h1 rm-link-style">我的行程</Link>
+
+                            <Link to="/journey/newjourney" className="h5 ms-auto active-text add-new-journey" style={{ textDecoration: 'none' }}><i className="bi bi-plus-lg"></i><span className="ms-1">建立行程</span>
+                            </Link>
                         </div>
                         <hr />
                         <div className="container-fluid">
                             <div className="row">
-                                <JourneyThumbnail key={1} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
-                                <JourneyThumbnail key={2} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
-                                <JourneyThumbnail key={3} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
-                                <JourneyThumbnail key={4} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
-                                <JourneyThumbnail key={5} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
-                                <JourneyThumbnail key={6} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
-                                <JourneyThumbnail key={7} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
-                                <JourneyThumbnail key={8} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
-                                <JourneyThumbnail key={9} handleOpenModal={handleOpenModal} handleOpenDropdown={handleOpenDropdown}/>
+                                {/* {journeyData.journeys.map((journey) => {journey.images})} */}
+                                <JourneyThumbnail key={1} handleOpenModal={handleOpenModal} />
+                                {/* <JourneyThumbnail key={2} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={3} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={4} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={5} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={6} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={7} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={8} handleOpenModal={handleOpenModal} />
+                                <JourneyThumbnail key={9} handleOpenModal={handleOpenModal} /> */}
                                 <AddNewJourney />
                             </div>
                         </div>
@@ -270,7 +264,7 @@ function Journey() {
             </div>
             <BotSidebar />
             <JourneyModel handleCloseModal={handleCloseModal} />
-            <MoreDropDown handleOpenModal={handleOpenModal}/>
+            {/* <MoreDropDown handleOpenModal={handleOpenModal}/> */}
         </div>
     );
 }

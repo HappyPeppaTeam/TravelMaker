@@ -546,13 +546,13 @@ export default function Attraction_innerpage() {
                             </div>
                             <div className="carousel-inner">
                                 <div className="carousel-item active">
-                                    <img src="#" />
+                                    <img className='carousel-piture' src="#" />
                                 </div>
                                 <div className="carousel-item">
-                                    <img src="#" />
+                                    <img className='carousel-piture' src="#" />
                                 </div>
                                 <div className="carousel-item">
-                                    <img src="#" />
+                                    <img className='carousel-piture' src="#" />
                                 </div>
                             </div>
                             <button className="carousel-control-prev" type="button" data-bs-target="#attractionpicture" data-bs-slide="prev">

@@ -1,0 +1,70 @@
+.bg-blue-1 {
+    background-color: #2F4E63;
+}
+
+.bg-blue-2 {
+    background-color: #B2D2E8;
+}
+
+.bg-blue-3 {
+    background-color: #6BB3E3;
+}
+
+
+
+.image-overflow {
+    background: rgb(107, 179, 227);
+    background: radial-gradient(circle, rgba(107, 179, 227, 0.2) 0%, rgba(178, 226, 232, 0.8) 50%, rgba(107, 179, 227, 0.2) 100%);
+    overflow: auto;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+.image-overflow>img {
+    /* display: inline-block; */
+    padding: 4px;
+
+}
+
+.image-modal {
+    display: block;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.815);
+    ;
+}
+
+#closeButton {
+    right: 0;
+    top: 0;
+    position: fixed;
+    margin: 20px;
+}
+
+
+#addNewBox {
+    transition: .5s;
+}
+
+#addNewBox:hover {
+    z-index: 2;
+    transform: scale(1.05);
+}
+
+.bi-plus-lg {
+    transition: .5s;
+}
+
+#addNewBox:hover .bi-plus-lg {
+    transform: scale(1.3);
+}
+
+
+.edit-view {
+    display: none;
+}
+

@@ -82,14 +82,8 @@
 }
 
 #scheduleContainer {
-    /* background: rgb(247,247,121,0.3); */
-    /* background: rgb(222, 226, 230, 0.3) */
-    /* background: linear-gradient(90deg, rgba(247,247,121,0.2) 0%, rgba(251,208,124,0.2) 100%); */
-
-    /* background: rgb(235, 244, 245, 0.3);
-    background: radial-gradient(circle, rgba(235, 244, 245, 0.3) 0%, rgba(181, 198, 224, 0.3) 100%); */
-
-    background: rgb(235, 244, 245, 0.5);
+    
+    /* background: rgb(235, 244, 245, 0.5); */
     background: linear-gradient(135deg, rgba(235,244,245,0.5) 57%, rgba(181,198,224,0.5) 100%);
 }
 
@@ -97,3 +91,8 @@
 .edit-view {
     display: none;
 }
+
+/* body {
+    background-color: #2F4E63;
+    background-image: none;
+} */

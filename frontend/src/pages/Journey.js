@@ -6,8 +6,10 @@ import '../css/journey.css';
 import JourneyThumbnail from '../components/JourneyThumbnail';
 import Sidebar from '../components/Sidebar';
 import BotSidebar from '../components/BotSidebar';
-
-
+import CalendarView from '../components/CalenderView';
+import CalendarEditView from '../components/CalendarEditView';
+import JourneyModel from '../components/JourneyModal';
+import { h } from '@fullcalendar/core/preact';
 
 const AddNewJourney = () => {
 
@@ -35,105 +37,6 @@ const AddNewJourney = () => {
 }
 
 
-const JourneyModel = ({ handleCloseModal }) => {
-
-    const modalHeaderStyle = {
-        height: '200px',
-        backgroundImage: 'url(../images/street.jpg)',
-        backgroundSize: 'cover',
-    }
-
-    const mapContainerStyle = {
-        width: '100%',
-        height: '500px',
-        // border: 'lightblue solid',
-        background: 'radial-gradient(circle, rgba(107, 179, 227, 0.2) 0%, rgba(178, 226, 232, 0.8) 50%, rgba(107, 179, 227, 0.2) 100%)',
-    }
-
-    const imageContainerStyle = {
-        width: '100%',
-        height: '200px',
-    }
-
-    const journeyContainerStyle = {
-        width: '100%',
-        minHeight: '500px',
-        background: 'linear-gradient(135deg, rgba(235,244,245,0.5) 57%, rgba(181,198,224,0.5) 100%)',
-    }
-
-    const [journeyData, setJourneyData] = useState({
-        title: "Taiwan number one",
-        textContent: " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem, recusandae? Veniam, error?",
-        images: {
-            1: "../images/street.jpg",
-            2: "../images/street.jpg",
-            3: "../images/street.jpg",
-        }
-    });
-
-    return (
-        <div className="modal fade" id="journeyModal" tabIndex="-1" aria-labelledby="journeyModalLabel" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
-                <div className="modal-content">
-                    <div className="modal-header"
-                        style={modalHeaderStyle}>                 
-                        <button type="button" className="btn-close btn-close-white align-self-start" onClick={handleCloseModal}
-                            aria-label="Close"></button>
-                    </div>
-                    <div className="modal-body">
-                        <div id="journeyRegView" className="">
-                            <div id="contentHeader" className="d-flex align-items-center">
-                                <h1>{journeyData.title}</h1>
-                                <div className="h5 ms-auto active-text"><i className="bi bi-pencil-square"></i><span
-                                    className="ms-2">編輯</span></div>
-                            </div>
-                            <div id="journeyContainer" className="p-3 rounded shadow" style={journeyContainerStyle}>
-
-                            </div>
-                            <div id="mapContainer" style={mapContainerStyle} className="mt-3 rounded shadow">
-                            </div>
-
-                            <div className="h2 mt-3">備註</div>
-                            <div id="text-content" className="mt-3">
-                                {journeyData.textContent}
-                            </div>
-                            <div className="h2 mt-3">相片</div>
-                            <div id="imageContainer" className="mt-3 image-overflow rounded shadow"
-                                style={imageContainerStyle}>
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                            </div>
-                        </div>
-
-                        <form className='d-none' id="journeyEditView">
-                            <div class="mb-3">
-                                <label for="#editJourneyTitle" class="form-label">行程名稱</label>
-                                <input type="text" class="form-control" id="editJourneyTitle" value={journeyData.title} />
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="#editJourneyDescription" class="form-label">備註</label>
-                                <textarea class="form-control" id="editJourneyDescription" rows="3" value={journeyData.textContent}></textarea>
-                            </div>
-                        </form>
-
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
-
 
 
 function Journey() {
@@ -146,6 +49,9 @@ function Journey() {
                 title: 'Trip to Taipei',
                 description: 'plan to stay from 5/23 to 5/25',
                 editTime: '2023/4/5 13:00',
+                start: '2023-05-23',
+                end: '2023-05-23',
+
                 journeyEvents: [
                     {
                         id: 1,
@@ -179,6 +85,8 @@ function Journey() {
                 title: 'Trip to Taichung',
                 description: 'plan to stay from 5/26 to 5/27',
                 editTime: '2023/4/5 13:00',
+                start: '2023-05-26',
+                end: '2023-05-27',
                 journeyEvents: [
                     {
                         id: 4,
@@ -210,15 +118,23 @@ function Journey() {
         ],
     });
 
+
+
     const journeyModalRef = useRef(null);
+    const calenderRef = useRef(null);
+    const calendarEditRef = useRef(null);
 
     useEffect(() => {
         journeyModalRef.current = new Modal('#journeyModal');
-        // moreDropdown.current = document.getElementById('moreDropdown');
-        // handleCloseDropdown();
-    }, [])
+        journeyModalRef.current._element.addEventListener('shown.bs.modal', function () {
+            calenderRef.current.getApi().render();
+            calendarEditRef.current.getApi().render();
+        })
+        // console.log(calendarEditRef);
+    }, []);
 
     const handleOpenModal = () => {
+        setJourneyDetail()
         journeyModalRef.current.show();
     }
 
@@ -226,7 +142,42 @@ function Journey() {
         journeyModalRef.current.hide();
     }
 
-
+    const [journeyDetail, setJourneyDetail] = useState(
+        {
+            id: 1,
+            title: 'Trip to Taipei',
+            description: 'plan to stay from 5/23 to 5/25',
+            editTime: '2023/4/5 13:00',
+            start: '2023-05-26',
+            end: '2023-05-27',
+            journeyEvents: [
+                {
+                    id: 1,
+                    name: 'breakfast',
+                    description: 'McDonald',
+                    start: '2023/5/23 8:00',
+                    end: '2023/5/23 9:00',
+                },
+                {
+                    id: 2,
+                    name: 'lunch',
+                    description: 'McDonald',
+                    start: '2023/5/23 12:00',
+                    end: '2023/5/23 13:00',
+                },
+            ],
+            images: [
+                {
+                    image_id: 1,
+                    data: '../images/street.jpg',
+                },
+                {
+                    image_id: 2,
+                    data: '../images/street.jpg',
+                },
+            ] 
+        }
+    )
 
     return (
         <div className="container-lg shadow p-0 mb-3 bg-white" id="bodyContainer">
@@ -236,8 +187,7 @@ function Journey() {
                 {/* <!-- main content --> */}
                 <div className="flex-fill px-0 justify-content-center" id="content">
                     <div className="m-5">
-                        <div className="d-flex align-items-end">
-
+                        <div className="d-flex align-items-end" id='headLinkContainer'>
                             <Link to="/journey" className="h1 rm-link-style">我的行程</Link>
 
                             <Link to="/journey/newjourney" className="h5 ms-auto active-text add-new-journey" style={{ textDecoration: 'none' }}><i className="bi bi-plus-lg"></i><span className="ms-1">建立行程</span>
@@ -246,16 +196,10 @@ function Journey() {
                         <hr />
                         <div className="container-fluid">
                             <div className="row">
-                                {/* {journeyData.journeys.map((journey) => {journey.images})} */}
-                                <JourneyThumbnail key={1} handleOpenModal={handleOpenModal} />
-                                {/* <JourneyThumbnail key={2} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={3} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={4} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={5} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={6} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={7} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={8} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={9} handleOpenModal={handleOpenModal} /> */}
+                                {journeyData.journeys.map(
+                                    (journey, index) => (<JourneyThumbnail key={journey.id} handleOpenModal={handleOpenModal} journey={journey}/>)
+                                    )
+                                }
                                 <AddNewJourney />
                             </div>
                         </div>
@@ -263,8 +207,7 @@ function Journey() {
                 </div>
             </div>
             <BotSidebar />
-            <JourneyModel handleCloseModal={handleCloseModal} />
-            {/* <MoreDropDown handleOpenModal={handleOpenModal}/> */}
+            <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} journeyDetail={journeyDetail}/>
         </div>
     );
 }

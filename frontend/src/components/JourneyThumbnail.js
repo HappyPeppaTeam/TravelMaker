@@ -1,5 +1,5 @@
-import React, {useRef, useEffect} from 'react';
-import { Dropdown } from 'bootstrap';
+import React, {useRef, useEffect, useState} from 'react';
+
 import '../css/journeyThumbnail.css'
 
 const thumbNailStyle = {
@@ -12,16 +12,10 @@ const thumbNailStyle = {
 
 
 
-function JourneyThumbnail({handleOpenModal}) {
-
-    // const moreDetailStyle = {
-    //     height: '2rem',
-    //     width: '2rem',
-    // }
-
-    
+function JourneyThumbnail({handleOpenModal, journey}) {
 
 
+    const [journeyTitle, setJourneyTitle] = useState(journey.title)
 
 
     return (
@@ -30,17 +24,9 @@ function JourneyThumbnail({handleOpenModal}) {
             <div className="rounded shadow"
                 style={thumbNailStyle}>
                 <div className="overlay rounded d-flex justify-content-center align-items-center">
-     
-                    {/* <div className="more-detail position-absolute top-0 end-0 p-1 m-3 rounded" style={moreDetailStyle}  
-                        >
-                        <i
-                            className="bi bi-three-dots text-secondary fs-5 position-absolute top-50 start-50 translate-middle"></i>
-                            
-                    </div> */}
-                    
-                    <div className='fs-5 fw-semibold'>金瓜石之旅</div>
+    
+                    <div className='fs-5 fw-semibold'>{journeyTitle}</div>
                 </div>
-                {/* <MoreDropDown/> */}
             </div>
         </div>
     );

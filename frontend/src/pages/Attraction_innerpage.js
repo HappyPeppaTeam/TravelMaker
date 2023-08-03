@@ -11,7 +11,7 @@ export default function Attraction_innerpage() {
             dropdownContent.style.display = "block";
         }
     }
-
+    
 
 
     return (

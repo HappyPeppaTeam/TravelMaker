@@ -9,6 +9,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Album from './pages/Album';
 import Attractions from './pages/Attractions';
+import MemberCenter from './pages/MemberCenter';
 import Forum from './pages/Forum';
 import Restaurant_main from './pages/Restaurant_main';
 import Article from "./pages/Article";
@@ -24,6 +25,7 @@ function App() {
           <Route path='/' element={<Home/>}></Route>
           <Route path='/album' element={<Album/>}></Route>
           <Route path='/attractions' element={<Attractions/>}></Route>
+          <Route path='/memberCenter' element={<MemberCenter/>}></Route>
           <Route path='/forum' element={<Forum/>}></Route>
           <Route path='/forum/discussion/article' element={<Article/>}></Route>
           <Route path='/forum/discussion' element={<Discussion/>}></Route>

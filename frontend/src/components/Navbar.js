@@ -21,6 +21,7 @@ export default function Navbar() {
 
   useEffect(() => {
     handleToken();
+    setUsername(localStorage.getItem('username'));
     registerModal.current = new Modal('#registerModal', {
       backdrop: 'static',
     });
@@ -42,7 +43,6 @@ export default function Navbar() {
   }
   const handleResponse = (data, usernameFromRequest) => {
     setMessage(data); // Assuming the backend returns a "message" field in the response
-    setUsername(usernameFromRequest);
   };
   const openMessageToast = () => {
     messageToast.current.show();

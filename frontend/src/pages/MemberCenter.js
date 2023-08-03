@@ -5,9 +5,48 @@ import React from 'react';
 import { Modal } from 'bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
+const { useRef, useEffect, useState } = React;
 const MemberCenter = () => {
+    const [username, setUsername] = useState('');
+    const [fullName, setFullName] = useState('');
+    const [nickName, setNickName] = useState('');
+    const [email, setEmail] = useState('');
+    const [birthday, setBirthday] = useState('');
+    const [gender, setGender] = useState('');
+    useEffect(() => {
+        getProfile();
+    });
+
+    const getProfile = async () => {
+        let data = {}
+        data['token'] = Cookies.get('token')
+        try {
+            const response = await axios.post('http://localhost/TravelMaker/Backend/public/api/profile', data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                withCredentials: true,
+            });
+
+            if (!response.status === 200) {
+                throw new Error('Network response was not ok');
+            }
+            console.log('Response from backend:', response.data[0].user_name);
+            setUsername(response.data[0].user_name)
+            setFullName(response.data[0].full_name)
+            setNickName(response.data[0].nick_name)
+            setEmail(response.data[0].email)
+            setBirthday(response.data[0].birthday)
+            setGender(response.data[0].gender)
+        } catch (error) {
+            // Handle error, if any
+            console.error(error);
+        }
+    }
     return (
+
         <>
             <div className="container-fluid shadow p-0 bg-white" id="body-container">
                 <div className="d-flex flex-nowrap row" id="content-container">
@@ -26,21 +65,21 @@ const MemberCenter = () => {
                                                 <div className="row align-items-center">
                                                     <div className="col-lg-6 mb-4 mb-lg-0">
                                                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="..." />
-                                                        <div className="row col-lg-8 mb-4 mb-lg-0">
-                                                            <button className="btn-white">修改頭像</button>
+                                                        <div className="row col-lg-6 mb-4 mb-lg-0 p-2">
+                                                            <button className="btn btn-info">修改頭像</button>
                                                         </div>
                                                     </div>
                                                     {/* Add member details here */}
                                                     <div
                                                         class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
-                                                        <h3 class="h2 text-white mb-0">會員姓名：Kenneth</h3>
-                                                        <span class="text-white">會員暱稱：nickname</span>
+                                                        <h3 class="h2 text-white mb-0">會員姓名：{fullName}</h3>
+                                                        <span class="text-white">會員暱稱：{nickName}</span>
                                                     </div>
                                                     <ul className="list-unstyled mb-1-9">
                                                         <li className="mb-2 mb-xl-3 display-28">
                                                             <span className="display-26 text-secondary me-2 font-weight-600">會員帳號:</span>
-        Coach
-      </li>
+                                                            {username}
+                                                        </li>
                                                         <li className="mb-2 mb-xl-3 display-28">
                                                             <span className="display-26 text-secondary me-2 font-weight-600">論壇身份:</span>
         普通
@@ -54,16 +93,16 @@ const MemberCenter = () => {
                                                         </li>
                                                         <li className="mb-2 mb-xl-3 display-28">
                                                             <span className="display-26 text-secondary me-2 font-weight-600">電子郵件:</span>
-        edith@mail.com
-      </li>
+                                                            {email}
+                                                        </li>
                                                         <li className="mb-2 mb-xl-3 display-28">
                                                             <span className="display-26 text-secondary me-2 font-weight-600">生日:</span>
-        1987/09/19
-      </li>
+                                                            {birthday}
+                                                        </li>
                                                         <li className="display-28">
                                                             <span className="display-26 text-secondary me-2 font-weight-600">性別:</span>
-        男
-      </li>
+                                                            {gender}
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>

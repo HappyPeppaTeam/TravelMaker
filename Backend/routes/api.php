@@ -80,3 +80,8 @@ $unSetToken = DB::select('call unSet_token(?)',[$token]);
 return response()->json($unSetToken,200);
 
 });
+
+Route::get('/test',function() {
+    $data = DB::select('SELECT * FROM Attraction_infomation'); 
+    return response()->json($data);
+});

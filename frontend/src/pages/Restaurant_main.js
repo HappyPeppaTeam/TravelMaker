@@ -3,7 +3,7 @@ export default function Restaurant_main() {
     return (
         <div className="main">
             <div className="d-flex justify-content-center">
-                <img src="" className="search-banner" alt="" />
+                <img src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" className="search-banner" alt="" />
                 <form className="example align-items-center" action="/action_page.php"
                     style={{ 'max-width': '300px', 'position': 'absolute', 'padding': '4em 0' }}>
                     <input type="text" placeholder="Search..." name="search2" />

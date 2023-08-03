@@ -1,15 +1,39 @@
 import React from 'react';
 import '../css/restaurant.css';
 import { Modal } from 'bootstrap';
+import axios from 'axios';
 export default function RestaurantInner() {
 
-    const { useRef, useEffect } = React;
+    const { useState, useRef, useEffect } = React;
 
     const commentModal = useRef(null);
 
+    const [test, setTest] = useState([{
+        ID: '1001',
+        Name: '餐廳名稱',
+        Description: '餐廳簡介',
+        Opentime: '營業時間'
+
+    },
+    {
+        ID: '1002',
+        Name: '餐廳名稱2',
+        Description: '餐廳簡介',
+        Opentime: '營業時間'
+
+    }]);
+    const [ attraction, setAttraction ] = useState([{}]);
+
+    console.log(attraction);
     useEffect(() => {
         commentModal.current = new Modal('#rest-comment');
-    })
+        (async () => {
+            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/test`);
+            console.log(response);
+            setAttraction(response.data);
+        })();
+    }, [])
+    console.log(attraction[0].Name);
     return (
         <div className="main">
 
@@ -23,14 +47,14 @@ export default function RestaurantInner() {
                     <button type="button" data-bs-target="#rest-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" />
+                    <div className="carousel-item active ">
+                        <img className="carousel-rest" src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" />
                     </div>
                     <div className="carousel-item">
-                        <img src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" />
+                        <img className="carousel-rest" src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" />
                     </div>
                     <div className="carousel-item">
-                        <img src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" />
+                        <img className="carousel-rest" src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" />
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#rest-carousel" data-bs-slide="prev">
@@ -44,10 +68,10 @@ export default function RestaurantInner() {
             </div>
 
             <div className="p-rest">
-                <h1 name="rest-name">森森燒肉</h1>
+                <h1 name="rest-name">{attraction[0].Name}</h1>
                 <p name="point">★ ★ ★ ★ ☆ 9527條評論</p>
                 <div className="d-flex flex-row">
-                    <div className="p-2">408台中市南屯區黎明路二段382號 |</div>
+                    <div className="p-2">{attraction[0].Address} |</div>
                     <div className="p-2">04-22582302 |</div>
                     <div className="p-2">營業時間 : 11:00~22:00 |</div>
                     <div className="p-2">官方網站 : <a className="rm-link-style" href="">www.1234.com</a></div>
@@ -57,6 +81,13 @@ export default function RestaurantInner() {
                 <div className="col-md-6 p-3">
                     <div className="card p-3" style={{ 'min-height': '30vh' }}>
                         我是餐廳詳細介紹
+                        {
+                            test.map((item) => {
+                                return (
+                                    <h1>{item.Name}</h1>
+                                )
+                            })
+                        }
                     </div>
                 </div>
                 <div className="col-md-6 p-3">
@@ -94,7 +125,7 @@ export default function RestaurantInner() {
                                 </div>
                             </div>
                         </div>
-                        <hr/>
+                        <hr />
                         <h3>用戶評論</h3>
                         <div id="first-comment">
                             <div className="d-flex flex-row">
@@ -106,7 +137,7 @@ export default function RestaurantInner() {
                                 <div className="p-2">這邊是留下的所有評論</div>
                             </div>
                         </div>
-                        <a className="rm-link-style p-3 d-inline-flex justify-content-center" href="/restaurant/comment"><div className='p-2' style={{borderRadius: '5px',border: '1px solid #ccc'}}><i class="bi bi-caret-down"></i>查看所有評論</div></a>
+                        <a className="rm-link-style p-3 d-inline-flex justify-content-center" href="/restaurant/comment"><div className='p-2' style={{ borderRadius: '5px', border: '1px solid #ccc' }}><i class="bi bi-caret-down"></i>查看所有評論</div></a>
                     </div>
                 </div>
             </div>

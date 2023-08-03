@@ -49,7 +49,6 @@ form.example button:hover {
 }
 
 .search-banner {
-    background-image: url(../images/restaurant-banner.jpg);
     height: 27vh;
     width: 100%;
     object-fit: cover;
@@ -65,7 +64,7 @@ aside {
     min-height: calc(100vh - 70px);
 }
 
-.carousel-item>img {
+.carousel-item>.carousel-rest {
     width: 100%;
     height: 27vh;
     object-fit: cover;

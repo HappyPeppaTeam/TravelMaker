@@ -14,13 +14,13 @@ export default function RestaurantComment() {
                 </div>
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg"/>
+                        <img className="carousel-rest" src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg"/>
                     </div>
                     <div className="carousel-item">
-                        <img src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg"/>
+                        <img className="carousel-rest" src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg"/>
                     </div>
                     <div className="carousel-item">
-                        <img src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg"/>
+                        <img className="carousel-rest" src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg"/>
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#rest-carousel" data-bs-slide="prev">

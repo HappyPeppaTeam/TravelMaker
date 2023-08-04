@@ -15,8 +15,7 @@ class AlbumController extends Controller
             'album_name' => 'required|string|max:20',
             'tag' => 'required|string|max:20',
             'description' => 'nullable|string|max:255',
-            'photos.*.image_name' => 'required|string|max:255',
-            'photos.*.image_data' => 'required|url',
+            'images' => 'required|array',
         ]);
 
         if ($validator->fails()) {
@@ -51,15 +50,24 @@ class AlbumController extends Controller
             ]);
 
             // 處理上傳的相片內容
-            if ($request->has('photos')) {
-                $photos = $request->input('photos');
-                foreach ($photos as $photo) {
-                    // 新增相片資訊到 album_photos 資料表
-                    DB::table('album_photos')->insert([
-                        'album_id' => $album_id,
-                        'image_name' => $photo['image_name'],
-                        'image_data' => $photo['image_data'],
-                    ]);
+            if ($request->has('images')) {
+                // $photos = $request->input('photos');
+                $files = $request->file('images');
+
+                foreach ($files as $file) {
+                    if ($file->isValid()) {
+                        // 儲存檔案到 public 目錄，並取得檔案路徑
+                        $path = $file->store('images', 'public');
+    
+                        // 新增相片資訊到 album_photos 資料表
+                        DB::table('album_photos')->insert([
+                            'album_id' => $album_id,
+                            'image_name' => $file->getClientOriginalName(),
+                            'image_url' => $path,
+                        ]);
+                    } else {
+                        return response()->json(['error' => '上傳一張或多張圖片失敗'], 500);
+                    }
                 }
             }
 
@@ -69,6 +77,7 @@ class AlbumController extends Controller
             // 回傳 API 回應給前端
             return response()->json(['message' => 'Album and photos created successfully']);
         } catch (\Exception $e) {
+            // dd($e->getMessage());
             // 發生錯誤時進行回滾
             DB::rollBack();
             return response()->json(['error' => 'Failed to create album and photos'], 500);

@@ -4,6 +4,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\AlbumController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,7 @@ Route::get('/albums/{token}', function ($token) {
         $result[$album->album_id]['photos'][] = [
             'image_id' => $album->image_id,
             'image_name' => $album->image_name,
-            'image_data' => $album->image_data,
+            'image_url' => $album->image_url,
         ];
     }
 
@@ -53,6 +54,7 @@ Route::get('/albums/{token}', function ($token) {
 });
 
 Route::post('/albums/{token}', [AlbumController::class, 'createAlbum']);
+
 
 Route::post('/register',function(Request $request){
     $userName = $request['username'];

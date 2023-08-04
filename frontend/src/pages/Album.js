@@ -134,7 +134,7 @@ const Album = () => {
                                 return (
                                 <div className="col" key={data.album_id}>
                                     <a href="#" className="albumLink" onClick={() => openAlbumModal(data)}>
-                                        <div className="card m-2 album" style={{backgroundImage:`url(${data.photos[0].image_data})`}}>
+                                        <div className="card m-2 album" style={{backgroundImage:`url(http://localhost/TravelMaker/Backend/public/storage/${data.photos[0].image_url})`}}>
                                             <div className="card-body albumBody">
                                                 <h4 className="card-title albumTitle fw-bold text-white ps-3">{data.album_name}</h4>
                                             </div>

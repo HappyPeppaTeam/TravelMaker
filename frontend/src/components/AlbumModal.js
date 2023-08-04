@@ -9,7 +9,7 @@ function AlbumModal({ closeAlbumModal, albumData }) {
         customPaging: (i) => {
             return (
               <a>
-                <img className='w-100 h-100' src={albumData.photos[i].image_data}/>
+                <img className='w-100 h-100' src={`http://localhost/TravelMaker/Backend/public/storage/${albumData.photos[i].image_url}`}/>
               </a>
             );
         },
@@ -24,7 +24,7 @@ function AlbumModal({ closeAlbumModal, albumData }) {
     const renderContent = albumData.photos ? (
       albumData.photos.map((album) => (
         <div className='wrap' key={album.image_id}>
-          <img src={album.image_data} alt={album.image_name} />
+          <img src={`http://localhost/TravelMaker/Backend/public/storage/${album.image_url}`} alt={album.image_name} />
         </div>
       ))
     ) : null;

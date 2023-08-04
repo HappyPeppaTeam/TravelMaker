@@ -10,7 +10,7 @@ function useImage() {
     const [images, setImages] = useState([]);
     const [imagesData, setImagesData] = useState([]);
 
-    // console.log(imagesData);
+    console.log(imagesData);
     // 上傳圖片
     const handleUpload = (e) => {
       const images = [...e.target.files].map((file) => {
@@ -65,64 +65,32 @@ function useImage() {
     }
 }
 
-const Album = () => {
+const CreateAlbum = () => {
     const { images, imagesData, handleUpload, handleRemove, handleRemoveAll, inputRef } = useImage();
     const [ albumName, setAlbumName ] = useState("");
-    const [ albumSort, setAlbumSort ] = useState("");
-    const [ note, setNote ] = useState("");
+    const [ tag, setTag ] = useState("");
+    const [ description, setDescription ] = useState("");
 
-    // console.log(albumName);
-    // console.log(albumSort);
-    // console.log(note);
+    const token = 'fgvuhbhinhhpi-bb876';
 
-    function getImgUrl() {
-        const formDataArray = imagesData.map((item) => {
-            const formData = new FormData();
-            formData.append('image',item);
-            formData.append('album', 'BpyjwFx');
-            // console.log(formData.get('image'));
-            return formData;
+    const handleSubmit = async (e) => {
+        const formData = new FormData();
+        formData.append('album_name',albumName);
+        formData.append('tag',tag);
+        formData.append('description',description);
+
+        imagesData.forEach((image,index) => {
+            formData.append(`images[${index}]`,image);
         });
+        console.log(formData.getAll('images'));
 
-        Promise.all(formDataArray.map(uploadImage))
-        .then(dataArray => {
-          // dataArrray 是一個包含上傳結果的陣列
-          console.log(dataArray);
-          dataArray.forEach(data => {
-            if (data) {
-              console.log(`加入成功: ${data.data.link}`);
-            } else {
-              console.error('上傳失敗');
-            }
-          });
-        })
-        .catch(error => {
-          console.error('上傳失敗:', error);
-        });
-    }
-
-    function uploadImage(formData) {
-        return fetch('https://api.imgur.com/3/image', {
-          method: 'post',
-          headers: {
-            Authorization: 'Bearer 1933c178dc9fe5a8d3b0c9668f2c40d04740acef',
-            'Content-Type': 'multipart/form-data'
-          },
-          body: formData
-        })
-        .then(res => res.json());
-    }
-
-    // function uploadImage(formData) {
-    //     const config = {
-    //         headers: {
-    //             Authorization: 'Bearer 1933c178dc9fe5a8d3b0c9668f2c40d04740acef'
-    //         },
-    //         mimeType: 'multipart/form-data'
-    //     };
-    //     return axios.post('https://api.imgur.com/3/image',formData,config)
-    //         .then(res => res.data);
-    // }
+        try {
+            const response = await axios.post(`http://localhost/TravelMaker/Backend/public/api/albums/${token}`,formData);
+            console.log(response);
+        } catch (error) {
+            console.log('Error:',error);
+        }
+    };
 
     return (
         <>
@@ -213,7 +181,7 @@ const Album = () => {
                     <div className='wrap m-5'>
                         <h1>建立相簿</h1>
 
-                        <form action="" id="newJourneyForm1" className="tab mt-4">
+                        <form action="" id="albumForm" className="tab mt-4 d-block">
                             
                             <div className="mb-3">
                                 <label htmlFor="albumName" className="form-label fs-4">相簿名稱</label>
@@ -221,13 +189,13 @@ const Album = () => {
                                     aria-describedby="albumName" placeholder="如 : 金瓜石兩日遊" value={albumName} onChange={(e) => setAlbumName(e.target.value)}/>
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="albumSort" className="form-label fs-4">分類</label>
-                                <input type="text" className="form-control" id="albumSort"
-                                    aria-describedby="albumSort" placeholder="如 : 台北" value={albumSort} onChange={(e) => setAlbumSort(e.target.value)} />
+                                <label htmlFor="tag" className="form-label fs-4">分類</label>
+                                <input type="text" className="form-control" id="tag"
+                                    aria-describedby="tag" placeholder="如 : 台北" value={tag} onChange={(e) => setTag(e.target.value)} />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="note" className="form-label fs-4">備註</label>
-                                <textarea className="form-control" id="note" rows="5" value={note} onChange={(e) => setNote(e.target.value)}></textarea>
+                                <label htmlFor="description" className="form-label fs-4">備註</label>
+                                <textarea className="form-control" id="description" rows="5" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                             </div>
 
                             <label htmlFor="file-input">
@@ -262,7 +230,7 @@ const Album = () => {
                                 
                             </div>
                             <div className='w-100 d-flex justify-content-end mt-3'>
-                                <button type='button' className='btn btn-primary' onClick={getImgUrl}>送出</button>
+                                <button type='button' className='btn btn-primary' onClick={handleSubmit}>送出</button>
                             </div>
 
                         </form>
@@ -305,4 +273,4 @@ const Album = () => {
     )
 }
 
-export default Album;
+export default CreateAlbum;

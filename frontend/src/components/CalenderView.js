@@ -26,7 +26,8 @@ function CalendarView({calenderRef, journeyDetail}) {
                 start: new Date(journeyDetail.start),
                 end: new Date(journeyDetail.end),
             }}
-        />
+            events={journeyDetail.journeyEvents.map(({name:title, start, end}) => ({title, start: new Date(start), end: new Date(end)}))}
+        ></FullCalendar>
     );
 }
 

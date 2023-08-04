@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import BotSidebar from '../components/BotSidebar';
 import 'bootstrap';
 import '../css/newJourney.css'
+import CalendarNew from '../components/CalenderNew';
 
 function NewJourney() {
 
@@ -24,6 +25,7 @@ function NewJourney() {
     }
 
     const calendarContainerStyle = {
+        width: '100%',
         minHeight: '500px',
         background: 'linear-gradient(135deg, rgba(235,244,245,0.5) 57%, rgba(181,198,224,0.5) 100%)',
     }
@@ -103,9 +105,11 @@ function NewJourney() {
           // return false;
         }
 
+        setCurTab(currentTab);
         showTab(currentTab);
     }
 
+    const [curtab, setCurTab] = useState(0);
     
 
 
@@ -152,7 +156,9 @@ function NewJourney() {
                                 </div>
 
                                 <div id="newJourneyForm2" className="tab">
-                                    <div id="calendarContainer" className="w-100 mb-3 p-3 rounded shadow" style={calendarContainerStyle}></div>
+                                    <div id="calendarContainer" className="w-100 mb-3 p-3 rounded shadow" style={calendarContainerStyle}>
+                                        <CalendarNew />
+                                    </div>
                                     <div id="mapContainer" className="w-100" style={mapContainerStyle}>Map</div>
                                 </div>
 

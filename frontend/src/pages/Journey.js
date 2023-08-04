@@ -113,6 +113,69 @@ function Journey() {
                     },
                 ]
             },
+            {
+                id: 4,
+                title: 'Trip to Tainan',
+                description: 'plan to stay from 6/1 to 6/8',
+                editTime: '2023/4/5 13:00',
+                start: '2023-06-01',
+                end: '2023-06-08',
+                journeyEvents: [
+                    {
+                        id: 9,
+                        name: 'breakfast',
+                        description: 'McDonald',
+                        start: '2023/6/1 8:00',
+                        end: '2023/6/1 9:00',
+                    },
+                    {
+                        id: 10,
+                        name: 'lunch',
+                        description: 'McDonald',
+                        start: '2023/6/1 12:00',
+                        end: '2023/6/1 13:00',
+                    },
+                    {
+                        id: 11,
+                        name: 'dinner',
+                        description: 'McDonald',
+                        start: '2023/6/1 18:00',
+                        end: '2023/6/1 19:00',
+                    },
+                    {
+                        id: 9,
+                        name: 'breakfast',
+                        description: 'McDonald',
+                        start: '2023/6/8 8:00',
+                        end: '2023/6/8 9:00',
+                    },
+                    {
+                        id: 10,
+                        name: 'lunch',
+                        description: 'McDonald',
+                        start: '2023/6/8 12:00',
+                        end: '2023/6/8 13:00',
+                    },
+                    {
+                        id: 11,
+                        name: 'dinner',
+                        description: 'McDonald',
+                        start: '2023/6/8 18:00',
+                        end: '2023/6/8 19:00',
+                    },
+                ],
+
+                images: [
+                    {
+                        image_id: 4,
+                        data: '../images/street.jpg',
+                    },
+                    {
+                        image_id: 5,
+                        data: '../images/street.jpg',
+                    },
+                ]
+            },
         ],
     });
 

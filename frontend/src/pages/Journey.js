@@ -6,10 +6,8 @@ import '../css/journey.css';
 import JourneyThumbnail from '../components/JourneyThumbnail';
 import Sidebar from '../components/Sidebar';
 import BotSidebar from '../components/BotSidebar';
-import CalendarView from '../components/CalenderView';
-import CalendarEditView from '../components/CalendarEditView';
 import JourneyModel from '../components/JourneyModal';
-import { h } from '@fullcalendar/core/preact';
+
 
 const AddNewJourney = () => {
 
@@ -145,36 +143,14 @@ function Journey() {
     const [journeyDetail, setJourneyDetail] = useState(
         {
             id: 1,
-            title: 'Trip to Taipei',
-            description: 'plan to stay from 5/23 to 5/25',
-            editTime: '2023/4/5 13:00',
-            start: '2023-05-26',
-            end: '2023-05-27',
+            title: '',
+            description: '',
+            editTime: '',
+            start: '',
+            end: '',
             journeyEvents: [
-                {
-                    id: 1,
-                    name: 'breakfast',
-                    description: 'McDonald',
-                    start: '2023/5/23 8:00',
-                    end: '2023/5/23 9:00',
-                },
-                {
-                    id: 2,
-                    name: 'lunch',
-                    description: 'McDonald',
-                    start: '2023/5/23 12:00',
-                    end: '2023/5/23 13:00',
-                },
             ],
             images: [
-                {
-                    image_id: 1,
-                    data: '../images/street.jpg',
-                },
-                {
-                    image_id: 2,
-                    data: '../images/street.jpg',
-                },
             ] 
         }
     )
@@ -189,7 +165,6 @@ function Journey() {
                     <div className="m-5">
                         <div className="d-flex align-items-end" id='headLinkContainer'>
                             <Link to="/journey" className="h1 rm-link-style">我的行程</Link>
-
                             <Link to="/journey/newjourney" className="h5 ms-auto active-text add-new-journey" style={{ textDecoration: 'none' }}><i className="bi bi-plus-lg"></i><span className="ms-1">建立行程</span>
                             </Link>
                         </div>
@@ -197,7 +172,7 @@ function Journey() {
                         <div className="container-fluid">
                             <div className="row">
                                 {journeyData.journeys.map(
-                                    (journey, index) => (<JourneyThumbnail key={journey.id} handleOpenModal={handleOpenModal} journey={journey}/>)
+                                    (journey) => (<JourneyThumbnail key={journey.id} handleOpenModal={handleOpenModal} journey={journey} setJourneyDetail={setJourneyDetail} journeyDetail={journeyDetail}/>)
                                     )
                                 }
                                 <AddNewJourney />

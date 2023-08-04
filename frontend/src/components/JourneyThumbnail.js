@@ -12,20 +12,25 @@ const thumbNailStyle = {
 
 
 
-function JourneyThumbnail({handleOpenModal, journey}) {
+function JourneyThumbnail({handleOpenModal, journey, setJourneyDetail, journeyDetail}) {
 
 
-    const [journeyTitle, setJourneyTitle] = useState(journey.title)
 
 
     return (
         <div
-            className="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center dropdown" onClick={handleOpenModal}>
+            className="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center dropdown" 
+            onClick={() => {
+                console.log(journey);
+                setJourneyDetail({...journey});
+                console.log(journeyDetail);
+                handleOpenModal();
+            }}>
             <div className="rounded shadow"
-                style={thumbNailStyle}>
+                style={thumbNailStyle}> 
                 <div className="overlay rounded d-flex justify-content-center align-items-center">
     
-                    <div className='fs-5 fw-semibold'>{journeyTitle}</div>
+                    <div className='fs-5 fw-semibold'>{journey.title}</div>
                 </div>
             </div>
         </div>

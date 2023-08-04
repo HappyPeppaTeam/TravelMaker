@@ -19,7 +19,7 @@ export default function Restaurant_main() {
             <div className="container">
                 <div className="d-flex p-3">
                     <h4>推薦餐廳</h4>
-                    <a href="" className="ms-auto rm-link-style">
+                    <a href="/restaurant/search" className="ms-auto rm-link-style">
                         <h5>see more</h5>
                     </a>
                 </div>

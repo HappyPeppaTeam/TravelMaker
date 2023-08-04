@@ -22,7 +22,7 @@ export default function RestaurantInner() {
         Opentime: '營業時間'
 
     }]);
-    const [ attraction, setAttraction ] = useState([{}]);
+    const [attraction, setAttraction] = useState([{}]);
 
     console.log(attraction);
     useEffect(() => {
@@ -48,7 +48,7 @@ export default function RestaurantInner() {
                 </div>
                 <div className="carousel-inner">
                     <div className="carousel-item active ">
-                        <img className="carousel-rest" src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" />
+                        <img className="carousel-rest" src={attraction[0].PictureUrl1} />
                     </div>
                     <div className="carousel-item">
                         <img className="carousel-rest" src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" />
@@ -71,23 +71,17 @@ export default function RestaurantInner() {
                 <h1 name="rest-name">{attraction[0].Name}</h1>
                 <p name="point">★ ★ ★ ★ ☆ 9527條評論</p>
                 <div className="d-flex flex-row">
-                    <div className="p-2">{attraction[0].Address} |</div>
-                    <div className="p-2">04-22582302 |</div>
-                    <div className="p-2">營業時間 : 11:00~22:00 |</div>
-                    <div className="p-2">官方網站 : <a className="rm-link-style" href="">www.1234.com</a></div>
+                    <div className="p-2">{attraction[0].Address}　|</div>
+                    <div className="p-2">{attraction[0].Phone}　|</div>
+                    <div className="p-2">{attraction[0].OpenTime}　|</div>
+                    <div className="p-2"><a className="rm-link-style" href="">{attraction[0].Url}</a></div>
                 </div>
             </div>
             <div className="row p-rest">
                 <div className="col-md-6 p-3">
                     <div className="card p-3" style={{ 'min-height': '30vh' }}>
-                        我是餐廳詳細介紹
-                        {
-                            test.map((item) => {
-                                return (
-                                    <h1>{item.Name}</h1>
-                                )
-                            })
-                        }
+                        我是餐廳介紹<br />
+                        {attraction[0].Description}
                     </div>
                 </div>
                 <div className="col-md-6 p-3">

@@ -12,7 +12,7 @@ const thumbNailStyle = {
 
 
 
-function JourneyThumbnail({handleOpenModal, journey, setJourneyDetail, journeyDetail}) {
+function JourneyThumbnail({handleOpenModal, journey, setJourneyDetail}) {
 
 
 
@@ -21,9 +21,7 @@ function JourneyThumbnail({handleOpenModal, journey, setJourneyDetail, journeyDe
         <div
             className="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center dropdown" 
             onClick={() => {
-                console.log(journey);
                 setJourneyDetail({...journey});
-                console.log(journeyDetail);
                 handleOpenModal();
             }}>
             <div className="rounded shadow"

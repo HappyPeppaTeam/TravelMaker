@@ -29,7 +29,6 @@ const JourneyModel = ({ handleCloseModal, calenderRef , calendarEditRef, journey
         background: 'linear-gradient(135deg, rgba(235,244,245,0.5) 57%, rgba(181,198,224,0.5) 100%)',
     }
 
-    const [journey, setJourney] = useState({...journeyDetail})
 
 
 
@@ -46,19 +45,19 @@ const JourneyModel = ({ handleCloseModal, calenderRef , calendarEditRef, journey
                     <div className="modal-body">
                         <div id="journeyRegView" className="">
                             <div id="contentHeader" className="d-flex align-items-center">
-                                <h1>{journey.title}</h1>
+                                <h1>{journeyDetail.title}</h1>
                                 <div className="h5 ms-auto active-text"><i className="bi bi-pencil-square"></i><span
                                     className="ms-2">編輯</span></div>
                             </div>
                             <div id="journeyContainer" className="p-3 rounded shadow" style={journeyContainerStyle}>
-                                <CalendarView calenderRef={calenderRef} journey={journey}/>
+                                <CalendarView calenderRef={calenderRef} journeyDetail={journeyDetail}/>
                             </div>
                             <div id="mapContainer" style={mapContainerStyle} className="mt-3 rounded shadow">
                             </div>
 
                             <div className="h2 mt-3">備註</div>
                             <div id="text-content" className="mt-3">
-                                {journey.description}
+                                {journeyDetail.description}
                             </div>
                             <div className="h2 mt-3">相片</div>
                             <div id="imageContainer" className="mt-3 image-overflow rounded shadow"
@@ -71,19 +70,19 @@ const JourneyModel = ({ handleCloseModal, calenderRef , calendarEditRef, journey
                         <form className='' id="journeyEditView">
                             <div className="mb-3">
                                 <label htmlFor="#editJourneyTitle" className="form-label">行程名稱</label>
-                                <input type="text" className="form-control" id="editJourneyTitle" defaultValue={journey.title} />
+                                <input type="text" className="form-control" id="editJourneyTitle" defaultValue={journeyDetail.title} />
                             </div>
 
                             <div className='mb-3'>
                                 <label className="form-label">行程表</label>
                                 <div id="editJourneyContainer" className="p-3 rounded shadow" style={journeyContainerStyle}>
-                                    <CalendarEditView calendarEditRef={calendarEditRef} journey={journey}/>
+                                    <CalendarEditView calendarEditRef={calendarEditRef} journeyDetail={journeyDetail}/>
                                 </div>
                             </div>
 
                             <div className="mb-3">
                                 <label htmlFor="#editJourneyDescription" className="form-label">備註</label>
-                                <textarea className="form-control" id="editJourneyDescription" rows="3" defaultValue={journey.description}></textarea>
+                                <textarea className="form-control" id="editJourneyDescription" rows="3" defaultValue={journeyDetail.description}></textarea>
                             </div>
                         </form>
 

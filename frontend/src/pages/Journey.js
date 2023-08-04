@@ -132,7 +132,6 @@ function Journey() {
     }, []);
 
     const handleOpenModal = () => {
-        setJourneyDetail()
         journeyModalRef.current.show();
     }
 
@@ -143,15 +142,39 @@ function Journey() {
     const [journeyDetail, setJourneyDetail] = useState(
         {
             id: 1,
-            title: '',
-            description: '',
-            editTime: '',
-            start: '',
-            end: '',
+            title: 'Trip to Taipei',
+            description: 'plan to stay from 5/23 to 5/25',
+            editTime: '2023/4/5 13:00',
+            start: '2023-05-23',
+            end: '2023-05-23',
+
             journeyEvents: [
+                {
+                    id: 1,
+                    name: 'breakfast',
+                    description: 'McDonald',
+                    start: '2023/5/23 8:00',
+                    end: '2023/5/23 9:00',
+                },
+                {
+                    id: 2,
+                    name: 'lunch',
+                    description: 'McDonald',
+                    start: '2023/5/23 12:00',
+                    end: '2023/5/23 13:00',
+                },
             ],
+
             images: [
-            ] 
+                {
+                    image_id: 1,
+                    data: '../images/street.jpg',
+                },
+                {
+                    image_id: 2,
+                    data: '../images/street.jpg',
+                },
+            ]
         }
     )
 
@@ -172,8 +195,8 @@ function Journey() {
                         <div className="container-fluid">
                             <div className="row">
                                 {journeyData.journeys.map(
-                                    (journey) => (<JourneyThumbnail key={journey.id} handleOpenModal={handleOpenModal} journey={journey} setJourneyDetail={setJourneyDetail} journeyDetail={journeyDetail}/>)
-                                    )
+                                    (journey) => (<JourneyThumbnail key={journey.id} handleOpenModal={handleOpenModal} journey={journey} setJourneyDetail={setJourneyDetail} />)
+                                )
                                 }
                                 <AddNewJourney />
                             </div>
@@ -182,7 +205,7 @@ function Journey() {
                 </div>
             </div>
             <BotSidebar />
-            <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} journeyDetail={journeyDetail}/>
+            <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} />
         </div>
     );
 }

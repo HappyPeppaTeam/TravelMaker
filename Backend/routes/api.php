@@ -55,6 +55,25 @@ Route::get('/albums/{token}', function ($token) {
 
 Route::post('/albums/{token}', [AlbumController::class, 'createAlbum']);
 
+Route::delete('albums/{token}/{album_id}', function (Request $request, $token, $album_id) {
+    // 檢查請求中的 token 是否合法
+    $user = DB::table('users')->where('token', $token)->first();
+    if (!$user) {
+        return response()->json(['message' => 'Unauthorized'], 401);
+    }
+
+    // 檢查使用者是否擁有該相簿，確保只有相簿擁有者能刪除
+    $album = DB::table('albums')->where('album_id', $album_id)->where('user_id', $user->user_id)->first();
+    if (!$album) {
+        return response()->json(['message' => 'Album not found or unauthorized'], 404);
+    }
+
+    // 刪除相簿及其相片
+    DB::table('album_photos')->where('album_id', $album_id)->delete();
+    DB::table('albums')->where('album_id', $album_id)->delete();
+
+    return response()->json(['message' => 'Album deleted successfully']);
+});
 
 Route::post('/register',function(Request $request){
     $userName = $request['username'];

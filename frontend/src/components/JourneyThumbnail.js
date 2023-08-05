@@ -15,8 +15,6 @@ const thumbNailStyle = {
 function JourneyThumbnail({handleOpenModal, journey, setJourneyDetail}) {
 
 
-
-
     return (
         <div
             className="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center dropdown" 

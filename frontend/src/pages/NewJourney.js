@@ -10,6 +10,7 @@ function NewJourney() {
     const progressBarWidthStyle = {
         width: "50%",
     }
+
     const progressBarHeightStyle = {
         height: '2px',
     }
@@ -60,17 +61,21 @@ function NewJourney() {
     const prevButton = useRef(null);
     const nextButton = useRef(null);
     const progressBar = useRef(null);
+    const newCalenderRef = useRef(null);
+
+    let currentTab = 0;
 
     useEffect(() => {
         tabs.current = document.getElementsByClassName("tab");
         prevButton.current = document.getElementById("prevButton");
         nextButton.current = document.getElementById("nextButton");
         progressBar.current = document.getElementById("progressBar");
+        currentTab = 0;
         showTab(currentTab);
     }, [])
 
 
-    let currentTab = 0;
+    
 
     const showTab = (n) => {
         
@@ -93,6 +98,7 @@ function NewJourney() {
         } else {
             nextButton.current.getElementsByTagName("span")[0].innerText = "下一步";
         }
+
     }
 
     function nextPrev(n) {
@@ -105,11 +111,73 @@ function NewJourney() {
           // return false;
         }
 
-        setCurTab(currentTab);
+        // setCurTab(currentTab);
         showTab(currentTab);
+        if (currentTab === 1){
+            newCalenderRef.current.getApi().render();
+        }
     }
 
-    const [curtab, setCurTab] = useState(0);
+    const addDays = (date, days) => {
+        date.setDate(date.getDate() + days);
+        return date;
+    }
+
+    const [newJourney, setNewJourney] = useState(
+        {
+            title: "",
+            description: "",
+            start: new Date("2023-05-23"),
+            days: "2",
+        }
+    );
+
+
+    function useImages() {
+        const inputRef = useRef(null);
+        const [images, setImages] = useState(null);
+
+        const handleUpload = (event) => {
+            const images = [...event.target.files].map((file) => {
+                return {
+                    name: file.name,
+                    url: URL.createObjectURL(file),
+                }
+            })
+            setImages(images)
+        }
+
+        const handleRemove = (itemIndex) => {
+            setImages((prev) => prev.filter((img, index) => {
+                if (index === itemIndex) {
+                    URL.revokeObjectURL(img.url)
+                }
+                return index !== itemIndex;
+            }))
+        }
+
+        useEffect(() =>{
+            if (images.length === 0) {
+                if (inputRef.current) {
+                    inputRef.current.value = "";
+                }
+            }
+        }, [images])
+
+        return {
+            images, 
+            handleUpload,
+            handleRemove,
+            inputRef,
+        }
+    }
+
+    // const handleImageUpload = () => {
+    //     const { images, handleUpload, handleRemove, inputRef } = useImages(null);
+    // }
+    
+
+
     
 
 
@@ -138,7 +206,8 @@ function NewJourney() {
                                     <div className="mb-3">
                                         <label htmlFor="inputJourneyName" className="form-label">行程名稱</label>
                                         <input type="text" className="form-control" id="inputJourneyName" aria-describedby="inputJourneyName"
-                                            placeholder="ex. 金瓜石兩日遊" />
+                                            placeholder="ex. 金瓜石兩日遊" onChange={(e) => setNewJourney({...newJourney, title:e.target.value})} defaultValue={newJourney.title}/>
+                                        {console.log(newJourney)}
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="inputJourneyDestination" className="form-label">行程目的地</label>
@@ -157,7 +226,7 @@ function NewJourney() {
 
                                 <div id="newJourneyForm2" className="tab">
                                     <div id="calendarContainer" className="w-100 mb-3 p-3 rounded shadow" style={calendarContainerStyle}>
-                                        <CalendarNew />
+                                        <CalendarNew newCalenderRef={newCalenderRef}/>
                                     </div>
                                     <div id="mapContainer" className="w-100" style={mapContainerStyle}>Map</div>
                                 </div>
@@ -167,7 +236,7 @@ function NewJourney() {
                                         <div className="mb-3">
                                             <div className="mb-1">加入圖片</div>
                                             <label htmlFor="formFileMultiple" className="form-label">本機上傳</label>
-                                            <input className="form-control mb-2" type="file" id="formFileMultiple" multiple />
+                                            <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*'/>
 
                                             <label htmlFor="fromAlbum" className="form-label">相簿上傳</label>
 
@@ -227,12 +296,7 @@ function NewJourney() {
                                     </div>
                                     <div id="browseTextContainer" className="w-100 mb-3" style={browseTextContainerStyle}>
                                         <h2>Note</h2>
-                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus in provident vitae id?
-                                            Repudiandae sit maiores expedita. Veniam nulla, atque, expedita pariatur natus, debitis at explicabo
-                                            consectetur nobis sequi perferendis?
-                                            Necessitatibus culpa perspiciatis aut. Eaque corporis ullam porro, provident modi voluptatibus
-                                            praesentium amet aliquam veritatis cum ipsam hic impedit dicta sint dolorem iure excepturi aut unde
-                                            exercitationem libero officia possimus?</p>
+                                        <p>{newJourney.description}</p>
                                     </div>
                                     <div id="browseImageContainer" className="w-100 mb-3" style={browseImageContainerStyle}>
                                         <h2>Image</h2>

@@ -85,8 +85,10 @@ const CreateAlbum = () => {
         console.log(formData.getAll('images'));
 
         try {
-            const response = await axios.post(`http://localhost/TravelMaker/Backend/public/api/albums/${token}`,formData);
+            const response = await axios.post(`http://localhost/TravelMaker/Backend/public/api/albums/${token}`,formData)
+            .then(() => alert('相簿已成功建立!'));
             console.log(response);
+            window.location='http://localhost:3000/album';
         } catch (error) {
             console.log('Error:',error);
         }

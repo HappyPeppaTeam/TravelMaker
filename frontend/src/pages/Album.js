@@ -36,6 +36,13 @@ const Album = () => {
         albumModal.current.hide();
     }
 
+    const deleteAllAlbum = async () => {
+        const token = 'fgvuhbhinhhpi-bb876';
+        await axios.delete(`http://localhost/TravelMaker/Backend/public/api/albums/${token}`)
+        .then(() => alert('成功刪除所有相簿!'))
+        window.location.reload();
+    }
+
     return (
         <>
         <AlbumModal closeAlbumModal={closeAlbumModal} albumData={albumData}/>
@@ -126,7 +133,10 @@ const Album = () => {
                     <div className='wrap m-5'>
                         <div className="d-flex justify-content-between align-items-center mb-3">
                             <h1 className='m-0'>相簿</h1>
-                            <Link className='btn btn-outline-primary' to='/album/create'>建立新相簿</Link>
+                            <div>
+                                <Link className='btn btn-outline-primary' to='/album/create'>建立新相簿</Link>
+                                <button className='btn btn-outline-danger ms-2' onClick={deleteAllAlbum}>刪除所有相簿</button>
+                            </div>
                         </div>
                         {/* 相簿總覽 */}
                         <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3">

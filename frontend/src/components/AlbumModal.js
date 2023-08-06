@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Slider from '../components/Slick';
 import { useEffect } from 'react';
 
@@ -29,6 +30,14 @@ function AlbumModal({ closeAlbumModal, albumData }) {
       ))
     ) : null;
 
+    const deleteAlbum = async (e) => {
+      const albumId = e.target.dataset.id;
+      const token = 'fgvuhbhinhhpi-bb876';
+      await axios.delete(`http://localhost/TravelMaker/Backend/public/api/albums/${token}/${albumId}`)
+      .then(() => alert('相簿刪除成功!'));
+      window.location.reload();
+    }
+
     return (
         <>
             <div className="modal fade" id="albumModal" tabIndex="-1">
@@ -41,6 +50,7 @@ function AlbumModal({ closeAlbumModal, albumData }) {
                         <div className="modal-body">
                             <div className='d-flex justify-content-end'>
                                 <button type="button" className="btn btn-outline-secondary">編輯</button>
+                                <button type="button" className="btn btn-outline-danger ms-2" data-id={albumData.album_id} onClick={deleteAlbum}>刪除相簿</button>
                             </div>
                             <Slider settings={settings} renderContent={renderContent}></Slider>
                             <h2 className='fs-4 mb-3'>分類 : <span className="badge rounded-pill bg-warning text-dark">{albumData.tag}</span></h2>

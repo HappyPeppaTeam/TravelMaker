@@ -5,6 +5,57 @@ import 'bootstrap';
 import '../css/newJourney.css'
 import CalendarNew from '../components/CalenderNew';
 
+
+
+function useImages() {
+    const inputRef = useRef(null);
+    const [images, setImages] = useState([]);
+
+    const handleUpload = (event) => {
+        const images = [...event.target.files].map((file) => {
+            return {
+                name: file.name,
+                url: URL.createObjectURL(file),
+            }
+        })
+        setImages(images)
+    }
+
+    const handleRemove = (itemIndex) => {
+        setImages((prev) => prev.filter((img, index) => {
+            if (index === itemIndex) {
+                URL.revokeObjectURL(img.url)
+            }
+            return index !== itemIndex;
+        }))
+    }
+
+    const handleRemoveAll = (e) => {
+        e.preventDefault();
+        images.forEach((img) => {
+            URL.revokeObjectURL(img.url);
+        });
+        setImages([]);
+    }
+
+    useEffect(() =>{
+        if (images.length === 0) {
+            if (inputRef.current) {
+                inputRef.current.value = "";
+            }
+        }
+    }, [images])
+
+    return {
+        images, 
+        handleUpload,
+        handleRemove,
+        handleRemoveAll,
+        inputRef,
+    }
+}
+
+
 function NewJourney() {
 
     const progressBarWidthStyle = {
@@ -133,44 +184,7 @@ function NewJourney() {
     );
 
 
-    function useImages() {
-        const inputRef = useRef(null);
-        const [images, setImages] = useState(null);
-
-        const handleUpload = (event) => {
-            const images = [...event.target.files].map((file) => {
-                return {
-                    name: file.name,
-                    url: URL.createObjectURL(file),
-                }
-            })
-            setImages(images)
-        }
-
-        const handleRemove = (itemIndex) => {
-            setImages((prev) => prev.filter((img, index) => {
-                if (index === itemIndex) {
-                    URL.revokeObjectURL(img.url)
-                }
-                return index !== itemIndex;
-            }))
-        }
-
-        useEffect(() =>{
-            if (images.length === 0) {
-                if (inputRef.current) {
-                    inputRef.current.value = "";
-                }
-            }
-        }, [images])
-
-        return {
-            images, 
-            handleUpload,
-            handleRemove,
-            inputRef,
-        }
-    }
+    const { images, handleUpload, handleRemove, handleRemoveAll,inputRef } = useImages();
 
     // const handleImageUpload = () => {
     //     const { images, handleUpload, handleRemove, inputRef } = useImages(null);
@@ -236,7 +250,7 @@ function NewJourney() {
                                         <div className="mb-3">
                                             <div className="mb-1">加入圖片</div>
                                             <label htmlFor="formFileMultiple" className="form-label">本機上傳</label>
-                                            <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*'/>
+                                            <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*' ref={inputRef} onChange={handleUpload}/>
 
                                             <label htmlFor="fromAlbum" className="form-label">相簿上傳</label>
 

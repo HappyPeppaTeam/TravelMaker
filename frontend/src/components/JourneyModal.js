@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 import CalendarView from "./CalenderView";
 import CalendarEditView from "./CalendarEditView";
 
 
-const JourneyModel = ({ handleCloseModal, calenderRef , calendarEditRef, journeyDetail}) => {
+const JourneyModel = ({ handleCloseModal, calenderRef, calendarEditRef, journeyDetail }) => {
 
     const modalHeaderStyle = {
         height: '200px',
@@ -29,7 +29,24 @@ const JourneyModel = ({ handleCloseModal, calenderRef , calendarEditRef, journey
         background: 'linear-gradient(135deg, rgba(235,244,245,0.5) 57%, rgba(181,198,224,0.5) 100%)',
     }
 
+    const editViewRef = useRef(null);
+    const regularViewRef = useRef(null);
 
+    const handleEditView = () => {
+        if (editViewRef.current && regularViewRef.current) {
+            regularViewRef.current.style.display = 'none';
+            editViewRef.current.style.display = 'block';
+            calendarEditRef.current.getApi().render();
+        }
+    }
+
+    const handleRegView = () => {
+        if (editViewRef.current && regularViewRef.current) {
+            regularViewRef.current.style.display = 'block';
+            editViewRef.current.style.display = 'none';
+            calenderRef.current.getApi().render();
+        }
+    }
 
 
     return (
@@ -43,14 +60,15 @@ const JourneyModel = ({ handleCloseModal, calenderRef , calendarEditRef, journey
                             aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
-                        <div id="journeyRegView" className="">
+                        <div id="journeyRegView" className="" ref={regularViewRef}>
                             <div id="contentHeader" className="d-flex align-items-center">
                                 <h1>{journeyDetail.title}</h1>
-                                <div className="h5 ms-auto active-text"><i className="bi bi-pencil-square"></i><span
+                                <div className="h5 ms-auto active-text" onClick={handleEditView}>
+                                    <i className="bi bi-pencil-square"></i><span
                                     className="ms-2">編輯</span></div>
                             </div>
                             <div id="journeyContainer" className="p-3 rounded shadow" style={journeyContainerStyle}>
-                                <CalendarView calenderRef={calenderRef} journeyDetail={journeyDetail}/>
+                                <CalendarView calenderRef={calenderRef} journeyDetail={journeyDetail} />
                             </div>
                             <div id="mapContainer" style={mapContainerStyle} className="mt-3 rounded shadow">
                             </div>
@@ -63,11 +81,11 @@ const JourneyModel = ({ handleCloseModal, calenderRef , calendarEditRef, journey
                             <div id="imageContainer" className="mt-3 image-overflow rounded shadow"
                                 style={imageContainerStyle}>
                                 <img src="../images/street.jpg" alt="" className="h-100" />
-                               
+
                             </div>
                         </div>
 
-                        <form className='' id="journeyEditView">
+                        <form id="journeyEditView" style={{display: 'none'}} ref={editViewRef}>
                             <div className="mb-3">
                                 <label htmlFor="#editJourneyTitle" className="form-label">行程名稱</label>
                                 <input type="text" className="form-control" id="editJourneyTitle" defaultValue={journeyDetail.title} />
@@ -76,7 +94,24 @@ const JourneyModel = ({ handleCloseModal, calenderRef , calendarEditRef, journey
                             <div className='mb-3'>
                                 <label className="form-label">行程表</label>
                                 <div id="editJourneyContainer" className="p-3 rounded shadow" style={journeyContainerStyle}>
-                                    <CalendarEditView calendarEditRef={calendarEditRef} journeyDetail={journeyDetail}/>
+                                    <CalendarEditView calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} />
+                                </div>
+                            </div>
+
+                            <div className="mb-3">
+                                <label htmlFor="publicRadio" className="form-label">公開設定</label>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="privacyRadio" value="" id="publicRadio" />
+                                    <label className="form-check-label" htmlFor="publicRadio">
+                                        公開
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="radio" name="privacyRadio" value="" id="privateRadio"
+                                        defaultChecked />
+                                    <label className="form-check-label" htmlFor="privateRadio">
+                                        不公開
+                                    </label>
                                 </div>
                             </div>
 
@@ -89,7 +124,7 @@ const JourneyModel = ({ handleCloseModal, calenderRef , calendarEditRef, journey
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <button type="button" className="btn btn-primary" onClick={handleRegView}>Save changes</button>
                     </div>
                 </div>
             </div>

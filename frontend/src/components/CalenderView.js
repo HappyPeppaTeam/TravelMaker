@@ -15,12 +15,21 @@ function CalendarView({calenderRef, journeyDetail}) {
             themeSystem='bootstrap5'
             ref={calenderRef}
             views={{
-                journeyTimeView:{
+                journeyTimeView:{ 
                     type: 'timeGrid',
+                    buttonText: 'Calendar'
                 },
                 journeyListView:{
                     type: 'list'
+                },
+                journeyMonthView:{
+                    type: 'dayGridMonth',
+                    buttonText: 'month'
                 }   
+            }}
+            headerToolbar={{
+                start: 'journeyListView journeyTimeView journeyMonthView',
+                end: 'prev,next'
             }}
             visibleRange={{
                 start: new Date(journeyDetail.start),

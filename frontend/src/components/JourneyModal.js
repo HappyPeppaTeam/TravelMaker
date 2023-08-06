@@ -52,7 +52,7 @@ const JourneyModel = ({ handleCloseModal, calenderRef, calendarEditRef, journeyD
     return (
         <div className="modal fade" id="journeyModal" tabIndex="-1" aria-labelledby="journeyModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
-                {console.log(journeyDetail)}
+                {/* {console.log(journeyDetail)} */}
                 <div className="modal-content">
                     <div className="modal-header"
                         style={modalHeaderStyle}>

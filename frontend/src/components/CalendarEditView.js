@@ -9,10 +9,10 @@ import { Modal } from 'bootstrap';
 
 
 
-const EventModal = ({editModalRef}) => {
+const EventModal = () => {
 
     return (
-        <div ref={editModalRef} className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -40,20 +40,19 @@ const EventModal = ({editModalRef}) => {
 function CalendarEditView({ calendarEditRef, journeyDetail }) {
 
     const editModalRef = useRef(null);
-    let EditModal;
     useEffect(() => {
-        if (editModalRef.current){
-            EditModal = new Modal("#exampleModal");
-            console.log(EditModal);
-        }
+
+        editModalRef.current = new Modal('#exampleModal');
+        console.log(editModalRef.current);
+
     }, []);
 
 
     const handleAddEvent = (info) => {
         // let foo = prompt('Type here');
-    
+
         // console.log(info.dateStr, foo);
-        EditModal.toggle();
+        editModalRef.current.toggle();
     }
 
     return (
@@ -87,12 +86,12 @@ function CalendarEditView({ calendarEditRef, journeyDetail }) {
                 }}
                 editable={true}
                 events={journeyDetail.journeyEvents.map(({ name: title, start, end }) => ({ title, start: new Date(start), end: new Date(end) }))}
-                dateClick={function(event){
-                    EditModal.show();
+                dateClick={function () {
+                    editModalRef.current.show();
                 }}
             />
 
-            <EventModal editModalRef={editModalRef}/>
+            <EventModal />
         </React.Fragment>
     );
 }

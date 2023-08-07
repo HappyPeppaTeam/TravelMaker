@@ -92,6 +92,63 @@ Route::delete('albums/{token}', function (Request $request, $token) {
     return response()->json(['message' => '成功清除所有相簿及內容']);
 });
 
+Route::post('/albums/{token}/{album_id}', function (Request $request, $token, $album_id) {
+    // 使用 token 查詢使用者
+    $user = DB::table('users')->where('token', $token)->first();
+
+    // 確保使用者存在且 token 正確
+    if (!$user) {
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
+
+    // 使用交易來更新相簿和相片資訊
+    DB::beginTransaction();
+
+    try {
+    //     // 更新相簿資訊
+        DB::table('albums')
+            ->where('album_id', $album_id)
+            ->where('user_id', $user->user_id)
+            ->update([
+                'album_name' => $request->input('album_name'),
+                'tag' => $request->input('tag'),
+                'description' => $request->input('description'),
+            ]);
+    
+        // 移除原有相片
+        DB::table('album_photos')
+            ->where('album_id', $album_id)
+            ->delete();
+
+        // 處理上傳的相片內容
+        if ($request->has('images')) {
+            $files = $request->file('images');
+
+            foreach ($files as $file) {
+                if ($file->isValid()) {
+                    // 儲存檔案到 public 目錄，並取得檔案路徑
+                    $path = $file->store('images', 'public');
+
+                    // 新增相片資訊到 album_photos 資料表
+                    DB::table('album_photos')->insert([
+                        'album_id' => $album_id,
+                        'image_name' => $file->getClientOriginalName(),
+                        'image_url' => $path,
+                    ]);
+                } else {
+                    return response()->json(['error' => '上傳一張或多張圖片失敗'], 500);
+                }
+            }
+        }
+
+        DB::commit();
+
+    } catch (\Exception $e) {
+        DB::rollback();
+        return response()->json(['error' => 'Error updating album and photos'. $e->getMessage()], 500);
+    }
+});
+
 Route::post('/register',function(Request $request){
     $userName = $request['username'];
     $password = $request['password'];

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Slider from '../components/Slick';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 
 function AlbumModal({ closeAlbumModal, albumData }) {
@@ -37,7 +38,7 @@ function AlbumModal({ closeAlbumModal, albumData }) {
       .then(() => alert('相簿刪除成功!'));
       window.location.reload();
     }
-
+    
     return (
         <>
             <div className="modal fade" id="albumModal" tabIndex="-1">
@@ -49,7 +50,7 @@ function AlbumModal({ closeAlbumModal, albumData }) {
                         </div>
                         <div className="modal-body">
                             <div className='d-flex justify-content-end'>
-                                <button type="button" className="btn btn-outline-secondary">編輯</button>
+                                <Link to='/album/edit' className="btn btn-outline-secondary" state={albumData} onClick={closeAlbumModal}>編輯</Link>
                                 <button type="button" className="btn btn-outline-danger ms-2" data-id={albumData.album_id} onClick={deleteAlbum}>刪除相簿</button>
                             </div>
                             <Slider settings={settings} renderContent={renderContent}></Slider>

@@ -77,10 +77,9 @@ class AlbumController extends Controller
             // 回傳 API 回應給前端
             return response()->json(['message' => 'Album and photos created successfully']);
         } catch (\Exception $e) {
-            // dd($e->getMessage());
             // 發生錯誤時進行回滾
             DB::rollBack();
-            return response()->json(['error' => 'Failed to create album and photos'], 500);
+            return response()->json(['error' => 'Failed to create album and photos'. $e->getMessage()], 500);
         }
     }
 

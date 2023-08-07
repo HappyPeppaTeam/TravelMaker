@@ -2,6 +2,7 @@ import '../css/sidebar.css';
 import '../css/createAlbum.css';
 import React from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 const { useState, useRef, useEffect } = React;
 
@@ -65,11 +66,12 @@ function useImage() {
     }
 }
 
-const CreateAlbum = () => {
+const EditAlbum = () => {
     const { images, imagesData, handleUpload, handleRemove, handleRemoveAll, inputRef } = useImage();
-    const [ albumName, setAlbumName ] = useState("");
-    const [ tag, setTag ] = useState("");
-    const [ description, setDescription ] = useState("");
+    let { state } = useLocation();
+    const [ albumName, setAlbumName ] = useState(state.album_name);
+    const [ tag, setTag ] = useState(state.tag);
+    const [ description, setDescription ] = useState(state.description);
 
     const token = 'fgvuhbhinhhpi-bb876';
 
@@ -82,15 +84,15 @@ const CreateAlbum = () => {
         imagesData.forEach((image,index) => {
             formData.append(`images[${index}]`,image);
         });
-        console.log(formData.getAll('images'));
 
         try {
-            const response = await axios.post(`http://localhost/TravelMaker/Backend/public/api/albums/${token}`,formData)
-            .then(() => alert('相簿已成功建立!'));
-            console.log(response);
+            const response = await axios.post(`http://localhost/TravelMaker/Backend/public/api/albums/${token}/${state.album_id}`,formData)
+            .then((res) => {
+                alert('相簿已成功更新!')
+            });
             window.location='http://localhost:3000/album';
         } catch (error) {
-            console.log('Error:',error.response.data.error);
+            console.log('Error:',error.response);
         }
     };
 
@@ -181,7 +183,7 @@ const CreateAlbum = () => {
 
                 <div className="flex-fill px-0 justify-content-center" id="content" style={{height: "100%", minHeight: "calc(100vh - 70px)"}}>
                     <div className='wrap m-5'>
-                        <h1>建立相簿</h1>
+                        <h1>編輯相簿</h1>
 
                         <form action="" id="albumForm" className="tab mt-4 d-block">
                             
@@ -275,4 +277,4 @@ const CreateAlbum = () => {
     )
 }
 
-export default CreateAlbum;
+export default EditAlbum;

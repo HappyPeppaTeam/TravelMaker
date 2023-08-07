@@ -3,7 +3,7 @@ import CalendarView from "./CalenderView";
 import CalendarEditView from "./CalendarEditView";
 
 
-const JourneyModel = ({ handleCloseModal, calenderRef, calendarEditRef, journeyDetail }) => {
+const JourneyModel = ({ handleCloseModal, calenderRef, calendarEditRef, journeyDetail, setJourneyDetail }) => {
 
     const modalHeaderStyle = {
         height: '200px',
@@ -52,7 +52,7 @@ const JourneyModel = ({ handleCloseModal, calenderRef, calendarEditRef, journeyD
     return (
         <div className="modal fade" id="journeyModal" tabIndex="-1" aria-labelledby="journeyModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
-                {/* {console.log(journeyDetail)} */}
+                
                 <div className="modal-content">
                     <div className="modal-header"
                         style={modalHeaderStyle}>
@@ -94,7 +94,7 @@ const JourneyModel = ({ handleCloseModal, calenderRef, calendarEditRef, journeyD
                             <div className='mb-3'>
                                 <label className="form-label">行程表</label>
                                 <div id="editJourneyContainer" className="p-3 rounded shadow" style={journeyContainerStyle}>
-                                    <CalendarEditView calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} />
+                                    <CalendarEditView calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} setJourneyDetail={setJourneyDetail}/>
                                 </div>
                             </div>
 
@@ -123,8 +123,8 @@ const JourneyModel = ({ handleCloseModal, calenderRef, calendarEditRef, journeyD
 
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>Close</button>
-                        <button type="button" className="btn btn-primary" onClick={handleRegView}>Save changes</button>
+                        <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>返回</button>
+                        <button type="button" className="btn btn-primary" onClick={handleRegView}>儲存</button>
                     </div>
                 </div>
             </div>

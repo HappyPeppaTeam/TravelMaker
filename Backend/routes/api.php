@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <?php
 
+use App\Http\Controllers\JourneyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -85,3 +86,7 @@ $unSetToken = DB::select('call unSet_token(?)',[$token]);
 return response()->json($unSetToken,200);
 
 });
+
+
+Route::get('/getJourney',[JourneyController::class, 'getUserJourneys']);
+Route::get('/getEvents',[JourneyController::class, 'getJourneyEvents']);

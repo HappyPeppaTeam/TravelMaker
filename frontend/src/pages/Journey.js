@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Modal } from 'bootstrap';
-
+import axios from 'axios';
 import '../css/journey.css';
 import JourneyThumbnail from '../components/JourneyThumbnail';
 import Sidebar from '../components/Sidebar';
@@ -35,11 +35,32 @@ const AddNewJourney = () => {
 }
 
 
+const TESTURL = 'http://localhost/TravelMaker/Backend/public/api/getJourney?user_id=1';
+
+const fetchJourneyData = () => {
+    return axios.get(TESTURL)
+    .then((response) => {   
+        console.log(response);
+        return response;
+    })
+    .catch((error) => console.log(error))
+}
+
+
 
 
 function Journey() {
 
+    
+    useEffect(() => {
+        async function fetchdata(){
 
+            const data = await fetchJourneyData();
+        }
+        fetchdata();
+    }, [])
+
+    
     const [journeyData, setJourneyData] = useState({
         journeys: [
             {
@@ -268,7 +289,7 @@ function Journey() {
                 </div>
             </div>
             <BotSidebar />
-            <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} />
+            <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} setJourneyDetail={setJourneyDetail}/>
         </div>
     );
 }

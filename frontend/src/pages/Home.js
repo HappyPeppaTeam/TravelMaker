@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
 import '../css/index.css';
+import React from 'react';
 import Slider from '../components/Slick';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-  const data = [
+const { useEffect } = React;
+const data = [
     {
       url:"https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
     },
@@ -28,8 +32,8 @@ import Slider from '../components/Slick';
       url:"https://images.unsplash.com/photo-1689350098247-5e02f4106cad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
     },
     
-  ];
-  const settings = {
+];
+const settings = {
     dots: false,
     infinite: true,
     speed: 1500,
@@ -63,31 +67,35 @@ import Slider from '../components/Slick';
         }
       }
     ]
-  };
-  const renderContent = data.map((item,index) => (
-    <a href="#" className="cardLink" key={index}>
-            <div className="card m-2">
-              <img
-                src={item.url}
-                className="card-img-top spotImg"
-                alt=""
-              />
-              <div className="card-body">
-                <h4 className="card-title fw-bold">野柳地質公園</h4>
-                <p className="card-text">
-                  擁有奇岩美石的野柳地質公園,是揚名國際的天然風景名勝地。
-                </p>
-                <p className="d-flex align-items-center mb-0">
-                  <span className="sortIcon me-2"></span
-                  ><span className="d-block">景點</span>
-                </p>
-              </div>
+};
+const renderContent = data.map((item,index) => (
+  <a href="#" className="cardLink" key={index}>
+          <div className="card m-2">
+            <img
+              src={item.url}
+              className="card-img-top spotImg"
+              alt=""
+            />
+            <div className="card-body">
+              <h4 className="card-title fw-bold">野柳地質公園</h4>
+              <p className="card-text">
+                擁有奇岩美石的野柳地質公園,是揚名國際的天然風景名勝地。
+              </p>
+              <p className="d-flex align-items-center mb-0">
+                <span className="sortIcon me-2"></span
+                ><span className="d-block">景點</span>
+              </p>
             </div>
-   </a>
-  ));
+          </div>
+ </a>
+));
 
 export default function Home() {
 
+    useEffect(() => {
+      AOS.init({ duration: 1000 });
+    }, []);
+    
     return (
         <div className="container mt-3">
         <div className="filter d-flex justify-content-evenly mt-4 mx-auto">
@@ -127,7 +135,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="travelGuide mb-5">
+        <div className="travelGuide mb-5" data-aos="fade-up">
           <h2 className="fw-bold">精選旅遊攻略</h2>
           <p className="mb-0">沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
           <div className="row row-cols-2 g-3 mt-4">
@@ -246,7 +254,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="popularRestaurant mb-5">
+        <div className="popularRestaurant mb-5" data-aos="fade-up">
           <h2 className="fw-bold">熱門餐廳</h2>
           <p className="mb-0">沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
           <div className="row row-cols-2 mt-4">
@@ -279,7 +287,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="popularSpot">
+        <div className="popularSpot" data-aos="fade-up">
           <h2 className="fw-bold">熱門景點</h2>
           <p className="mb-0">沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
           <Slider settings={settings} renderContent={renderContent}/>

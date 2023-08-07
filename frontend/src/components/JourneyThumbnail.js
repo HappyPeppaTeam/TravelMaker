@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import '../css/journeyThumbnail.css'
 
@@ -12,21 +12,29 @@ const thumbNailStyle = {
 
 
 
-function JourneyThumbnail({handleOpenModal, journey, setJourneyDetail}) {
+function JourneyThumbnail({handleOpenModal, journey, setJourneyDetail, setClickJourneyId, journeyEvent, journeyDetail}) {
+
+
+    const handleClick = () => {
+        setClickJourneyId(journey.journey_id);
+        setJourneyDetail({
+            ...journey, 
+            events: journeyEvent
+        })
+        console.log(journeyDetail);
+        handleOpenModal();
+    }
 
 
     return (
         <div
             className="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center dropdown" 
-            onClick={() => {
-                setJourneyDetail({...journey});
-                handleOpenModal();
-            }}>
+            onClick={handleClick}>
             <div className="rounded shadow"
                 style={thumbNailStyle}> 
                 <div className="overlay rounded d-flex justify-content-center align-items-center">
     
-                    <div className='fs-5 fw-semibold'>{journey.title}</div>
+                    <div className='fs-5 fw-semibold'>{journey.journey_name}</div>
                 </div>
             </div>
         </div>

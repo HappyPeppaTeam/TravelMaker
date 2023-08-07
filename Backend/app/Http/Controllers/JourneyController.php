@@ -22,7 +22,7 @@ class JourneyController extends Controller
         $duration = $this->getJourneyDuration($journey_id);
         $result = [
             'events' => $events,
-            'duration' => $duration,
+            // 'duration' => $duration,
         ];
         return response()->json($result);
     }

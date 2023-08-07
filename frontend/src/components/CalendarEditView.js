@@ -42,7 +42,7 @@ const EventModal = ({calendarEditRef, clickInfo, setJourneyDetail}) => {
 
     const handleAddEvent = (e) => {
         calendarEditRef.current.calendar.addEvent({...journeyEvent});
-        setJourneyDetail({})
+        
         // console.log(calendarEditRef.current.calendar.getEvents());
         // calendarEditRef.current.getApi().render();
     }
@@ -69,8 +69,8 @@ const EventModal = ({calendarEditRef, clickInfo, setJourneyDetail}) => {
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={handleAddEvent}>Add Event</button>
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                        <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={handleAddEvent}>新增</button>
                     </div>
                 </div>
             </div>

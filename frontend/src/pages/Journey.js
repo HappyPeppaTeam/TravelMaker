@@ -35,170 +35,52 @@ const AddNewJourney = () => {
 }
 
 
-const TESTURL = 'http://localhost/TravelMaker/Backend/public/api/getJourney?user_id=1';
-
-const fetchJourneyData = () => {
-    return axios.get(TESTURL)
-    .then((response) => {   
-        console.log(response);
-        return response;
-    })
-    .catch((error) => console.log(error))
-}
-
-
-
 
 function Journey() {
 
-    
+//  get Journeys data
+    const [journeys, setJourneys] = useState([]);
     useEffect(() => {
-        async function fetchdata(){
-
-            const data = await fetchJourneyData();
-        }
-        fetchdata();
+        const testUrl = 'http://localhost/TravelMaker/Backend/public/api/getJourney?user_id=1';
+        axios.get(testUrl)
+        .then((response) => {
+            if (response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.data;
+        })
+        .then((data) => {
+            setJourneys(data);
+            // console.log(data);
+        })
+        .catch((error) => {
+            console.error('Fetch error:', error);
+        })
     }, [])
 
-    
-    const [journeyData, setJourneyData] = useState({
-        journeys: [
-            {
-                id: 1,
-                title: 'Trip to Taipei',
-                description: 'plan to stay from 5/23 to 5/25',
-                editTime: '2023/4/5 13:00',
-                start: '2023-05-23',
-                end: '2023-05-23',
 
-                journeyEvents: [
-                    {
-                        id: 1,
-                        name: 'breakfast',
-                        description: 'McDonald',
-                        start: '2023/5/23 8:00',
-                        end: '2023/5/23 9:00',
-                    },
-                    {
-                        id: 2,
-                        name: 'lunch',
-                        description: 'McDonald',
-                        start: '2023/5/23 12:00',
-                        end: '2023/5/23 13:00',
-                    },
-                ],
 
-                images: [
-                    {
-                        image_id: 1,
-                        data: '../images/street.jpg',
-                    },
-                    {
-                        image_id: 2,
-                        data: '../images/street.jpg',
-                    },
-                ]
-            },
-            {
-                id: 3,
-                title: 'Trip to Taichung',
-                description: 'plan to stay from 5/26 to 5/27',
-                editTime: '2023/4/5 13:00',
-                start: '2023-05-26',
-                end: '2023-05-27',
-                journeyEvents: [
-                    {
-                        id: 4,
-                        name: 'breakfast',
-                        description: 'McDonald',
-                        start: '2023/5/26 8:00',
-                        end: '2023/5/26 9:00',
-                    },
-                    {
-                        id: 6,
-                        name: 'lunch',
-                        description: 'McDonald',
-                        start: '2023/5/27 12:00',
-                        end: '2023/5/27 13:00',
-                    },
-                ],
+    const [clickJourneyId, setClickJourneyId] = useState(1);
+    const [journeyEvent, setJourneyEvent] = useState([]);
 
-                images: [
-                    {
-                        image_id: 4,
-                        data: '../images/street.jpg',
-                    },
-                    {
-                        image_id: 5,
-                        data: '../images/street.jpg',
-                    },
-                ]
-            },
-            {
-                id: 4,
-                title: 'Trip to Tainan',
-                description: 'plan to stay from 6/1 to 6/8',
-                editTime: '2023/4/5 13:00',
-                start: '2023-06-01',
-                end: '2023-06-08',
-                journeyEvents: [
-                    {
-                        id: 9,
-                        name: 'breakfast',
-                        description: 'McDonald',
-                        start: '2023/6/1 8:00',
-                        end: '2023/6/1 9:00',
-                    },
-                    {
-                        id: 10,
-                        name: 'lunch',
-                        description: 'McDonald',
-                        start: '2023/6/1 12:00',
-                        end: '2023/6/1 13:00',
-                    },
-                    {
-                        id: 11,
-                        name: 'dinner',
-                        description: 'McDonald',
-                        start: '2023/6/1 18:00',
-                        end: '2023/6/1 19:00',
-                    },
-                    {
-                        id: 9,
-                        name: 'breakfast',
-                        description: 'McDonald',
-                        start: '2023/6/8 8:00',
-                        end: '2023/6/8 9:00',
-                    },
-                    {
-                        id: 10,
-                        name: 'lunch',
-                        description: 'McDonald',
-                        start: '2023/6/8 12:00',
-                        end: '2023/6/8 13:00',
-                    },
-                    {
-                        id: 11,
-                        name: 'dinner',
-                        description: 'McDonald',
-                        start: '2023/6/8 18:00',
-                        end: '2023/6/8 19:00',
-                    },
-                ],
+    useEffect(() => {
+        const testUrl = `http://localhost/TravelMaker/Backend/public/api/getEvents?journey_id=${clickJourneyId}`;
+        axios.get(testUrl)
+        .then((response) => {
+            if (response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.data;
+        })
+        .then((data) => {
+            setJourneyEvent(data);
+            console.log(data);
+        })
+        .catch((error) => {
+            console.error('Fetch error:', error);
+        })
+    }, [clickJourneyId])
 
-                images: [
-                    {
-                        image_id: 4,
-                        data: '../images/street.jpg',
-                    },
-                    {
-                        image_id: 5,
-                        data: '../images/street.jpg',
-                    },
-                ]
-            },
-        ],
-    });
 
 
 
@@ -210,7 +92,7 @@ function Journey() {
         journeyModalRef.current = new Modal('#journeyModal');
         journeyModalRef.current._element.addEventListener('shown.bs.modal', function () {
             calenderRef.current.getApi().render();
-            calendarEditRef.current.getApi().render();
+            // calendarEditRef.current.getApi().render();
         })
         // console.log(calendarEditRef);
     }, []);
@@ -223,44 +105,47 @@ function Journey() {
         journeyModalRef.current.hide();
     }
 
-    const [journeyDetail, setJourneyDetail] = useState(
-        {
-            id: 1,
-            title: 'Trip to Taipei',
-            description: 'plan to stay from 5/23 to 5/25',
-            editTime: '2023/4/5 13:00',
-            start: '2023-05-23',
-            end: '2023-05-23',
+    // const [journeyDetail, setJourneyDetail] = useState(
+    //     {
+    //         id: 1,
+    //         title: 'Trip to Taipei',
+    //         description: 'plan to stay from 5/23 to 5/25',
+    //         editTime: '2023/4/5 13:00',
+    //         start: '2023-05-23',
+    //         end: '2023-05-23',
 
-            journeyEvents: [
-                {
-                    id: 1,
-                    name: 'breakfast',
-                    description: 'McDonald',
-                    start: '2023/5/23 8:00',
-                    end: '2023/5/23 9:00',
-                },
-                {
-                    id: 2,
-                    name: 'lunch',
-                    description: 'McDonald',
-                    start: '2023/5/23 12:00',
-                    end: '2023/5/23 13:00',
-                },
-            ],
+    //         journeyEvents: [
+    //             {
+    //                 id: 1,
+    //                 name: 'breakfast',
+    //                 description: 'McDonald',
+    //                 start: '2023/5/23 8:00',
+    //                 end: '2023/5/23 9:00',
+    //             },
+    //             {
+    //                 id: 2,
+    //                 name: 'lunch',
+    //                 description: 'McDonald',
+    //                 start: '2023/5/23 12:00',
+    //                 end: '2023/5/23 13:00',
+    //             },
+    //         ],
 
-            images: [
-                {
-                    image_id: 1,
-                    data: '../images/street.jpg',
-                },
-                {
-                    image_id: 2,
-                    data: '../images/street.jpg',
-                },
-            ]
-        }
-    )
+    //         images: [
+    //             {
+    //                 image_id: 1,
+    //                 data: '../images/street.jpg',
+    //             },
+    //             {
+    //                 image_id: 2,
+    //                 data: '../images/street.jpg',
+    //             },
+    //         ]
+    //     }
+    // )
+    const [journeyDetail, setJourneyDetail] = useState({
+        events:[]
+    });
 
     return (
         <div className="container-lg shadow p-0 mb-3 bg-white" id="bodyContainer">
@@ -278,10 +163,15 @@ function Journey() {
                         <hr />
                         <div className="container-fluid">
                             <div className="row">
-                                {journeyData.journeys.map(
+                                {journeys.map(
+                                    (journey) => {
+                                        return (<JourneyThumbnail key={journey.journey_id} handleOpenModal={handleOpenModal} journey={journey} setJourneyDetail={setJourneyDetail} setClickJourneyId={setClickJourneyId} journeyEvent={journeyEvent} journeyDetail={journeyDetail}/>)
+                                    }
+                                )}
+                                {/* {journeys.map(
                                     (journey) => (<JourneyThumbnail key={journey.id} handleOpenModal={handleOpenModal} journey={journey} setJourneyDetail={setJourneyDetail} />)
                                 )
-                                }
+                                } */}
                                 <AddNewJourney />
                             </div>
                         </div>
@@ -289,7 +179,7 @@ function Journey() {
                 </div>
             </div>
             <BotSidebar />
-            <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} setJourneyDetail={setJourneyDetail}/>
+            <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} setJourneyEvent={setJourneyEvent} setJourneyDetail={setJourneyDetail} journeyDetail={journeyDetail}/>
         </div>
     );
 }

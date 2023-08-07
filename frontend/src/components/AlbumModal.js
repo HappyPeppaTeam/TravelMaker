@@ -2,6 +2,7 @@ import axios from 'axios';
 import Slider from '../components/Slick';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 
 function AlbumModal({ closeAlbumModal, albumData }) {
@@ -33,7 +34,7 @@ function AlbumModal({ closeAlbumModal, albumData }) {
 
     const deleteAlbum = async (e) => {
       const albumId = e.target.dataset.id;
-      const token = 'fgvuhbhinhhpi-bb876';
+      const token = Cookies.get('token');
       await axios.delete(`http://localhost/TravelMaker/Backend/public/api/albums/${token}/${albumId}`)
       .then(() => alert('相簿刪除成功!'));
       window.location.reload();

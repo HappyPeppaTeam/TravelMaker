@@ -2,6 +2,7 @@ import '../css/sidebar.css';
 import '../css/createAlbum.css';
 import React from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const { useState, useRef, useEffect } = React;
 
@@ -71,7 +72,7 @@ const CreateAlbum = () => {
     const [ tag, setTag ] = useState("");
     const [ description, setDescription ] = useState("");
 
-    const token = 'fgvuhbhinhhpi-bb876';
+    const token = Cookies.get('token');
 
     const handleSubmit = async (e) => {
         const formData = new FormData();

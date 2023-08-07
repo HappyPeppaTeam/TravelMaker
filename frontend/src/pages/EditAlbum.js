@@ -3,6 +3,7 @@ import '../css/createAlbum.css';
 import React from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const { useState, useRef, useEffect } = React;
 
@@ -73,7 +74,7 @@ const EditAlbum = () => {
     const [ tag, setTag ] = useState(state.tag);
     const [ description, setDescription ] = useState(state.description);
 
-    const token = 'fgvuhbhinhhpi-bb876';
+    const token = Cookies.get('token');
 
     const handleSubmit = async (e) => {
         const formData = new FormData();

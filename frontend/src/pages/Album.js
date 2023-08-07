@@ -5,6 +5,7 @@ import AlbumModal from '../components/AlbumModal';
 import { Modal } from 'bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const {  useState, useRef, useEffect } = React;
 
@@ -13,7 +14,7 @@ const Album = () => {
     const [ albumList, setAlbumList ] = useState([]);
     const [ albumData, setAlbumData ] = useState([]);
     const albumModal = useRef(null);
-    const token = 'fgvuhbhinhhpi-bb876';
+    const token = Cookies.get('token');
 
     useEffect(() => {
         albumModal.current = new Modal('#albumModal',{

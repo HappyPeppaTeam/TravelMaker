@@ -36,7 +36,7 @@ const JourneyModel = ({ handleCloseModal, calenderRef, calendarEditRef, journeyD
         if (editViewRef.current && regularViewRef.current) {
             regularViewRef.current.style.display = 'none';
             editViewRef.current.style.display = 'block';
-            calendarEditRef.current.getApi().render();
+            // calendarEditRef.current.getApi().render();
         }
     }
 
@@ -44,7 +44,7 @@ const JourneyModel = ({ handleCloseModal, calenderRef, calendarEditRef, journeyD
         if (editViewRef.current && regularViewRef.current) {
             regularViewRef.current.style.display = 'block';
             editViewRef.current.style.display = 'none';
-            calenderRef.current.getApi().render();
+            // calenderRef.current.getApi().render();
         }
     }
 
@@ -68,7 +68,7 @@ const JourneyModel = ({ handleCloseModal, calenderRef, calendarEditRef, journeyD
                                     className="ms-2">編輯</span></div>
                             </div>
                             <div id="journeyContainer" className="p-3 rounded shadow" style={journeyContainerStyle}>
-                                <CalendarView calenderRef={calenderRef} journeyDetail={journeyDetail} />
+                                {/* <CalendarView calenderRef={calenderRef} journeyDetail={journeyDetail} /> */}
                             </div>
                             <div id="mapContainer" style={mapContainerStyle} className="mt-3 rounded shadow">
                             </div>
@@ -94,7 +94,7 @@ const JourneyModel = ({ handleCloseModal, calenderRef, calendarEditRef, journeyD
                             <div className='mb-3'>
                                 <label className="form-label">行程表</label>
                                 <div id="editJourneyContainer" className="p-3 rounded shadow" style={journeyContainerStyle}>
-                                    <CalendarEditView calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} setJourneyDetail={setJourneyDetail}/>
+                                    {/* <CalendarEditView calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} setJourneyDetail={setJourneyDetail}/> */}
                                 </div>
                             </div>
 

@@ -88,5 +88,5 @@ return response()->json($unSetToken,200);
 });
 
 
-Route::get('/getJourney',[JourneyController::class, 'getUserJourneys']);
+Route::get('/getJourneys',[JourneyController::class, 'getUserJourneys']);
 Route::get('/getEvents',[JourneyController::class, 'getJourneyEvents']);

@@ -8,20 +8,6 @@ export default function RestaurantInner() {
 
     const commentModal = useRef(null);
 
-    const [test, setTest] = useState([{
-        ID: '1001',
-        Name: '餐廳名稱',
-        Description: '餐廳簡介',
-        Opentime: '營業時間'
-
-    },
-    {
-        ID: '1002',
-        Name: '餐廳名稱2',
-        Description: '餐廳簡介',
-        Opentime: '營業時間'
-
-    }]);
     const [attraction, setAttraction] = useState([{}]);
 
     console.log(attraction);

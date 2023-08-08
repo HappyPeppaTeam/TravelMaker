@@ -1,5 +1,18 @@
+import React from 'react';
 import '../css/restaurant.css';
+import axios from 'axios';
 export default function Restaurant_main() {
+    const { useState, useEffect } = React;
+
+    const [attraction, setAttraction] = useState([{}]);
+
+    console.log(attraction);
+    useEffect(() => {
+        (async () => {
+            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/test`);
+            setAttraction(response.data);
+        })();
+    }, [])
     return (
         <div className="main">
             <div className="d-flex justify-content-center">
@@ -32,6 +45,54 @@ export default function Restaurant_main() {
                                     <h4><b>森森燒肉 台中西屯店</b></h4>
                                     <p>★ ★ ★ ★ ☆ 9527條評論</p>
                                     <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div className="col-xl-4 col-sm-6 p-3">
+                        <a href="" style={{ 'text-decoration': 'none' }}>
+                            <div className="card">
+                                <img src={attraction[0].PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : attraction[0].PictureUrl1} alt={attraction[0].Name} />
+                                <div className="container p-3">
+                                    <h5><b>{attraction[0].Name}</b></h5>
+                                    <p>營業時間:{attraction[0].OpenTime}</p>
+                                    <p>{attraction[0].Address.substring(0, 6)}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div className="col-xl-4 col-sm-6 p-3">
+                        <a href="" style={{ 'text-decoration': 'none' }}>
+                            <div className="card">
+                                <img src={attraction[1].PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : attraction[1].PictureUrl1} alt={attraction[1].Name} />
+                                <div className="container p-3">
+                                    <h5><b>{attraction[1].Name}</b></h5>
+                                    <p>營業時間:{attraction[1].OpenTime}</p>
+                                    <p>{attraction[1].Address.substring(0, 6)}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div className="col-xl-4 col-sm-6 p-3">
+                        <a href="" style={{ 'text-decoration': 'none' }}>
+                            <div className="card">
+                                <img src={attraction[2].PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : attraction[0].PictureUrl1} alt={attraction[0].Name} />
+                                <div className="container p-3">
+                                    <h5><b>{attraction[2].Name}</b></h5>
+                                    <p>營業時間:{attraction[2].OpenTime}</p>
+                                    <p>{attraction[2].Address.substring(0, 6)}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div className="col-xl-4 col-sm-6 p-3">
+                        <a href="" style={{ 'text-decoration': 'none' }}>
+                            <div className="card">
+                                <img src={attraction[3].PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : attraction[0].PictureUrl1} alt={attraction[0].Name} />
+                                <div className="container p-3">
+                                    <h5><b>{attraction[3].Name}</b></h5>
+                                    <p>營業時間:{attraction[3].OpenTime}</p>
+                                    <p>{attraction[3].Address.substring(0, 6)}</p>
                                 </div>
                             </div>
                         </a>

@@ -20,24 +20,17 @@ const EventModal = ({calendarEditRef, clickInfo, setEditEvents, editEvents}) => 
     });
 
     useEffect(() => {
-        setNewEvent({
-            ...newEvent,
+        setNewEvent((prevEvent) => ({
+            ...prevEvent,
             start: clickInfo.date,
             end: moment(clickInfo.date).add(30, 'm').toDate(),
-        })
+        }))
     }, [clickInfo])
 
     
 
     const handleEventTitle = (e) => {
-        // setJourneyEvent({
-        //     ...journeyEvent,
-        //     start: clickInfo.date,
-        //     end: moment(clickInfo.date).add(30, 'm').toDate(),
-        //     title: e.target.value,
-        // })
-        // console.log(journeyEvent);
-
+    
         setNewEvent({
             ...newEvent,
             title: e.target.value,
@@ -45,15 +38,7 @@ const EventModal = ({calendarEditRef, clickInfo, setEditEvents, editEvents}) => 
     }
 
     const handleEventDescription = (e) => {
-        // setJourneyEvent({
-        //     ...journeyEvent,
-        //     start: clickInfo.date,
-        //     end: moment(clickInfo.date).add(30, 'm').toDate(),
-        //     description: e.target.value,
-        // })
-        // console.log(journeyEvent.start);   
-        // console.log(journeyEvent.end);
-
+    
         setNewEvent({
             ...newEvent, 
             description: e.target.value,
@@ -121,25 +106,24 @@ function CalendarEditView({ calendarEditRef, journeyDetail, setJourneyDetail}) {
 
     const [clickInfo, setClickInfo] = useState('');
     const [editEvents, setEditEvents] = useState([]);
+    // setEditEvents(journeyDetail.events);
 
-    (() => {
+    useEffect(() => {
         setEditEvents(journeyDetail.events);
-        const currentEvents = editEvents.map(({event_name, event_description, start_time, end_time}) => ({title: event_name, description: event_description, start: new Date(start_time), end: new Date(end_time)}));
-        currentEvents.map((event) => {
-            calendarEditRef.current.calendar.addEvent(event);
-        })
-    })();
-    
-    useEffect(() => {
-        console.log('currentEvents ', currentEvents);
-        console.log('Events ', editEvents);
-        console.log("journeyDetail: ",editEvents);
-    }, [journeyDetail])
+        // const currentEvents = editEvents.map(({event_name, event_description, start_time, end_time}) => ({title: event_name, description: event_description, start: new Date(start_time), end: new Date(end_time)}));
+        // currentEvents.map((event) => {
+        //     calendarEditRef.current.calendar.addEvent(event);
+        // })
+        // console.log('currentEvents ', currentEvents);
+        // console.log('Events ', editEvents);
+        // console.log("editEvents: ",editEvents);
+    }, [journeyDetail.events])
 
-    useEffect(() => {
-        console.log("edit view: ",editEvents);
-        calendarEditRef.current.getApi().render();
-    }, [editEvents])
+    // useEffect(() => {
+    //     console.log("edit view: ",editEvents);
+    //     calendarEditRef.current.getApi().render();
+    // }, [editEvents])
+
 
 
     return (
@@ -169,7 +153,7 @@ function CalendarEditView({ calendarEditRef, journeyDetail, setJourneyDetail}) {
                 selectable={true}
                 initialDate={new Date(journeyDetail.journey_start)}
                 editable={true}
-               
+                initialEvents={editEvents.map(({event_name, event_description, start_time, end_time}) => ({title: event_name, description: event_description, start: new Date(start_time), end: new Date(end_time)}))}
                 dateClick={function (info) {
                     setClickInfo(info);
                     editModalRef.current.show();

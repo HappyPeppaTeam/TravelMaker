@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef} from "react";
 import CalendarView from "./CalenderView";
 import CalendarEditView from "./CalendarEditView";
 
@@ -52,6 +52,22 @@ const JourneyModel = ({
       calenderRef.current.getApi().render();
     }
   };
+
+
+  // const [editEvents, setEditEvents] = useState([]);
+
+  // useMemo(() => {
+  //   setEditEvents(journeyDetail.events);
+  //   console.log("editEvents: ",editEvents);
+  // }, [journeyDetail])
+
+
+  // const handleSaveChange = () => {
+  //   setJourneyDetail({
+  //     ...journeyDetail,
+  //     events: editEvents,
+  //   })
+  // }
 
   return (
     <div

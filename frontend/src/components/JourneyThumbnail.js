@@ -15,13 +15,15 @@ const thumbNailStyle = {
 function JourneyThumbnail({handleOpenModal, journey, setClickJourneyId}) {
 
 
+    const handleClickThumbnail = () => {
+        setClickJourneyId(journey.journey_id);
+        handleOpenModal();
+    }
+
     return (
         <div
             className="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center dropdown" 
-            onClick={() => {
-                setClickJourneyId(journey.journey_id);
-                handleOpenModal();
-            }}>
+            onClick={handleClickThumbnail}>
             <div className="rounded shadow"
                 style={thumbNailStyle}> 
                 <div className="overlay rounded d-flex justify-content-center align-items-center"> 

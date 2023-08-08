@@ -16,11 +16,11 @@ function CalendarView({ calenderRef, journeyDetail }) {
             ref={calenderRef}
             views={{
                 journeyTimeView: {
-                    type: 'timeGrid',
+                    type: 'timeGridWeek',
                     buttonText: 'Calendar'
                 },
                 journeyListView: {
-                    type: 'list'
+                    type: 'listYear'
                 },
                 journeyMonthView: {
                     type: 'dayGridMonth',
@@ -31,10 +31,7 @@ function CalendarView({ calenderRef, journeyDetail }) {
                 start: 'journeyListView journeyTimeView journeyMonthView',
                 end: 'prev,next'
             }}
-            visibleRange={{
-                start: new Date(journeyDetail.journey_start),
-                end: new Date(journeyDetail.journey_end),
-            }}
+            initialDate={new Date(journeyDetail.journey_start)}
             events={journeyDetail.events.map(({ event_name, event_description, start_time, end_time }) => ({ title: event_name, description: event_description, start: new Date(start_time), end: new Date(end_time) }))}
         >
         </FullCalendar>

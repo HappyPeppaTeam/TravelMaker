@@ -35,18 +35,6 @@ const AddNewJourney = () => {
 }
 
 
-// const TESTURL = 'http://localhost/TravelMaker/Backend/public/api/getJourney?user_id=1';
-
-// const fetchJourneyData = () => {
-//     return axios.get(TESTURL)
-//     .then((response) => {   
-//         console.log(response);
-//         return response;
-//     })
-//     .catch((error) => console.log(error))
-// }
-
-
 
 
 function Journey() {
@@ -54,7 +42,7 @@ function Journey() {
 
     const [journeys, setJourneys] = useState([
         {
-            journey_id: 1,
+            journey_id: 0,
             journey_name: "test",
             description: "test",
             user_id: 0,
@@ -85,147 +73,8 @@ function Journey() {
     }, [])
 
 
-    // const [journeyData, setJourneyData] = useState({
-    //     journeys: [
-    //         {
-    //             id: 1,
-    //             title: 'Trip to Taipei',
-    //             description: 'plan to stay from 5/23 to 5/25',
-    //             editTime: '2023/4/5 13:00',
-    //             start: '2023-05-23',
-    //             end: '2023-05-23',
-
-    //             journeyEvents: [
-    //                 {
-    //                     id: 1,
-    //                     name: 'breakfast',
-    //                     description: 'McDonald',
-    //                     start: '2023/5/23 8:00',
-    //                     end: '2023/5/23 9:00',
-    //                 },
-    //                 {
-    //                     id: 2,
-    //                     name: 'lunch',
-    //                     description: 'McDonald',
-    //                     start: '2023/5/23 12:00',
-    //                     end: '2023/5/23 13:00',
-    //                 },
-    //             ],
-
-    //             images: [
-    //                 {
-    //                     image_id: 1,
-    //                     data: '../images/street.jpg',
-    //                 },
-    //                 {
-    //                     image_id: 2,
-    //                     data: '../images/street.jpg',
-    //                 },
-    //             ]
-    //         },
-    //         {
-    //             id: 3,
-    //             title: 'Trip to Taichung',
-    //             description: 'plan to stay from 5/26 to 5/27',
-    //             editTime: '2023/4/5 13:00',
-    //             start: '2023-05-26',
-    //             end: '2023-05-27',
-    //             journeyEvents: [
-    //                 {
-    //                     id: 4,
-    //                     name: 'breakfast',
-    //                     description: 'McDonald',
-    //                     start: '2023/5/26 8:00',
-    //                     end: '2023/5/26 9:00',
-    //                 },
-    //                 {
-    //                     id: 6,
-    //                     name: 'lunch',
-    //                     description: 'McDonald',
-    //                     start: '2023/5/27 12:00',
-    //                     end: '2023/5/27 13:00',
-    //                 },
-    //             ],
-
-    //             images: [
-    //                 {
-    //                     image_id: 4,
-    //                     data: '../images/street.jpg',
-    //                 },
-    //                 {
-    //                     image_id: 5,
-    //                     data: '../images/street.jpg',
-    //                 },
-    //             ]
-    //         },
-    //         {
-    //             id: 4,
-    //             title: 'Trip to Tainan',
-    //             description: 'plan to stay from 6/1 to 6/8',
-    //             editTime: '2023/4/5 13:00',
-    //             start: '2023-06-01',
-    //             end: '2023-06-08',
-    //             journeyEvents: [
-    //                 {
-    //                     id: 9,
-    //                     name: 'breakfast',
-    //                     description: 'McDonald',
-    //                     start: '2023/6/1 8:00',
-    //                     end: '2023/6/1 9:00',
-    //                 },
-    //                 {
-    //                     id: 10,
-    //                     name: 'lunch',
-    //                     description: 'McDonald',
-    //                     start: '2023/6/1 12:00',
-    //                     end: '2023/6/1 13:00',
-    //                 },
-    //                 {
-    //                     id: 11,
-    //                     name: 'dinner',
-    //                     description: 'McDonald',
-    //                     start: '2023/6/1 18:00',
-    //                     end: '2023/6/1 19:00',
-    //                 },
-    //                 {
-    //                     id: 9,
-    //                     name: 'breakfast',
-    //                     description: 'McDonald',
-    //                     start: '2023/6/8 8:00',
-    //                     end: '2023/6/8 9:00',
-    //                 },
-    //                 {
-    //                     id: 10,
-    //                     name: 'lunch',
-    //                     description: 'McDonald',
-    //                     start: '2023/6/8 12:00',
-    //                     end: '2023/6/8 13:00',
-    //                 },
-    //                 {
-    //                     id: 11,
-    //                     name: 'dinner',
-    //                     description: 'McDonald',
-    //                     start: '2023/6/8 18:00',
-    //                     end: '2023/6/8 19:00',
-    //                 },
-    //             ],
-
-    //             images: [
-    //                 {
-    //                     image_id: 4,
-    //                     data: '../images/street.jpg',
-    //                 },
-    //                 {
-    //                     image_id: 5,
-    //                     data: '../images/street.jpg',
-    //                 },
-    //             ]
-    //         },
-    //     ],
-    // });
-
     const [journeyDetail, setJourneyDetail] = useState({
-        journey_id: 1,
+        journey_id: 0,
         journey_name: "test",
         description: "test",
         user_id: 0,
@@ -237,11 +86,11 @@ function Journey() {
         events: [],
 
     });
-    const [clickJourneyId, setClickJourneyId] = useState('');
+
+    const [clickJourneyId, setClickJourneyId] = useState(0);
 
     useEffect(() => {
         const getEventUrl = `http://localhost/TravelMaker/Backend/public/api/getEvents?journey_id=${clickJourneyId}`;
-
         axios.get(getEventUrl)
             .then((response) => {
                 if (response.status < 200 || response.status >= 300) {
@@ -255,13 +104,13 @@ function Journey() {
                     ...currentJourney,
                     events: response.data,
                 })
-                console.log("journeyDetail response:", journeyDetail);
+                // console.log("journeyDetail response:", journeyDetail);
             })
             .catch((error) => {
                 console.error('Axios error:', error);
             })
 
-    }, [clickJourneyId])
+    }, [clickJourneyId, journeys])
 
 
 
@@ -286,44 +135,10 @@ function Journey() {
         journeyModalRef.current.hide();
     }
 
-    // const [journeyDetail, setJourneyDetail] = useState(
-    //     {
-    //         id: 1,
-    //         title: 'Trip to Taipei',
-    //         description: 'plan to stay from 5/23 to 5/25',
-    //         editTime: '2023/4/5 13:00',
-    //         start: '2023-05-23',
-    //         end: '2023-05-23',
 
-    //         journeyEvents: [
-    //             {
-    //                 id: 1,
-    //                 name: 'breakfast',
-    //                 description: 'McDonald',
-    //                 start: '2023/5/23 8:00',
-    //                 end: '2023/5/23 9:00',
-    //             },
-    //             {
-    //                 id: 2,
-    //                 name: 'lunch',
-    //                 description: 'McDonald',
-    //                 start: '2023/5/23 12:00',
-    //                 end: '2023/5/23 13:00',
-    //             },
-    //         ],
-
-    //         images: [
-    //             {
-    //                 image_id: 1,
-    //                 data: '../images/street.jpg',
-    //             },
-    //             {
-    //                 image_id: 2,
-    //                 data: '../images/street.jpg',
-    //             },
-    //         ]
-    //     }
-    // )
+    // const [clickInfo, setClickInfo] = useState('');
+    // const [editEvents, setEditEvents] = useState([]);
+    
 
     return (
         <div className="container-lg shadow p-0 mb-3 bg-white" id="bodyContainer">
@@ -351,7 +166,7 @@ function Journey() {
                 </div>
             </div>
             <BotSidebar />
-            <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} setJourneyDetail={setJourneyDetail} />
+            <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} setJourneyDetail={setJourneyDetail} clickJourneyId={clickJourneyId}/>
         </div>
     );
 }

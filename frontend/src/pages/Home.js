@@ -146,10 +146,10 @@ export default function Home() {
     return (
         <div className="container mt-3">
           <div className="filter d-flex justify-content-evenly mt-4 mx-auto">
-            <Link to="/restaurant">餐廳</Link>
-            <Link to="/attractions">景點</Link>
-            <Link to="/forum">討論區</Link>
-            <a href="#">自助旅遊排程</a>
+            <Link to="/restaurant" className='filterBtn mx-2'>餐廳</Link>
+            <Link to="/attractions" className='filterBtn mx-2'>景點</Link>
+            <Link to="/forum" className='filterBtn mx-2'>討論區</Link>
+            <Link to="/journey" className='filterBtn mx-2'>自助旅遊排程</Link>
           </div>
 
           <div

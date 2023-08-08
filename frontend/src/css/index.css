@@ -75,6 +75,21 @@ body {
   text-decoration: none;
 }
 
+.cardShadow {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+.cardLink:hover .cardShadow {
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+  transform: scale(1.03);
+  transition: all .5s ease-out;
+}
+
+.cardLink:hover .cardScale {
+  transform: scale(1.03);
+  transition: all .5s ease-out;
+}
+
 .popularRestaurant img {
   height: 180px;
   object-fit: cover;
@@ -95,6 +110,7 @@ body {
 
 .popularRestaurant .restaurantImg{
   position: relative;
+  border-radius: 20px;
 }
 
 .mask {

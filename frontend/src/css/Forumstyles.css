@@ -23,7 +23,12 @@
     height: 35px;
 }
 
-.sub-discussion-board a {
+.sub-discussion-board-home button{
+    width: 145px;
+    height: 35px;
+}
+
+.sub-discussion-board-home a {
     text-decoration: none;
     color: white;
 }

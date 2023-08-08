@@ -82,7 +82,7 @@
   font-size: 14px;
   line-height: 1.5;
   color: gray;
-  max-width: 600px;
+  max-width: 500px;
   overflow: hidden;
   text-align: left;
   text-overflow: ellipsis;
@@ -98,4 +98,25 @@
   .discussion-page-list-text {
     display: none;
   }
+}
+
+@media (max-width:1210px) {
+.discussion-page-list-text {
+  max-width: 350px;
+}
+}
+
+.discussion-page-list-author {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.discussion-page-list-views {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.discussion-page-list-date {
+  text-align: center;
+  vertical-align: middle;
 }

@@ -1,101 +1,19 @@
 import '../css/Forumstyles.css';
 import '../css/Article.css';
 import MessageBoard from "../components/MessageBoard";
+import DiscussionBoard from '../components/DiscussionBoardList';
+import ArticleComponents from '../components/ArticleComponents';
+import { useState } from 'react';
+import { useLocation } from 'react-router-dom'
 
 export default function Article() {
+    let { state } = useLocation()
+    console.log(state);
 
     return (
         <div className="main">
             {/* <!-- 導覽列 --> */}
-            <div className="discussion-board bg-blue-3 mx-0 row gy-2">
-                <div className="sub-discussion-board col-6 col-md">
-                    <button className="btn btn-secondary" type="button" id="defaultDropdown">
-                        <a href="">首頁</a>
-                    </button>
-                </div>
-                <div className="sub-discussion-board col-6 col-md">
-                    <button
-                        className="btn btn-secondary dropdown-toggle"
-                        type="button"
-                        id="defaultDropdown"
-                        data-bs-toggle="dropdown"
-                        data-bs-auto-close="true"
-                        aria-expanded="false"
-                    >
-                        北部討論版
-                    </button>
-                    <ul className="dropdown-menu" aria-labelledby="defaultDropdown">
-                        <li><a className="dropdown-item" href="#">北部綜合討論版</a></li>
-                        <li><a className="dropdown-item" href="#">臺北市</a></li>
-                        <li><a className="dropdown-item" href="#">新北市</a></li>
-                        <li><a className="dropdown-item" href="#">宜蘭縣</a></li>
-                        <li><a className="dropdown-item" href="#">基隆市</a></li>
-                        <li><a className="dropdown-item" href="#">桃園市</a></li>
-                        <li><a className="dropdown-item" href="#">新竹市</a></li>
-                        <li><a className="dropdown-item" href="#">新竹縣</a></li>
-                    </ul>
-                </div>
-                <div className="sub-discussion-board col-6 col-md">
-                    <button
-                        className="btn btn-secondary dropdown-toggle"
-                        type="button"
-                        id="defaultDropdown"
-                        data-bs-toggle="dropdown"
-                        data-bs-auto-close="true"
-                        aria-expanded="false"
-                    >
-                        中部討論版
-                    </button>
-                    <ul className="dropdown-menu" aria-labelledby="defaultDropdown">
-                        <li><a className="dropdown-item" href="#">中部綜合討論版</a></li>
-                        <li><a className="dropdown-item" href="#">臺中市</a></li>
-                        <li><a className="dropdown-item" href="#">苗栗縣</a></li>
-                        <li><a className="dropdown-item" href="#">彰化縣</a></li>
-                        <li><a className="dropdown-item" href="#">南投縣</a></li>
-                        <li><a className="dropdown-item" href="#">雲林縣</a></li>
-                    </ul>
-                </div>
-                <div className="sub-discussion-board col-6 col-md">
-                    <button
-                        className="btn btn-secondary dropdown-toggle"
-                        type="button"
-                        id="defaultDropdown"
-                        data-bs-toggle="dropdown"
-                        data-bs-auto-close="true"
-                        aria-expanded="false"
-                    >
-                        南部討論版
-                    </button>
-                    <ul className="dropdown-menu" aria-labelledby="defaultDropdown">
-                        <li><a className="dropdown-item" href="#">南部綜合討論版</a></li>
-                        <li><a className="dropdown-item" href="#">嘉義市</a></li>
-                        <li><a className="dropdown-item" href="#">嘉義縣</a></li>
-                        <li><a className="dropdown-item" href="#">臺南市</a></li>
-                        <li><a className="dropdown-item" href="#">高雄市</a></li>
-                        <li><a className="dropdown-item" href="#">屏東縣</a></li>
-                    </ul>
-                </div>
-                <div className="sub-discussion-board col-6 col-md">
-                    <button
-                        className="btn btn-secondary dropdown-toggle"
-                        type="button"
-                        id="defaultDropdown"
-                        data-bs-toggle="dropdown"
-                        data-bs-auto-close="true"
-                        aria-expanded="false"
-                    >
-                        花東離島討論版
-                    </button>
-                    <ul className="dropdown-menu" aria-labelledby="defaultDropdown">
-                        <li><a className="dropdown-item" href="#">花東離島綜合討論版</a></li>
-                        <li><a className="dropdown-item" href="#">花蓮縣</a></li>
-                        <li><a className="dropdown-item" href="#">臺東縣</a></li>
-                        <li><a className="dropdown-item" href="#">澎湖縣</a></li>
-                        <li><a className="dropdown-item" href="#">金門縣</a></li>
-                        <li><a className="dropdown-item" href="#">連江縣</a></li>
-                    </ul>
-                </div>
-            </div>
+            <DiscussionBoard></DiscussionBoard>
             {/* <!-- 文章 --> */}
             <section
                 className="container Article-page"
@@ -125,23 +43,7 @@ export default function Article() {
                         className="col-12 col-lg-9 col-xl-10 Article-information-main"
                         style={{ border: "1px blue solid", backgroundColor: "aquamarine" }}
                     >
-                        <div
-                            className="Article-information-main-header"
-                            style={{ border: "1px seagreen solid" }}
-                        >
-                            <h1>文章標題</h1>
-                            <div>
-                                <span>發文時間</span>
-                                <span>點閱率</span>
-                            </div>
-                        </div>
-                        <hr />
-                        <div
-                            className="Article-information-main-body"
-                            style={{ border: "1px blue solid" }}
-                        >
-                            <div>文章內容</div>
-                        </div>
+                        <ArticleComponents board_text_id={state}></ArticleComponents>
                         <hr />
                         <div
                             className="Article-information-main-footer"
@@ -192,7 +94,7 @@ export default function Article() {
                             <div
                                 className="Article-information-footer-messageboard-user"
                                 style={{ border: "1px khaki solid" }}
-                            >
+                                >
                                 <MessageBoard></MessageBoard>
                             </div>
                         </div>

@@ -16,6 +16,8 @@ import Article from "./pages/Article";
 import Discussion from "./pages/Discussion";
 import Journey from "./pages/Journey";
 import NewJourney from "./pages/NewJourney"; 
+import AddArticle from "./pages/AddArticle";
+
 
 function App() {
   return (
@@ -27,8 +29,9 @@ function App() {
           <Route path='/attractions' element={<Attractions/>}></Route>
           <Route path='/memberCenter' element={<MemberCenter/>}></Route>
           <Route path='/forum' element={<Forum/>}></Route>
-          <Route path='/forum/discussion/article' element={<Article/>}></Route>
-          <Route path='/forum/discussion' element={<Discussion/>}></Route>
+          <Route path='/forum/discussion/:id' element={<Discussion/>}></Route>
+          <Route path='/forum/discussion/addarticle' element={<AddArticle/>}></Route>
+          <Route path='/forum/discussion/article/:id' element={<Article/>}></Route>
           <Route path='/restaurant' element={<Restaurant_main/>}></Route>
           <Route path="/journey" element={<Journey/>} ></Route>
           <Route path="/journey/newjourney" element={<NewJourney/>} ></Route>

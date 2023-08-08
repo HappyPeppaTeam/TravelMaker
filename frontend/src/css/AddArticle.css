@@ -1,0 +1,9 @@
+.top-post_article {
+    display: flex;
+    justify-content: end;
+    padding: 0.5em;
+    
+}
+.article_editor {
+    margin: 0.5em;
+}

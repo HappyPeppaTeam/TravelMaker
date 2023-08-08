@@ -1,10 +1,16 @@
 import '../css/Forumstyles.css';
+import ForumCards from '../components/ForumCard';
+import DiscussionBoard from '../components/DiscussionBoardList';
+import ForumArticleList from '../components/ForumArticleList';
+
 
 export default function Forum() {
+
   return (
-    <div className="main container">
+    <div className="main">
       {/* <!-- 導覽列 --> */}
-      <div className="discussion-board bg-blue-3 mx-0 row gy-2">
+      <DiscussionBoard></DiscussionBoard>
+      {/* <div className="discussion-board bg-blue-3 mx-0 row gy-2">
         <div className="sub-discussion-board col-6 col-md">
           <button className="btn btn-secondary" type="button" id="defaultDropdown">
             <a href="">首頁</a>
@@ -68,8 +74,8 @@ export default function Forum() {
             <li><a className="dropdown-item" href="#">連江縣</a></li>
           </ul>
         </div>
-      </div>
-
+      </div> */}
+      <div className="container">
       {/* <!-- 輪播圖 --> */}
       <div className="forum-carousel">
         <div id="carouselExampleIndicators" className="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -108,10 +114,12 @@ export default function Forum() {
         </div>
       </div>
       {/* <!-- 精選文章 --> */}
-      <div className="row">
+      <div>
         <h1>精選文章</h1>
         <p>想看看網友是怎麼規劃的嗎</p>
-        <div className="col-md-6 mb-1">
+        <ForumCards></ForumCards>
+
+        {/* <div className="col-md-6 mb-1">
           <div className="card article">
             <img src={require('../images/card-1.jpg')} className="card-img-top card-img-size" alt="..." />
             <div className="card-body">
@@ -136,61 +144,14 @@ export default function Forum() {
               <a href="#" className="card-link">Card link</a>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       {/* <!-- 最新討論串 --> */}
       <div className="row">
         <h1>最新討埨串</h1>
-
-        <table className="table table-striped table-bordered">
-          <tbody>
-            <tr>
-              <th>標題</th>
-              <th>回覆</th>
-              <th>點閱率</th>
-              <th>發表日期</th>
-            </tr>
-            <tr>
-              <td><a href="">第一篇文章</a></td>
-              <td>user</td>
-              <td>點閱率</td>
-              <td>2023.7.20</td>
-            </tr>
-            <tr>
-              <td><a href="">第二篇文章</a></td>
-              <td>user</td>
-              <td>點閱率</td>
-              <td>2023.7.20</td>
-            </tr>
-            <tr>
-              <td><a href="">第三篇文章</a></td>
-              <td>user</td>
-              <td>點閱率</td>
-              <td>2023.7.20</td>
-            </tr>
-            <tr>
-              <td><a href="">第四篇文章</a></td>
-              <td>user</td>
-              <td>點閱率</td>
-              <td>2023.7.20</td>
-            </tr>
-            <tr>
-              <td><a href="">第五篇文章</a></td>
-              <td>user</td>
-              <td>點閱率</td>
-              <td>2023.7.20</td>
-            </tr>
-            <tr>
-              <td><a href="">第六篇文章</a></td>
-              <td>user</td>
-              <td>點閱率</td>
-              <td>2023.7.20</td>
-            </tr>
-          </tbody>
-        </table>
-
+        <ForumArticleList></ForumArticleList>
       </div>
-
+      </div>
     </div>
   )
 }

@@ -19,7 +19,7 @@ export default function Attractionmore() {
 
 
         (async () => {
-            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/test`);
+            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction`);
             console.log(response);
             setAttractionPicture(response.data);
         })();

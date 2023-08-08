@@ -29,10 +29,52 @@ export default function RestaurantSearch() {
         })();
     }, [])
 
+    const zipCodes = [...new Set(attraction.map(item => item.ZipCode))];
+
+    const [selectedZipCodes, setSelectedZipCodes] = useState([]);
+  
+    const handleCheckboxChange = (event) => {
+      const zipCode = Number(event.target.value);
+      setSelectedZipCodes(prevSelected => {
+        if (prevSelected.includes(zipCode)) {
+          return prevSelected.filter(item => item !== zipCode);
+        } else {
+          return [...prevSelected, zipCode];
+        }
+      });
+    };
+
     return (
         <div className="main">
             <div className="container">
                 <div className="p-5"><a className="rm-link-style" href="">餐廳</a>＞<a className="rm-link-style" href="">台中市</a>＞西屯區</div>
+                {zipCodes.map(zipCode => (
+        <div key={zipCode}>
+          <input
+            type="checkbox"
+            id={`zipCode-${zipCode}`}
+            name=""
+            value={zipCode}
+            checked={selectedZipCodes.includes(zipCode)}
+            onChange={handleCheckboxChange}
+          />
+          <label htmlFor={`zipCode-${zipCode}`}>ZipCode: {zipCode}</label>
+        </div>
+      ))}
+      {attraction.map(item => (
+        selectedZipCodes.includes(item.ZipCode) && (
+          <div key={item.ID} className="col-xl-4 col-sm-6 p-3">
+            <a href="" style={{ textDecoration: 'none' }}>
+              <div className="card">
+                <div className="container p-3">
+                  <h5><b>{item.Name}</b></h5>
+                  <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        )
+      ))}
                 <aside className="p-4">
                     <nav id="sidebarMenu" className="collapse d-lg-block sidebar collapse bg-white">
                         <div className="position-sticky">

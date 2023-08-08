@@ -51,7 +51,7 @@ const AddNewJourney = () => {
 
 function Journey() {
 
-    
+
     const [journeys, setJourneys] = useState([
         {
             journey_id: 1,
@@ -66,25 +66,25 @@ function Journey() {
         }
     ]);
 
-    useEffect(() => { 
+    useEffect(() => {
         const getJourneyUrl = 'http://localhost/TravelMaker/Backend/public/api/getJourneys?user_id=1';
 
         axios.get(getJourneyUrl)
-        .then((response) => {
-            if (response.status < 200 || response.status >= 300) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response;
-        })
-        .then((response) => {
-            setJourneys(response.data);
-        })
-        .catch((error) => {
-            console.error('Axios error:', error);
-        })
+            .then((response) => {
+                if (response.status < 200 || response.status >= 300) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response;
+            })
+            .then((response) => {
+                setJourneys(response.data);
+            })
+            .catch((error) => {
+                console.error('Axios error:', error);
+            })
     }, [])
 
-    
+
     // const [journeyData, setJourneyData] = useState({
     //     journeys: [
     //         {
@@ -224,30 +224,42 @@ function Journey() {
     //     ],
     // });
 
-    const [journeyDetail, setJourneyDetail] = useState([]);
-    const [clickJourneyId, setClickJourneyId] = useState(1);
+    const [journeyDetail, setJourneyDetail] = useState({
+        journey_id: 1,
+        journey_name: "test",
+        description: "test",
+        user_id: 0,
+        privacy: 0,
+        thumbnail_id: 0,
+        edit_time: "2023-07-26 15:18:33",
+        journey_start: "2023-07-25 08:00:00",
+        journey_end: "2023-07-25 19:00:00",
+        events: [],
+
+    });
+    const [clickJourneyId, setClickJourneyId] = useState('');
 
     useEffect(() => {
         const getEventUrl = `http://localhost/TravelMaker/Backend/public/api/getEvents?journey_id=${clickJourneyId}`;
 
         axios.get(getEventUrl)
-        .then((response) => {
-            if (response.status < 200 || response.status >= 300) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response; 
-        })
-        .then((response) => {
-            const currentJourney = journeys.find(journey => journey.journey_id === clickJourneyId);
-            setJourneyDetail({
-                ...currentJourney,
-                events: response.data,
+            .then((response) => {
+                if (response.status < 200 || response.status >= 300) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response;
             })
-            console.log(journeyDetail);
-        })
-        .catch((error) => {
-            console.error('Axios error:', error);
-        })
+            .then((response) => {
+                const currentJourney = journeys.find(journey => journey.journey_id === clickJourneyId);
+                setJourneyDetail({
+                    ...currentJourney,
+                    events: response.data,
+                })
+                console.log("journeyDetail response:", journeyDetail);
+            })
+            .catch((error) => {
+                console.error('Axios error:', error);
+            })
 
     }, [clickJourneyId])
 
@@ -264,7 +276,6 @@ function Journey() {
             calenderRef.current.getApi().render();
             calendarEditRef.current.getApi().render();
         })
-        // console.log(calendarEditRef);
     }, []);
 
     const handleOpenModal = () => {
@@ -331,7 +342,7 @@ function Journey() {
                         <div className="container-fluid">
                             <div className="row">
                                 {journeys.map((journey) => {
-                                    return(<JourneyThumbnail key={journey.journey_id} handleOpenModal={handleOpenModal} journey={journey}/>)
+                                    return (<JourneyThumbnail key={journey.journey_id} handleOpenModal={handleOpenModal} journey={journey} setClickJourneyId={setClickJourneyId} />)
                                 })}
                                 <AddNewJourney />
                             </div>
@@ -340,7 +351,7 @@ function Journey() {
                 </div>
             </div>
             <BotSidebar />
-            <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} setJourneyDetail={setJourneyDetail}/>
+            <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} setJourneyDetail={setJourneyDetail} />
         </div>
     );
 }

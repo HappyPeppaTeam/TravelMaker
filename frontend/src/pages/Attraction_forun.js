@@ -13,32 +13,32 @@ export default function Attraction_forun() {
         }
     }
 
-    
+
 
 
     return (
         <>
-            <div className="backgroundmountain" style={{ 'backgroundImage': 'url()' }}>
+            <div className="backgroundmountain">
                 <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" />
                 <div className="container hyperlink-location" >
-                    <Link to = "#" className="button-hyperlink">餐廳</Link>
+                    <Link to="#" className="button-hyperlink">餐廳</Link>
                     <Link to="/attractions" className="button-hyperlink">景點</Link>
-                    <Link to = "#" className="button-hyperlink">討論區</Link>
-                    <Link to = "#" className="button-hyperlink">自助旅遊排程</Link>
+                    <Link to="#" className="button-hyperlink">討論區</Link>
+                    <Link to="#" className="button-hyperlink">自助旅遊排程</Link>
                 </div>
             </div>
             <div style={{ 'display': 'grid' }}>
                 <div className="container-fluid d-flex m-0 p-0">
                     <div className="sidenav">
-                        <h3 style={{ 'color': 'black' }}><b>種類</b></h3>
-                        <Link to ="/attractions/Attractionmore">夜市</Link>
-                        <Link to ="/attractions/Attractionmore">觀光工廠</Link>
-                        <Link to ="/attractions/Attractionmore">港口</Link>
-                        <Link to ="/attractions/Attractionmore">市集</Link>
-                        <Link to ="/attractions/Attractionmore">購物</Link>
-                        <Link to ="/attractions/Attractionmore">人文景點</Link>
-                        <Link to ="/attractions/Attractionmore">自然景觀</Link>
-                        <h3 style={{ 'color': 'black' }}><b>地區</b></h3>
+                        <Link to="/attractions/Attractionattraction"><h3 style={{ 'color': 'black' }}><b>種類</b></h3></Link>
+                        <Link to="/attractions/Attractionmore">夜市</Link>
+                        <Link to="/attractions/Attractionmore">港口</Link>
+                        <Link to="/attractions/Attractionmore">市集</Link>
+                        <Link to="/attractions/Attractionmore">購物</Link>
+                        <Link to="/attractions/Attractionmore">人文景點</Link>
+                        <Link to="/attractions/Attractionmore">自然景觀</Link>
+                        <Link to="/attractions/Attractionmore">觀光工廠</Link>
+                        <Link to="/attractions/Attractioncountry"><h3 style={{ 'color': 'black' }}><b>地區</b></h3></Link>
                         <button className="dropdown-btn" onClick={(e) => {
                             dropDown(e);
                         }}>基隆
@@ -644,18 +644,18 @@ export default function Attraction_forun() {
                         </fieldset>
                         <div className="pagination-wrapper">
                             <div className="pagination">
-                                <Link to = "#">&laquo;</Link>
-                                <Link to = "#" className="active">1</Link>
-                                <Link to = "#">2</Link>
-                                <Link to = "#">3</Link>
-                                <Link to = "#">4</Link>
-                                <Link to = "#">5</Link>
-                                <Link to = "#">6</Link>
-                                <Link to = "#">7</Link>
-                                <Link to = "#">8</Link>
-                                <Link to = "#">9</Link>
-                                <Link to = "#">10</Link>
-                                <Link to = "#">&raquo;</Link>
+                                <Link to="#">&laquo;</Link>
+                                <Link to="#" className="active">1</Link>
+                                <Link to="#">2</Link>
+                                <Link to="#">3</Link>
+                                <Link to="#">4</Link>
+                                <Link to="#">5</Link>
+                                <Link to="#">6</Link>
+                                <Link to="#">7</Link>
+                                <Link to="#">8</Link>
+                                <Link to="#">9</Link>
+                                <Link to="#">10</Link>
+                                <Link to="#">&raquo;</Link>
                             </div>
                         </div>
                     </div>

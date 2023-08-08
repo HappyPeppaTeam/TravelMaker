@@ -16,7 +16,7 @@ export default function Attractioncountry() {
 
     return (
         <>
-            <div className="backgroundmountain" style={{ 'backgroundImage': 'url()' }}>
+            <div className="backgroundmountain">
                 <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" />
                 <div className="container hyperlink-location" >
                     <Link to="#" className="button-hyperlink">餐廳</Link>
@@ -28,15 +28,15 @@ export default function Attractioncountry() {
             <div style={{ 'display': 'grid', 'backgroundColor': '#487797' }}>
                 <div className="container-fluid d-flex m-0 p-0">
                     <div className="sidenav">
-                        <h3 style={{ 'color': 'black' }}><b>種類</b></h3>
+                        <Link to="/attractions/Attractionattraction"><h3 style={{ 'color': 'black' }}><b>種類</b></h3></Link>
                         <Link to="/attractions/Attractionmore">夜市</Link>
-                        <Link to="/attractions/Attractionmore">觀光工廠</Link>
                         <Link to="/attractions/Attractionmore">港口</Link>
                         <Link to="/attractions/Attractionmore">市集</Link>
                         <Link to="/attractions/Attractionmore">購物</Link>
                         <Link to="/attractions/Attractionmore">人文景點</Link>
                         <Link to="/attractions/Attractionmore">自然景觀</Link>
-                        <h3 style={{ 'color': 'black' }}><b>地區</b></h3>
+                        <Link to="/attractions/Attractionmore">觀光工廠</Link>
+                        <Link to="/attractions/Attractioncountry"><h3 style={{ 'color': 'black' }}><b>地區</b></h3></Link>
                         <button className="dropdown-btn" onClick={(e) => {
                             dropDown(e);
                         }}>基隆
@@ -526,106 +526,106 @@ export default function Attractioncountry() {
                             <Link to="/attractions/Attractionmore">東引鄉</Link>
                         </div>
                     </div>
-                    <div className="container image-container">
+                    <div className="container image-container" style={{ paddingTop: '0.75rem' }}>
                         <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/keelung.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/taitong.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/new_taipei.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/yunlin.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/kaohsiung.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/miaoli.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/yilan.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/tainan.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/nantou.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/changhua.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/taipei.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/chiayi.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/taichung.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/pingtung.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/penghu.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/hualien.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/taoyuan.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/kinmen.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/hsinchu.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore">
-                                    <img className="img-thumbnail2" src="#" />
+                                    <img className="img-thumbnail2" src={require('../district/matsu.jpg')} />
                                 </Link>
                             </div>
                         </div>

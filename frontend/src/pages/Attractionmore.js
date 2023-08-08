@@ -1,7 +1,32 @@
 import { Link } from 'react-router-dom';
 import '../css/attractions.css';
 import '../css/bootstrap.css';
+
+import React from 'react';
+import axios from 'axios';
+
+
 export default function Attractionmore() {
+    const { useState, useEffect, useRef } = React;
+
+
+
+    const [attractionPicture, setAttractionPicture] = useState([{}]);
+
+
+    console.log(attractionPicture);
+    useEffect(() => {
+
+
+        (async () => {
+            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/test`);
+            console.log(response);
+            setAttractionPicture(response.data);
+        })();
+    }, []);
+
+
+
 
 
     function dropDown(e) {
@@ -16,7 +41,7 @@ export default function Attractionmore() {
 
     return (
         <>
-            <div className="backgroundmountain" style={{ 'backgroundImage': 'url()' }}>
+            <div className="backgroundmountain">
                 <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" />
                 <div className="container hyperlink-location" >
                     <Link to="#" className="button-hyperlink">餐廳</Link>
@@ -28,15 +53,15 @@ export default function Attractionmore() {
             <div style={{ 'display': 'grid' }}>
                 <div className="container-fluid d-flex m-0 p-0">
                     <div className="sidenav">
-                        <h3 style={{ 'color': 'black' }}><b>種類</b></h3>
+                        <Link to="/attractions/Attractionattraction"><h3 style={{ 'color': 'black' }}><b>種類</b></h3></Link>
                         <Link to="/attractions/Attractionmore">夜市</Link>
-                        <Link to="/attractions/Attractionmore">觀光工廠</Link>
                         <Link to="/attractions/Attractionmore">港口</Link>
                         <Link to="/attractions/Attractionmore">市集</Link>
                         <Link to="/attractions/Attractionmore">購物</Link>
                         <Link to="/attractions/Attractionmore">人文景點</Link>
                         <Link to="/attractions/Attractionmore">自然景觀</Link>
-                        <h3 style={{ 'color': 'black' }}><b>地區</b></h3>
+                        <Link to="/attractions/Attractionmore">觀光工廠</Link>
+                        <Link to="/attractions/Attractioncountry"><h3 style={{ 'color': 'black' }}><b>地區</b></h3></Link>
                         <button className="dropdown-btn" onClick={(e) => {
                             dropDown(e);
                         }}>基隆
@@ -527,180 +552,39 @@ export default function Attractionmore() {
                         </div>
                     </div>
                     <div className="container">
-                        <div style={{ 'paddingTop': '10px', 'paddingBottom': '5px' }}>
-                            <Link to="/Attractionmore/Attraction_innerpage" className="bottom-line">
-                                <fieldset className="rm-fieldset">
-                                    <div className="row">
-                                        <div className="col-lg-4">
-                                            <img src="#" style={{ 'maxWidth': '100%' }} />
-                                        </div>
-                                        <div className="col-lg-8">
-                                            <h3><b>台中火車站</b></h3>
-                                            <p>新臺中火車站 台中都會區鐵路高架北起豐原站北側1.9公里，南迄大慶站南邊1.4公里，全長21.7公里，除將現有5座車站改建為高架車站，並增建栗林、頭家厝、松竹、精武及五 ...
-                                            </p>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </Link>
-                        </div>
-                        <div style={{ 'paddingTop': '10px', 'paddingBottom': '5px' }}>
-                            <Link to="/Attractionmore/Attraction_innerpage" className="bottom-line">
-                                <fieldset className="rm-fieldset">
-                                    <div className="row">
-                                        <div className="col-lg-4">
-                                            <img src="#" style={{ 'maxWidth': '100%' }} />
-                                        </div>
-                                        <div className="col-lg-8">
-                                            <h3><b>台中火車站</b></h3>
-                                            <p>新臺中火車站 台中都會區鐵路高架北起豐原站北側1.9公里，南迄大慶站南邊1.4公里，全長21.7公里，除將現有5座車站改建為高架車站，並增建栗林、頭家厝、松竹、精武及五 ...
-                                            </p>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </Link>
-                        </div>
-                        <div style={{ 'paddingTop': '10px', 'paddingBottom': '5px' }}>
-                            <Link to="/Attractionmore/Attraction_innerpage" className="bottom-line">
-                                <fieldset className="rm-fieldset">
-                                    <div className="row">
-                                        <div className="col-lg-4">
-                                            <img src="#" style={{ 'maxWidth': '100%' }} />
-                                        </div>
-                                        <div className="col-lg-8">
-                                            <h3><b>台中火車站</b></h3>
-                                            <p>新臺中火車站 台中都會區鐵路高架北起豐原站北側1.9公里，南迄大慶站南邊1.4公里，全長21.7公里，除將現有5座車站改建為高架車站，並增建栗林、頭家厝、松竹、精武及五 ...
-                                            </p>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </Link>
-                        </div>
-                        <div style={{ 'paddingTop': '10px', 'paddingBottom': '5px' }}>
-                            <Link to="/Attractionmore/Attraction_innerpage" className="bottom-line">
-                                <fieldset className="rm-fieldset">
-                                    <div className="row">
-                                        <div className="col-lg-4">
-                                            <img src="#" style={{ 'maxWidth': '100%' }} />
-                                        </div>
-                                        <div className="col-lg-8">
-                                            <h3><b>台中火車站</b></h3>
-                                            <p>新臺中火車站 台中都會區鐵路高架北起豐原站北側1.9公里，南迄大慶站南邊1.4公里，全長21.7公里，除將現有5座車站改建為高架車站，並增建栗林、頭家厝、松竹、精武及五 ...
-                                            </p>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </Link>
-                        </div>
-                        <div style={{ 'paddingTop': '10px', 'paddingBottom': '5px' }}>
-                            <Link to="/Attractionmore/Attraction_innerpage" className="bottom-line">
-                                <fieldset className="rm-fieldset">
-                                    <div className="row">
-                                        <div className="col-lg-4">
-                                            <img src="#" style={{ 'maxWidth': '100%' }} />
-                                        </div>
-                                        <div className="col-lg-8">
-                                            <h3><b>台中火車站</b></h3>
-                                            <p>新臺中火車站 台中都會區鐵路高架北起豐原站北側1.9公里，南迄大慶站南邊1.4公里，全長21.7公里，除將現有5座車站改建為高架車站，並增建栗林、頭家厝、松竹、精武及五 ...
-                                            </p>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </Link>
-                        </div>
-                        <div style={{ 'paddingTop': '10px', 'paddingBottom': '5px' }}>
-                            <Link to="/Attractionmore/Attraction_innerpage" className="bottom-line">
-                                <fieldset className="rm-fieldset">
-                                    <div className="row">
-                                        <div className="col-lg-4">
-                                            <img src="#" style={{ 'maxWidth': '100%' }} />
-                                        </div>
-                                        <div className="col-lg-8">
-                                            <h3><b>台中火車站</b></h3>
-                                            <p>新臺中火車站 台中都會區鐵路高架北起豐原站北側1.9公里，南迄大慶站南邊1.4公里，全長21.7公里，除將現有5座車站改建為高架車站，並增建栗林、頭家厝、松竹、精武及五 ...
-                                            </p>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </Link>
-                        </div>
-                        <div style={{ 'paddingTop': '10px', 'paddingBottom': '5px' }}>
-                            <Link to="/Attractionmore/Attraction_innerpage" className="bottom-line">
-                                <fieldset className="rm-fieldset">
-                                    <div className="row">
-                                        <div className="col-lg-4">
-                                            <img src="#" style={{ 'maxWidth': '100%' }} />
-                                        </div>
-                                        <div className="col-lg-8">
-                                            <h3><b>台中火車站</b></h3>
-                                            <p>新臺中火車站 台中都會區鐵路高架北起豐原站北側1.9公里，南迄大慶站南邊1.4公里，全長21.7公里，除將現有5座車站改建為高架車站，並增建栗林、頭家厝、松竹、精武及五 ...
-                                            </p>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </Link>
-                        </div>
-                        <div style={{ 'paddingTop': '10px', 'paddingBottom': '5px' }}>
-                            <Link to="/Attractionmore/Attraction_innerpage" className="bottom-line">
-                                <fieldset className="rm-fieldset">
-                                    <div className="row">
-                                        <div className="col-lg-4">
-                                            <img src="#" style={{ 'maxWidth': '100%' }} />
-                                        </div>
-                                        <div className="col-lg-8">
-                                            <h3><b>台中火車站</b></h3>
-                                            <p>新臺中火車站 台中都會區鐵路高架北起豐原站北側1.9公里，南迄大慶站南邊1.4公里，全長21.7公里，除將現有5座車站改建為高架車站，並增建栗林、頭家厝、松竹、精武及五 ...
-                                            </p>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </Link>
-                        </div>
-                        <div style={{ 'paddingTop': '10px', 'paddingBottom': '5px' }}>
-                            <Link to="/Attractionmore/Attraction_innerpage" className="bottom-line">
-                                <fieldset className="rm-fieldset">
-                                    <div className="row">
-                                        <div className="col-lg-4">
-                                            <img src="#" style={{ 'maxWidth': '100%' }} />
-                                        </div>
-                                        <div className="col-lg-8">
-                                            <h3><b>台中火車站</b></h3>
-                                            <p>新臺中火車站 台中都會區鐵路高架北起豐原站北側1.9公里，南迄大慶站南邊1.4公里，全長21.7公里，除將現有5座車站改建為高架車站，並增建栗林、頭家厝、松竹、精武及五 ...
-                                            </p>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </Link>
-                        </div>
-                        <div style={{ 'paddingTop': '10px', 'paddingBottom': '5px' }}>
-                            <Link to="/Attractionmore/Attraction_innerpage" className="bottom-line">
-                                <fieldset className="rm-fieldset">
-                                    <div className="row">
-                                        <div className="col-lg-4">
-                                            <img src="#" style={{ 'maxWidth': '100%' }} />
-                                        </div>
-                                        <div className="col-lg-8">
-                                            <h3><b>台中火車站</b></h3>
-                                            <p>新臺中火車站 台中都會區鐵路高架北起豐原站北側1.9公里，南迄大慶站南邊1.4公里，全長21.7公里，除將現有5座車站改建為高架車站，並增建栗林、頭家厝、松竹、精武及五 ...
-                                            </p>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </Link>
-                        </div>
+                        {attractionPicture.map((item, index) => {
+                            return (
+                                <div style={{ 'paddingTop': '10px', 'paddingBottom': '5px' }} key={index}>
+                                    <Link to="/Attractionmore/Attraction_innerpage" className="bottom-line" state={item}>
+                                        <fieldset className="rm-fieldset">
+                                            <div className="row">
+                                                <div className="col-lg-4">
+                                                    <img src={item.PictureUrl1} style={{ 'maxWidth': '100%', height: '200px', objectFit: 'cover' }} className='w-100' />
+                                                </div>
+                                                <div className="col-lg-8">
+                                                    <h3><b>{item.Name}</b></h3>
+                                                    <p>{item.Description}</p>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </Link>
+                                </div>
+                            )
+                        })}
                         <div className="pagination-wrapper">
                             <div className="pagination">
-                                <Link to = "#">&laquo;</Link>
-                                <Link to = "#" className="active">1</Link>
-                                <Link to = "#">2</Link>
-                                <Link to = "#">3</Link>
-                                <Link to = "#">4</Link>
-                                <Link to = "#">5</Link>
-                                <Link to = "#">6</Link>
-                                <Link to = "#">7</Link>
-                                <Link to = "#">8</Link>
-                                <Link to = "#">9</Link>
-                                <Link to = "#">10</Link>
-                                <Link to = "#">&raquo;</Link>
+                                <Link to="#">&laquo;</Link>
+                                <Link to="#" className="active">1</Link>
+                                <Link to="#">2</Link>
+                                <Link to="#">3</Link>
+                                <Link to="#">4</Link>
+                                <Link to="#">5</Link>
+                                <Link to="#">6</Link>
+                                <Link to="#">7</Link>
+                                <Link to="#">8</Link>
+                                <Link to="#">9</Link>
+                                <Link to="#">10</Link>
+                                <Link to="#">&raquo;</Link>
                             </div>
                         </div>
                     </div>

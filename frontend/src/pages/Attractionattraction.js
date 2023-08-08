@@ -1,7 +1,27 @@
 import { Link } from 'react-router-dom';
 import '../css/attractions.css';
 import '../css/bootstrap.css';
+
+import React from 'react';
+import axios from 'axios';
 export default function Attractionattraction() {
+    const { useState, useEffect } = React;
+
+
+
+    const [attractionPicture, setAttractionPicture] = useState([{}]);
+
+
+    console.log(attractionPicture);
+    useEffect(() => {
+
+
+        (async () => {
+            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/test`);
+            console.log(response);
+            setAttractionPicture(response.data);
+        })();
+    }, []);
 
 
     function dropDown(e) {
@@ -17,7 +37,7 @@ export default function Attractionattraction() {
 
     return (
         <>
-            <div className="backgroundmountain" style={{ 'backgroundImage': 'url()' }}>
+            <div className="backgroundmountain">
                 <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" />
                 <div className="container hyperlink-location" >
                     <Link to="#" className="button-hyperlink">餐廳</Link>
@@ -29,15 +49,15 @@ export default function Attractionattraction() {
             <div style={{ 'display': 'grid', 'backgroundColor': '#487797' }}>
                 <div className="container-fluid d-flex m-0 p-0">
                     <div className="sidenav">
-                        <h3 style={{ 'color': 'black' }}><b>種類</b></h3>
+                        <Link to="/attractions/Attractionattraction"><h3 style={{ 'color': 'black' }}><b>種類</b></h3></Link>
                         <Link to="/attractions/Attractionmore">夜市</Link>
-                        <Link to="/attractions/Attractionmore">觀光工廠</Link>
                         <Link to="/attractions/Attractionmore">港口</Link>
                         <Link to="/attractions/Attractionmore">市集</Link>
                         <Link to="/attractions/Attractionmore">購物</Link>
                         <Link to="/attractions/Attractionmore">人文景點</Link>
                         <Link to="/attractions/Attractionmore">自然景觀</Link>
-                        <h3 style={{ 'color': 'black' }}><b>地區</b></h3>
+                        <Link to="/attractions/Attractionmore">觀光工廠</Link>
+                        <Link to="/attractions/Attractioncountry"><h3 style={{ 'color': 'black' }}><b>地區</b></h3></Link>
                         <button className="dropdown-btn" onClick={(e) => {
                             dropDown(e);
                         }}>基隆
@@ -528,326 +548,173 @@ export default function Attractionattraction() {
                         </div>
                     </div>
                     <div className="container image-container">
-                        <h3 style={{ 'float': 'left', 'paddingTop': '1%', 'paddingLeft': '1%' }}><b>夜市</b></h3>
+                        <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>夜市</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line">
-                            <h3>
+                            <h4>
                                 more
-                            </h3>
+                            </h4>
                         </Link>
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
+                                
+                                {attractionPicture.map((item, index) => {
+                                    if (index <= 3) {
+                                        return (
+                                            <div className="col-lg-3">
+                                                <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
+                                                    <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                    <div>
+                                                        <b>{item.Name}</b>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        )
+                                    }
+                                })}
                             </div>
                         </div>
-                        <h3 style={{ 'float': 'left', 'paddingTop': '1%', 'paddingLeft': '1%' }}><b>觀光工廠</b></h3>
+                        <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>港口</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line">
-                            <h3>
+                            <h4>
                                 more
-                            </h3>
+                            </h4>
                         </Link>
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
+                                {attractionPicture.map((item, index) => {
+                                    if (index <= 3) {
+                                        return (
+                                            <div className="col-lg-3">
+                                                <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
+                                                    <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                    <div>
+                                                        <b>{item.Name}</b>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        )
+                                    }
+                                })}
                             </div>
                         </div>
-                        <h3 style={{ 'float': 'left', 'paddingTop': '1%', 'paddingLeft': '1%' }}><b>港口</b></h3>
+                        <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>市集</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line">
-                            <h3>
+                            <h4>
                                 more
-                            </h3>
+                            </h4>
                         </Link>
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
+                                {attractionPicture.map((item, index) => {
+                                    if (index <= 3) {
+                                        return (
+                                            <div className="col-lg-3">
+                                                <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
+                                                    <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                    <div>
+                                                        <b>{item.Name}</b>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        )
+                                    }
+                                })}
                             </div>
                         </div>
-                        <h3 style={{ 'float': 'left', 'paddingTop': '1%', 'paddingLeft': '1%' }}><b>市集</b></h3>
+                        <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>購物</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line">
-                            <h3>
+                            <h4>
                                 more
-                            </h3>
+                            </h4>
                         </Link>
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
+                                {attractionPicture.map((item, index) => {
+                                    if (index <= 3) {
+                                        return (
+                                            <div className="col-lg-3">
+                                                <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
+                                                    <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                    <div>
+                                                        <b>{item.Name}</b>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        )
+                                    }
+                                })}
                             </div>
                         </div>
-                        <h3 style={{ 'float': 'left', 'paddingTop': '1%', 'paddingLeft': '1%' }}><b>購物</b></h3>
+                        <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>人文景點</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line">
-                            <h3>
+                            <h4>
                                 more
-                            </h3>
+                            </h4>
                         </Link>
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
+                                {attractionPicture.map((item, index) => {
+                                    if (index <= 3) {
+                                        return (
+                                            <div className="col-lg-3">
+                                                <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
+                                                    <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                    <div>
+                                                        <b>{item.Name}</b>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        )
+                                    }
+                                })}
                             </div>
                         </div>
-                        <h3 style={{ 'float': 'left', 'paddingTop': '1%', 'paddingLeft': '1%' }}><b>人文景點</b></h3>
+                        <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>自然景觀</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line">
-                            <h3>
+                            <h4>
                                 more
-                            </h3>
+                            </h4>
                         </Link>
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
+                                {attractionPicture.map((item, index) => {
+                                    if (index <= 3) {
+                                        return (
+                                            <div className="col-lg-3">
+                                                <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
+                                                    <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                    <div>
+                                                        <b>{item.Name}</b>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        )
+                                    }
+                                })}
                             </div>
                         </div>
-                        <h3 style={{ 'float': 'left', 'paddingTop': '1%', 'paddingLeft': '1%' }}><b>自然景觀</b></h3>
+                        <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>觀光工廠</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line">
-                            <h3>
+                            <h4>
                                 more
-                            </h3>
+                            </h4>
                         </Link>
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="col-lg-3">
-                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }}>
-                                        <img className="img-thumbnail2" src="#" />
-                                        <div>
-                                            <b>日月潭</b>
-                                            <p>★ ★ ★ ☆ ☆&nbsp;&nbsp;9527條評論<br />南投縣 魚池鄉<br /></p>
-                                        </div>
-                                    </Link>
-                                </div>
+                                {attractionPicture.map((item, index) => {
+                                    if (index <= 3) {
+                                        return (
+                                            <div className="col-lg-3">
+                                                <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
+                                                    <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                    <div>
+                                                        <b>{item.Name}</b>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        )
+                                    }
+                                })}
                             </div>
                         </div>
                     </div>

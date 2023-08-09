@@ -14,7 +14,7 @@ export default function RestaurantInner() {
     useEffect(() => {
         commentModal.current = new Modal('#rest-comment');
         (async () => {
-            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/test`);
+            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/restaurant`);
             console.log(response);
             setAttraction(response.data);
         })();
@@ -65,16 +65,16 @@ export default function RestaurantInner() {
             </div>
             <div className="row p-rest">
                 <div className="col-md-6 p-3">
-                    <div className="card p-3" style={{ 'min-height': '30vh' }}>
+                    <div className="card p-3" style={{ 'min-height': '40vh' }}>
                         我是餐廳介紹<br />
                         {attraction[0].Description}
                     </div>
                 </div>
                 <div className="col-md-6 p-3">
-                    <div className="card p-3" style={{ 'min-height': '30vh' }}>
+                    <div className="card p-3" style={{ 'min-height': '40vh' }}>
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5148.996037009213!2d120.68238028489449!3d24.14050040353045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d1438fb3d3f%3A0xb7b4ebd02f1906b6!2z6Ie65Lit54Gr6LuK56uZ!5e0!3m2!1szh-TW!2stw!4v1684984846087!5m2!1szh-TW!2stw"
-                            width="100%" height="h-100" style={{ 'border': '0' }} allowfullscreen="" loading="lazy"
+                            width="100%" height="100vh" style={{ 'border': '0' }} allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>

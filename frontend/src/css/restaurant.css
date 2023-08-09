@@ -67,7 +67,7 @@ aside {
 .carousel-item>.carousel-rest {
     width: 100%;
     height: 50vh;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .p-rest{

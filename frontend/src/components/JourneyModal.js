@@ -20,6 +20,7 @@ const JourneyModel = ({
     height: "500px",
     background:
       "radial-gradient(circle, rgba(107, 179, 227, 0.2) 0%, rgba(178, 226, 232, 0.8) 50%, rgba(107, 179, 227, 0.2) 100%)",
+    display: 'none',
   };
 
   const imageContainerStyle = {

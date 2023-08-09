@@ -90,3 +90,4 @@ return response()->json($unSetToken,200);
 
 Route::get('/getJourneys',[JourneyController::class, 'getUserJourneys']);
 Route::get('/getEvents',[JourneyController::class, 'getJourneyEvents']);
+Route::post('/addJourney',[JourneyController::class, 'addNewJourney']);

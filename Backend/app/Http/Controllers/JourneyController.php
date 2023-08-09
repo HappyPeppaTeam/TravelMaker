@@ -33,5 +33,8 @@ class JourneyController extends Controller
         return $duration = DB::select("call get_journey_duration(?)", [$journey_id]);
     }
 
-    
+    function addNewJourney(Request $request){
+        $journeyTitle = $request['title'];
+        return response()->json($journeyTitle);
+    }
 }

@@ -1,9 +1,49 @@
-.top-post_article {
+.post_article {
     display: flex;
-    justify-content: end;
+    justify-content: center;
     padding: 0.5em;
     
 }
 .article_editor {
     margin: 0.5em;
 }
+
+.select-board {
+    margin: 0.5em;
+}
+
+.select-location {
+    margin: 0.5em;
+}
+
+.select-topic {
+    margin: 0.5em;
+}
+.addtitle {
+    width: 100%;
+    margin: 0.5em;
+}
+.addtitle_title {
+    width: 100%;
+}
+.addtext {
+    width: 100%;
+}
+.addtext_text {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 300px;
+}
+
+.exceed-limit {
+    border-color: red;
+    color: red;
+}
+
+
+
+
+
+

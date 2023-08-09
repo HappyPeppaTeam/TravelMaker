@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
+
 const ErrorPage = () => {
     let errorMessage = '';
     const { errorCode } = useParams();
@@ -23,13 +24,15 @@ const ErrorPage = () => {
     }
 
     return (
-        <div className="container mt-5">
-            <div className="row justify-content-center">
-                <div className="col-md-6">
-                    <div className="card text-center">
-                        <div className="card-body">
-                            <h1 className="card-title text-danger">Error {errorCode}</h1>
-                            <p className="card-text text-muted">{errorMessage}</p>
+        <div className="main">
+            <div className="container mt-5">
+                <div className="row justify-content-center">
+                    <div className="col-md-6">
+                        <div className="card text-center">
+                            <div className="card-body">
+                                <h1 className="card-title text-danger">Error {errorCode}</h1>
+                                <p className="card-text text-muted">{errorMessage}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

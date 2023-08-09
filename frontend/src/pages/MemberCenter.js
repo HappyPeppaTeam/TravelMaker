@@ -7,6 +7,7 @@ import { Modal } from 'bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import withAuthorization from '../hook/withAuthorization';
 
 
 const { useRef, useEffect, useState } = React;
@@ -177,4 +178,4 @@ const MemberCenter = () => {
         </>
     )
 }
-export default MemberCenter;
+export default  withAuthorization(['user'])(MemberCenter);;

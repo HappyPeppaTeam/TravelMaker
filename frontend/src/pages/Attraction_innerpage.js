@@ -550,8 +550,8 @@ export default function Attraction_innerpage() {
                             <Link to="/attractions/Attractionmore">東引鄉</Link>
                         </div>
                     </div>
-                    <div className="container">
-                        <h4>
+                    <div className="container" style={{'paddingTop':'2.5%'}}>
+                        {/* <h4>
                             <b><Link to="/attractions" className="bottom-line">景點</Link></b>
                             <b>→</b>
                             <b><Link to="/attractions/Attractionmore" className="bottom-line">南投</Link></b>
@@ -559,34 +559,21 @@ export default function Attraction_innerpage() {
                             <b><Link to="/attractions/Attractionmore" className="bottom-line">魚池鄉</Link></b>
                             <b>→</b>
                             <b className="bottom-line">{state.Name}</b>
-                        </h4>
-                        <div id="attractionpicture" className="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"
-                            style={{ 'backgroundColor': 'black' }}>
-                            <div className="carousel-indicators">
-                                <button type="button" data-bs-target="#attractionpicture" data-bs-slide-to="0" className="active" aria-current="true"
-                                    aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#attractionpicture" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#attractionpicture" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                            </div>
+                        </h4> 暫時關閉 */}
+                        <div id="attractionpicture" style={{ 'backgroundColor': 'black'}}>
                             <div className="carousel-inner">
                                 <div className="carousel-item active">
                                     <img className='carousel-piture' src={state.PictureUrl1} />
                                 </div>
-                                <div className="carousel-item">
-                                    <img className='carousel-piture' src="#" />
-                                </div>
-                                <div className="carousel-item">
-                                    <img className='carousel-piture' src="#" />
-                                </div>
                             </div>
-                            <button className="carousel-control-prev" type="button" data-bs-target="#attractionpicture" data-bs-slide="prev">
+                            {/* <button className="carousel-control-prev" type="button" data-bs-target="#attractionpicture" data-bs-slide="prev">
                                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span className="visually-hidden">Previous</span>
                             </button>
                             <button className="carousel-control-next" type="button" data-bs-target="#attractionpicture" data-bs-slide="next">
                                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span className="visually-hidden">Next</span>
-                            </button>
+                            </button> */}
                         </div>
                         <div style={{ 'display': 'flex' }}>
                             <h1>
@@ -594,19 +581,6 @@ export default function Attraction_innerpage() {
                                     {state.Name}
                                 </b>
                             </h1>
-                            <i className="bi bi-heart-fill heart fs-2" onClick={(e) => {
-                                e.target.classList.toggle('active');
-                            }} style={{ 'marginLeft': 'auto', 'paddingTop': '5px' }}></i>
-                            {/* <svg id="colorChangeSVG" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                className="bi bi-heart" viewBox="0 0 16 16" style={{ 'marginLeft': 'auto', 'paddingTop': '5px' }} onClick={(e) => {
-                                    e.target.classList.toggle('active');
-                                }}>
-                                <path
-                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748z"
-                                    className="fill-area" />
-                            </svg> */}
-                            {/* <script src="your_script.js"></script> */}
-                            <h2 style={{ 'paddingTop': '7px' }}>我的最愛</h2>
                         </div>
                         <h5>
                             {state.DescriptionDetail}
@@ -616,11 +590,11 @@ export default function Attraction_innerpage() {
                             <div className='col-6' >
                                 <h3><b>資訊</b></h3>
                                 <hr style={{ 'border': '1px solid black' }}></hr>
-                                <h5>地址:{state.Address}</h5>
+                                <h4 style={{float:'left'}}><b>地址:</b></h4><h4>{state.Address}</h4>
                                 <hr style={{ 'border': '1px solid black' }}></hr>
-                                <h5>電話:{state.Phone}</h5>
+                                <h4 style={{float:'left'}}><b>電話:</b></h4><h4>{state.Phone}</h4>
                                 <hr style={{ 'border': '1px solid black' }}></hr>
-                                <h5>開放時間:</h5>
+                                <h4><b>開放時間:</b></h4>
                                 <h5 style={{ 'display': 'flex' }}>
                                     {state.OpenTime}
                                 </h5>
@@ -665,7 +639,7 @@ export default function Attraction_innerpage() {
                                 </div>
                             </div>
                         </div>
-                        <hr className="inner-pagger-border"></hr>
+                        {/* <hr className="inner-pagger-border"></hr>
                         <div style={{ 'clear': 'both' }}>
                             <fieldset className="rm-fieldset attraction-message">
                                 <img className="img-fluid-message" src="#" />
@@ -703,7 +677,7 @@ export default function Attraction_innerpage() {
                                     </p>
                                 </div>
                             </fieldset>
-                        </div>
+                        </div> */}
                         {/* <button id="openReviewModal"
                             style={{ 'borderRadius': '12px', 'marginBottom': '5px', 'padding': '10px 25px', 'float': 'left' }}>寫評論
                         </button>

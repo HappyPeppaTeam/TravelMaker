@@ -10,8 +10,10 @@ export default function Attractionattraction() {
 
 
     const [attractionPicture, setAttractionPicture] = useState([{}]);
-
-
+    // let test = attractionPicture.filter((item, index) => {
+    //     return item.TypeID == 2;
+    // });
+    // console.log(test);
     console.log(attractionPicture);
     useEffect(() => {
 
@@ -556,8 +558,9 @@ export default function Attractionattraction() {
                         </Link>
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                
-                                {attractionPicture.map((item, index) => {
+                                {attractionPicture.filter((item, index) => {
+                                        return item.TypeID == 1;
+                                    }).map((item, index) => {
                                     if (index <= 3) {
                                         return (
                                             <div className="col-lg-3">
@@ -581,20 +584,24 @@ export default function Attractionattraction() {
                         </Link>
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                {attractionPicture.map((item, index) => {
-                                    if (index <= 3) {
-                                        return (
-                                            <div className="col-lg-3">
-                                                <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
-                                                    <img className="img-thumbnail2" src={item.PictureUrl1} />
-                                                    <div>
-                                                        <b>{item.Name}</b>
-                                                    </div>
-                                                </Link>
-                                            </div>
-                                        )
-                                    }
-                                })}
+                                {
+                                    attractionPicture.filter((item, index) => {
+                                        return item.TypeID == 2;
+                                    }).map((item,index) => {
+                                        if(index <= 3) {
+                                            return (
+                                                <div className="col-lg-3">
+                                                    <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
+                                                        <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                        <div>
+                                                            <b>{item.Name}</b>
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                            )
+                                        }
+                                    })
+                                }
                             </div>
                         </div>
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>市集</b></h3>
@@ -605,7 +612,9 @@ export default function Attractionattraction() {
                         </Link>
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                {attractionPicture.map((item, index) => {
+                                {attractionPicture.filter((item, index) => {
+                                        return item.TypeID == 3;
+                                    }).map((item, index) => {
                                     if (index <= 3) {
                                         return (
                                             <div className="col-lg-3">
@@ -629,7 +638,9 @@ export default function Attractionattraction() {
                         </Link>
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                {attractionPicture.map((item, index) => {
+                                {attractionPicture.filter((item, index) => {
+                                        return item.TypeID == 4;
+                                    }).map((item, index) => {
                                     if (index <= 3) {
                                         return (
                                             <div className="col-lg-3">
@@ -653,7 +664,9 @@ export default function Attractionattraction() {
                         </Link>
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                {attractionPicture.map((item, index) => {
+                                {attractionPicture.filter((item, index) => {
+                                        return item.TypeID == 5;
+                                    }).map((item, index) => {
                                     if (index <= 3) {
                                         return (
                                             <div className="col-lg-3">
@@ -677,7 +690,9 @@ export default function Attractionattraction() {
                         </Link>
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                {attractionPicture.map((item, index) => {
+                                {attractionPicture.filter((item, index) => {
+                                        return item.TypeID == 6;
+                                    }).map((item, index) => {
                                     if (index <= 3) {
                                         return (
                                             <div className="col-lg-3">
@@ -701,7 +716,9 @@ export default function Attractionattraction() {
                         </Link>
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                                {attractionPicture.map((item, index) => {
+                                {attractionPicture.filter((item, index) => {
+                                        return item.TypeID == 7;
+                                    }).map((item, index) => {
                                     if (index <= 3) {
                                         return (
                                             <div className="col-lg-3">

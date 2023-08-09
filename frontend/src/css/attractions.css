@@ -13,7 +13,7 @@
 .backgroundmountain {
   width: 100%;
   height: 300px;
-  background-image: url(../../public/images/tt.jpg); /* 替換爲你的圖片路徑 */
+  background-image: url(../../public/images/tt.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -35,21 +35,52 @@ export default function Navbar() {
       backdrop: 'staic',
     });
   });
+
+  const showMessage = () => {
+    // 显示 Toast
+    // toastRef.current.showToast();
+
+    // 设置自动隐藏时间（例如3秒后）
+    setTimeout(() => {
+      // 隐藏 Toast
+      // if (toastRef.current) {
+      //   const bootstrapToast = new window.bootstrap.Toast(toastRef.current);
+      //   bootstrapToast.hide();
+      // }
+
+      // 3秒后重新加载页面
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    }, 3000);
+  };
+
   const handleToken = () => {
     if (Cookies.get('token')) {
       setCheckToken(true);
     }
     // console.log(checkToken);
   }
-  const handleResponse = (data, usernameFromRequest) => {
+  const handleResponse = (data) => {
     setMessage(data); // Assuming the backend returns a "message" field in the response
   };
   const openMessageToast = () => {
     messageToast.current.show();
+    if (messageToast.current.isShown) {
+      setTimeout(() => {
+        // 隐藏 Toast
+        messageToast.current.hide();
+        window.location.href = '/';
+        // 3秒后重新加载页面
+      }, 3000);
+    }
+      
+    
+  
   };
   const closeMessageToast = () => {
     messageToast.current.hide();
-    window.location.reload();
+    window.location.href = '/';
   };
 
   const openRegisterModal = () => {
@@ -100,13 +131,13 @@ export default function Navbar() {
           {checkToken ? (
             <span className="navbar-brand text-white">{username} 歡迎登入!</span>
           ) : (
-            <span></span>
+              <span></span>
             )}
 
           <li className="nav-item">
             {/* <Link className="nav-link" to='/album'>註冊</Link> */}
             {checkToken ? (
-              <Link className="nav-link"  to='/memberCenter' >會員中心</Link>
+              <Link className="nav-link" to='/memberCenter' >會員中心</Link>
             ) : (
                 <Link className="nav-link" onClick={openRegisterModal}>註冊</Link>
               )}

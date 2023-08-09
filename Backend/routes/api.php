@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Redirect;
 
 
 /*
@@ -65,14 +67,19 @@ Route::post('/login',function(Request $request){
     if (password_verify($password, $hashedPasswordFromDB)) {
        $setToken= DB::select('call set_token(?);',[$userName]);
        $data = [
-           "token"=>$setToken[0]->token,
         "message"=>"Password is correct! , and get token",
+
     ];
+    if ($userName==="admin") {
+        setcookie('role','admin',time() + 3600,'/');
+    }else{
+        setcookie('role','user',time() + 3600,'/');
+    }
     setcookie('token',$setToken[0]->token,time() + 3600,'/');
-       return response()->json($data, 200);
-        // ->cookie('token',$set_token[0]->token,time() + 120);;
+    return response()->json($data, 200);
+    // ->cookie('token',$set_token[0]->token,time() + 120);;
         // 哈希值匹配，可以认为用户提供的密码是正确的
-        // $result= array("message"=>"Password is correct! , and get token");
+        // $result= array("message"=>"Password is correct! , and get token");    
     } else {
         // 哈希值不匹配，密码错误
         // $result= array("message"=>"Password is incorrect!");
@@ -88,14 +95,32 @@ $unSetToken = DB::select('call unSet_token(?)',[$token]);
 return response()->json($unSetToken,200);
 
 });
-
+// by cookie/token get profile data
 Route::post('/profile',function(Request $request){  
 $token = $request['token'];
 $getProfile = DB::select("select user_name,full_name,nick_name,email,birthday,gender,head_photo from users where token= ?",[$token]);
 $getProfile[0]->head_photo =  Storage::url("{$getProfile[0]->head_photo}");
-
-// return response()->json($token,200);
 return response()->json($getProfile,200);
+});
+
+//admin get all user
+Route::get('/getAllProfileData',function(Request $request){  
+$getProfile = DB::select(
+"select 
+user_id,user_name,full_name,
+nick_name,email,birthday,gender,
+user_status,register_time
+from users");
+return response()->json($getProfile,200);
+});
+
+//admin更新會員狀態
+Route::post('/updateUserStatus', function(Request $request){
+    $userId = $request->input('userId');
+    $newStatus = $request->input('newStatus');
+    DB::select("update users set user_status = ? where user_id = ?",[$newStatus,$userId]);
+    // return response()->json(['message' => '會員狀態已更新']);
+    return response()->json($request,200);
 });
 
 Route::post('/updateProfileImage', [ImageController::class,'upload']);
@@ -151,7 +176,13 @@ $getMessage=DB::select('select * from message_board where board_text_id = ?',[$b
 return response()->json($getMessage,200);
 });
 
+Route::get('/auth/google', [AuthController::class,'redirectToGoogle']);
 
+Route::get('/auth/google/callback', [AuthController::class,'handleGoogleCallback']);
+
+Route::get('/auth/google/register/{googleId}&{fullName}&{email}', [AuthController::class,'googleRegister'])->name('google.register');
+
+Route::get('/auth/google/login', [AuthController::class,'googleLogin'])->name('google.login');
 //待確認
 // Route::post('/updateProfileImage',function(Request $request){
 // $token = $request['token'];

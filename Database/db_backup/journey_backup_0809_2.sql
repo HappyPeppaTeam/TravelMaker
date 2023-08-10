@@ -24,13 +24,13 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `TravelMaker` /*!40100 DEFAULT CHARACTE
 USE `TravelMaker`;
 
 --
--- Table structure for table `Journey`
+-- Table structure for table `journey`
 --
 
-DROP TABLE IF EXISTS `Journey`;
+DROP TABLE IF EXISTS `journey`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Journey` (
+CREATE TABLE `journey` (
   `journey_id` int(20) NOT NULL AUTO_INCREMENT,
   `journey_name` varchar(100) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
@@ -43,13 +43,13 @@ CREATE TABLE `Journey` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Journey`
+-- Dumping data for table `journey`
 --
 
-LOCK TABLES `Journey` WRITE;
-/*!40000 ALTER TABLE `Journey` DISABLE KEYS */;
-INSERT INTO `Journey` VALUES (1,'台北之旅','台北好好玩',1,0,1,'2023-07-26 15:18:33'),(2,'台中之旅','台中好好玩',1,1,4,'2023-07-26 15:20:57'),(3,'台南之旅','台南好好玩',2,1,8,'2023-07-26 15:20:57'),(4,'高雄之旅','高雄好好玩',3,1,10,'2023-07-26 15:47:37'),(5,'台東之旅','台東好好玩',3,1,10,'2023-07-27 14:07:33');
-/*!40000 ALTER TABLE `Journey` ENABLE KEYS */;
+LOCK TABLES `journey` WRITE;
+/*!40000 ALTER TABLE `journey` DISABLE KEYS */;
+INSERT INTO `journey` VALUES (1,'精彩台北兩日遊','請注意行程中的每個時段都是建議，你可以根據實際情況和個人喜好進行調整。這個行程將讓你有機會品味台灣的傳統美食、探索文化遺產以及欣賞城市美景，希望你在台北兩日遊中度過愉快的時光！',1,0,1,'2023-07-26 15:18:33'),(2,'台中之旅','台中好好玩',1,1,4,'2023-07-26 15:20:57'),(3,'台南之旅','台南好好玩',2,1,8,'2023-07-26 15:20:57'),(4,'高雄之旅','高雄好好玩',3,1,10,'2023-07-26 15:47:37'),(5,'台東之旅','台東好好玩',3,1,10,'2023-07-27 14:07:33');
+/*!40000 ALTER TABLE `journey` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -60,7 +60,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `check_privacy` BEFORE INSERT ON `Journey` FOR EACH ROW BEGIN
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `check_privacy` BEFORE INSERT ON `journey` FOR EACH ROW BEGIN
 	IF new.privacy NOT IN (0, 1) THEN
     	SIGNAL SQLSTATE '60000' SET MESSAGE_TEXT = 'invalid privacy argument, privacy field only accept [0, 1]';
     END IF;
@@ -79,7 +79,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER update_edit_time BEFORE UPDATE ON Journey FOR EACH ROW
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER update_edit_time BEFORE UPDATE ON `journey` FOR EACH ROW
 BEGIN
     IF new.edit_time <> old.edit_time THEN
         SET new.edit_time = CURRENT_TIMESTAMP;
@@ -92,13 +92,13 @@ DELIMITER ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
--- Table structure for table `Journey_event`
+-- Table structure for table `journey_event`
 --
 
-DROP TABLE IF EXISTS `Journey_event`;
+DROP TABLE IF EXISTS `journey_event`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Journey_event` (
+CREATE TABLE `journey_event` (
   `event_id` int(20) NOT NULL AUTO_INCREMENT,
   `event_name` varchar(100) NOT NULL,
   `event_description` varchar(255) DEFAULT NULL,
@@ -106,42 +106,42 @@ CREATE TABLE `Journey_event` (
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
   PRIMARY KEY (`event_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Journey_event`
+-- Dumping data for table `journey_event`
 --
 
-LOCK TABLES `Journey_event` WRITE;
-/*!40000 ALTER TABLE `Journey_event` DISABLE KEYS */;
-INSERT INTO `Journey_event` VALUES (1,'早餐','麥當勞',1,'2023-07-25 08:00:00','2023-07-25 09:00:00'),(2,'中餐','肯德基',1,'2023-07-25 12:00:00','2023-07-25 13:00:00'),(3,'晚餐','漢堡王',1,'2023-07-25 18:00:00','2023-07-25 19:00:00'),(4,'早餐','小熊咖啡',2,'2023-07-26 08:00:00','2023-07-26 09:00:00'),(5,'中餐','屋馬',2,'2023-07-26 12:00:00','2023-07-26 13:00:00'),(6,'晚餐','金色山脈',2,'2023-07-26 18:00:00','2023-07-26 19:00:00'),(7,'早餐','麥味登',3,'2023-07-27 08:00:00','2023-07-27 09:00:00'),(8,'中餐','頂呱呱',3,'2023-07-27 12:00:00','2023-07-27 13:00:00'),(9,'晚餐','牛肉湯',3,'2023-07-27 18:00:00','2023-07-27 19:00:00');
-/*!40000 ALTER TABLE `Journey_event` ENABLE KEYS */;
+LOCK TABLES `journey_event` WRITE;
+/*!40000 ALTER TABLE `journey_event` DISABLE KEYS */;
+INSERT INTO `journey_event` VALUES (1,'早餐-士林市場','前往士林夜市附近的士林市場，品嚐台灣傳統的早餐美食，如大腸包小腸、蛋餅等。',1,'2023-07-25 08:00:00','2023-07-25 09:00:00'),(2,'中餐','肯德基',1,'2023-07-25 12:00:00','2023-07-25 13:00:00'),(3,'晚餐-饒河街觀光夜市','饒河街觀光夜市：品味台灣夜市文化，享受道地的台灣小吃和購物樂趣。',1,'2023-07-25 18:00:00','2023-07-25 19:00:00'),(4,'早餐','小熊咖啡',2,'2023-07-26 08:00:00','2023-07-26 09:00:00'),(5,'中餐','屋馬',2,'2023-07-26 12:00:00','2023-07-26 13:00:00'),(6,'晚餐','金色山脈',2,'2023-07-26 18:00:00','2023-07-26 19:00:00'),(7,'早餐','麥味登',3,'2023-07-27 08:00:00','2023-07-27 09:00:00'),(8,'中餐','頂呱呱',3,'2023-07-27 12:00:00','2023-07-27 13:00:00'),(9,'晚餐','牛肉湯',3,'2023-07-27 18:00:00','2023-07-27 19:00:00'),(10,'國立故宮博物院','深入了解中國文化的寶庫，欣賞千年歷史的藝術品，包括玉器、書畫等。',1,'2023-07-25 09:30:00','2023-07-25 12:00:00'),(11,'南機場夜市','品嚐台灣特色小吃，如滷肉飯、蚵仔煎等。這裡的小吃種類繁多，可以一嚐各種美食。',1,'2023-07-25 13:00:00','2023-07-25 14:00:00'),(12,'台北101觀景台','前往台北101大樓，欣賞壯觀的城市全景。如果你喜歡，也可以在101購物中心逛逛。',1,'2023-07-25 15:00:00','2023-07-25 16:20:00'),(13,'象山夜景','搭捷運至象山捷運站，爬上象山，欣賞台北市的夜景，是個拍照的好地方。',1,'2023-07-25 17:00:00','2023-07-25 18:00:00'),(14,'早餐-永康街','永康街，享用輕食早餐。',1,'2023-07-26 08:00:00','2023-07-26 09:00:00'),(15,'國父紀念館','了解孫中山先生的歷史地位。',1,'2023-07-26 09:10:00','2023-07-26 11:00:00'),(16,'午餐','中正紀念堂附近或陽明山，品味當地美食。',1,'2023-07-26 12:00:00','2023-07-26 13:00:00'),(17,'行天宮','體驗台灣宗教文化。',1,'2023-07-26 13:30:00','2023-07-26 14:30:00'),(18,'晚餐-興隆夜市','結束你的台北之旅，前往興隆夜市，感受這個小型夜市的獨特氛圍，品味當地小吃。',1,'2023-07-26 18:00:00','2023-07-26 20:00:00'),(19,'士林夜市\r\n\r\n','再次前往士林夜市，品嚐更多美味小吃，逛逛攤位、購物。',1,'2023-07-26 15:30:00','2023-07-26 17:30:00');
+/*!40000 ALTER TABLE `journey_event` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Journey_image`
+-- Table structure for table `journey_image`
 --
 
-DROP TABLE IF EXISTS `Journey_image`;
+DROP TABLE IF EXISTS `journey_image`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Journey_image` (
+CREATE TABLE `journey_image` (
   `Id` int(20) NOT NULL AUTO_INCREMENT,
   `image_id` int(20) NOT NULL,
   `journey_id` int(20) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Journey_image`
+-- Dumping data for table `journey_image`
 --
 
-LOCK TABLES `Journey_image` WRITE;
-/*!40000 ALTER TABLE `Journey_image` DISABLE KEYS */;
-INSERT INTO `Journey_image` VALUES (1,1,1),(2,2,1),(3,3,1),(4,4,2),(5,5,2),(6,6,2),(7,7,3),(8,8,3),(9,9,3),(10,1,5),(11,2,5);
-/*!40000 ALTER TABLE `Journey_image` ENABLE KEYS */;
+LOCK TABLES `journey_image` WRITE;
+/*!40000 ALTER TABLE `journey_image` DISABLE KEYS */;
+INSERT INTO `journey_image` VALUES (1,1,1),(2,2,1),(3,3,1),(4,4,2),(5,5,2),(6,6,2),(7,7,3),(8,8,3),(9,9,3),(10,1,5),(11,2,5),(12,10,5);
+/*!40000 ALTER TABLE `journey_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -199,4 +199,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-30  0:04:04
+-- Dump completed on 2023-08-09 21:36:02

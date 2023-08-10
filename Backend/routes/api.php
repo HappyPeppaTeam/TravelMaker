@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <?php
 
+use App\Http\Controllers\JourneyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -158,3 +159,7 @@ return response()->json($getMessage,200);
 // // $updateProfileImage = DB::select("update users set headphoto = ? where token = ?",[$image,$token]);
 // return response()->json($request,200);
 // });
+
+Route::get('/getJourneys',[JourneyController::class, 'getUserJourneys']);
+Route::get('/getEvents',[JourneyController::class, 'getJourneyEvents']);
+Route::post('/addJourney',[JourneyController::class, 'addNewJourney']);

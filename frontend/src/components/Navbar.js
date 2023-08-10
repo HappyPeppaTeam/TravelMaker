@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Modal, Toast } from 'bootstrap';
+import { Modal, Toast, Collapse } from 'bootstrap';
 import RegisterModal from './Register';
 import LoginModal from './Login';
 import LogoutModal from './Logout';
@@ -10,6 +10,7 @@ import Cookies from 'js-cookie';
 
 const { useRef, useEffect, useState } = React;
 
+
 export default function Navbar() {
   const [message, setMessage] = useState('');
   const [checkToken, setCheckToken] = useState(false);
@@ -18,6 +19,7 @@ export default function Navbar() {
   const loginModal = useRef(null);
   const logoutModal = useRef(null);
   const messageToast = useRef(null);
+  const navbarCollapse = useRef(null);
 
   useEffect(() => {
     handleToken();
@@ -34,7 +36,15 @@ export default function Navbar() {
     messageToast.current = new Toast('#messageToast', {
       backdrop: 'staic',
     });
+    navbarCollapse.current = new Collapse('#navbarNav', {
+      toggle: false
+    });
   });
+
+  const handleCollapse = () => {
+    navbarCollapse.current.toggle();
+  } 
+
   const handleToken = () => {
     if (Cookies.get('token')) {
       setCheckToken(true);
@@ -83,10 +93,10 @@ export default function Navbar() {
         className="navbar-toggler"
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
         aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
+        onClick={handleCollapse}
       >
         <span className="navbar-toggler-icon"></span>
       </button>

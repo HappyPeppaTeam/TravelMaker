@@ -10,8 +10,8 @@ const MessageToast = ({ messageData, closemessageToast }) => {
   return (
     <div aria-live="polite" aria-atomic="true" style={{
       position: 'fixed',
-      top: '1rem',
-      right: '1rem', // Adjust the right positioning as needed
+      top: '6rem',
+      right: '0rem', // Adjust the right positioning as needed
       zIndex: 1050
     }}
     >

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 function Sidebar() {
 
@@ -19,38 +20,38 @@ function Sidebar() {
 
                 <ul className="nav nav-pills flex-column mb-auto">
                     <li className="nav-item">
-                        <a href="#" className="nav-link text-white d-flex align-items-center">
+                        <Link to="/memberCenter" className="nav-link text-white d-flex align-items-center">
                             <i className="bi bi-person-vcard-fill"></i>
                             <span className="d-none d-sm-inline px-2">
                                 基本資料
                             </span>
-                        </a>
+                        </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <a href="#" className="nav-link text-white d-flex align-items-center">
                             <i className="bi bi-envelope-fill"></i>
                             <span className="d-none d-sm-inline px-2">
                                 我的信箱
                             </span>
                         </a>
-                    </li>
+                    </li> */}
                     <li>
-                        <a href="#" className="nav-link text-white d-flex align-items-center">
+                        <Link to="/journey" className="nav-link text-white d-flex align-items-center">
                             <i className="bi bi-calendar-week"></i>
                             <span className="d-none d-sm-inline px-2">
                                 我的行程
                             </span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#" className="nav-link text-white d-flex align-items-center">
+                        <Link to="/album" className="nav-link text-white d-flex align-items-center">
                             <i className="bi bi-image"></i>
                             <span className="d-none d-sm-inline px-2">
                                 我的相簿
                             </span>
-                        </a>
+                        </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <a href="#my-collection-submenu"
                             className="nav-link text-white d-flex align-items-center sidebar-link"
                             data-bs-toggle="collapse" role="button">
@@ -89,7 +90,7 @@ function Sidebar() {
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </div>

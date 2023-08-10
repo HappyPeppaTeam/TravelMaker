@@ -122,7 +122,7 @@ function CalendarNew({ newCalenderRef, setNewEvents, setNewJourney, newJourney})
                     buttonText: 'Calendar'
                 },
                 journeyListView: {
-                    type: 'list'
+                    type: 'listYear'
                 },
                 journeyMonthView: {
                     type: 'dayGridMonth',
@@ -131,7 +131,8 @@ function CalendarNew({ newCalenderRef, setNewEvents, setNewJourney, newJourney})
             }}
             headerToolbar={{
                 start: 'journeyListView journeyTimeView journeyMonthView',
-                end: 'prev,next'
+                end: 'prev,next',
+                center: 'title'
             }}
             initialDate={newJourney.journeyStart}
             dateClick={function (info) {

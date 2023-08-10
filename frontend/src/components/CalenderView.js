@@ -17,10 +17,10 @@ function CalendarView({ calenderRef, journeyDetail }) {
             views={{
                 journeyTimeView: {
                     type: 'timeGridWeek',
-                    buttonText: 'Calendar'
+                    buttonText: 'Calendar',
                 },
                 journeyListView: {
-                    type: 'listYear'
+                    type: 'listYear',
                 },
                 journeyMonthView: {
                     type: 'dayGridMonth',
@@ -29,7 +29,8 @@ function CalendarView({ calenderRef, journeyDetail }) {
             }}
             headerToolbar={{
                 start: 'journeyListView journeyTimeView journeyMonthView',
-                end: 'prev,next'
+                end: 'today prev,next',
+                center: 'title'
             }}
             initialDate={new Date(journeyDetail.journey_start)}
             events={journeyDetail.events.map(({ event_name, event_description, start_time, end_time }) => ({ title: event_name, description: event_description, start: new Date(start_time), end: new Date(end_time) }))}

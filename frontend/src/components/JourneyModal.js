@@ -10,7 +10,7 @@ const JourneyModel = ({
   setJourneyDetail,
 }) => {
   const modalHeaderStyle = {
-    height: "200px",
+    height: "130px",
     backgroundImage: "url(../images/street.jpg)",
     backgroundSize: "cover",
   };

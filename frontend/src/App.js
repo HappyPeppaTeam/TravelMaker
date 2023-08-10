@@ -14,6 +14,7 @@ import Forum from './pages/Forum';
 import Restaurant_main from './pages/Restaurant_main';
 import Journey from "./pages/Journey";
 import NewJourney from "./pages/NewJourney"; 
+import NewJourneyTest from "./pages/NewJourneyTest";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path='/restaurant' element={<Restaurant_main/>}></Route>
           <Route path="/journey" element={<Journey/>} ></Route>
           <Route path="/journey/newjourney" element={<NewJourney/>} ></Route>
+          <Route path="/journey/newjourneytest" element={<NewJourneyTest/>} ></Route>
         </Routes>
       <Footer/>
     </div>

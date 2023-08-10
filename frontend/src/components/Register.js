@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-// const handleGoogleRegister = () => {
-//   // 將使用者導向 Google 登入畫面，取得授權
-//   window.location.href = 'YOUR_GOOGLE_AUTH_URL'; // 你需要提供授權的網址
-// };
-
 const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -16,6 +11,15 @@ const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
   const [birthday, setBirthday] = useState('');
   const [gender, setGender] = useState('');
 
+  
+
+  const handleGoogle = () => {
+    window.location.href = 'http://localhost/TravelMaker/Backend/public/api/auth/google';
+  };
+  
+  
+
+  
   const register = async () => {
       const userData = {
         username,
@@ -52,7 +56,6 @@ const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
       } catch (error) {
         // Handle error, if any
         closeRegisterModal();
-        openMessageToast();
         console.error(error);
       }
     }
@@ -70,7 +73,7 @@ const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
           <div className="modal-body">
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">會員帳號</span>
-              <input type="text" className="form-control" id="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value={username} onChange={(e) => setUsername(e.target.value)} />
+              <input type="text" className="form-control" id="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value={username} onChange={(e) => setUsername(e.target.value)}/>
             </div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">會員密碼</span>
@@ -108,7 +111,7 @@ const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
           </div>
           <div className="modal-footer justify-content-center">
             <div>
-              快速註冊：<i className="bi bi-google"></i>
+              快速註冊：<i className="bi bi-google" onClick={handleGoogle}></i>
             </div>
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">取消</button>
             <button type="button" className="btn btn-primary" onClick={register}  data-bs-dismiss="modal">確認</button>

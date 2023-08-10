@@ -1,4 +1,5 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/css/bootstrap.css";
 import './css/navbar.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 
@@ -8,6 +9,8 @@ import Footer from './components/Footer';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Album from './pages/Album';
+import CreateAlbum from './pages/CreateAlbum';
+import EditAlbum from "./pages/EditAlbum";
 import Attractions from './pages/Attractions';
 import MemberCenter from './pages/MemberCenter';
 import Forum from './pages/Forum';
@@ -22,6 +25,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}></Route>
           <Route path='/album' element={<Album/>}></Route>
+          <Route path='/album/create' element={<CreateAlbum/>}></Route>
+          <Route path='/album/edit' element={<EditAlbum/>}></Route>
           <Route path='/attractions' element={<Attractions/>}></Route>
           <Route path='/memberCenter' element={<MemberCenter/>}></Route>
           <Route path='/forum' element={<Forum/>}></Route>

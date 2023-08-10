@@ -119,15 +119,16 @@ function NewJourney() {
     const newCalenderRef = useRef(null);
     const completeButtonRef = useRef(null);
 
+    
+    // const [currentTab, setCurrentTab] = useState(0);
     let currentTab = 0;
-
     useEffect(() => {
         tabs.current = document.getElementsByClassName("tab");
         prevButton.current = document.getElementById("prevButton");
         nextButton.current = document.getElementById("nextButton");
         progressBar.current = document.getElementById("progressBar");
-        // currentTab = 0;
         showTab(currentTab);
+        // console.log(currentTab);
     }, [])
 
 
@@ -163,15 +164,16 @@ function NewJourney() {
 
     function nextPrev(n) {
         tabs.current[currentTab].style.display = "none";
+        // setCurrentTab(prevTab => (prevTab + n));
+        // console.log(currentTab);
         currentTab += n;
 
         // for testing : return to first page after finished form 
-        if (currentTab >= tabs.current.length || currentTab < 0) {
-            currentTab = 0;
-            // return false;
-        }
+        // if (currentTab >= tabs.current.length || currentTab < 0) {
+        //     currentTab = 0;
+        //     // return false;
+        // }
 
-        // setCurTab(currentTab);
         showTab(currentTab);
         if (currentTab === 1) {
             newCalenderRef.current.getApi().render();
@@ -204,6 +206,7 @@ function NewJourney() {
 
 
     const handleTitle = (e) => {
+        e.preventDefault();
         setNewJourney((prevJourney) => ({
             ...prevJourney,
             journey_name: e.target.value,
@@ -211,6 +214,7 @@ function NewJourney() {
     }
 
     const handleDescription = (e) => {
+        e.preventDefault();
         setNewJourney((prevJourney) => ({
             ...prevJourney,
             description: e.target.value,
@@ -218,6 +222,7 @@ function NewJourney() {
     }
 
     const handleDestination = (e) => {
+        e.preventDefault();
         setNewJourney((prevJourney) => ({
             ...prevJourney,
             destination: e.target.value,
@@ -225,7 +230,7 @@ function NewJourney() {
     }
 
     const handleStartDate = (e) => {
-
+        e.preventDefault();
         setNewJourney((prevJourney) => ({
             ...prevJourney,
             journeyStart: e.target.value,
@@ -233,6 +238,7 @@ function NewJourney() {
     }
 
     const handleEndDate = (e) => {
+        e.preventDefault();
         setNewJourney((prevJourney) => ({
             ...prevJourney,
             journeyEnd: moment(prevJourney.journeyStart).add(e.target.value, 'm')

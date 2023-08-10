@@ -168,6 +168,7 @@ function Journey() {
                 </div>
                 <BotSidebar />
                 <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} setJourneyDetail={setJourneyDetail} clickJourneyId={clickJourneyId} />
+    
             </div>
         </>
     );

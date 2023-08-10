@@ -78,7 +78,7 @@ const ForumCards = () => {
                                 <img src={require('../images/card-1.jpg')} className="card-img-top card-img-size" />
                                 <div className="card-body">
                                     <h5 className="card-title">{forum.Text_title}</h5>
-                                    <p className="card-text">{`${forum.Text.slice(0,100)}...`}</p>
+                                    <p className="card-text">{`${forum.Text.slice(0,150)}...`}</p>
                                 </div>
                                 <div className="card-body">
                                     <Link to="/forum/discussion/article/" className="card-link">連結</Link>

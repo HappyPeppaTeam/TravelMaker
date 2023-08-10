@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./src/css/navbar.css" />
+    <link rel="stylesheet" href="./src/css/restaurant.css" />
+    <!-- <link rel="stylesheet" href="./src/css/sidebar.css"> -->
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 40%;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: auto;
+        }
+
+        .card>img {
+            width: 100%;
+            border-radius: 5px
+                /*5px 0 0*/
+            ;
+        }
+
+        form.example input[type=text] {
+            padding: 10px;
+            /* font-size: 17px; */
+            border: 1px solid grey;
+            float: left;
+            width: 80%;
+            background: #f1f1f1;
+            border-radius: 100px 0 0 100px;
+        }
+
+        form.example button {
+            float: left;
+            width: 20%;
+            padding: 10px;
+            background: #2196F3;
+            color: white;
+            /* font-size: 17px; */
+            border: 1px solid grey;
+            border-left: none;
+            /* cursor: pointer; */
+            border-radius: 0 100px 100px 0;
+        }
+
+        form.example button:hover {
+            background: #0b7dda;
+        }
+
+        .search-banner {
+            background-image: url(./src/images/restaurant-banner.jpg);
+            height: 20vh;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .card-img-top {
+            filter: brightness(70%);
+        }
+
+        aside {
+            float: left;
+            height: 100%;
+            min-height: calc(100vh - 70px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg bg-main px-2 shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand me-auto" href="#"><img src="./src/images/logo.png" style="height: 70px" alt="" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <a class="ms-auto me-3 d-none d-lg-block" href="#"><img src="./src/images/dark-mode.png"
+                        style="height: 40px" alt="" /></a>
+                <ul class="navbar-nav py-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">註冊</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link" href="#">登入</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 內容請自行替換 -->
+    <div class="main">
+        <div class="container">
+            <div class="p-5"><a class="rm-link-style" href="">餐廳</a>><a class="rm-link-style" href="">台中市</a>>西屯區</div>
+            <aside class="p-4">
+                <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+                    <div class="position-sticky">
+                        <div class="list-group list-group-flush mx-3 mt-4">
+                            <div data-bs-toggle="collapse" data-bs-target="#side-navbar">
+                                <span>餐廳類型</span>
+                                <a href=""class="rm-link-style"><i class="bi bi-star-fill rm-link-style"></i></a>
+                            </div>
+                            <div class="collapse navbar-collapse" id="side-navbar">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Link</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Link</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Link</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Collapse 1 -->
+                            <span class="text-center p-2">餐廳類型</span>
+                            <!-- Collapsed content -->
+                            <ul id="collapseExample1" class="collapse show list-group list-group-flush">
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-type-1" name="">
+                                    <label for="rest-type-1">美式料理</label>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-type-2" name="">
+                                    <label for="rest-type-1">日式料理</label>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-type-3" name="">
+                                    <label for="rest-type-1">中式料理</label>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-type-4" name="">
+                                    <label for="rest-type-1">泰式料理</label>
+                                </li>
+                            </ul>
+                            <!-- Collapse 1 -->
+                            <!-- Collapse 2 -->
+                            <span class="text-center p-2">地區分類</span>
+                            <!-- Collapsed content -->
+                            <ul id="collapseExample1" class="collapse show list-group list-group-flush">
+                                <li class="list-group-item py-1">
+                                    <div class="dropdown">
+                                        <div class="dropdown-toggle" data-bs-toggle="dropdown">
+                                            Dropdown button
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">Link 1</a></li>
+                                            <li><a class="dropdown-item" href="#">Link 2</a></li>
+                                            <li><a class="dropdown-item" href="#">Link 3</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-area-1" name="">
+                                    <label for="rest-type-1">基隆市</label>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-type-2" name="">
+                                    <label for="rest-type-1">台北市</label>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-type-3" name="">
+                                    <label for="rest-type-1">新北市</label>
+                                </li>
+                                <li class="list-group-item py-1">
+                                    <input type="checkbox" id="rest-type-1" name="">
+                                    <label for="rest-type-1">桃園市</label>
+                                </li>
+                            </ul>
+                            <!-- Collapse 1 -->
+
+                        </div>
+                    </div>
+                </nav>
+            </aside>
+            <section>
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 p-3">
+                        <a href="" style="text-decoration:none;">
+                            <div class="card">
+                                <img src="./src/images/street.jpg" alt="Avatar">
+                                <div class="container p-3">
+                                    <h4><b>森森燒肉 台中西屯店</b></h4>
+                                    <p>★ ★ ★ ★ ☆ 9527條評論</p>
+                                    <p>台中市 西屯區</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+    </div>
+    <!-- footer  -->
+    <footer class="bg-main py-3">
+        <p class="mb-0 text-center text-white">
+            © 2023 Travel Maker All Rights Reserved.
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

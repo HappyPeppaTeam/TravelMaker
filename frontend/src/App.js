@@ -20,6 +20,11 @@ import Attractioncountry from "./pages/Attractioncountry";
 import Attractionmore from "./pages/Attractionmore";
 import Attraction_innerpage from "./pages/Attraction_innerpage";
 import Attraction_forun from "./pages/Attraction_forun";
+import RestaurantArea from './pages/RestaurantArea';
+import RestaurantType from './pages/RestaurantType';
+import RestaurantSearch from './pages/RestaurantSearch';
+import RestaurantInner from './pages/RestaurantInner';
+import RestaurantComment from './pages/RestaurantComment';
 import Journey from "./pages/Journey";
 import NewJourney from "./pages/NewJourney";
 import Admin from "./pages/Admin";
@@ -45,6 +50,11 @@ function App() {
           <Route path='/memberCenter' element={<MemberCenter/>}></Route>
           <Route path='/forum' element={<Forum/>}></Route>
           <Route path='/restaurant' element={<Restaurant_main/>}></Route>
+          <Route path='/restaurant/area' element={<RestaurantArea/>}></Route>
+          <Route path='/restaurant/type' element={<RestaurantType/>}></Route>
+          <Route path='/restaurant/search' element={<RestaurantSearch/>}></Route>
+          <Route path='/restaurant/inner' element={<RestaurantInner/>}></Route>
+          <Route path='/restaurant/comment' element={<RestaurantComment/>}></Route>
           <Route path="/journey" element={<Journey/>} ></Route>
           <Route path="/journey/newjourney" element={<NewJourney/>} ></Route>
           <Route path='/Admin' element={<Admin />}></Route>

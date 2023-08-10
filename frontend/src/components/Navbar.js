@@ -34,26 +34,7 @@ export default function Navbar() {
     messageToast.current = new Toast('#messageToast', {
       backdrop: 'staic',
     });
-  });
-
-  const showMessage = () => {
-    // 显示 Toast
-    // toastRef.current.showToast();
-
-    // 设置自动隐藏时间（例如3秒后）
-    setTimeout(() => {
-      // 隐藏 Toast
-      // if (toastRef.current) {
-      //   const bootstrapToast = new window.bootstrap.Toast(toastRef.current);
-      //   bootstrapToast.hide();
-      // }
-
-      // 3秒后重新加载页面
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
-    }, 3000);
-  };
+  }, []);
 
   const handleToken = () => {
     if (Cookies.get('token')) {
@@ -74,9 +55,6 @@ export default function Navbar() {
         // 3秒后重新加载页面
       }, 3000);
     }
-      
-    
-  
   };
   const closeMessageToast = () => {
     messageToast.current.hide();

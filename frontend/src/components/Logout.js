@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const LogoutModal = ({ closelogoutModal, onResponse, openMessageToast }) => {
-  // const history = useHistory();
   let data={}
   data['token'] = Cookies.get('token')
   const logout = () => {

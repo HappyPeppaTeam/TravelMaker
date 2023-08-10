@@ -8,7 +8,7 @@ import withAuthorization from '../hook/withAuthorization';
 const Admin = () => {
     const [members, setMembers] = useState([]);
     const [newStatus, setNewStatus] = useState({});
-    
+
 
     const handleStatusChange = (userId, newStatusValue) => {
         const newStatusInt = parseInt(newStatusValue, 10);
@@ -18,7 +18,7 @@ const Admin = () => {
         }));
     };
 
-    
+
 
     const handleSaveStatusChanges = async userId => {
         try {
@@ -26,7 +26,7 @@ const Admin = () => {
                 userId: userId,
                 newStatus: newStatus[userId],
             });
-
+            console.log(response);
             // Handle success
         } catch (error) {
             // Handle error

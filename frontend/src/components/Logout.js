@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useHistory } from 'react-router-dom';
+
 
 const LogoutModal = ({ closelogoutModal, onResponse, openMessageToast }) => {
+  // const history = useHistory();
   let data={}
   data['token'] = Cookies.get('token')
   const logout = () => {
@@ -14,6 +17,8 @@ const LogoutModal = ({ closelogoutModal, onResponse, openMessageToast }) => {
           Cookies.remove('token')
           onResponse('登出成功');
           openMessageToast();
+          
+          // history.push('/');
         }
         
         
@@ -34,7 +39,7 @@ const LogoutModal = ({ closelogoutModal, onResponse, openMessageToast }) => {
           </div>
           <div className="modal-body">
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={logout}>確認</button>
+            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={logout} to='/'>確認</button>
           </div>
         </div>
       </div>

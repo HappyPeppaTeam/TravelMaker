@@ -24,13 +24,13 @@ const LoginModal = ({ closeloginModal, onResponse, openMessageToast }) => {
       // window.location.reload()
       // var token = response.data.token;
       // document.cookie = `token=${token}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/localhost:3000`;
-      // sessionStorage.setItem('username', userData.username);
+      localStorage.setItem('username', userData.username);
       const data = response.data.message;
       // Handle the response from the backend, if needed
-      onResponse(data,userData.username);
+      onResponse(data);
       closeloginModal();
       openMessageToast();
-      console.log('Response from backend:', data,userData.username);
+      console.log('Response from backend:', data,sessionStorage.getItem('username'));
     } catch (error) {
       // Handle error, if any
       closeloginModal();

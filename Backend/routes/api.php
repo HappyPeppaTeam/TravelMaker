@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AlbumController;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\ImageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -194,7 +197,7 @@ Route::post('/login',function(Request $request){
            "token"=>$setToken[0]->token,
         "message"=>"Password is correct! , and get token",
     ];
-    setcookie('token',$setToken[0]->token,time() + 600,'/');
+    setcookie('token',$setToken[0]->token,time() + 3600,'/');
        return response()->json($data, 200);
         // ->cookie('token',$set_token[0]->token,time() + 120);;
         // 哈希值匹配，可以认为用户提供的密码是正确的
@@ -260,7 +263,7 @@ Route::post('/login',function(Request $request){
            "token"=>$setToken[0]->token,
         "message"=>"Password is correct! , and get token",
     ];
-    setcookie('token',$setToken[0]->token,time() + 600,'/');
+    setcookie('token',$setToken[0]->token,time() + 3600,'/');
        return response()->json($data, 200);
         // ->cookie('token',$set_token[0]->token,time() + 120);;
         // 哈希值匹配，可以认为用户提供的密码是正确的
@@ -280,3 +283,73 @@ $unSetToken = DB::select('call unSet_token(?)',[$token]);
 return response()->json($unSetToken,200);
 
 });
+
+Route::post('/profile',function(Request $request){  
+$token = $request['token'];
+$getProfile = DB::select("select user_name,full_name,nick_name,email,birthday,gender,head_photo from users where token= ?",[$token]);
+$getProfile[0]->head_photo =  Storage::url("{$getProfile[0]->head_photo}");
+
+// return response()->json($token,200);
+return response()->json($getProfile,200);
+});
+
+Route::post('/updateProfileImage', [ImageController::class,'upload']);
+
+Route::get('/getArticle/{discussionBoardArea}', function($discussionBoardArea){
+    $getArticle=DB::select('CALL GetBoardData(?);',[$discussionBoardArea]);
+    return response()->json($getArticle,200);
+});
+
+Route::get('/getBoardText/{boardText_id}', function ($board_text_id) {
+    // 取得 board_text 資料及關聯的使用者名稱
+    $boardText = DB::table('board_text')
+        ->select('board_text.text_title', 'board_text.text', 'board_text.Posting_time', 'users.full_name')
+        ->join('users', 'board_text.Posting_user_id', '=', 'users.user_id')
+        ->where('board_text.board_text_id', $board_text_id)
+        ->first();
+
+    // 取得 board_image 資料
+    $boardImages = DB::table('board_image')
+        ->where('board_text_id', $board_text_id)
+        ->get();
+
+    // 將圖片資料放入陣列
+    $imageArray = [];
+    foreach ($boardImages as $image) {
+        $imageArray[] = $image->image_path;
+    }
+
+    // 組合回傳的資料物件
+    $responseData = [
+        'text_title' => $boardText->text_title,
+        'text' => $boardText->text,
+        'Posting_time' => $boardText->Posting_time,
+        'full_name' => $boardText->full_name,
+        'images' => $imageArray,
+    ];
+
+    return response()->json($responseData, 200);
+});
+//發布留言api
+Route::post('/postMessage',function(Request $request){
+$boardTextId=$request['boardTextId'];
+$messageText=$request['messageText'];
+$userId=$request['userId'];
+date_default_timezone_set('Asia/Taipei');
+$messageTime=date("Y-m-d H:i:s");
+$postMessage=DB::select('call post_message(?,?,?,?)',[$boardTextId,$messageText,$userId,$messageTime]);
+return response()->json($postMessage,200);
+});
+//get文章 boardTextId 下所有留言
+Route::get('/getMessage/{boardTextId}',function($boardTextId){
+$getMessage=DB::select('select * from message_board where board_text_id = ?',[$boardTextId]);
+return response()->json($getMessage,200);
+});
+
+
+//待確認
+// Route::post('/updateProfileImage',function(Request $request){
+// $token = $request['token'];
+// // $updateProfileImage = DB::select("update users set headphoto = ? where token = ?",[$image,$token]);
+// return response()->json($request,200);
+// });

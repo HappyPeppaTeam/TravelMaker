@@ -29,7 +29,7 @@ function App() {
           <Route path='/restaurant' element={<Restaurant_main/>}></Route>
           <Route path="/journey" element={<Journey/>} ></Route>
           <Route path="/journey/newjourney" element={<NewJourney/>} ></Route>
-          <Route path="/journey/newjourneytest" element={<NewJourneyTest/>} ></Route>
+          <Route path="/newtest" element={<NewJourneyTest/>} ></Route>
         </Routes>
       <Footer/>
     </div>

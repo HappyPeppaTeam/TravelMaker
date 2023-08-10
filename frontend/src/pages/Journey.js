@@ -138,36 +138,45 @@ function Journey() {
 
     // const [clickInfo, setClickInfo] = useState('');
     // const [editEvents, setEditEvents] = useState([]);
-    
+
 
     return (
+<<<<<<< HEAD
         <div className="container-fluid shadow p-0 mb-3 bg-white" id="bodyContainer">
             <div className="d-flex flex-nowrap row container-fluid m-0 p-0 bg-white" id="contentContainer">
                 <Sidebar />
+=======
+        <>
+            <div className="container-fluid shadow p-0  bg-white" id="bodyContainer">
+                <div className="d-flex flex-nowrap row container-fluid m-0 p-0 bg-white" id="contentContainer">
+                    <Sidebar />
+>>>>>>> d466b9cd12bb66dfd898efa9c10ae41c72a98181
 
-                {/* <!-- main content --> */}
-                <div className="flex-fill px-0 justify-content-center" id="content">
-                    <div className="m-5">
-                        <div className="d-flex align-items-end" id='headLinkContainer'>
-                            <Link to="/journey" className="h1 rm-link-style">我的行程</Link>
-                            <Link to="/journey/newjourney" className="h5 ms-auto active-text add-new-journey" style={{ textDecoration: 'none' }}><i className="bi bi-plus-lg"></i><span className="ms-1">建立行程</span>
-                            </Link>
-                        </div>
-                        <hr />
-                        <div className="container-fluid">
-                            <div className="row">
-                                {journeys.map((journey) => {
-                                    return (<JourneyThumbnail key={journey.journey_id} handleOpenModal={handleOpenModal} journey={journey} setClickJourneyId={setClickJourneyId} />)
-                                })}
-                                <AddNewJourney />
+                    {/* <!-- main content --> */}
+                    <div className="flex-fill px-0 justify-content-center" id="content">
+                        <div className="m-5">
+                            <div className="d-flex align-items-end" id='headLinkContainer'>
+                                <Link to="/journey" className="h1 rm-link-style">我的行程</Link>
+                                <Link to="/journey/newjourney" className="h5 ms-auto active-text add-new-journey" style={{ textDecoration: 'none' }}><i className="bi bi-plus-lg"></i><span className="ms-1">建立行程</span>
+                                </Link>
+                            </div>
+                            <hr />
+                            <div className="container-fluid">
+                                <div className="row">
+                                    {journeys.map((journey) => {
+                                        return (<JourneyThumbnail key={journey.journey_id} handleOpenModal={handleOpenModal} journey={journey} setClickJourneyId={setClickJourneyId} />)
+                                    })}
+                                    <AddNewJourney />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <BotSidebar />
+                <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} setJourneyDetail={setJourneyDetail} clickJourneyId={clickJourneyId} />
+    
             </div>
-            <BotSidebar />
-            <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} setJourneyDetail={setJourneyDetail} clickJourneyId={clickJourneyId}/>
-        </div>
+        </>
     );
 }
 

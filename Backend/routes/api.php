@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/albums/{token}', function ($token) {
+    
     $albums = DB::select('CALL GetAlbumsAndPhotos(?)', [$token]);
 
     $result = [];
@@ -166,34 +167,41 @@ Route::post('/register',function(Request $request){
     $registerTime = date("Y-m-d H:i:s");
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $check_duble_username=DB::select('select user_id from users where user_name = ?;',[$userName]);
-    $check_duble_email=DB::select('select user_id from users where email = ?;',[$email]);
-if (empty($check_duble_username)) {
-    if (empty($check_duble_email)) {
-        $DbResult = DB::select('call register_user(?,?,?,?,?,?,?,?);',[$userName, $hashedPassword,$email,$birthday,$fullName,$nickName,$gender,$registerTime]);
-        $regsiterMessage = $DbResult[0]->message;
-    }else {
-        // $regsiterMessage ='相同email已存在';
-        $regsiterMessage = '相同email已存在';
+    $check_duble_username = DB::select('select user_id from users where user_name = ?;', [$userName]);
+    $check_duble_email = DB::select('select user_id from users where email = ?;', [$email]);
+    if (empty($check_duble_username)) {
+        if (empty($check_duble_email)) {
+            $DbResult = DB::select('call register_user(?,?,?,?,?,?,?,?);', [$userName, $hashedPassword, $email, $birthday, $fullName, $nickName, $gender, $registerTime]);
+            $regsiterMessage = $DbResult[0]->message;
+        } else {
+            // $regsiterMessage ='相同email已存在';
+            $regsiterMessage = '相同email已存在';
+        }
+    } else {
+        $regsiterMessage = '相同帳號已存在';
+        // $regsiterMessage ='相同帳號已存在';
     }
-}else{
-    $regsiterMessage = '相同帳號已存在';
-    // $regsiterMessage ='相同帳號已存在';
-}
-        $data = [
-        "message"=>$regsiterMessage
-        ];
+    $data = [
+        "message" => $regsiterMessage
+    ];
     // return $regsiterMessage;
     return response()->json($data, 200);
     // return $check_duble_username;
 });
 
-Route::post('/login',function(Request $request){
+Route::post('/login', function (Request $request) {
     $userName = $request['username'];
     $password = $request['password'];
-    $user_result = DB::select('call login_user(?);',[$userName]);
+    $user_result = DB::select('call login_user(?);', [$userName]);
     $hashedPasswordFromDB = $user_result[0]->password;
     if (password_verify($password, $hashedPasswordFromDB)) {
+        $setToken = DB::select('call set_token(?);', [$userName]);
+        $data = [
+            "token" => $setToken[0]->token,
+            "message" => "Password is correct! , and get token",
+        ];
+        setcookie('token', $setToken[0]->token, time() + 600, '/');
+        return response()->json($data, 200);
        $setToken= DB::select('call set_token(?);',[$userName]);
        $data = [
         "message"=>"Password is correct! , and get token",
@@ -205,25 +213,42 @@ Route::post('/login',function(Request $request){
         setcookie('role','user',time() + 3600,'/');
     }
     setcookie('token',$setToken[0]->token,time() + 3600,'/');
-    return response()->json($data, 200);
-    // ->cookie('token',$set_token[0]->token,time() + 120);;
+       return response()->json($data, 200);
         // 哈希值匹配，可以认为用户提供的密码是正确的
-        // $result= array("message"=>"Password is correct! , and get token");    
     } else {
         // 哈希值不匹配，密码错误
-        // $result= array("message"=>"Password is incorrect!");
         return response()->json(['error' => 'Unauthorized'], 401);
     }
-    // return $result;
 });
-// ->middleware('check.cookie');;
 
-Route::post('/logout',function(Request $request){    
-$token = $request['token'];
-$unSetToken = DB::select('call unSet_token(?)',[$token]);
-return response()->json($unSetToken,200);
-
+Route::post('/logout', function (Request $request) {
+    $token = $request['token'];
+    $unSetToken = DB::select('call unSet_token(?)', [$token]);
+    return response()->json($unSetToken, 200);
 });
+
+
+// post ckeditor image
+Route::post('/postimgurl', function (Request $request) {
+    if ($request->hasFile('image')) {
+        $files = $request->file('image');
+
+        foreach ($files as $file) {
+            // 儲存檔案到 public 目錄，並取得檔案路徑
+            $path = $file->store('images', 'public');
+
+            // 建立資料庫紀錄
+            DB::table('testeditor')->insert([
+                'path' => $path,
+            ]);
+        }
+
+        return response()->json(['message' => 'Image uploaded successfully']);
+    }
+
+    return response()->json(['message' => 'Image not found in the request'], 400);
+});
+
 // by cookie/token get profile data
 Route::post('/profile',function(Request $request){  
 $token = $request['token'];

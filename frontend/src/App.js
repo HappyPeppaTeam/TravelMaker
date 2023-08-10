@@ -29,7 +29,9 @@ import Journey from "./pages/Journey";
 import NewJourney from "./pages/NewJourney";
 import Admin from "./pages/Admin";
 import ErrorPage from "./pages/ErrorPage";
-
+import Article from "./pages/Article";
+import Discussion from "./pages/Discussion";
+import AddArticle from "./pages/AddArticle";
 
 
 function App() {
@@ -49,6 +51,9 @@ function App() {
           <Route path='/Attraction_innerpage/Attraction_forun' element={<Attraction_forun/>}></Route>
           <Route path='/memberCenter' element={<MemberCenter/>}></Route>
           <Route path='/forum' element={<Forum/>}></Route>
+          <Route path='/forum/discussion/:id' element={<Discussion/>}></Route>
+          <Route path='/forum/discussion/addarticle' element={<AddArticle/>}></Route>
+          <Route path='/forum/discussion/article/:id' element={<Article/>}></Route>
           <Route path='/restaurant' element={<Restaurant_main/>}></Route>
           <Route path='/restaurant/area' element={<RestaurantArea/>}></Route>
           <Route path='/restaurant/type' element={<RestaurantType/>}></Route>

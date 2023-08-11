@@ -103,10 +103,10 @@ export default function Navbar() {
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
             aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            onClick={handleCollapse}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -126,17 +126,17 @@ export default function Navbar() {
               <li className="nav-item">
                 {/* <Link className="nav-link" to='/album'>註冊</Link> */}
                 {checkToken ? (
-                  <Link className="nav-link" to='/memberCenter' >會員中心</Link>
+                  <Link className="nav-link text-white" to='/memberCenter' >會員中心</Link>
                 ) : (
-                    <Link className="nav-link" onClick={openRegisterModal}>註冊</Link>
+                    <Link className="nav-link text-white" onClick={openRegisterModal}>註冊</Link>
                   )}
 
               </li>
               <li className="nav-item ms-lg-2">
                 {checkToken ? (
-                  <Link className="nav-link" onClick={openlogoutModal}>登出</Link>
+                  <Link className="nav-link text-white" onClick={openlogoutModal}>登出</Link>
                 ) : (
-                    <Link className="nav-link" onClick={openloginModal}>登入</Link>
+                    <Link className="nav-link text-white" onClick={openloginModal}>登入</Link>
                   )}
               </li>
             </ul>

@@ -83,7 +83,6 @@ const MemberCenter = () => {
                 <div className="d-flex flex-nowrap row" id="content-container">
                     {/* side bar */}
                     <Sidebar></Sidebar>
-
                     {/* main content */}
                     <div className="flex-fill" id="content">
                         <section className="bg-light">

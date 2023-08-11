@@ -45,7 +45,7 @@ export default function RestaurantSearch() {
     };
     console.log(selectedZipCodes)
     return (
-        <div className="main">
+        <div className="">
             <div className="container">
                 <div className="p-5"><a className="rm-link-style" href="">餐廳</a>＞<a className="rm-link-style" href="">台中市</a>＞西屯區</div>
                 <input

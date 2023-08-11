@@ -1,7 +1,7 @@
 import '../css/restaurant.css';
 export default function RestaurantArea() {
     return (
-        <div className="main">
+        <div className="">
             <div className="container">
                 <h4 className="p-4">依地區分類</h4>
                 <div className="row">

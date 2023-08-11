@@ -21,7 +21,7 @@ export default function RestaurantInner() {
     }, [])
     console.log(attraction[0].Name);
     return (
-        <div className="main">
+        <div className="">
 
             <div className="p-3"><a className="rm-link-style" href="">餐廳</a>＞<a className="rm-link-style" href="">台中市</a>＞西屯區</div>
 

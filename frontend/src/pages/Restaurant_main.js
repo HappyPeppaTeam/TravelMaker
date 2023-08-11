@@ -15,7 +15,7 @@ export default function Restaurant_main() {
         })();
     }, [])
     return (
-        <div className="main">
+        <div className="">
             <div className="d-flex justify-content-center">
                 <img src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" className="search-banner" alt="" />
                 <form className="example align-items-center" action="/action_page.php"

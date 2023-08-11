@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import '../css/attractions.css';
-import '../css/bootstrap.css';
 
 export default function Attraction_forun() {
 

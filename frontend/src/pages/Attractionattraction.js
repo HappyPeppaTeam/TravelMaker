@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import '../css/attractions.css';
-import '../css/bootstrap.css';
+
 
 import React from 'react';
 import axios from 'axios';

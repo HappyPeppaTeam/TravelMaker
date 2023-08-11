@@ -1,6 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
 import '../css/attractions.css';
-import '../css/bootstrap.css';
 import { Modal } from 'bootstrap';
 import React from 'react';
 import axios from 'axios';

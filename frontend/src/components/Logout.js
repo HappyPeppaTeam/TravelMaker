@@ -13,6 +13,8 @@ const LogoutModal = ({ closelogoutModal, onResponse, openMessageToast }) => {
         if (response.data[0].unset_result === 0) {
           Cookies.remove('token')
           Cookies.remove('role')
+          Cookies.remove('username')
+          Cookies.remove('fullname')
           localStorage.removeItem('username');
           onResponse('登出成功');
           openMessageToast();

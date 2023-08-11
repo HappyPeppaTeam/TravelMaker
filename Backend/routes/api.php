@@ -194,6 +194,7 @@ Route::post('/login', function (Request $request) {
     $hashedPasswordFromDB = $user_result[0]->password;
     if (password_verify($password, $hashedPasswordFromDB)) {
         $setToken = DB::select('call set_token(?);', [$userName]);
+        $getFullName = DB::select('select full_name from users where token = ?',[$setToken[0]->token]);
         $data = [
             "message" => "登入成功",
         ];
@@ -203,6 +204,8 @@ Route::post('/login', function (Request $request) {
         setcookie('role','user',time() + 3600,'/');
     }
     setcookie('token',$setToken[0]->token,time() + 3600,'/');
+    setcookie('username',$userName,time() + 3600,'/');
+    setcookie('fullname',$getFullName[0]->full_name,time() + 3600,'/');
        return response()->json($data, 200);
         // 哈希值匹配，可以认为用户提供的密码是正确的
     } else {

@@ -2,14 +2,13 @@ import '../css/sidebar.css';
 // import '../css/album.css';
 import Sidebar from '../components/Sidebar';
 import ImageUploadButton from '../components/ImageUploadButton';
-
 import React from 'react';
-import { Modal } from 'bootstrap';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import withAuthorization from '../hook/withAuthorization';
 
-const { useRef, useEffect, useState } = React;
+
+const { useEffect, useState } = React;
 const MemberCenter = () => {
     const [username, setUsername] = useState('');
     const [fullName, setFullName] = useState('');
@@ -18,7 +17,7 @@ const MemberCenter = () => {
     const [birthday, setBirthday] = useState('');
     const [gender, setGender] = useState('');
     const [selectedImage, setSelectedImage] = useState('');
-    const inputRef = useRef(null);
+    // const inputRef = useRef(null);
     useEffect(() => {
         getProfile();
     });
@@ -67,7 +66,7 @@ const MemberCenter = () => {
             setBirthday(response.data[0].birthday)
             setGender(response.data[0].gender)
             //檢查user有無頭像，如無使用預設
-            if (response.data[0].head_photo != "\/storage\/") {
+            if (response.data[0].head_photo !== "/storage/") {
                 setSelectedImage("http://localhost/TravelMaker/Backend/public" + response.data[0].head_photo)
             } else {
                 setSelectedImage("https://bootdey.com/img/Content/avatar/avatar7.png")
@@ -84,7 +83,6 @@ const MemberCenter = () => {
                 <div className="d-flex flex-nowrap row" id="content-container">
                     {/* side bar */}
                     <Sidebar></Sidebar>
-
                     {/* main content */}
                     <div className="flex-fill" id="content">
                         <section className="bg-light">
@@ -96,23 +94,7 @@ const MemberCenter = () => {
                                             <div className="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
                                                 <div className="row align-items-center">
                                                     <div className="col-lg-6 mb-4 mb-lg-0">
-                                                        {/* <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="..." /> */}
                                                         {selectedImage && <img src={selectedImage} alt="所選圖片" style={{ width: '200px', height: '300px', objectFit: "contain" }} />}
-                                                        {/* <label htmlFor="file-input">
-                                                            <p className='fs-4 mb-2'>選擇相片</p>
-                                                            <input
-                                                                type="file"
-                                                                id="file-input"
-                                                                accept="image/*"
-                                                                className="d-none ab"
-                                                                multiple */}
-                                                        {/* onChange={handleImageSelect} */}
-                                                        {/* ref={inputRef} */}
-                                                        {/* /> */}
-                                                        {/* onImageSelect={handleImageSelect} */}
-                                                        {/* <span className='btn btn-outline-primary me-2' >上傳圖片</span> */}
-                                                        {/* </label> */}
-
                                                     </div>
                                                     <ImageUploadButton onImageSelect={handleImageSelect} />
                                                     {/* Add member details here */}
@@ -139,7 +121,7 @@ const MemberCenter = () => {
                                                             <div className="input-group mb-3">
                                                                 <span className="input-group-text" id="basic-addon1">會員密碼</span>
                                                                 <input type="password" className="form-control" id="username" value="12345678" />
-                                                                {/* oncheck 顯示 confrim password元件 */}
+                                                                {/* onClick 顯示 confrim password元件 */}
                                                             </div>
                                                         </li>
                                                         <li className="mb-2 mb-xl-3 display-28">
@@ -177,4 +159,4 @@ const MemberCenter = () => {
         </>
     )
 }
-export default MemberCenter;
+export default  withAuthorization(['user'])(MemberCenter);;

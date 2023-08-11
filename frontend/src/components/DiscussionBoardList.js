@@ -71,7 +71,7 @@ const DiscussionBoard = () => {
 
   
   return (
-    <div className="discussion-board bg-blue-3 mx-0 row gy-2">
+    <div className="discussion-board bg-blue-3 my-0 row gy-1">
       <div className="sub-discussion-board-home col-6 col-md">
         <button className="btn btn-secondary" type="button" id="defaultDropdown">
           <Link to="/forum">首頁</Link>

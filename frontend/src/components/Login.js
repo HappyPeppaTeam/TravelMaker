@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const LoginModal = ({ closeloginModal, onResponse, openMessageToast }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  const handleGoogle = () => {
+    window.location.href = 'http://localhost/TravelMaker/Backend/public/api/auth/google';
+  };
   const login = async () => {
     const userData = {
       username,
@@ -21,60 +24,22 @@ const LoginModal = ({ closeloginModal, onResponse, openMessageToast }) => {
       if (!response.status === 200) {
         throw new Error('Network response was not ok');
       }
-      // window.location.reload()
-      // var token = response.data.token;
-      // document.cookie = `token=${token}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/localhost:3000`;
+      
       localStorage.setItem('username', userData.username);
       const data = response.data.message;
       // Handle the response from the backend, if needed
       onResponse(data);
       closeloginModal();
       openMessageToast();
-      console.log('Response from backend:', data,sessionStorage.getItem('username'));
+      if (Cookies.get('role')==='admin') {
+        window.location.href = 'http://localhost:3000/Admin';
+      }
+      console.log('Response from backend:', data, sessionStorage.getItem('username'));
     } catch (error) {
       // Handle error, if any
       closeloginModal();
-      openMessageToast();
       console.error(error);
     }
-
-
-
-    // Send the data to the backend using Fetch API
-    // fetch('http://localhost/public/api/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(userData),
-    // })
-    //   .then(response => {
-    //     // 检查状态码
-    //     if (!response.ok) {
-    //       // 抛出自定义错误对象，后面的 catch 块会捕获该错误并处理
-    //       throw new Error('Network response was not ok');
-
-    //     }
-    //     const cookies = response.headers.get('Set-Cookie');
-    //     console.log(cookies);
-    //     // document.cookie = `token=${token}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
-    //     // 这里你可以继续处理响应数据
-    //     return response.json();
-    //   })
-    //   .then(data => {
-    //     // Handle the response from the backend, if needed
-
-    //     onResponse(data);
-    //     closeloginModal();
-    //     openMessageToast();
-    //     console.log('Response from backend:', data);
-    //   })
-    //   .catch(error => {
-    //     // Handle error, if any
-    //     closeloginModal();
-    //     openMessageToast();
-    //     console.error(error);
-    //   });
   };
   return (
     <div className="modal fade" id="loginModal" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -95,7 +60,7 @@ const LoginModal = ({ closeloginModal, onResponse, openMessageToast }) => {
             </div>
           </div>
           <div className="modal-footer justify-content-center">
-            快速登入：<i className="bi bi-google"></i>
+            快速登入：<i className="bi bi-google" onClick={handleGoogle}></i>
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">取消</button>
             <button type="button" className="btn btn-primary" onClick={login}>確認</button>
           </div>

@@ -6,8 +6,7 @@ function useImage() {
     const inputRef = useRef(null);
     const [images, setImages] = useState([]);
     const [imagesData, setImagesData] = useState([]);
-
-    console.log(imagesData);
+    
     // 上傳圖片
     const handleUpload = (e) => {
         const images = [...e.target.files].map((file) => {
@@ -112,16 +111,6 @@ function ArticleEditor() {
             ArticleData.append(`images[${index}]`,image);
         });
         event.preventDefault();
-        // test用
-        // console.log(ArticleData.get('Discussion_board_area'));
-        // console.log(ArticleData);
-        // // Here you can perform the submission logic
-        // console.log('Submitted:', {
-        //     Board,
-        //     Location,
-        //     Topic,
-        //     content,
-        // });
     };
 
     return (
@@ -223,6 +212,7 @@ function ArticleEditor() {
 
                 </div>
                 <div className='post_article'>
+                    <button className='btn btn-danger' type="submit">取消發文</button>
                     <button className='btn btn-primary' type="submit" disabled={exceedLimit}>我要發文</button>
                 </div>
             </form>

@@ -5,7 +5,7 @@ import DiscussionBoard from '../components/DiscussionBoardList';
 import React from 'react';
 import axios from 'axios';
 
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 export default function Discussion() {
@@ -35,7 +35,7 @@ export default function Discussion() {
                     <button className="btn btn-primary">最新</button>
                     <button className="btn btn-primary">精選</button>
                     <button className="btn btn-primary ms-auto">
-                        <a href="">我要發文</a>
+                        <Link to="/forum/discussion/addarticle">我要發文</Link>
                     </button>
                 </div>
                 {/* <!-- 上分頁 --> */}

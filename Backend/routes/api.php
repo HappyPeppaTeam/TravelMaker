@@ -103,7 +103,12 @@ Route::get('/zipcode',function() {
     return response()->json($data);
 });
 
-Route::get('/type',function() {
-    $data = DB::select('SELECT * FROM typename'); 
+Route::get('/typeid',function() {
+    $data = DB::select('SELECT * FROM typeid'); 
+    return response()->json($data);
+});
+
+Route::get('/attraction/{typeid}',function($typeid) {
+    $data = DB::select('SELECT * FROM attraction WHERE TypeID = ?',[$typeid]); 
     return response()->json($data);
 });

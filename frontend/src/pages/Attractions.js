@@ -100,22 +100,22 @@ export default function Attractions() {
                     <div className="container" style={{ 'clear': 'both' }}>
                         <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='人文景點'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/人文景點.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='市集'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/市集.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='自然景觀'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/自然景觀.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='夜市'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/夜市.jpg')} />
                                 </Link>
                             </div>

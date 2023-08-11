@@ -24,7 +24,7 @@ export default function Attraction_forun() {
 
 
         (async () => {
-            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/type`);
+            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/typeid`);
             console.log(response);
             setTypeName(response.data);
         })();

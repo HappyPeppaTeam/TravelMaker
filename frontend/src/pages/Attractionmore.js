@@ -13,15 +13,9 @@ export default function Attractionmore() {
 
 
     const [attractionPicture, setAttractionPicture] = useState([{}]);
-
-
     console.log(attractionPicture);
     useEffect(() => {
-
         (async () => {
-            // const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction/${state}`);
-            // console.log(response);
-            // setAttractionPicture(response.data);
             console.log(typeof state);
             const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction`);
             if (typeof state === 'number') {
@@ -34,9 +28,34 @@ export default function Attractionmore() {
             }
         })();
     }, []);
+
+
+    const [typeSearch, setTypeSearch] = useState([{}])
+    console.log(typeSearch);
+    useEffect(() => {
+        (async () => {
+            console.log(typeof state);
+            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction`);
+            if (typeof state === 'number') {
+                const test = response.data.filter(item => item.TypeID === state);
+                setTypeSearch(test);
+            } else {
+                console.log(state.substring(0, 4));
+                const test = response.data.filter(item => item.ChineseType.substring(0, 4) === state);
+                setTypeSearch(test);
+            }
+        })();
+    }, []);
+    
+
+
+
+    
+
+    
     // console.log(attractionPicture);
     const [ZipID, setZipID] = useState([{}]);
-    // console.log(ZipID);
+    console.log(ZipID);
     useEffect(() => {
 
 
@@ -53,7 +72,7 @@ export default function Attractionmore() {
 
 
         (async () => {
-            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/type`);
+            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/typeid`);
             console.log(response);
             setTypeName(response.data);
         })();
@@ -358,6 +377,25 @@ export default function Attractionmore() {
                     </div>
                     <div className="container">
                         {attractionPicture.map((item, index) => {
+                            return (
+                                <div style={{ 'paddingTop': '10px', 'paddingBottom': '5px' }} key={index}>
+                                    <Link to="/Attractionmore/Attraction_innerpage" className="bottom-line" state={item}>
+                                        <fieldset className="rm-fieldset">
+                                            <div className="row">
+                                                <div className="col-lg-4">
+                                                    <img src={item.PictureUrl1} style={{ 'maxWidth': '100%', height: '200px', objectFit: 'cover' }} className='w-100' />
+                                                </div>
+                                                <div className="col-lg-8">
+                                                    <h3><b>{item.Name}</b></h3>
+                                                    <p>{item.Description}</p>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </Link>
+                                </div>
+                            )
+                        })}
+                        {typeSearch.map((item, index) => {
                             return (
                                 <div style={{ 'paddingTop': '10px', 'paddingBottom': '5px' }} key={index}>
                                     <Link to="/Attractionmore/Attraction_innerpage" className="bottom-line" state={item}>

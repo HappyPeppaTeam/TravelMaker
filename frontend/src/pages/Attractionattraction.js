@@ -40,7 +40,7 @@ export default function Attractionattraction() {
 
 
         (async () => {
-            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/type`);
+            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/typeid`);
             console.log(response);
             setTypeName(response.data);
         })();
@@ -342,7 +342,7 @@ export default function Attractionattraction() {
                     </div>
                     <div className="container image-container">
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>夜市</b></h3>
-                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line">
+                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line" state='夜市'>
                             <h4>
                                 more
                             </h4>
@@ -368,7 +368,7 @@ export default function Attractionattraction() {
                             </div>
                         </div>
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>港口</b></h3>
-                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line">
+                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line" state='港口'>
                             <h4>
                                 more
                             </h4>
@@ -396,7 +396,7 @@ export default function Attractionattraction() {
                             </div>
                         </div>
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>市集</b></h3>
-                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line">
+                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line" state='市集'>
                             <h4>
                                 more
                             </h4>
@@ -422,7 +422,7 @@ export default function Attractionattraction() {
                             </div>
                         </div>
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>購物</b></h3>
-                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line">
+                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line" state='購物'>
                             <h4>
                                 more
                             </h4>
@@ -448,7 +448,7 @@ export default function Attractionattraction() {
                             </div>
                         </div>
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>人文景點</b></h3>
-                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line">
+                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line" state='人文景點'>
                             <h4>
                                 more
                             </h4>
@@ -474,7 +474,7 @@ export default function Attractionattraction() {
                             </div>
                         </div>
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>自然景觀</b></h3>
-                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line">
+                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line" state='自然景觀'>
                             <h4>
                                 more
                             </h4>
@@ -500,7 +500,7 @@ export default function Attractionattraction() {
                             </div>
                         </div>
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>觀光工廠</b></h3>
-                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line">
+                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line" state='觀光工廠'>
                             <h4>
                                 more
                             </h4>

@@ -55,7 +55,7 @@ function NewJourneyTest() {
             }}>render</button>
             <hr />
             <div className='container mb-3'>
-                <div id="calenderContainer" className='rounded shadow p-3 fs-4' ref={calendarRef} style={containerStyle}>
+                <div id="calenderContainer" className='container rounded shadow p-3 fs-4' ref={calendarRef} style={containerStyle}>
 
                 </div>
             </div>

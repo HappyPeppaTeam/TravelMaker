@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import '../css/attractions.css';
-import '../css/bootstrap.css';
+// import '../css/bootstrap.css';
 
 import React from 'react';
 import axios from 'axios';
@@ -75,12 +75,12 @@ export default function Attractions() {
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='臺中市'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/taichung.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }} >
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/tainan.jpg')} />
                                 </Link>
                             </div>

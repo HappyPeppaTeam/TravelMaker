@@ -81,7 +81,7 @@ return response()->json($unSetToken,200);
 
 });
 
-Route::get('/test',function() {
-    $data = DB::select('SELECT * FROM Attraction_infomation'); 
+Route::get('/restaurant',function() {
+    $data = DB::select('SELECT * FROM restaurant_infomation'); 
     return response()->json($data);
 });

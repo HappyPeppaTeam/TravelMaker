@@ -63,30 +63,37 @@ class JourneyController extends Controller
         // return response()->json($journeyTitle);
     }
 
-    function addNewEvents(Request $request){
+    function addNewEvents($journeyId, $events)
+    {
         try {
-            $journeyId = $request['journey_id'];
-            $events = $request['events'];
-            
-            foreach($events as $event) {
-                $e_title = $event['title'];
-                $e_description = $event['description'];
-                $start = $event['start'];
-                $end = $event['end'];
-                $isInsert = DB::insert(
-                    "
-                    insert into journey_event (event_name, event_description, journey_id, start_time, end_time) 
-                    values (?, ?, ?, ?, ?);
-                    "
-                , [$e_title, $e_description, $journeyId, $start, $end]);
-            };
-        
-            return response('Insert event successfully');
-        }
-        catch (Exception $e) {
+            // $journeyId = $request['journey_id'];
+            // $events = $request['events'];
+
+            DB::transaction(function () use ($journeyId, $events) {
+                foreach ($events as $event) {
+                    $e_title = $event['title'];
+                    $e_description = $event['description'];
+                    $start = $event['start'];
+                    $end = $event['end'];
+                    $isInsert = DB::insert(
+                        "
+                        insert into journey_event (event_name, event_description, journey_id, start_time, end_time) 
+                        values (?, ?, ?, ?, ?);
+                        ",
+                        [$e_title, $e_description, $journeyId, $start, $end]
+                    );
+
+                    if (!$isInsert) {
+                        throw new Exception("Failed to insert event");
+                    }
+                };
+            });
+
+
+            return response('Insert events successfully');
+        } catch (Exception $e) {
             return response("Error add new event: " . $e->getMessage(), 500);
         }
-
     }
 
     function deleteJourney(Request $request)
@@ -128,7 +135,7 @@ class JourneyController extends Controller
             $journeyDescription = $request['description'];
             $privacy = $request['privacy'];
             $thumbnailId = $request['thumbnail_id'];
-    
+
             $isUpdate = DB::update(
                 "
                 update journey set 
@@ -138,25 +145,38 @@ class JourneyController extends Controller
                 thumbnail_id = ?, 
                 edit_time = CURRENT_TIME()
                 where journey_id = ?;
-                "
-            , [$journeyName, $journeyDescription, $privacy, $thumbnailId, $journeyId]);
+                ",
+                [$journeyName, $journeyDescription, $privacy, $thumbnailId, $journeyId]
+            );
+
+            $events = $request['events'];
 
             if ($isUpdate) {
+                $isUpdateEvents = $this->updateEvents($journeyId, $events);
                 return response("Update journey ID:{$journeyId} Name:{$journeyName} successfully");
+            } else {
+                return response("Error: not found journey ID:{$journeyId} Name:{$journeyName}", 500);
             }
-            else {
-                return response("Error: not found journey ID:{$journeyId} Name:{$journeyName}" , 500);
-            }
-            
-        }
-        catch (Exception $e){
+        } catch (Exception $e) {
             return response("Error updating journey: " . $e->getMessage(), 500);
         }
-
     }
 
-    function updateEvents () {
+    function updateEvents($journeyId, $events)
+    {
 
+        try {
+            // $journeyId = $request['journey_id'];
+            // $events = $request['events'];
+    
+            $isDelete = $this->deleteEvents($journeyId);
+            $isUpdate = $this->addNewEvents($journeyId, $events);    
+            return response("Update journey events successfully.");
+        }
+        catch (Exception $e) {
+            return response("Error updating events: " . $e->getMessage(), 500);
+        }
+
+        
     }
-
 }

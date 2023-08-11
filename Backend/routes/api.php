@@ -98,3 +98,4 @@ Route::delete('/deleteJourney',[JourneyController::class, 'deleteJourney']);
 Route::put('/updateJourney', [JourneyController::class, 'updateJourney']);
 
 Route::post('/addEvents', [JourneyController::class, 'addNewEvents']);
+Route::post('/updateEvents', [JourneyController::class, 'updateEvents']);

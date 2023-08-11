@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import {memberValidateField} from './MemberValidation'
+import { memberValidateField } from './MemberValidation'
 
-const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
+const RegisterModal = ({ onResponse, closeRegisterModal, openMessageToast }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -15,67 +15,101 @@ const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
     username: '',
     email: '',
     password: '',
+    confirmPassword: '',
+    fullName: '',
   });
+  const [passwordStrength, setPasswordStrength] = useState(0);
 
-  
+
 
   const handleGoogle = () => {
     window.location.href = 'http://localhost/TravelMaker/Backend/public/api/auth/google';
   };
-  
+
   const handleBlur = (event) => {
     const { id, value } = event.target;
-    const errorMessage = memberValidateField(id, value)
+    const errorMessage = memberValidateField(id, value,password)
     setErrors({
       ...errors,
       [id]: errorMessage,
     });
-    
+
+  };
+
+  const handlePasswordChange = (event) => {
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+    const strength = calculatePasswordStrength(newPassword);
+    setPasswordStrength(strength);
   };
 
 
-  
-  const register = async () => {
-      const userData = {
-        username,
-        password,
-        confirmPassword,
-        fullName,
-        nickName,
-        email,
-        birthday,
-        gender,
-      };
+  const calculatePasswordStrength = (password) => {
+    // Implement your password strength calculation algorithm here
+    const lengthScore = password.length > 7 ? 2 : 1;
+    const complexityScore = /[!@#$%^&*()_+{}\[\]:;<>,.?~-]/.test(password) ? 2 : 1;
+    return lengthScore + complexityScore;
+  };
 
-      try {
-        const response = await axios.post('http://localhost/TravelMaker/Backend/public/api/register', userData, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          withCredentials: true,
-        });
-  
-        if (!response.status === 200) {
-          throw new Error('Network response was not ok');
-        }
-        // window.location.reload()
-        // var token = response.data.token;
-        // document.cookie = `token=${token}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/localhost:3000`;
-        // sessionStorage.setItem('username', userData.username);
-        const data = response.data.message;
-        // Handle the response from the backend, if needed
-        onResponse(data);
-        closeRegisterModal();
-        openMessageToast();
-        console.log('Response from backend:', data);
-      } catch (error) {
-        // Handle error, if any
-        closeRegisterModal();
-        console.error(error);
-      }
+  const getPasswordStrengthLabel = (strength) => {
+    let label = '';
+    let color = '';
+    if (strength >= 4) {
+      label = '強';
+      color = 'green';
+    } else if (strength >= 3) {
+      label = '中';
+      color = 'orange';
+    } else {
+      label = '弱';
+      color = 'red';
     }
-      
-      
+    return <span style={{ color }}>{label}</span>;
+  };
+
+
+
+  const register = async () => {
+    const userData = {
+      username,
+      password,
+      confirmPassword,
+      fullName,
+      nickName,
+      email,
+      birthday,
+      gender,
+    };
+
+    try {
+      const response = await axios.post('http://localhost/TravelMaker/Backend/public/api/register', userData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+      });
+
+      if (!response.status === 200) {
+        throw new Error('Network response was not ok');
+      }
+      // window.location.reload()
+      // var token = response.data.token;
+      // document.cookie = `token=${token}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/localhost:3000`;
+      // sessionStorage.setItem('username', userData.username);
+      const data = response.data.message;
+      // Handle the response from the backend, if needed
+      onResponse(data);
+      closeRegisterModal();
+      openMessageToast();
+      console.log('Response from backend:', data);
+    } catch (error) {
+      // Handle error, if any
+      closeRegisterModal();
+      console.error(error);
+    }
+  }
+
+
 
   return (
     <div className="modal fade" id="registerModal" tabIndex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
@@ -88,41 +122,57 @@ const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
           <div className="modal-body">
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">會員帳號</span>
-              <input type="text" className="form-control" id="username" 
-              placeholder="Username" aria-label="Username" 
-              aria-describedby="basic-addon1" 
-              value={username} 
-              onChange={(e) => setUsername(e.target.value)}
-              onBlur={handleBlur}/>
+              <input type="text" className="form-control" id="username"
+                placeholder="Username" aria-label="Username"
+                aria-describedby="basic-addon1"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                onBlur={handleBlur} />
             </div>
             <div className="error-message text-danger">{errors.username}</div>
-            <div className="input-group mb-3">
+            <div className="input-group mb-3 me-3">
               <span className="input-group-text" id="basic-addon1">會員密碼</span>
-              <input type="password" className="form-control" id="password" 
-              placeholder="Password" 
-              aria-label="password" 
-              aria-describedby="basic-addon1" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              onBlur={handleBlur}/>
+              <input type="password" className="form-control" id="password"
+                placeholder="Password"
+                aria-label="password"
+                aria-describedby="basic-addon1"
+                value={password}
+                onChange={handlePasswordChange}
+                onBlur={handleBlur} />
+              <div className="ms-auto">{getPasswordStrengthLabel(passwordStrength)}</div>
             </div>
             <div className="error-message text-danger">{errors.password}</div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">確認密碼</span>
-              <input type="password" className="form-control" id="confirmpassword" placeholder="Confirm Password" aria-label="Confirmassword" aria-describedby="basic-addon1" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+              <input type="password" className="form-control" id="confirmPassword" 
+              placeholder="Confirm Password" aria-label="Confirmassword" aria-describedby="basic-addon1" 
+              value={confirmPassword} 
+              onChange={(e) => setConfirmPassword(e.target.value)} 
+              onBlur={handleBlur}/>
             </div>
+            <div className="error-message text-danger">{errors.confirmPassword}</div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">會員姓名</span>
-              <input type="text" className="form-control" id="fullName" placeholder="FullName" aria-label="fullName" aria-describedby="basic-addon1" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+              <input type="text" className="form-control" id="fullName" 
+              placeholder="FullName" aria-label="fullName" aria-describedby="basic-addon1" 
+              value={fullName} 
+              onChange={(e) => setFullName(e.target.value)} 
+              onBlur={handleBlur}/>
             </div>
+            <div className="error-message text-danger">{errors.fullName}</div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">暱稱</span>
               <input type="text" className="form-control" id="nickName" placeholder="NickName" aria-label="nickName" aria-describedby="basic-addon1" value={nickName} onChange={(e) => setNickName(e.target.value)} />
             </div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">Email</span>
-              <input type="email" className="form-control" id="email" placeholder="Email" aria-label="email" aria-describedby="basic-addon1" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input type="email" className="form-control" id="email" 
+              placeholder="Email" aria-label="email" aria-describedby="basic-addon1" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)}
+              onBlur={handleBlur} />
             </div>
+            <div className="error-message text-danger">{errors.email}</div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">生日</span>
               <input type="date" className="form-control" id="birthday" placeholder="birthday" aria-label="birthday" aria-describedby="basic-addon1" value={birthday} onChange={(e) => setBirthday(e.target.value)} />
@@ -142,7 +192,7 @@ const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
               快速註冊：<i className="bi bi-google" onClick={handleGoogle}></i>
             </div>
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-            <button type="button" className="btn btn-primary" onClick={register}  data-bs-dismiss="modal">確認</button>
+            <button type="button" className="btn btn-primary" onClick={register} data-bs-dismiss="modal">確認</button>
           </div>
         </div>
       </div>

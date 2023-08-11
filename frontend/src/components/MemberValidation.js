@@ -1,24 +1,37 @@
-const memberValidateField = (fieldName, value) => {
+const memberValidateField = (fieldName, value,passowrd) => {
   let errorMessage = '';
+  let checkPassword=passowrd;
   switch (fieldName) {
     case 'username':
       if (!value) {
-        errorMessage = 'Username is required';
+        errorMessage = '此欄位為必要';
       }
       break;
     case 'email':
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!value) {
-        errorMessage = 'Email is required';
+        errorMessage = '此欄位為必要';
       } else if (!emailPattern.test(value)) {
-        errorMessage = 'Invalid email format';
+        errorMessage = '電子郵件格式錯誤';
       }
       break;
     case 'password':
       if (!value) {
-        errorMessage = 'Password is required';
+        errorMessage = '此欄位為必要';
       } else if (value.length < 6) {
-        errorMessage = 'Password must be at least 6 characters';
+        errorMessage = '密碼長度必須大於6字元';
+      }
+      break;
+    case 'confirmPassword':
+      if (!value) {
+        errorMessage = '此欄位為必要';
+      } else if (value !== checkPassword) {
+        errorMessage = '與密碼不相符';
+      }
+      break;
+      case 'fullName':
+      if (!value) {
+        errorMessage = '此欄位為必要';
       }
       break;
     default:

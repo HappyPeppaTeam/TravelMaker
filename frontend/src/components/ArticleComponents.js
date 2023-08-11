@@ -5,36 +5,29 @@ import { useLocation } from 'react-router-dom';
 const ArticleComponents = () => {
   const [articleData, setArticleData] = useState(null);
   let { state } = useLocation();
-  console.log(state)
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost/TravelMaker/Backend/public/api/getBoardText/${state}`)
-  //     .then((response) => {
-  //       const data = response.data;
-  //       setArticleData(data);
-  //     })
-  //     .catch((error) => console.error("Error fetching data:", error));
-  // }, []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost/TravelMaker/Backend/public/api/getBoardText/${state}`)
+      .then((response) => {
+        const data = response.data;
+        setArticleData(data);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
 
   return (
     <div>
       {articleData ? (
         <>
-          <div
-            className="Article-information-main-header"
-            style={{ border: "1px seagreen solid" }}
-          >
+          <div className="Article-information-main-header">
             <h1>{articleData.text_title}</h1>
-            <div>
+            <div className="Article-information-main-header-item">
               <span>{articleData.Posting_time}</span>
               <span>點閱率</span>
             </div>
           </div>
           <hr />
-          <div
-            className="Article-information-main-body"
-            style={{ border: "1px blue solid" }}
-          >
+          <div className="Article-information-main-body">
             <div>{articleData.text}</div>
           </div>
         </>

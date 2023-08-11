@@ -1,6 +1,6 @@
 import '../css/Forumstyles.css';
 import '../css/Article.css';
-import MessageBoard from "../components/MessageBoard";
+import MessageBoardInput from "../components/MessageBoardInput";
 import DiscussionBoard from '../components/DiscussionBoardList';
 import ArticleComponents from '../components/ArticleComponents';
 import { useState } from 'react';
@@ -10,22 +10,16 @@ export default function Article() {
     let { state } = useLocation()
     console.log(state);
 
+
     return (
         <div className="main">
             {/* <!-- 導覽列 --> */}
             <DiscussionBoard></DiscussionBoard>
             {/* <!-- 文章 --> */}
-            <section
-                className="container Article-page"
-                style={{ border: "1px saddlebrown solid" }}
-            >
+            <section className="container Article-page">
                 <div className="row">
                     {/* <!-- user --> */}
-                    <div
-                        className="col-12 col-lg-3 col-xl-2 Article-user"
-                        id=""
-                        style={{ border: "1px red solid" }}
-                    >
+                    <div className="col-12 col-lg-3 col-xl-2 Article-user">
                         <div className="Article-user-card">
                             <a href="" target="_blank">
                                 <img className="" src={require('../images/headimage.jpg')} alt="" />
@@ -39,16 +33,10 @@ export default function Article() {
                         </div>
                     </div>
                     {/* <!-- 文章內容 --> */}
-                    <div
-                        className="col-12 col-lg-9 col-xl-10 Article-information-main"
-                        style={{ border: "1px blue solid", backgroundColor: "aquamarine" }}
-                    >
+                    <div className="col-12 col-lg-9 col-xl-10 Article-information-main bg-light">
                         <ArticleComponents board_text_id={state}></ArticleComponents>
                         <hr />
-                        <div
-                            className="Article-information-main-footer"
-                            style={{ border: "1px blueviolet solid" }}
-                        >
+                        <div className="Article-information-main-footer" >
                             <div className="Article-information-main-footer-left">
                                 <button className="btn">
                                     <svg
@@ -80,22 +68,14 @@ export default function Article() {
                                 </button>
                             </div>
                             <div className="Article-information-main-footer-right">
-                                <button className="btn">回覆</button>
+                                <label className="btn btn-primary" htmlFor="MessageRe">留言</label>
                             </div>
                         </div>
-                        <div
-                            className="Article-information-footer-messageboard"
-                            style={{ border: "1px gold solid", backgroundColor: "aliceblue" }}
-                        >
-                            <div
-                                className="Article-information-footer-messageboard"
-                                style={{ border: "1px firebrick solid", height: "20px" }}
-                            ></div>
-                            <div
-                                className="Article-information-footer-messageboard-user"
-                                style={{ border: "1px khaki solid" }}
-                                >
-                                <MessageBoard></MessageBoard>
+                        <hr />
+                        <div className="bg-blue-3">
+                            <div className="Article-information-footer-messageboard"></div>
+                            <div className="Article-information-footer-messageboard-user">
+                                <MessageBoardInput board_text_id={state}></MessageBoardInput>
                             </div>
                         </div>
                     </div>

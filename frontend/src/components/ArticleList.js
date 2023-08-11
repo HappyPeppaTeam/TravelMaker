@@ -1,21 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 
 const DiscussionArticleList = ({Article}) => {
-    const [articles, setAriticles] = useState([]);
-    // useEffect(() => {
-    //     axios.get("http://localhost/TravelMaker/Backend/public/api/getArticle/"+ Board['Board'])
-    //     .then(response => {
-    //         setAriticles(response.data);
-    //     })
-    //     .catch(error => {
-    //         console.error('Error fetching articles:', error.response.data);
-    //     });
-    // },[]);
-    console.log(Article);
-
     return (
         <table className="table table-striped table-bordered mb-0">
             <tbody>

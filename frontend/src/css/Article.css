@@ -44,10 +44,20 @@
 
 .Article-information-main-header {
     margin: 0.5em;
+    padding: 0.5em;
+}
+
+.Article-information-main-header-item {
+    display: flex;
+    justify-content: space-between;
 }
 
 .Article-information-main-body {
     margin: 0.5em;
+}
+
+.Article-information-main-body div{
+    padding: 0.5em;
 }
 
 .Article-information-main-footer {
@@ -68,6 +78,7 @@
     height: 50px;
 }
 /* 留言板 */
+
 .Article-information-footer-messageboard-user {
     margin: 0.5em;
     padding: 0.5em;

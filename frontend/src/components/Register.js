@@ -17,6 +17,9 @@ const RegisterModal = ({ onResponse, closeRegisterModal, openMessageToast }) => 
     password: '',
     confirmPassword: '',
     fullName: '',
+    nickName: '',
+    birthday: '',
+    gender: '',
   });
   const [passwordStrength, setPasswordStrength] = useState(0);
 
@@ -162,8 +165,13 @@ const RegisterModal = ({ onResponse, closeRegisterModal, openMessageToast }) => 
             <div className="error-message text-danger">{errors.fullName}</div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">暱稱</span>
-              <input type="text" className="form-control" id="nickName" placeholder="NickName" aria-label="nickName" aria-describedby="basic-addon1" value={nickName} onChange={(e) => setNickName(e.target.value)} />
+              <input type="text" className="form-control" id="nickName" 
+              placeholder="NickName" aria-label="nickName" aria-describedby="basic-addon1" 
+              value={nickName} 
+              onChange={(e) => setNickName(e.target.value)} 
+              onBlur={handleBlur}/>
             </div>
+            <div className="error-message text-danger">{errors.nickName}</div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">Email</span>
               <input type="email" className="form-control" id="email" 
@@ -175,11 +183,20 @@ const RegisterModal = ({ onResponse, closeRegisterModal, openMessageToast }) => 
             <div className="error-message text-danger">{errors.email}</div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">生日</span>
-              <input type="date" className="form-control" id="birthday" placeholder="birthday" aria-label="birthday" aria-describedby="basic-addon1" value={birthday} onChange={(e) => setBirthday(e.target.value)} />
+              <input type="date" className="form-control" id="birthday" 
+              placeholder="birthday" aria-label="birthday" aria-describedby="basic-addon1" 
+              value={birthday} 
+              onChange={(e) => setBirthday(e.target.value)} 
+              onBlur={handleBlur}/>
             </div>
+            <div className="error-message text-danger">{errors.birthday}</div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">性別</span>
-              <select className="form-select" name="gender" id="gender" aria-label="Default select example" value={gender} onChange={(e) => setGender(e.target.value)}>
+              <select className="form-select" name="gender" id="gender" 
+              aria-label="Default select example" 
+              value={gender} 
+              onChange={(e) => setGender(e.target.value)}
+              onBlur={handleBlur}>
                 <option value="">選取性別</option>
                 <option value="1">男</option>
                 <option value="2">女</option>
@@ -187,6 +204,7 @@ const RegisterModal = ({ onResponse, closeRegisterModal, openMessageToast }) => 
               </select>
             </div>
           </div>
+          <div className="error-message text-danger">{errors.gender}</div>
           <div className="modal-footer justify-content-center">
             <div>
               快速註冊：<i className="bi bi-google" onClick={handleGoogle}></i>

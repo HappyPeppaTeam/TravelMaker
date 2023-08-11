@@ -34,6 +34,21 @@ const memberValidateField = (fieldName, value,passowrd) => {
         errorMessage = '此欄位為必要';
       }
       break;
+      case 'nickName':
+      if (!value) {
+        errorMessage = '此欄位為必要';
+      }
+      break;
+      case 'birthday':
+      if (!value) {
+        errorMessage = '此欄位為必要';
+      }
+      break;
+      case 'gender':
+      if (!value) {
+        errorMessage = '此欄位為必要';
+      }
+      break;
     default:
       break;
   }

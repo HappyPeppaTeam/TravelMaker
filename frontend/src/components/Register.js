@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import validateField from './MemberValidation'
+import {memberValidateField} from './MemberValidation'
 
 const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
   const [username, setUsername] = useState('');
@@ -11,6 +11,11 @@ const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
   const [gender, setGender] = useState('');
+  const [errors, setErrors] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
 
   
 
@@ -18,7 +23,16 @@ const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
     window.location.href = 'http://localhost/TravelMaker/Backend/public/api/auth/google';
   };
   
-  
+  const handleBlur = (event) => {
+    const { id, value } = event.target;
+    const errorMessage = memberValidateField(id, value)
+    setErrors({
+      ...errors,
+      [id]: errorMessage,
+    });
+    
+  };
+
 
   
   const register = async () => {
@@ -74,12 +88,25 @@ const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
           <div className="modal-body">
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">會員帳號</span>
-              <input type="text" className="form-control" id="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value={username} onChange={(e) => setUsername(e.target.value)}/>
+              <input type="text" className="form-control" id="username" 
+              placeholder="Username" aria-label="Username" 
+              aria-describedby="basic-addon1" 
+              value={username} 
+              onChange={(e) => setUsername(e.target.value)}
+              onBlur={handleBlur}/>
             </div>
+            <div className="error-message text-danger">{errors.username}</div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">會員密碼</span>
-              <input type="password" className="form-control" id="password" placeholder="Password" aria-label="password" aria-describedby="basic-addon1" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <input type="password" className="form-control" id="password" 
+              placeholder="Password" 
+              aria-label="password" 
+              aria-describedby="basic-addon1" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              onBlur={handleBlur}/>
             </div>
+            <div className="error-message text-danger">{errors.password}</div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">確認密碼</span>
               <input type="password" className="form-control" id="confirmpassword" placeholder="Confirm Password" aria-label="Confirmassword" aria-describedby="basic-addon1" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />

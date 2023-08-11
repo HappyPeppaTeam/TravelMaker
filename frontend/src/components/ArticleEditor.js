@@ -93,8 +93,8 @@ function ArticleEditor() {
         setContent(inputValue);
     
         // 當超過1000個字符時，將字數標記為紅色
-        if (inputValue.length > 1000) {
-            alert('已超過1000字限制！');
+        if (inputValue.length > 2000) {
+            alert('已超過2000字限制！');
             setExceedLimit(true);
         } else {
             setExceedLimit(false);
@@ -188,7 +188,7 @@ function ArticleEditor() {
                         <h3>文章內容</h3>
                         <textarea id="content" className="addtext_text" placeholder="請輸入文字" onChange={handleContentChange} />
                         <div className="addtext">
-                            字數：{content.length} / 1000
+                            字數：{content.length} / 2000
                         </div>
                     </label>
                 </div>

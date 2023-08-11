@@ -72,7 +72,7 @@ export default function Attractionattraction() {
             <div style={{ 'display': 'grid', 'backgroundColor': '#487797' }}>
                 <div className="container-fluid d-flex m-0 p-0">
                     <div className="sidenav">
-                        <Link to="/attractions/Attractionattraction"><h3 style={{ 'color': 'black' }}><b>種類</b></h3></Link>
+                        <Link to="/attractions/Attractionattraction" onClick={() => window.location.reload()}><h3 style={{ 'color': 'black' }}><b>種類</b></h3></Link>
                         {TypeName.map((item, index) => {
                             return (
                                 <Link to="/attractions/Attractionmore" state={item.TypeID}>{item.ChineseType}</Link>

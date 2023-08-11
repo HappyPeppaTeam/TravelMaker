@@ -18,6 +18,18 @@ export default function Attraction_forun() {
         })();
     }, []);
 
+    const [TypeName, setTypeName] = useState([{}]);
+    console.log(TypeName);
+    useEffect(() => {
+
+
+        (async () => {
+            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/type`);
+            console.log(response);
+            setTypeName(response.data);
+        })();
+    }, []);
+
     function dropDown(e) {
         e.target.classList.toggle("active2");
         var dropdownContent = e.target.nextElementSibling;
@@ -43,15 +55,13 @@ export default function Attraction_forun() {
             </div>
             <div style={{ 'display': 'grid' }}>
                 <div className="container-fluid d-flex m-0 p-0">
-                <div className="sidenav">
+                    <div className="sidenav">
                         <Link to="/attractions/Attractionattraction"><h3 style={{ 'color': 'black' }}><b>種類</b></h3></Link>
-                        <Link to="/attractions/Attractionmore">夜市</Link>
-                        <Link to="/attractions/Attractionmore">港口</Link>
-                        <Link to="/attractions/Attractionmore">市集</Link>
-                        <Link to="/attractions/Attractionmore">購物</Link>
-                        <Link to="/attractions/Attractionmore">人文景點</Link>
-                        <Link to="/attractions/Attractionmore">自然景觀</Link>
-                        <Link to="/attractions/Attractionmore">觀光工廠</Link>
+                        {TypeName.map((item, index) => {
+                            return (
+                                <Link to="/attractions/Attractionmore" state={item.TypeID}>{item.ChineseType}</Link>
+                            )
+                        })}
                         <Link to="/attractions/Attractioncountry"><h3 style={{ 'color': 'black' }}><b>地區</b></h3></Link>
                         <button className="dropdown-btn" onClick={(e) => {
                             dropDown(e);

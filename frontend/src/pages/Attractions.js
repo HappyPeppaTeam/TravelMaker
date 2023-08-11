@@ -70,7 +70,7 @@ export default function Attractions() {
                     <div className="container" style={{ 'clear': 'both' }}>
                         <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='新北市'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/new_taipei.jpg')} />
                                 </Link>
                             </div>
@@ -80,12 +80,12 @@ export default function Attractions() {
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }} >
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='臺南市'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/tainan.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='高雄市'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/kaohsiung.jpg')} />
                                 </Link>
                             </div>

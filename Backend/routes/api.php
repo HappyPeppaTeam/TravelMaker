@@ -174,12 +174,10 @@ Route::post('/register',function(Request $request){
             $DbResult = DB::select('call register_user(?,?,?,?,?,?,?,?);', [$userName, $hashedPassword, $email, $birthday, $fullName, $nickName, $gender, $registerTime]);
             $regsiterMessage = $DbResult[0]->message;
         } else {
-            // $regsiterMessage ='相同email已存在';
             $regsiterMessage = '相同email已存在';
         }
     } else {
         $regsiterMessage = '相同帳號已存在';
-        // $regsiterMessage ='相同帳號已存在';
     }
     $data = [
         "message" => $regsiterMessage
@@ -197,16 +195,8 @@ Route::post('/login', function (Request $request) {
     if (password_verify($password, $hashedPasswordFromDB)) {
         $setToken = DB::select('call set_token(?);', [$userName]);
         $data = [
-            "token" => $setToken[0]->token,
-            "message" => "Password is correct! , and get token",
+            "message" => "登入成功",
         ];
-        setcookie('token', $setToken[0]->token, time() + 600, '/');
-        return response()->json($data, 200);
-       $setToken= DB::select('call set_token(?);',[$userName]);
-       $data = [
-        "message"=>"Password is correct! , and get token",
-
-    ];
     if ($userName==="admin") {
         setcookie('role','admin',time() + 3600,'/');
     }else{
@@ -344,5 +334,26 @@ Route::get('/getEvents',[JourneyController::class, 'getJourneyEvents']);
 Route::post('/addJourney',[JourneyController::class, 'addNewJourney']);
 Route::get('/test',function() {
     $data = DB::select('SELECT * FROM Attraction_infomation'); 
+    return response()->json($data);
+});
+
+Route::get('/restaurant',function() {
+    $data = DB::select('SELECT * FROM restaurant_infomation'); 
+    return response()->json($data);
+});
+
+
+Route::get('/attraction',function() {
+    $data = DB::select('SELECT * FROM attraction'); 
+    return response()->json($data);
+});
+
+Route::get('/attraction/{zipcode}',function($zipcode) {
+    $data = DB::select('SELECT * FROM attraction WHERE ZipCode = $zipcode;'); 
+    return response()->json($data);
+});
+
+Route::get('/zipcode',function() {
+    $data = DB::select('SELECT * FROM zipcode'); 
     return response()->json($data);
 });

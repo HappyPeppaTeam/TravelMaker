@@ -1,9 +1,11 @@
 <?php session_start(); ?>
 <?php
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -84,4 +86,19 @@ $token = $request['token'];
 $unSetToken = DB::select('call unSet_token(?)',[$token]);
 return response()->json($unSetToken,200);
 
+});
+
+Route::get('/attraction',function() {
+    $data = DB::select('SELECT * FROM attraction'); 
+    return response()->json($data);
+});
+
+Route::get('/attraction/{zipcode}',function($zipcode) {
+    $data = DB::select('SELECT * FROM attraction WHERE ZipCode = $zipcode;'); 
+    return response()->json($data);
+});
+
+Route::get('/zipcode',function() {
+    $data = DB::select('SELECT * FROM zipcode'); 
+    return response()->json($data);
 });

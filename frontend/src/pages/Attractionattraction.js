@@ -73,7 +73,7 @@ export default function Attractionattraction() {
                             dropDown(e);
                         }}>基隆
                         </button>
-                        <div className="dropdown-container" > 
+                        <div className="dropdown-container" >
                             {ZipID.map((item, index) => {
                                 if (index <= 18 && index >= 12) {
                                     return (
@@ -205,35 +205,13 @@ export default function Attractionattraction() {
                         }}>台中
                         </button>
                         <div className="dropdown-container">
-                            <Link to="/attractions/Attractionmore">中區</Link>
-                            <Link to="/attractions/Attractionmore">東區</Link>
-                            <Link to="/attractions/Attractionmore">南區</Link>
-                            <Link to="/attractions/Attractionmore">西區</Link>
-                            <Link to="/attractions/Attractionmore">北區</Link>
-                            <Link to="/attractions/Attractionmore">西屯區</Link>
-                            <Link to="/attractions/Attractionmore">南屯區</Link>
-                            <Link to="/attractions/Attractionmore">北屯區</Link>
-                            <Link to="/attractions/Attractionmore">豐原區</Link>
-                            <Link to="/attractions/Attractionmore">東勢區</Link>
-                            <Link to="/attractions/Attractionmore">大甲區</Link>
-                            <Link to="/attractions/Attractionmore">清水區</Link>
-                            <Link to="/attractions/Attractionmore">沙鹿區</Link>
-                            <Link to="/attractions/Attractionmore">梧棲區</Link>
-                            <Link to="/attractions/Attractionmore">后里區</Link>
-                            <Link to="/attractions/Attractionmore">神岡區</Link>
-                            <Link to="/attractions/Attractionmore">潭子區</Link>
-                            <Link to="/attractions/Attractionmore">大雅區</Link>
-                            <Link to="/attractions/Attractionmore">外埔區</Link>
-                            <Link to="/attractions/Attractionmore">大安區</Link>
-                            <Link to="/attractions/Attractionmore">烏日區</Link>
-                            <Link to="/attractions/Attractionmore">大肚區</Link>
-                            <Link to="/attractions/Attractionmore">龍井區</Link>
-                            <Link to="/attractions/Attractionmore">霧峰區</Link>
-                            <Link to="/attractions/Attractionmore">太平區</Link>
-                            <Link to="/attractions/Attractionmore">大里區</Link>
-                            <Link to="/attractions/Attractionmore">和平區</Link>
-                            <Link to="/attractions/Attractionmore">新社區</Link>
-                            <Link to="/attractions/Attractionmore">石岡區</Link>
+                            {ZipID.map((item, index) => {
+                                if (index <= 134 && index >= 106) {
+                                    return (
+                                        <Link to="/attractions/Attractionmore">{item.Area}</Link>
+                                    )
+                                }
+                            })}
                         </div>
                         <button className="dropdown-btn" onClick={(e) => {
                             dropDown(e);

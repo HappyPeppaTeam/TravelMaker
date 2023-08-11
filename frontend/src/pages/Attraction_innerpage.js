@@ -550,8 +550,8 @@ export default function Attraction_innerpage() {
                             <Link to="/attractions/Attractionmore">東引鄉</Link>
                         </div>
                     </div>
-                    <div className="container" style={{ 'paddingTop': '2.5%' }}>
-                        {/* <h4>
+                    <div className="container" >
+                        <h4>
                             <b><Link to="/attractions" className="bottom-line">景點</Link></b>
                             <b>→</b>
                             <b><Link to="/attractions/Attractionmore" className="bottom-line">南投</Link></b>
@@ -559,7 +559,7 @@ export default function Attraction_innerpage() {
                             <b><Link to="/attractions/Attractionmore" className="bottom-line">魚池鄉</Link></b>
                             <b>→</b>
                             <b className="bottom-line">{state.Name}</b>
-                        </h4> 暫時關閉 */}
+                        </h4> 
                         <div id="attractionpicture" style={{ 'backgroundColor': 'black' }}>
                             <div className="carousel-inner">
                                 <div className="carousel-item active">

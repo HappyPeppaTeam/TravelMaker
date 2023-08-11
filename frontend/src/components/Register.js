@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import validateField from './MemberValidation'
 
 const RegisterModal = ({onResponse,closeRegisterModal,openMessageToast}) => {
   const [username, setUsername] = useState('');

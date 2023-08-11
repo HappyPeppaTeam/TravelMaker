@@ -94,11 +94,16 @@ Route::get('/attraction',function() {
 });
 
 Route::get('/attraction/{zipcode}',function($zipcode) {
-    $data = DB::select('SELECT * FROM attraction WHERE ZipCode = $zipcode;'); 
+    $data = DB::select('SELECT * FROM attraction WHERE ZipCode = ?',[$zipcode]); 
     return response()->json($data);
 });
 
 Route::get('/zipcode',function() {
     $data = DB::select('SELECT * FROM zipcode'); 
+    return response()->json($data);
+});
+
+Route::get('/type',function() {
+    $data = DB::select('SELECT * FROM typename'); 
     return response()->json($data);
 });

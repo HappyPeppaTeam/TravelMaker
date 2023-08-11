@@ -10,10 +10,6 @@ export default function Attractionattraction() {
 
 
     const [attractionPicture, setAttractionPicture] = useState([{}]);
-    // let test = attractionPicture.filter((item, index) => {
-    //     return item.TypeID == 2;
-    // });
-    // console.log(test);
     console.log(attractionPicture);
     useEffect(() => {
 
@@ -22,6 +18,19 @@ export default function Attractionattraction() {
             const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction`);
             console.log(response);
             setAttractionPicture(response.data);
+        })();
+    }, []);
+
+
+    const [ZipID, setZipID] = useState([{}]);
+    console.log(ZipID);
+    useEffect(() => {
+
+
+        (async () => {
+            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/zipcode`);
+            console.log(response);
+            setZipID(response.data);
         })();
     }, []);
 
@@ -64,14 +73,14 @@ export default function Attractionattraction() {
                             dropDown(e);
                         }}>基隆
                         </button>
-                        <div className="dropdown-container" >
-                            <Link to="/attractions/Attractionmore">中正區</Link>
-                            <Link to="/attractions/Attractionmore">七堵區</Link>
-                            <Link to="/attractions/Attractionmore">暖暖區</Link>
-                            <Link to="/attractions/Attractionmore">仁愛區</Link>
-                            <Link to="/attractions/Attractionmore">中山區</Link>
-                            <Link to="/attractions/Attractionmore">安樂區</Link>
-                            <Link to="/attractions/Attractionmore">信義區</Link>
+                        <div className="dropdown-container" > 
+                            {ZipID.map((item, index) => {
+                                if (index <= 18 && index >= 12) {
+                                    return (
+                                        <Link to="/attractions/Attractionmore">{item.Area}</Link>
+                                    )
+                                }
+                            })}
                         </div>
                         <button className="dropdown-btn" onClick={(e) => {
                             dropDown(e);
@@ -559,8 +568,8 @@ export default function Attractionattraction() {
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                 {attractionPicture.filter((item, index) => {
-                                        return item.TypeID == 1;
-                                    }).map((item, index) => {
+                                    return item.TypeID == 1;
+                                }).map((item, index) => {
                                     if (index <= 3) {
                                         return (
                                             <div className="col-lg-3">
@@ -587,8 +596,8 @@ export default function Attractionattraction() {
                                 {
                                     attractionPicture.filter((item, index) => {
                                         return item.TypeID == 2;
-                                    }).map((item,index) => {
-                                        if(index <= 3) {
+                                    }).map((item, index) => {
+                                        if (index <= 3) {
                                             return (
                                                 <div className="col-lg-3">
                                                     <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
@@ -613,8 +622,8 @@ export default function Attractionattraction() {
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                 {attractionPicture.filter((item, index) => {
-                                        return item.TypeID == 3;
-                                    }).map((item, index) => {
+                                    return item.TypeID == 3;
+                                }).map((item, index) => {
                                     if (index <= 3) {
                                         return (
                                             <div className="col-lg-3">
@@ -639,8 +648,8 @@ export default function Attractionattraction() {
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                 {attractionPicture.filter((item, index) => {
-                                        return item.TypeID == 4;
-                                    }).map((item, index) => {
+                                    return item.TypeID == 4;
+                                }).map((item, index) => {
                                     if (index <= 3) {
                                         return (
                                             <div className="col-lg-3">
@@ -665,8 +674,8 @@ export default function Attractionattraction() {
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                 {attractionPicture.filter((item, index) => {
-                                        return item.TypeID == 5;
-                                    }).map((item, index) => {
+                                    return item.TypeID == 5;
+                                }).map((item, index) => {
                                     if (index <= 3) {
                                         return (
                                             <div className="col-lg-3">
@@ -691,8 +700,8 @@ export default function Attractionattraction() {
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                 {attractionPicture.filter((item, index) => {
-                                        return item.TypeID == 6;
-                                    }).map((item, index) => {
+                                    return item.TypeID == 6;
+                                }).map((item, index) => {
                                     if (index <= 3) {
                                         return (
                                             <div className="col-lg-3">
@@ -717,8 +726,8 @@ export default function Attractionattraction() {
                         <div style={{ 'clear': 'both' }}>
                             <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                                 {attractionPicture.filter((item, index) => {
-                                        return item.TypeID == 7;
-                                    }).map((item, index) => {
+                                    return item.TypeID == 7;
+                                }).map((item, index) => {
                                     if (index <= 3) {
                                         return (
                                             <div className="col-lg-3">

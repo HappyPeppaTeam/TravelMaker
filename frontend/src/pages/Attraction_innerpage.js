@@ -550,7 +550,7 @@ export default function Attraction_innerpage() {
                             <Link to="/attractions/Attractionmore">東引鄉</Link>
                         </div>
                     </div>
-                    <div className="container" style={{'paddingTop':'2.5%'}}>
+                    <div className="container" style={{ 'paddingTop': '2.5%' }}>
                         {/* <h4>
                             <b><Link to="/attractions" className="bottom-line">景點</Link></b>
                             <b>→</b>
@@ -560,7 +560,7 @@ export default function Attraction_innerpage() {
                             <b>→</b>
                             <b className="bottom-line">{state.Name}</b>
                         </h4> 暫時關閉 */}
-                        <div id="attractionpicture" style={{ 'backgroundColor': 'black'}}>
+                        <div id="attractionpicture" style={{ 'backgroundColor': 'black' }}>
                             <div className="carousel-inner">
                                 <div className="carousel-item active">
                                     <img className='carousel-piture' src={state.PictureUrl1} />
@@ -590,47 +590,22 @@ export default function Attraction_innerpage() {
                             <div className='col-6' >
                                 <h3><b>資訊</b></h3>
                                 <hr style={{ 'border': '1px solid black' }}></hr>
-                                <h4 style={{float:'left'}}><b>地址:</b></h4><h4>{state.Address}</h4>
+                                <h4 style={{ float: 'left' }}><b>地址:</b></h4><h4>{state.Address}</h4>
                                 <hr style={{ 'border': '1px solid black' }}></hr>
-                                <h4 style={{float:'left'}}><b>電話:</b></h4><h4>{state.Phone}</h4>
+                                <h4 style={{ float: 'left' }}><b>電話:</b></h4><h4>{state.Phone}</h4>
                                 <hr style={{ 'border': '1px solid black' }}></hr>
                                 <h4><b>開放時間:</b></h4>
                                 <h5 style={{ 'display': 'flex' }}>
                                     {state.OpenTime}
                                 </h5>
-                                {/* <div style={{ 'display': 'flex' }}>
-                                        <p>週二</p>
-                                        <p>8:00-21:00</p>
-                                    </div>
-                                    <div style={{ 'display': 'flex' }}>
-                                        <p>週三</p>
-                                        <p>8:00-21:00</p>
-                                    </div>
-                                    <div style={{ 'display': 'flex' }}>
-                                        <p>週四</p>
-                                        <p>8:00-21:00</p>
-                                    </div>
-                                    <div style={{ 'display': 'flex' }}>
-                                        <p>週五</p>
-                                        <p>8:00-21:00</p>
-                                    </div>
-                                    <div style={{ 'display': 'flex' }}>
-                                        <p>週六</p>
-                                        <p>8:00-21:00</p>
-                                    </div>
-                                    <div style={{ 'display': 'flex' }}>
-                                        <p>週日</p>
-                                        <p>8:00-21:00</p>
-                                    </div> */}
                             </div>
                             <div className="col-6">
                                 <div style={{ 'marginLeft': '10%' }}>
                                     <h3><b>交通資訊</b></h3>
                                     <hr style={{ 'border': '1px', 'solid': 'black', 'width': '100%' }}></hr>
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29192.41292360597!2d120.89785279050786!3d23.852300830442857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3468d5e076ee0005%3A0xec17a6fd5312a528!2z5pel5pyI5r2t!5e0!3m2!1szh-TW!2stw!4v1690119779818!5m2!1szh-TW!2stw"
-                                        width="100%" height="100%" style={{ 'border': '0' }} allowFullScreen="" loading="lazy"
-                                        referrerPolicy="no-referrer-when-downgrade"></iframe>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.835250205995!2d120.67618207629839!3d24.142423273611676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d12ca93cb15%3A0xbd0f6a8f559b6d54!2z6Ie65Lit56ys5LqM5biC5aC0!5e0!3m2!1szh-TW!2stw!4v1691584479756!5m2!1szh-TW!2stw"
+                                    width="100%" height="100%" style={{'border':'0'}} allowfullscreen="" loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                                 <div style={{ 'marginLeft': '10%', 'paddingTop': '1%' }}>
                                     <h6>

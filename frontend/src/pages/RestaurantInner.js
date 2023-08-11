@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/restaurant.css';
 import { Modal } from 'bootstrap';
 import axios from 'axios';
+import {Link, useLocation} from 'react-router-dom';
 export default function RestaurantInner() {
 
     const { useState, useRef, useEffect } = React;
@@ -10,13 +11,17 @@ export default function RestaurantInner() {
 
     const [attraction, setAttraction] = useState([{}]);
 
+    let {state}= useLocation()
+    console.log(state);
     console.log(attraction);
     useEffect(() => {
         commentModal.current = new Modal('#rest-comment');
         (async () => {
             const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/restaurant`);
-            console.log(response);
-            setAttraction(response.data);
+            // response.data.filter((item)=>item.ID=state);
+            const restData = response.data.filter((item)=>item.ID==state);
+            console.log(restData);
+            setAttraction(restData);
         })();
     }, [])
     console.log(attraction[0].Name);

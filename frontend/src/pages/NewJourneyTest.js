@@ -38,9 +38,7 @@ function NewJourneyTest() {
             selectable: true,
             selectMirror: true,
             dayMaxEvents: true, // alternatively, use the `events` setting to fetch from a feed
-            dateClick: function(info){
-                calendarObj.addEvent()
-            }
+            
         })
 
         calendarObj.render();
@@ -55,7 +53,7 @@ function NewJourneyTest() {
             }}>render</button>
             <hr />
             <div className='container mb-3'>
-                <div id="calenderContainer" className='container rounded shadow p-3 fs-4' ref={calendarRef} style={containerStyle}>
+                <div id="calenderContainer" className='rounded shadow p-3 fs-4' ref={calendarRef} style={containerStyle}>
 
                 </div>
             </div>

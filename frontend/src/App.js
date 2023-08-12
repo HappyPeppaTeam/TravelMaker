@@ -15,6 +15,8 @@ import Restaurant_main from './pages/Restaurant_main';
 import Journey from "./pages/Journey";
 import NewJourney from "./pages/NewJourney"; 
 import NewJourneyTest from "./pages/NewJourneyTest";
+import JourneyForm from "./pages/JourneyForm";
+
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
           <Route path="/journey" element={<Journey/>} ></Route>
           <Route path="/journey/newjourney" element={<NewJourney/>} ></Route>
           <Route path="/newtest" element={<NewJourneyTest/>} ></Route>
+          <Route path="/newform" element={<JourneyForm/>} ></Route>
         </Routes>
       <Footer/>
     </div>

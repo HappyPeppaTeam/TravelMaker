@@ -162,16 +162,16 @@ class JourneyController extends Controller
         }
     }
 
-    function updateEvents($journeyId, $events)
+    function updateEvents(Request $request)
     {
 
         try {
-            // $journeyId = $request['journey_id'];
-            // $events = $request['events'];
-    
+            $journeyId = $request['journey_id'];
+            $events = $request['events'];
             $isDelete = $this->deleteEvents($journeyId);
-            $isUpdate = $this->addNewEvents($journeyId, $events);    
-            return response("Update journey events successfully.");
+            $isUpdate = $this->addNewEvents($journeyId, $events); 
+
+            return response("Update journey events successfully.isDelete: {$isDelete}, isUpdate: {$isUpdate}");
         }
         catch (Exception $e) {
             return response("Error updating events: " . $e->getMessage(), 500);

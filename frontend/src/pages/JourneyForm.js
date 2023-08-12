@@ -46,7 +46,8 @@ const StepTwo = ({ calendarRef }) => {
 
   const formStyle = {
     backgroundColor: 'rgb(178, 210, 232, 0.5)',
-    minHeight: '500px'
+    minHeight: '500px',
+    display: 'none'
   }
 
   return (
@@ -57,6 +58,76 @@ const StepTwo = ({ calendarRef }) => {
     </div>
   )
 }
+
+
+const StepThree = () => {
+
+
+  const formStyle = {
+    backgroundColor: 'rgb(178, 210, 232, 0.5)',
+    minHeight: '500px',
+  }
+
+  return (
+    <div id="newJourneyForm3" className='p-3 shadow rounded' style={formStyle}>
+      <div className="mb-3">
+        <div className="mb-3">
+          <div className="mb-1">加入圖片</div>
+          <label htmlFor="formFileMultiple" className="form-label">本機上傳</label>
+          {/* <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*' ref={inputRef} onChange={handleUpload}/> */}
+          <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*' />
+
+          <label htmlFor="fromAlbum" className="form-label">相簿上傳</label>
+
+          <div className="input-group mb-3">
+            <button className="btn btn-outline-secondary dropdown-toggle" data-bs-auto-close="outside"
+              data-bs-toggle="dropdown" type="button" id="fromAlbum" aria-expanded="false">
+              選擇相簿
+            </button>
+            <ul className="dropdown-menu" id="albumMenu">
+
+              <li><a className="dropdown-item" href="#" data-bs-toggle="modal"
+                data-bs-target="#albumModal">新北兩日遊</a></li>
+              <li><a className="dropdown-item" href="#" data-bs-toggle="modal"
+                data-bs-target="#albumModal">金瓜石之旅</a></li>
+              <li><a className="dropdown-item" href="#" data-bs-toggle="modal"
+                data-bs-target="#albumModal">安平好熱</a></li>
+              <li><a className="dropdown-item" href="#">我的收藏</a></li>
+
+            </ul>
+            <input type="text" className="form-control" placeholder="" aria-label="Example text with button addon"
+              aria-describedby="button-addon1" />
+          </div>
+
+          <div className="container-fluid mt-3" id='imageContainer'></div>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="publicRadio" className="form-label">公開設定</label>
+          <div className="form-check">
+            <input className="form-check-input" type="radio" name="privacyRadio" value="" id="publicRadio" />
+            <label className="form-check-label" htmlFor="publicRadio">
+              公開
+            </label>
+          </div>
+          <div className="form-check">
+            <input className="form-check-input" type="radio" name="privacyRadio" value="" id="privateRadio"
+              defaultChecked />
+            <label className="form-check-label" htmlFor="privateRadio">
+              不公開
+            </label>
+          </div>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="inputNoteJourney" className="form-label">備註</label>
+          <textarea className="form-control" id="inputNoteJourney" rows="3"></textarea>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 
 const NowJourneyForm = () => {
@@ -117,6 +188,7 @@ const NowJourneyForm = () => {
     <div className='container rounded my-3' style={containerStyle}>
       {/* <StepOne /> */}
       <StepTwo calendarRef={calendarRef} />
+      <StepThree />
     </div>
   )
 }

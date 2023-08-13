@@ -10,6 +10,19 @@ const { useEffect } = React;
 
 const spot = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction`);
 
+const restaurant = [
+  {
+    type:'中式料理',
+    url:'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/6e/1e/e4/caption.jpg?w=600&h=-1&s=1',
+    state: [4]
+  },
+  {
+    type:'日式料理',
+    url:'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/81/74/ab/photo1jpg.jpg?w=600&h=400&s=1',
+    state: [3]
+  }
+];
+
 const settings = {
     dots: false,
     infinite: true,
@@ -102,19 +115,19 @@ const TravelPlan = () => {
   )
 }
 
-const RestaurantCard = () => {
+const RestaurantCard = ({data}) => {
   return (
-    <a href="#" className="cardLink">
+    <Link to='/restaurant/search' className="cardLink" state={data.state}>
       <div className="restaurantImg cardShadow">
         <img
           className="w-100"
-          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+          src={data.url}
           alt=""
         />
         <div className="mask w-100 h-100"></div>
-        <h4 className="restaurantType">平價小吃</h4>
+        <h4 className="restaurantType">{data.type}</h4>
       </div>
-    </a>
+    </Link>
   )
 }
 
@@ -187,10 +200,10 @@ export default function Home() {
             <p className="mb-0">沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
             <div className="row row-cols-2 mt-4">
               <div className="col">
-                <RestaurantCard></RestaurantCard>
+                <RestaurantCard data={restaurant[0]}></RestaurantCard>
               </div>
               <div className="col">
-                <RestaurantCard></RestaurantCard>
+                <RestaurantCard data={restaurant[1]}></RestaurantCard>
               </div>
             </div>
           </div>

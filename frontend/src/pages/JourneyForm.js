@@ -168,9 +168,9 @@ const StepThree = ({ formData, setFormData }) => {
         <div className="mb-3">
           <label htmlFor="publicRadio" className="form-label">公開設定</label>
           <div className="form-check">
-            <input className="form-check-input" type="radio" name="privacyRadio" value={1} id="publicRadio" 
-            checked={formData.privacy === 1}
-            onChange={handlePrivacyChange}/>
+            <input className="form-check-input" type="radio" name="privacyRadio" value={1} id="publicRadio"
+              checked={formData.privacy === 1}
+              onChange={handlePrivacyChange} />
             <label className="form-check-label" htmlFor="publicRadio">
               公開
             </label>
@@ -178,7 +178,7 @@ const StepThree = ({ formData, setFormData }) => {
           <div className="form-check">
             <input className="form-check-input" type="radio" name="privacyRadio" value={0} id="privateRadio"
               checked={formData.privacy === 0}
-              onChange={handlePrivacyChange}/>
+              onChange={handlePrivacyChange} />
             <label className="form-check-label" htmlFor="privateRadio">
               不公開
             </label>
@@ -227,7 +227,7 @@ const StepFour = ({ calendarBrowseRef, formData }) => {
 }
 
 
-const EventAddModal = ({modalTitle, handleModalSave, handleCloseModal, handleRemoveEvent, addEvent, setAddEvent}) => {
+const EventAddModal = ({ modalTitle, handleModalSave, handleCloseModal, handleRemoveEvent, addEvent, setAddEvent }) => {
 
 
   const handleAddEventTitle = (e) => {
@@ -258,7 +258,7 @@ const EventAddModal = ({modalTitle, handleModalSave, handleCloseModal, handleRem
             <div>
               <div className="mb-3">
                 <label htmlFor="eventName" className="col-form-label">活動名稱</label>
-                <input type="text" className="form-control" id="eventName" value={addEvent.title} onChange={handleAddEventTitle}/>
+                <input type="text" className="form-control" id="eventName" value={addEvent.title} onChange={handleAddEventTitle} />
               </div>
               <div className="mb-3">
                 <label htmlFor="eventDescription" className="col-form-label">活動內容</label>
@@ -273,6 +273,25 @@ const EventAddModal = ({modalTitle, handleModalSave, handleCloseModal, handleRem
           </div>
         </div>
       </div>
+    </div>
+  )
+}
+
+
+const ProgressBar = ({step}) => {
+
+  const progressBarWidthStyle = {
+    width: `${step*100/4}%`,
+  }
+
+  const progressBarHeightStyle = {
+    height: '2px',
+  }
+
+  return (
+    <div className="progress my-3" role="progressbar" aria-label="progressbar" aria-valuenow="25" aria-valuemin="0"
+      aria-valuemax="100" style={progressBarHeightStyle}>
+      <div className="progress-bar" id="progressBar" style={progressBarWidthStyle}></div>
     </div>
   )
 }
@@ -304,9 +323,9 @@ const NowJourneyForm = () => {
     setStep((prevStep) => Math.min(prevStep + 1, 4));
     // console.log(formData);
   }
-  
-  
-  
+
+
+
 
   useEffect(() => {
     if (step === 2) {
@@ -353,9 +372,9 @@ const NowJourneyForm = () => {
       console.log(formData);
     }
 
-    if (step == 3){
-      
-      const currentEvents = calendarObjRef.current.getEvents().map(({title, start, end, extendedProps}) => ({
+    if (step == 3) {
+
+      const currentEvents = calendarObjRef.current.getEvents().map(({ title, start, end, extendedProps }) => ({
         title: title,
         start: moment(start).format('YYYY-MM-DD HH:mm:ss'),
         end: moment(end).format('YYYY-MM-DD HH:mm:ss'),
@@ -369,7 +388,7 @@ const NowJourneyForm = () => {
         events: currentEvents,
       }));
 
-    
+
     }
 
   }, [step]);
@@ -394,10 +413,10 @@ const NowJourneyForm = () => {
       userId: 1,
     }))
   }, []);
+
+
+
   
-
-
-
   const eventModalRef = useRef(null);
 
   useEffect(() => {
@@ -448,39 +467,22 @@ const NowJourneyForm = () => {
     const calendarApi = selectedEvent.view.calendar;
 
     if (addEvent.title) {
-      // if (modalTitle === 'Add Event') {
-      //   calendar.addEvent({
-      //     title: eventTitle,
-      //     start: selectedEvent.startStr,
-      //     end: selectedEvent.endStr,
-      //     extendedProps: { description: eventDescription },
-      //     allDay: selectedEvent.allDay,
-      //   });
-      // } else if (modalTitle === 'Edit Event') {
-      //   selectedEvent.event.setProp('title', eventTitle);
-      //   selectedEvent.event.setExtendedProp('description', eventDescription);
-      // }
-      calendarApi.addEvent({
-        title: addEvent.title,
-        start: selectedEvent.startStr,
-        end: selectedEvent.endStr,
-        description: addEvent.description,
-        allDay: selectedEvent.allDay,
-      });
+      
+      if (modalTitle === "新增活動"){
+        calendarApi.addEvent({
+          title: addEvent.title,
+          start: selectedEvent.startStr,
+          end: selectedEvent.endStr,
+          description: addEvent.description,
+          allDay: selectedEvent.allDay,
+        });
+      }
+      else if (modalTitle === "修改活動"){
+        selectedEvent.event.setProp('title', addEvent.title);
+        selectedEvent.event.setExtendedProp('description', addEvent.description);
+      }
 
-      // const currentEvents = calendarApi.getEvents().map(({title, start, end, extendedProps}) => ({
-      //   title: title,
-      //   start: moment(start).format('YYYY-MM-DD HH:mm:ss'),
-      //   end: moment(end).format('YYYY-MM-DD HH:mm:ss'),
-      //   description: extendedProps.description
-      // }));
-
-      // console.log(currentEvents);
-
-      // setFormData((prevData) => ({
-      //   ...prevData,
-      //   events: currentEvents,
-      // }));
+  
     }
 
     calendarApi.unselect();
@@ -490,7 +492,7 @@ const NowJourneyForm = () => {
 
   const handleRemoveEvent = () => {
     if (modalTitle === "修改活動" && selectedEvent.event) {
-      if (window.confirm(`確定要刪除活動'${selectedEvent.event.title}'?`)){
+      if (window.confirm(`確定要刪除活動'${selectedEvent.event.title}'?`)) {
         selectedEvent.event.remove();
       }
     }
@@ -511,32 +513,33 @@ const NowJourneyForm = () => {
     };
 
     axios.post(reqUrl, requestData)
-        .then(response => {
-            console.log("response: ", response.data);
-        })
-        .catch(error => {
-            console.error("Error: ", error);
-        });
+      .then(response => {
+        console.log("response: ", response.data);
+      })
+      .catch(error => {
+        console.error("Error: ", error);
+      });
   }
 
- 
+
   return (
     <>
       <div className='container-fluid p-0 d-flex'>
-        <Sidebar/>
+        <Sidebar />
         <div className='container rounded my-3' style={containerStyle}>
           <h1>建立新行程 <span>{formData.title}</span></h1>
+          <ProgressBar step={step}/>
           <hr></hr>
-          <div style={{display: step === 1 ? 'block' : 'none'}}>
+          <div style={{ display: step === 1 ? 'block' : 'none' }}>
             <StepOne setFormData={setFormData} formData={formData} />
           </div>
-          <div style={{display: step === 2 ? 'block' : 'none'}}>
+          <div style={{ display: step === 2 ? 'block' : 'none' }}>
             <StepTwo setFormData={setFormData} formData={formData} calendarRef={calendarRef} />
           </div>
-          <div style={{display: step === 3 ? 'block' : 'none'}}>
+          <div style={{ display: step === 3 ? 'block' : 'none' }}>
             <StepThree setFormData={setFormData} formData={formData} />
           </div>
-          <div style={{display: step === 4 ? 'block' : 'none'}}>
+          <div style={{ display: step === 4 ? 'block' : 'none' }}>
             <StepFour setFormData={setFormData} formData={formData} calendarBrowseRef={calendarBrowseRef} />
           </div>
           {/* {step === 1 && <StepOne setFormData={setFormData} formData={formData} />}
@@ -547,11 +550,11 @@ const NowJourneyForm = () => {
             {step > 1 && <button className='btn btn-primary' onClick={handlePrevStep}>上一步</button>}
             {step < 4 && <button className='btn btn-primary ms-auto' onClick={handleNextStep}>下一步</button>}
             {step === 4 && <button className='btn btn-primary ms-auto' style={submitBtnStyle} onClick={handleSubmit}>完成</button>}
-          </div>   
+          </div>
         </div>
       </div>
       <BotSidebar />
-      <EventAddModal modalTitle={modalTitle} handleModalSave={handleModalSave} handleCloseModal={handleCloseModal} handleRemoveEvent={handleRemoveEvent} addEvent={addEvent} setAddEvent={setAddEvent}/>
+      <EventAddModal modalTitle={modalTitle} handleModalSave={handleModalSave} handleCloseModal={handleCloseModal} handleRemoveEvent={handleRemoveEvent} addEvent={addEvent} setAddEvent={setAddEvent} />
     </>
   )
 }

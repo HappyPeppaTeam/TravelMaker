@@ -15,6 +15,7 @@ import Restaurant_main from './pages/Restaurant_main';
 import Journey from "./pages/Journey";
 import NewJourneyTest from "./pages/NewJourneyTest";
 import JourneyForm from "./pages/JourneyForm";
+import MyJourney from "./pages/MyJourney";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/journey" element={<Journey/>} ></Route>
           <Route path="/journey/newjourney" element={<JourneyForm/>} ></Route>
           <Route path="/newtest" element={<NewJourneyTest/>} ></Route>
+          <Route path="/test" element={<MyJourney/>} ></Route>
         </Routes>
       <Footer/>
     </div>

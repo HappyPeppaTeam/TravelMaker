@@ -1,0 +1,44 @@
+.bg-blue-1 {
+    background-color: #2F4E63;
+}
+
+.bg-blue-2 {
+    background-color: #B2D2E8;
+}
+
+.bg-blue-3 {
+    background-color: #6BB3E3;
+}
+
+/* 導覽列 */
+.discussion-board {
+    padding: 0.5em;
+}
+.sub-discussion-board {
+    display: flex;
+    justify-content: left;
+}
+.sub-discussion-board button{
+    width: 145px;
+    height: 35px;
+}
+
+.sub-discussion-board-home button{
+    width: 145px;
+    height: 35px;
+}
+
+.sub-discussion-board-home a {
+    text-decoration: none;
+    color: white;
+}
+
+/* 輪播圖 */
+.forum-carousel img{
+    object-fit: cover;
+}
+
+/* 精選文章 */
+.card-img-size {
+    border-radius: 20px 20px 0 0;
+}

@@ -1,0 +1,45 @@
+.album {
+    height: 200px;
+    background-size: cover;
+}
+
+.albumLink:hover .card-title {
+    bottom: 20px;
+    transform: scale(1.2);
+}
+
+.albumBody {
+    position: relative;
+}
+
+.albumTitle {
+    position: absolute;
+    bottom: 0;
+    transition: all .4s;
+}
+
+.wrap img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.slick-dots {
+    position: static ;
+    margin-top: 10px;
+}
+
+.slick-thumb li {
+    width: 60px;
+    height: 45px;
+    margin-bottom: 10px;
+}
+
+.slick-prev, .slick-next {
+    top: 40%;
+}
+@media (min-width:992px) {
+    .slick-prev, .slick-next {
+        top: 45%;
+    }
+}

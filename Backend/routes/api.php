@@ -377,3 +377,8 @@ Route::get('/attraction/{typeid}',function($typeid) {
     $data = DB::select('SELECT * FROM attraction WHERE TypeID = ?',[$typeid]); 
     return response()->json($data);
 });
+
+Route::get('/spotSummary',function(){
+    $data = DB::select('SELECT attraction.Name,attraction.Description,attraction.PictureUrl1,typeid.ChineseType FROM attraction JOIN typeid ON attraction.TypeID = typeid.TypeID');
+    return response()->json($data);
+});

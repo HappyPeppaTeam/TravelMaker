@@ -12,6 +12,8 @@ const article = await axios.get(`http://localhost/TravelMaker/Backend/public/api
 
 const spot = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction`);
 
+const spotSummary = await axios.get(`http://localhost/TravelMaker/Backend/public/api/spotSummary`);
+
 const restaurant = [
   {
     type:'中式料理',
@@ -60,10 +62,10 @@ const settings = {
       }
     ]
 };
-const renderContent = spot.data.map((item,index) => {
-  if(index <= 7) {
+const renderContent = spotSummary.data.map((item,index) => {
+  if(index >= 14 && index <= 21) {
     return (
-      <a href="#" className="cardLink" key={index}>
+      <Link to="/Attractionmore/Attraction_innerpage" className="cardLink" key={index} state={spot.data[index]}>
               <div className="card m-2 shadow-sm cardScale spotCard">
                 <img
                   src={item.PictureUrl1}
@@ -77,11 +79,11 @@ const renderContent = spot.data.map((item,index) => {
                   </p>
                   <p className="d-flex align-items-center mb-0">
                     <span className="sortIcon me-2"></span
-                    ><span className="d-block">景點</span>
+                    ><span className="d-block">{item.ChineseType}</span>
                   </p>
                 </div>
               </div>
-      </a>
+      </Link>
     )
   }
 });

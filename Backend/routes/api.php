@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <?php
 
+
 use App\Http\Controllers\JourneyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Redirect;
+
 
 
 /*
@@ -358,5 +360,15 @@ Route::get('/attraction/{zipcode}',function($zipcode) {
 
 Route::get('/zipcode',function() {
     $data = DB::select('SELECT * FROM zipcode'); 
+    return response()->json($data);
+});
+
+Route::get('/typeid',function() {
+    $data = DB::select('SELECT * FROM typeid'); 
+    return response()->json($data);
+});
+
+Route::get('/attraction/{typeid}',function($typeid) {
+    $data = DB::select('SELECT * FROM attraction WHERE TypeID = ?',[$typeid]); 
     return response()->json($data);
 });

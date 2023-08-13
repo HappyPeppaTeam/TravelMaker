@@ -22,8 +22,8 @@ export default function Attractionmore() {
                 const test = response.data.filter(item => item.ZipCode === state);
                 setAttractionPicture(test);
             } else {
-                console.log(state.substring(0, 3));
-                const test = response.data.filter(item => item.Address.substring(0, 3) === state);
+                console.log(state.substring(0, 2));
+                const test = response.data.filter(item => item.Address.substring(0, 2) === state);
                 setAttractionPicture(test);
             }
         })();

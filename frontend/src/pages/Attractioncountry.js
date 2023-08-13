@@ -337,57 +337,57 @@ export default function Attractioncountry() {
                     <div className="container image-container" style={{ paddingTop: '0.75rem' }}>
                         <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='基隆市'>
+                                <Link to="/attractions/Attractionmore"state='基隆'>
                                     <img className="img-thumbnail2" src={require('../district/keelung.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='臺東縣'>
+                                <Link to="/attractions/Attractionmore"state='臺東'>
                                     <img className="img-thumbnail2" src={require('../district/taitong.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='新北市'>
+                                <Link to="/attractions/Attractionmore"state='新北'>
                                     <img className="img-thumbnail2" src={require('../district/new_taipei.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='雲林縣'>
+                                <Link to="/attractions/Attractionmore"state='雲林'>
                                     <img className="img-thumbnail2" src={require('../district/yunlin.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='高雄市'>
+                                <Link to="/attractions/Attractionmore"state='高雄'>
                                     <img className="img-thumbnail2" src={require('../district/kaohsiung.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='苗栗縣'>
+                                <Link to="/attractions/Attractionmore"state='苗栗'>
                                     <img className="img-thumbnail2" src={require('../district/miaoli.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='宜蘭縣'>
+                                <Link to="/attractions/Attractionmore"state='宜蘭'>
                                     <img className="img-thumbnail2" src={require('../district/yilan.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='臺南市'>
+                                <Link to="/attractions/Attractionmore"state='臺南'>
                                     <img className="img-thumbnail2" src={require('../district/tainan.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='南投縣'>
+                                <Link to="/attractions/Attractionmore"state='南投'>
                                     <img className="img-thumbnail2" src={require('../district/nantou.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='彰化縣'>
+                                <Link to="/attractions/Attractionmore"state='彰化'>
                                     <img className="img-thumbnail2" src={require('../district/changhua.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='臺北市'>
+                                <Link to="/attractions/Attractionmore"state='臺北'>
                                     <img className="img-thumbnail2" src={require('../district/taipei.jpg')} />
                                 </Link>
                             </div>
@@ -397,32 +397,32 @@ export default function Attractioncountry() {
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" state='臺中市'>
+                                <Link to="/attractions/Attractionmore" state='臺中'>
                                     <img className="img-thumbnail2" src={require('../district/taichung.jpg')} />
                                 </Link>
                             </div>                 
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='屏東縣'>
+                                <Link to="/attractions/Attractionmore"state='屏東'>
                                     <img className="img-thumbnail2" src={require('../district/pingtung.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='澎湖縣'>
+                                <Link to="/attractions/Attractionmore"state='澎湖'>
                                     <img className="img-thumbnail2" src={require('../district/penghu.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='花蓮縣'>
+                                <Link to="/attractions/Attractionmore"state='花蓮'>
                                     <img className="img-thumbnail2" src={require('../district/hualien.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='桃園市'>
+                                <Link to="/attractions/Attractionmore"state='桃園'>
                                     <img className="img-thumbnail2" src={require('../district/taoyuan.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='金門縣'>
+                                <Link to="/attractions/Attractionmore"state='金門'>
                                     <img className="img-thumbnail2" src={require('../district/kinmen.jpg')} />
                                 </Link>
                             </div>
@@ -432,7 +432,7 @@ export default function Attractioncountry() {
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='連江縣'>
+                                <Link to="/attractions/Attractionmore"state='連江'>
                                     <img className="img-thumbnail2" src={require('../district/matsu.jpg')} />
                                 </Link>
                             </div>

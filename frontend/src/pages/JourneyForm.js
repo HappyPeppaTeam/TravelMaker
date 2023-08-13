@@ -11,6 +11,72 @@ import { Modal } from 'bootstrap';
 
 import Sidebar from '../components/Sidebar';
 import BotSidebar from '../components/BotSidebar';
+import { useLocation } from 'react-router-dom';
+import '../css/createAlbum.css';
+
+
+function useImage() {
+  const inputRef = useRef(null);
+  const [images, setImages] = useState([]);
+  const [imagesData, setImagesData] = useState([]);
+
+  console.log(imagesData);
+  // 上傳圖片
+  const handleUpload = (e) => {
+    const images = [...e.target.files].map((file) => {
+      return {
+      name: file.name,
+      url: URL.createObjectURL(file),
+      }
+    });
+
+    const imagesData = e.target.files;
+    setImagesData([...imagesData]);
+    setImages(images);
+  }
+
+  // 移除單一圖片
+  const handleRemove = (e,imgIndex) => {
+      e.preventDefault();
+      setImages(images.filter((img,index) => {
+          if(index === imgIndex) {
+              URL.revokeObjectURL(img.url);
+          }
+          return index !== imgIndex;
+      }))
+      setImagesData(imagesData.filter((item,index) => {
+          return index !== imgIndex;
+      }))
+  }
+
+  // 移除全部圖片
+  const handleRemoveAll = (e) => {
+      e.preventDefault();
+      images.forEach((img) => {
+          URL.revokeObjectURL(img.url);
+      });
+      setImages([]);
+      setImagesData([]);
+  }
+
+  useEffect(() => {
+      if(images.length === 0 && inputRef.current){
+          inputRef.current.value = "";
+      }
+  },[images])
+
+  return {
+    images,
+    imagesData,
+    handleUpload,
+    handleRemove,
+    handleRemoveAll,
+    inputRef,
+  }
+}
+
+
+
 
 
 const StepOne = ({ formData, setFormData }) => {

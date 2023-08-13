@@ -25,8 +25,8 @@ function useImage() {
   const handleUpload = (e) => {
     const images = [...e.target.files].map((file) => {
       return {
-      name: file.name,
-      url: URL.createObjectURL(file),
+        name: file.name,
+        url: URL.createObjectURL(file),
       }
     });
 
@@ -36,34 +36,34 @@ function useImage() {
   }
 
   // 移除單一圖片
-  const handleRemove = (e,imgIndex) => {
-      e.preventDefault();
-      setImages(images.filter((img,index) => {
-          if(index === imgIndex) {
-              URL.revokeObjectURL(img.url);
-          }
-          return index !== imgIndex;
-      }))
-      setImagesData(imagesData.filter((item,index) => {
-          return index !== imgIndex;
-      }))
+  const handleRemove = (e, imgIndex) => {
+    e.preventDefault();
+    setImages(images.filter((img, index) => {
+      if (index === imgIndex) {
+        URL.revokeObjectURL(img.url);
+      }
+      return index !== imgIndex;
+    }))
+    setImagesData(imagesData.filter((item, index) => {
+      return index !== imgIndex;
+    }))
   }
 
   // 移除全部圖片
   const handleRemoveAll = (e) => {
-      e.preventDefault();
-      images.forEach((img) => {
-          URL.revokeObjectURL(img.url);
-      });
-      setImages([]);
-      setImagesData([]);
+    e.preventDefault();
+    images.forEach((img) => {
+      URL.revokeObjectURL(img.url);
+    });
+    setImages([]);
+    setImagesData([]);
   }
 
   useEffect(() => {
-      if(images.length === 0 && inputRef.current){
-          inputRef.current.value = "";
-      }
-  },[images])
+    if (images.length === 0 && inputRef.current) {
+      inputRef.current.value = "";
+    }
+  }, [images])
 
   return {
     images,
@@ -197,6 +197,15 @@ const StepThree = ({ formData, setFormData }) => {
     }))
   }
 
+  const { images, imagesData, handleUpload, handleRemove, handleRemoveAll, inputRef } = useImage();
+
+  useEffect(() => {
+    setFormData((prevData) => ({
+      ...prevData,
+      images: imagesData
+    }))
+  }, [imagesData])
+
   return (
     <div id="newJourneyForm3" className='p-3 shadow rounded' style={formStyle}>
       <div className="mb-3">
@@ -204,7 +213,29 @@ const StepThree = ({ formData, setFormData }) => {
           <div className="mb-1">加入圖片</div>
           <label htmlFor="formFileMultiple" className="form-label">本機上傳</label>
           {/* <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*' ref={inputRef} onChange={handleUpload}/> */}
-          <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*' />
+          <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*' 
+          onChange={(e) => {
+            handleUpload(e);
+            
+          }}   
+          ref={inputRef}/>
+          
+          
+          <div className='row row-cols-2 row-cols-lg-3 mt-3 g-3'>
+            {images.map((image, index) => {
+              return (
+                <div className='col' key={index}>
+                  <img className='selectedImg w-100' src={image.url} />
+                  <div className='imgInfo'>
+                    <div className='fileName w-100 d-flex justify-content-between align-items-center'>
+                      <p className='m-0 py-2 text-white text-center'>{image.name}</p>
+                      <button className='btn remove' onClick={(e) => handleRemove(e, index)}><i className="bi bi-x-circle fs-4"></i></button>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
 
           <label htmlFor="fromAlbum" className="form-label">相簿上傳</label>
 
@@ -344,10 +375,10 @@ const EventAddModal = ({ modalTitle, handleModalSave, handleCloseModal, handleRe
 }
 
 
-const ProgressBar = ({step}) => {
+const ProgressBar = ({ step }) => {
 
   const progressBarWidthStyle = {
-    width: `${step*100/4}%`,
+    width: `${step * 100 / 4}%`,
   }
 
   const progressBarHeightStyle = {
@@ -482,7 +513,7 @@ const NowJourneyForm = () => {
 
 
 
-  
+
   const eventModalRef = useRef(null);
 
   useEffect(() => {
@@ -533,8 +564,8 @@ const NowJourneyForm = () => {
     const calendarApi = selectedEvent.view.calendar;
 
     if (addEvent.title) {
-      
-      if (modalTitle === "新增活動"){
+
+      if (modalTitle === "新增活動") {
         calendarApi.addEvent({
           title: addEvent.title,
           start: selectedEvent.startStr,
@@ -543,12 +574,12 @@ const NowJourneyForm = () => {
           allDay: selectedEvent.allDay,
         });
       }
-      else if (modalTitle === "修改活動"){
+      else if (modalTitle === "修改活動") {
         selectedEvent.event.setProp('title', addEvent.title);
         selectedEvent.event.setExtendedProp('description', addEvent.description);
       }
 
-  
+
     }
 
     calendarApi.unselect();
@@ -585,6 +616,8 @@ const NowJourneyForm = () => {
       .catch(error => {
         console.error("Error: ", error);
       });
+
+    window.location = "http://localhost:3000/journey"
   }
 
 
@@ -592,9 +625,9 @@ const NowJourneyForm = () => {
     <>
       <div className='container-fluid p-0 d-flex'>
         <Sidebar />
-        <div className='container rounded my-3' style={containerStyle}>
+        <div className='container rounded my-4' style={containerStyle}>
           <h1>建立新行程 <span>{formData.title}</span></h1>
-          <ProgressBar step={step}/>
+          <ProgressBar step={step} />
           <hr></hr>
           <div style={{ display: step === 1 ? 'block' : 'none' }}>
             <StepOne setFormData={setFormData} formData={formData} />

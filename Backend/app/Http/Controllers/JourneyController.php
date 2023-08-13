@@ -42,6 +42,7 @@ class JourneyController extends Controller
             $userId = $request['user_id'];
             $privacy = $request['privacy'];
             $thumbnailId = $request['thumbnail_id'];
+            $events = $request['events'];
 
             $isInsert = DB::insert(
                 "
@@ -51,11 +52,17 @@ class JourneyController extends Controller
                 [$journeyName, $journeyDescription, $userId, $privacy, $thumbnailId]
             );
 
-            if ($isInsert) {
-                return response("Add new journey: {$journeyName} successfully.", 201);
-            } else {
+            if (!$isInsert) {
                 return response("Failed to insert record", 500);
-            }
+            } 
+
+
+            $journeyIdResult = DB::select("select journey_id from journey where journey_name = ? and user_id = ?;", [$journeyName, $userId]);
+            $journeyId = $journeyIdResult[0]->journey_id;
+            $isAddEvent = $this->addNewEvents($journeyId, $events);
+
+            return response("Add new journey: {$journeyName} successfully. Add event: {$isAddEvent}", 201);
+
         } catch (Exception $e) {
             return response("Error add new journey: " . $e->getMessage(), 500);
         }

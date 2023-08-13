@@ -13,7 +13,6 @@ import MemberCenter from './pages/MemberCenter';
 import Forum from './pages/Forum';
 import Restaurant_main from './pages/Restaurant_main';
 import Journey from "./pages/Journey";
-import NewJourney from "./pages/NewJourney"; 
 import NewJourneyTest from "./pages/NewJourneyTest";
 import JourneyForm from "./pages/JourneyForm";
 
@@ -30,9 +29,8 @@ function App() {
           <Route path='/forum' element={<Forum/>}></Route>
           <Route path='/restaurant' element={<Restaurant_main/>}></Route>
           <Route path="/journey" element={<Journey/>} ></Route>
-          <Route path="/journey/newjourney" element={<NewJourney/>} ></Route>
+          <Route path="/journey/newjourney" element={<JourneyForm/>} ></Route>
           <Route path="/newtest" element={<NewJourneyTest/>} ></Route>
-          <Route path="/newform" element={<JourneyForm/>} ></Route>
         </Routes>
       <Footer/>
     </div>

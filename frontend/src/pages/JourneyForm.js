@@ -9,6 +9,9 @@ import axios from 'axios';
 import moment from 'moment';
 import { Modal } from 'bootstrap';
 
+import Sidebar from '../components/Sidebar';
+import BotSidebar from '../components/BotSidebar';
+
 
 const StepOne = ({ formData, setFormData }) => {
 
@@ -43,7 +46,7 @@ const StepOne = ({ formData, setFormData }) => {
 
   const handleJourneyEnd = (e) => {
     e.preventDefault();
-    const endDay = moment(formData.journeyStart).add(e.target.value, 'days');
+    const endDay = moment(formData.journeyStart).add(e.target.value, 'days').format('YYYY-MM-DD');
     setFormData((prevData) => ({
       ...prevData,
       journeyEnd: endDay,
@@ -334,6 +337,7 @@ const NowJourneyForm = () => {
       calendarObjBrowseRef.current = new Calendar(calendarBrowseRef.current, {
         plugins: [dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin, interactionPlugin],
         initialView: 'timeGridWeek',
+        initialDate: (formData.journeyStart === "" || null ? new Date() : formData.journeyStart),
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
@@ -344,6 +348,9 @@ const NowJourneyForm = () => {
         events: formData.events,
       })
       calendarObjBrowseRef.current.render();
+
+      // show result
+      console.log(formData);
     }
 
     if (step == 3){
@@ -355,7 +362,7 @@ const NowJourneyForm = () => {
         description: extendedProps.description
       }));
 
-      console.log(currentEvents);
+      // console.log(currentEvents);
 
       setFormData((prevData) => ({
         ...prevData,
@@ -490,35 +497,60 @@ const NowJourneyForm = () => {
     handleCloseModal();
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const reqUrl = "http://localhost/TravelMaker/Backend/public/api/addJourney";
+
+    const requestData = {
+      title: formData.title,
+      description: formData.description,
+      events: formData.events,
+      thumbnail_id: formData.thumbnailId,
+      privacy: formData.privacy,
+      user_id: formData.userId
+    };
+
+    axios.post(reqUrl, requestData)
+        .then(response => {
+            console.log("response: ", response.data);
+        })
+        .catch(error => {
+            console.error("Error: ", error);
+        });
+  }
 
  
   return (
     <>
-      <div className='container rounded my-3' style={containerStyle}>
-        <h1>建立新行程 <span>{formData.title}</span></h1>
-        <hr></hr>
-        <div style={{display: step === 1 ? 'block' : 'none'}}>
-          <StepOne setFormData={setFormData} formData={formData} />
-        </div>
-        <div style={{display: step === 2 ? 'block' : 'none'}}>
-          <StepTwo setFormData={setFormData} formData={formData} calendarRef={calendarRef} />
-        </div>
-        <div style={{display: step === 3 ? 'block' : 'none'}}>
-          <StepThree setFormData={setFormData} formData={formData} />
-        </div>
-        <div style={{display: step === 4 ? 'block' : 'none'}}>
-          <StepFour setFormData={setFormData} formData={formData} calendarBrowseRef={calendarBrowseRef} />
-        </div>
-        {/* {step === 1 && <StepOne setFormData={setFormData} formData={formData} />}
-        {step === 2 && <StepTwo setFormData={setFormData} formData={formData} calendarRef={calendarRef} />}
-        {step === 3 && <StepThree setFormData={setFormData} formData={formData} />}
-        {step === 4 && <StepFour setFormData={setFormData} formData={formData} calendarBrowseRef={calendarBrowseRef} />} */}
-        <div className='d-flex mt-5'>
-          {step > 1 && <button className='btn btn-primary' onClick={handlePrevStep}>上一步</button>}
-          {step < 4 && <button className='btn btn-primary ms-auto' onClick={handleNextStep}>下一步</button>}
-          {step === 4 && <button className='btn btn-primary ms-auto' style={submitBtnStyle}>完成</button>}
+      <div className='container-fluid p-0 d-flex'>
+        <Sidebar/>
+        <div className='container rounded my-3' style={containerStyle}>
+          <h1>建立新行程 <span>{formData.title}</span></h1>
+          <hr></hr>
+          <div style={{display: step === 1 ? 'block' : 'none'}}>
+            <StepOne setFormData={setFormData} formData={formData} />
+          </div>
+          <div style={{display: step === 2 ? 'block' : 'none'}}>
+            <StepTwo setFormData={setFormData} formData={formData} calendarRef={calendarRef} />
+          </div>
+          <div style={{display: step === 3 ? 'block' : 'none'}}>
+            <StepThree setFormData={setFormData} formData={formData} />
+          </div>
+          <div style={{display: step === 4 ? 'block' : 'none'}}>
+            <StepFour setFormData={setFormData} formData={formData} calendarBrowseRef={calendarBrowseRef} />
+          </div>
+          {/* {step === 1 && <StepOne setFormData={setFormData} formData={formData} />}
+          {step === 2 && <StepTwo setFormData={setFormData} formData={formData} calendarRef={calendarRef} />}
+          {step === 3 && <StepThree setFormData={setFormData} formData={formData} />}
+          {step === 4 && <StepFour setFormData={setFormData} formData={formData} calendarBrowseRef={calendarBrowseRef} />} */}
+          <div className='d-flex mt-5'>
+            {step > 1 && <button className='btn btn-primary' onClick={handlePrevStep}>上一步</button>}
+            {step < 4 && <button className='btn btn-primary ms-auto' onClick={handleNextStep}>下一步</button>}
+            {step === 4 && <button className='btn btn-primary ms-auto' style={submitBtnStyle} onClick={handleSubmit}>完成</button>}
+          </div>   
         </div>
       </div>
+      <BotSidebar />
       <EventAddModal modalTitle={modalTitle} handleModalSave={handleModalSave} handleCloseModal={handleCloseModal} handleRemoveEvent={handleRemoveEvent} addEvent={addEvent} setAddEvent={setAddEvent}/>
     </>
   )

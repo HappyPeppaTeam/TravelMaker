@@ -2,37 +2,14 @@ import { Link } from 'react-router-dom';
 import '../css/index.css';
 import React from 'react';
 import Slider from '../components/Slick';
+import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const { useEffect } = React;
-const data = [
-    {
-      url:"https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-    },
-    {
-      url:"https://images.unsplash.com/photo-1689644917165-77ac0b422fe3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-    },
-    {
-      url:"https://images.unsplash.com/photo-1682686581413-0a0ec9bb35bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-    },
-    {
-      url:"https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-    },
-    {
-      url:"https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-    },
-    {
-      url:"https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-    },
-    {
-      url:"https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-    },
-    {
-      url:"https://images.unsplash.com/photo-1689350098247-5e02f4106cad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-    },
-    
-];
+
+const spot = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction`);
+
 const settings = {
     dots: false,
     infinite: true,
@@ -68,27 +45,31 @@ const settings = {
       }
     ]
 };
-const renderContent = data.map((item,index) => (
-  <a href="#" className="cardLink" key={index}>
-          <div className="card m-2 shadow-sm cardScale">
-            <img
-              src={item.url}
-              className="card-img-top spotImg"
-              alt=""
-            />
-            <div className="card-body">
-              <h4 className="card-title fw-bold">野柳地質公園</h4>
-              <p className="card-text">
-                擁有奇岩美石的野柳地質公園,是揚名國際的天然風景名勝地。
-              </p>
-              <p className="d-flex align-items-center mb-0">
-                <span className="sortIcon me-2"></span
-                ><span className="d-block">景點</span>
-              </p>
-            </div>
-          </div>
-  </a>
-));
+const renderContent = spot.data.map((item,index) => {
+  if(index <= 7) {
+    return (
+      <a href="#" className="cardLink" key={index}>
+              <div className="card m-2 shadow-sm cardScale spotCard">
+                <img
+                  src={item.PictureUrl1}
+                  className="card-img-top spotImg"
+                  alt=""
+                />
+                <div className="card-body">
+                  <h4 className="card-title fw-bold">{item.Name}</h4>
+                  <p className="card-text description">
+                    {item.Description}
+                  </p>
+                  <p className="d-flex align-items-center mb-0">
+                    <span className="sortIcon me-2"></span
+                    ><span className="d-block">景點</span>
+                  </p>
+                </div>
+              </div>
+      </a>
+    )
+  }
+});
 
 const TravelPlan = () => {
   return (

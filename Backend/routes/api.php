@@ -9,6 +9,8 @@ use App\Http\Controllers\AlbumController;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Mail\ResetPasswordController;
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -245,10 +247,32 @@ Route::post('/postimgurl', function (Request $request) {
 // by cookie/token get profile data
 Route::post('/profile',function(Request $request){  
 $token = $request['token'];
-$getProfile = DB::select("select user_name,full_name,nick_name,email,birthday,gender,head_photo from users where token= ?",[$token]);
+$getProfile = DB::select("select 
+user_name,full_name,nick_name,email,
+birthday,password,gender,
+head_photo 
+from users where token= ?",[$token]);
 $getProfile[0]->head_photo =  Storage::url("{$getProfile[0]->head_photo}");
 return response()->json($getProfile,200);
 });
+
+// by cookie/token update profile data
+Route::post('/updateProfile',function(Request $request){  
+    $formData = $request->all();
+    $token = $request['token'];
+    unset($formData['token']);
+    $query = DB::table('users');
+    foreach ($formData as $key => $value) {
+        if ($key === 'password') {
+            // 雜湊密碼並更新
+            $value = Hash::make($value);
+        }
+        $query
+        ->where('token', $token)
+        ->update([$key => $value]);
+    }
+    return response()->json(['message' => 'Data updated successfully']);
+    });
 
 //admin get all user
 Route::get('/getAllProfileData',function(Request $request){  
@@ -360,3 +384,7 @@ Route::get('/zipcode',function() {
     $data = DB::select('SELECT * FROM zipcode'); 
     return response()->json($data);
 });
+
+Route::post('/forgotPassword', [ForgotPasswordController::class,'sendResetLink']);
+
+Route::post('/resetPassword', [ResetPasswordController::class,'resetPassword']);

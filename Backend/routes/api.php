@@ -279,6 +279,11 @@ Route::get('/getArticle/{discussionBoardArea}', function($discussionBoardArea){
     return response()->json($getArticle,200);
 });
 
+Route::get('/getBoardText',function() {
+    $data = DB::select('SELECT * FROM board_text'); 
+    return response()->json($data);
+});
+
 Route::get('/getBoardText/{boardText_id}', function ($board_text_id) {
     // 取得 board_text 資料及關聯的使用者名稱
     $boardText = DB::table('board_text')

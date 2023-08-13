@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/restaurant.css';
 import { Modal } from 'bootstrap';
 import axios from 'axios';
+import {Link, useLocation} from 'react-router-dom';
 export default function RestaurantInner() {
 
     const { useState, useRef, useEffect } = React;
@@ -10,20 +11,24 @@ export default function RestaurantInner() {
 
     const [attraction, setAttraction] = useState([{}]);
 
+    let {state}= useLocation()
+    console.log(state);
     console.log(attraction);
     useEffect(() => {
         commentModal.current = new Modal('#rest-comment');
         (async () => {
             const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/restaurant`);
-            console.log(response);
-            setAttraction(response.data);
+            // response.data.filter((item)=>item.ID=state);
+            const restData = response.data.filter((item)=>item.ID==state);
+            console.log(restData);
+            setAttraction(restData);
         })();
     }, [])
     console.log(attraction[0].Name);
     return (
         <div className="">
 
-            <div className="p-3"><a className="rm-link-style" href="">餐廳</a>＞<a className="rm-link-style" href="">台中市</a>＞西屯區</div>
+            <div className="p-3"><a className="rm-link-style" href="">餐廳</a>＞<a className="rm-link-style" href="">新北市</a>＞三芝區</div>
 
             <div id="rest-carousel" className="carousel slide" data-bs-interval="3000" data-bs-ride="carousel">
                 <div className="carousel-indicators">
@@ -37,10 +42,10 @@ export default function RestaurantInner() {
                         <img className="carousel-rest" src={attraction[0].PictureUrl1} />
                     </div>
                     <div className="carousel-item">
-                        <img className="carousel-rest" src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" />
+                        <img className="carousel-rest" src="https://img.kenalice.tw/2018/01/1514816917-0dfd3d1617b9b8df653d3eebdf4c706f.jpg" />
                     </div>
                     <div className="carousel-item">
-                        <img className="carousel-rest" src="https://cdn.pixabay.com/photo/2022/04/30/19/12/cooking-banner-7166200_1280.jpg" />
+                        <img className="carousel-rest" src="https://cdn2.ettoday.net/images/5658/d5658566.jpg" />
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#rest-carousel" data-bs-slide="prev">
@@ -65,20 +70,19 @@ export default function RestaurantInner() {
             </div>
             <div className="row p-rest">
                 <div className="col-md-6 p-3">
-                    <div className="card p-3" style={{ 'min-height': '40vh' }}>
-                        我是餐廳介紹<br />
+                    <div className="card p-3" style={{ 'min-height': '250px' }}>
                         {attraction[0].Description}
                     </div>
                 </div>
                 <div className="col-md-6 p-3">
-                    <div className="card p-3" style={{ 'min-height': '40vh' }}>
+                    <div className="card p-3" style={{ 'min-height': '250px' }}>
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5148.996037009213!2d120.68238028489449!3d24.14050040353045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d1438fb3d3f%3A0xb7b4ebd02f1906b6!2z6Ie65Lit54Gr6LuK56uZ!5e0!3m2!1szh-TW!2stw!4v1684984846087!5m2!1szh-TW!2stw"
-                            width="100%" height="100vh" style={{ 'border': '0' }} allowfullscreen="" loading="lazy"
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14431.496153173022!2d121.5152768!3d25.2748224!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442b13d8a0f8b01%3A0xcd471d60668bbc20!2z6ZW36KeSOTYg576O5byP54Kt54Ok54mb5o6SIOWMl-a1t-WyuOe-jumjnyDkuInoip3mjqjolqbppJDlu7M!5e0!3m2!1szh-TW!2stw!4v1691607829174!5m2!1szh-TW!2stw"
+                            width="100%" height="210px" style={{ 'border': '0' }} allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
-                <div className="col-12 p-3">
+                <div className="col-12 p-3" style={{'display' : 'none'}}>
                     <div className="card p-3">
                         <h1>評論</h1>
                         <h4>留下評論:</h4>

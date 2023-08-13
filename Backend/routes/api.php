@@ -360,3 +360,60 @@ Route::get('/zipcode',function() {
     $data = DB::select('SELECT * FROM zipcode'); 
     return response()->json($data);
 });
+
+Route::post('/createBoardText', function (Request $request) {
+    $textTitle = $request->input('textTitle');
+    $text = $request->input('text');
+    $postingUserId = $request->input('postingUserId'); // Assuming you have a way to get the posting user ID
+    $type = $request->input('type'); // Assuming you have a way to get the posting user ID
+    $cityId = $request->input('cityId'); // Assuming you have a way to get the posting user ID
+    date_default_timezone_set('Asia/Taipei');
+    $postTime=date("Y-m-d H:i:s");
+    $imageUpdateMessage='';
+
+    // Insert the new board text into the 'board_text' table
+    $boardTextId = DB::table('board_text')->insertGetId([
+        'text_title' => $textTitle,
+        'text' => $text,
+        'posting_time' => $postTime,
+        'type' => $type,
+        'posting_user_id' => $postingUserId,
+        'Discussion_board_area' => $cityId,
+    ]);
+
+    $newBoardTextId=DB::select(
+        'select board_text_id 
+        from board_text
+        where text_title = ? 
+        and type = ?
+        and text = ?
+        and Discussion_board_area = ?
+        and posting_time = ?
+        and posting_user_id = ?',
+        [$textTitle,$type,$text,$cityId,$postTime,$postingUserId])[0]
+        ->board_text_id;
+
+    // Insert board images, if provided
+    if ($request->hasFile('image')) {
+        $files = $request->file('image');
+        foreach ($files as $file) {
+            // 儲存檔案到 public 目錄，並取得檔案路徑
+            $path = $file->store('images', 'public');
+            // 建立資料庫紀錄
+            DB::table('board_image')->insert([
+                'image_path' => $path,
+                'board_text_id' => $newBoardTextId,
+            ]);
+        }
+
+        $imageUpdateMessage = 'Image uploaded successfully';
+    }
+
+    $responseData = [
+        'message' => 'Board text and images created successfully.',
+        'boardTextId' => $newBoardTextId,
+        'imgUpload' => $imageUpdateMessage,
+    ];
+
+    return response()->json($responseData, 201); // 201 Created status code
+});

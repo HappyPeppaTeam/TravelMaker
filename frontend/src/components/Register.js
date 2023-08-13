@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { memberValidateField,registerFormValidate } from './MemberValidation'
+import 'bootstrap/dist/css/bootstrap.css'; 
+import 'bootstrap-icons/font/bootstrap-icons.css'; 
+import { memberValidateField, registerFormValidate, calculatePasswordStrength, getPasswordStrengthLabel } from './MemberValidation'
 
 const RegisterModal = ({ onResponse, closeRegisterModal, openMessageToast }) => {
   const [username, setUsername] = useState('');
@@ -24,6 +26,12 @@ const RegisterModal = ({ onResponse, closeRegisterModal, openMessageToast }) => 
   });
   const [passwordStrength, setPasswordStrength] = useState(0);
 
+  const hoverPointerStyle = {
+    cursor: 'pointer',
+    color: 'blue',
+    transition: 'color 0.3s ease, transform 0.3s ease',
+    transform: 'scale(1)',
+  };
 
 
   const handleGoogle = () => {
@@ -37,7 +45,6 @@ const RegisterModal = ({ onResponse, closeRegisterModal, openMessageToast }) => 
       ...errors,
       [id]: errorMessage,
     });
-
   };
 
   const handlePasswordChange = (event) => {
@@ -47,41 +54,17 @@ const RegisterModal = ({ onResponse, closeRegisterModal, openMessageToast }) => 
     setPasswordStrength(strength);
   };
 
-
-  const calculatePasswordStrength = (password) => {
-    // Implement your password strength calculation algorithm here
-    const lengthScore = password.length > 7 ? 2 : 1;
-    const complexityScore = /[!@#$%^&*()_+{}\[\]:;<>,.?~-]/.test(password) ? 2 : 1;
-    return lengthScore + complexityScore;
-  };
-
-  const getPasswordStrengthLabel = (strength) => {
-    let label = '';
-    let color = '';
-    if (strength >= 4) {
-      label = '強';
-      color = 'green';
-    } else if (strength >= 3) {
-      label = '中';
-      color = 'orange';
-    } else {
-      label = '弱';
-      color = 'red';
-    }
-    return <span style={{ color }}>{label}</span>;
-  };
   const register = async () => {
-      const userData = {
-        username,
-        password,
-        confirmPassword,
-        fullName,
-        nickName,
-        email,
-        birthday,
-        gender,
-      };
-      if (registerFormValidate(userData)) {
+    const userData = new FormData();
+    userData.append('username', username)
+    userData.append('password', password)
+    userData.append('confirmPassword', confirmPassword)
+    userData.append('fullName', fullName)
+    userData.append('nickName', nickName)
+    userData.append('email', email)
+    userData.append('birthday', birthday)
+    userData.append('gender', gender)
+    if (registerFormValidate(userData)) {
       try {
         const response = await axios.post('http://localhost/TravelMaker/Backend/public/api/register', userData, {
           headers: {
@@ -108,7 +91,7 @@ const RegisterModal = ({ onResponse, closeRegisterModal, openMessageToast }) => 
         closeRegisterModal();
         console.error(error);
       }
-    }else{
+    } else {
       setRegisterError('請檢查資料是否輸入正確');
     }
   }
@@ -208,7 +191,7 @@ const RegisterModal = ({ onResponse, closeRegisterModal, openMessageToast }) => 
           <div className="error-message text-danger">{errors.gender}</div>
           <div className="modal-footer justify-content-center">
             <div>
-              快速註冊：<i className="bi bi-google" onClick={handleGoogle}></i>
+              快速註冊：<i className="bi bi-google" style={hoverPointerStyle} onClick={handleGoogle}></i>
             </div>
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">取消</button>
             <button type="button" className="btn btn-primary" onClick={register}>確認</button>

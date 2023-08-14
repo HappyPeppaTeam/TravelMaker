@@ -186,4 +186,116 @@ class JourneyController extends Controller
 
         
     }
+
+
+    function uploadImage(Request $request)
+    {
+
+        $journeyId = $request['journey_id'];
+    
+        if ($request->hasFile('images')){
+            $files = $request->file('images');
+
+            $uploadCount = 0;
+
+            DB::beginTransaction();
+            foreach($files as $file){
+                if ($file->isValid()){
+                    $fileName = $file->getClientOriginalName();
+                    $path =  $file->store('images', 'public');
+
+
+                    DB::insert("
+                        insert into journey_image (image_name, image_url, journey_id)
+                        values (?, ?, ?);
+                        "
+                    ,[$fileName, $path, $journeyId]);
+
+                    $uploadCount ++;
+                }
+            }
+
+            if ($uploadCount > 0){
+                return response()->json(['message' => "{$uploadCount} files uploaded successfully"]);
+            }
+            else {
+                return response()->json(['message' => 'No valid files uploaded'], 400);
+            }
+
+        }
+
+
+        return response()->json(['message' => 'No files uploaded'], 400);
+        // $imagesData = $request['images'];
+
+        // if ($request->hasFile('image')) {
+        //     $image = $request->file('image');
+        //     $path = $image->store('images', 'public'); // 將圖片儲存在storage/app/public/images資料夾中
+        //     // DB::select('update users set head_photo = ? where token = ?'.['testpath',$token]);
+        //     DB::update('update users set head_photo = ? where token = ?', [$path, $token]);
+
+        //     return response()->json(['message' => '圖片上傳成功', 'path' => $path]);
+        // }
+
+        // return response()->json(['message' => '未收到圖片'], 400);
+    }
 }
+
+
+
+// Route::post('/albums/{token}/{album_id}', function (Request $request, $token, $album_id) {
+//     // 使用 token 查詢使用者
+//     $user = DB::table('users')->where('token', $token)->first();
+
+//     // 確保使用者存在且 token 正確
+//     if (!$user) {
+//         return response()->json(['error' => 'Unauthorized'], 401);
+//     }
+
+//     // 使用交易來更新相簿和相片資訊
+//     DB::beginTransaction();
+
+//     try {
+//     //     // 更新相簿資訊
+//         DB::table('albums')
+//             ->where('album_id', $album_id)
+//             ->where('user_id', $user->user_id)
+//             ->update([
+//                 'album_name' => $request->input('album_name'),
+//                 'tag' => $request->input('tag'),
+//                 'description' => $request->input('description'),
+//             ]);
+    
+//         // 移除原有相片
+//         DB::table('album_photos')
+//             ->where('album_id', $album_id)
+//             ->delete();
+
+//         // 處理上傳的相片內容
+//         if ($request->has('images')) {
+//             $files = $request->file('images');
+
+//             foreach ($files as $file) {
+//                 if ($file->isValid()) {
+//                     // 儲存檔案到 public 目錄，並取得檔案路徑
+//                     $path = $file->store('images', 'public');
+
+//                     // 新增相片資訊到 album_photos 資料表
+//                     DB::table('album_photos')->insert([
+//                         'album_id' => $album_id,
+//                         'image_name' => $file->getClientOriginalName(),
+//                         'image_url' => $path,
+//                     ]);
+//                 } else {
+//                     return response()->json(['error' => '上傳一張或多張圖片失敗'], 500);
+//                 }
+//             }
+//         }
+
+//         DB::commit();
+
+//     } catch (\Exception $e) {
+//         DB::rollback();
+//         return response()->json(['error' => 'Error updating album and photos'. $e->getMessage()], 500);
+//     }
+// });

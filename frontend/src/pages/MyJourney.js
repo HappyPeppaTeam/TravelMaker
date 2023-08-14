@@ -196,6 +196,18 @@ const JourneyDetail = ({ setShow, journeyData, calendarViewRef, setPageTitle }) 
     const editLinkStyle = {
         textDecoration: 'none',
     }
+    
+    const descriptionViewStyle = {
+        backgroundColor: 'rgb(254, 228, 203, 0.5)',
+        borderRadius: '10px',
+        minHeight: '100px'
+    }
+
+    const imageViewStyle = {
+        backgroundColor: 'rgb(233, 231, 253, 0.5)',
+        borderRadius: '10px',
+        minHeight: '200px'
+    }
 
     const handleReturn = (e) => {
         e.preventDefault();
@@ -211,34 +223,38 @@ const JourneyDetail = ({ setShow, journeyData, calendarViewRef, setPageTitle }) 
 
     return (
         <div id="JourneyBrowse" className='p-3'>
-            <div id="browseCalendarContainer" className="w-100 mb-3" >
+            <div id="browseCalendarContainer" className="w-100 mb-5" >
                 <div className='d-flex align-items-center'>
                     <h2 className='mb-3'>行程表</h2>
                     <a className='ms-auto fs-3' style={editLinkStyle}
                         onClick={handleEditView}><i className="bi bi-pencil-square"></i><span className='ms-2'>編緝</span></a>
                 </div>
-                <div className=' shadow p-3' style={browserCalendarStyle}>
+                <div className='shadow p-3' style={browserCalendarStyle}>
                     <div id="browserCalendar" ref={calendarViewRef}>
 
                     </div>
                 </div>
             </div>
-            <div id="browseTextContainer" className="w-100 mb-3" >
-                <h2>備註</h2>
-                <p>{journeyData.description}</p>
+            <div id="browseTextContainer" className="w-100 mb-5" >
+                <h2 className='mb-3'>備註</h2>
+                <div className='shadow p-3' style={descriptionViewStyle}>
+                    <p>{journeyData.description}</p>
+                </div>
             </div>
-            <div id="browseImageContainer" className="w-100 mb-3">
-                <h2>相片</h2>
-                <div className='row g-2'>
-                    {/* {formData.images.map((image, index) => (
-                        <div className='col-3' >
-                            <div style={{
-                                backgroundImage: `url(${image.url})`,
-                                backgroundSize: 'cover',
-                                height: '200px',
-                            }}></div>
-                        </div>
-                    ))} */}
+            <div id="browseImageContainer" className="w-100 mb-5">
+                <h2 className='mb-3'>相片</h2>
+                <div className='shadow p-3' style={imageViewStyle}>
+                    <div className='row g-2'>
+                        {/* {formData.images.map((image, index) => (
+                            <div className='col-3' >
+                                <div style={{
+                                    backgroundImage: `url(${image.url})`,
+                                    backgroundSize: 'cover',
+                                    height: '200px',
+                                }}></div>
+                            </div>
+                        ))} */}
+                    </div>
                 </div>
             </div>
             <div id='buttonContainer' className='d-flex'>
@@ -322,6 +338,9 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
 
     return (
         <>
+            <div className='d-flex mb-3'>
+                <div className='ms-auto text-danger fs-4'><i class="bi bi-trash3"></i><span>刪除</span></div>
+            </div>
             <div id="newJourneyForm1" className='p-3 shadow bg-light mb-3' style={editFormStyle}>
                 <div className="my-3">
                     <label htmlFor="inputJourneyName" className="form-label">行程名稱</label>
@@ -351,7 +370,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
             </div>
 
 
-            <div id="newJourneyForm3" className='p-3 shadow rounded' style={editFormStyle}>
+            <div id="newJourneyForm3" className='p-3 shadow bg-light' style={editFormStyle}>
                 <div className="mb-3">
                     <div className="mb-3">
                         <div className="mb-1">加入圖片</div>
@@ -415,7 +434,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
                 </div>
             </div>
 
-            <div className='d-flex justify-content-center'>
+            <div className='d-flex justify-content-center my-5'>
                 <button className='btn btn-primary mx-3' onClick={handleUpdateSubmit}>確定</button>
                 <button className='btn btn-secondary mx-3' onClick={handleEditCancel}>取消</button>
             </div>
@@ -583,7 +602,7 @@ const MyJourney = () => {
 
         }
 
-    }, [show, journeyData]);
+    }, [show, journeyData.journeyId]);
 
 
     const eventModalRef = useRef(null);
@@ -667,6 +686,9 @@ const MyJourney = () => {
         handleCloseModal();
     }
 
+    const linkStyle = {
+        textDecoration: 'none',
+    }
 
 
 
@@ -676,7 +698,12 @@ const MyJourney = () => {
             <div className='container-fluid p-0 d-flex'>
                 <Sidebar />
                 <div className='container rounded my-4' style={containerStyle}>
-                    <h1>{pageTitle}</h1>
+                    <div className='d-flex align-items-end'>
+                        <h1 className='mb-0'>{pageTitle}</h1>
+                        <div className='ms-auto'>
+                           <Link to="/journey/newjourney" className='fs-4' style={linkStyle}><i className="bi bi-plus-lg"></i><span className="ms-1">建立行程</span></Link>
+                        </div>
+                    </div>
                     <hr></hr>
                     {show === 1 && <div className='container'>
                         <div className='row'>

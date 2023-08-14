@@ -632,15 +632,18 @@ const NowJourneyForm = () => {
       user_id: formData.userId
     };
 
+    console.log(requestData);
+
     axios.post(reqUrl, requestData)
       .then(response => {
         console.log("response: ", response.data);
+        window.location = "http://localhost:3000/journey";
       })
       .catch(error => {
         console.error("Error: ", error);
       });
 
-    window.location = "http://localhost:3000/journey"
+    
   }
 
 

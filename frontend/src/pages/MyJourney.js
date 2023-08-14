@@ -583,7 +583,7 @@ const MyJourney = () => {
 
         }
 
-    }, [show]);
+    }, [show, journeyData]);
 
 
     const eventModalRef = useRef(null);

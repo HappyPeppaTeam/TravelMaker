@@ -215,7 +215,7 @@ const JourneyDetail = ({ setShow, journeyData, calendarViewRef, setPageTitle }) 
                 <div className='d-flex align-items-center'>
                     <h2 className='mb-3'>行程表</h2>
                     <a className='ms-auto fs-3' style={editLinkStyle}
-                        onClick={handleEditView}><i class="bi bi-pencil-square"></i><span className='ms-2'>編緝</span></a>
+                        onClick={handleEditView}><i className="bi bi-pencil-square"></i><span className='ms-2'>編緝</span></a>
                 </div>
                 <div className=' shadow p-3' style={browserCalendarStyle}>
                     <div id="browserCalendar" ref={calendarViewRef}>

@@ -70,12 +70,12 @@ export default function RestaurantInner() {
             </div>
             <div className="row p-rest">
                 <div className="col-md-6 p-3">
-                    <div className="card p-3" style={{ 'min-height': '250px' }}>
+                    <div className="card rest-card  p-3" style={{ 'min-height': '250px' }}>
                         {attraction[0].Description}
                     </div>
                 </div>
                 <div className="col-md-6 p-3">
-                    <div className="card p-3" style={{ 'min-height': '250px' }}>
+                    <div className="card rest-card  p-3" style={{ 'min-height': '250px' }}>
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14431.496153173022!2d121.5152768!3d25.2748224!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442b13d8a0f8b01%3A0xcd471d60668bbc20!2z6ZW36KeSOTYg576O5byP54Kt54Ok54mb5o6SIOWMl-a1t-WyuOe-jumjnyDkuInoip3mjqjolqbppJDlu7M!5e0!3m2!1szh-TW!2stw!4v1691607829174!5m2!1szh-TW!2stw"
                             width="100%" height="210px" style={{ 'border': '0' }} allowfullscreen="" loading="lazy"
@@ -83,7 +83,7 @@ export default function RestaurantInner() {
                     </div>
                 </div>
                 <div className="col-12 p-3" style={{'display' : 'none'}}>
-                    <div className="card p-3">
+                    <div className="card rest-card  p-3">
                         <h1>評論</h1>
                         <h4>留下評論:</h4>
                         <p>來過這裡嗎？留下評論吧！</p>

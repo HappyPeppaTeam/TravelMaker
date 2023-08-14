@@ -63,7 +63,7 @@ export default function RestaurantSearch() {
     console.log(selectedTypeID)
     return (
         <div className="rest-main">
-            <div className="container">
+            <div className="rest-container">
             <div className="p-4"><Link className="rm-link-style" to="">餐廳</Link>＞<Link className="rm-link-style" to="/restaurant/search">搜尋</Link></div>
                 <br />
                 <aside className="p-4">
@@ -542,9 +542,9 @@ export default function RestaurantSearch() {
                                 return (
                                     <div className="col-xl-4 col-sm-6 p-3" key={item.ID}>
                                         <Link to="/restaurant/inner" style={{ 'text-decoration': 'none' }} state={item.ID}>
-                                            <div className="card">
+                                            <div className="card rest-card ">
                                                 <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
-                                                <div className="container p-3">
+                                                <div className="rest-container p-3">
                                                     <h5><b>{item.Name}</b></h5>
                                                     <p style={{ 'font-size': '0.875em' }}>營業時間:{item.OpenTime}</p>
                                                     <p>{item.Address.substring(0, 6)}</p>
@@ -562,9 +562,9 @@ export default function RestaurantSearch() {
                             return (
                                 <div className="col-xl-4 col-sm-6 p-3">
                                     <a href="" style={{ 'text-decoration': 'none' }}>
-                                        <div className="card">
+                                        <div className="card rest-card ">
                                             <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
-                                            <div className="container p-3">
+                                            <div className="rest-container p-3">
                                                 <h5><b>{item.Name}</b></h5>
                                                 <p style={{ 'font-size': '0.875em' }}>營業時間:{item.OpenTime}</p>
                                                 <p>{item.Address.substring(0, 6)}</p>
@@ -578,9 +578,9 @@ export default function RestaurantSearch() {
                             return (
                                 <div className="col-xl-4 col-sm-6 p-3">
                                     <a href="" style={{ 'text-decoration': 'none' }}>
-                                        <div className="card">
+                                        <div className="card rest-card ">
                                             <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
-                                            <div className="container p-3">
+                                            <div className="rest-container p-3">
                                                 <h5><b>{item.Name}</b></h5>
                                                 <p style={{ 'font-size': '0.875em' }}>營業時間:{item.OpenTime}</p>
                                                 <p>{item.Address.substring(0, 6)}</p>
@@ -594,9 +594,9 @@ export default function RestaurantSearch() {
                             return (
                                 <div className="col-xl-4 col-sm-6 p-3">
                                     <a href="" style={{ 'text-decoration': 'none' }}>
-                                        <div className="card">
+                                        <div className="card rest-card ">
                                             <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
-                                            <div className="container p-3">
+                                            <div className="rest-container p-3">
                                                 <h5><b>{item.Name}</b></h5>
                                                 <p style={{ 'font-size': '0.875em' }}>營業時間:{item.OpenTime}</p>
                                                 <p>{item.Address.substring(0, 6)}</p>
@@ -611,9 +611,9 @@ export default function RestaurantSearch() {
                             selectedZipCodes.includes(item.ZipCode) && selectedTypeID.includes(item.TypeID) && (
                                 <div className="col-xl-4 col-sm-6 p-3">
                                     <a href="" style={{ 'text-decoration': 'none' }}>
-                                        <div className="card">
+                                        <div className="card rest-card ">
                                             <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
-                                            <div className="container p-3">
+                                            <div className="rest-container p-3">
                                                 <h5><b>{item.Name}</b></h5>
                                                 <p style={{ 'font-size': '0.875em' }}>營業時間:{item.OpenTime}</p>
                                                 <p>{item.Address.substring(0, 6)}</p>
@@ -629,9 +629,9 @@ export default function RestaurantSearch() {
                         selectedZipCodes.includes(item.ZipCode) && (
                             <div className="col-xl-4 col-sm-6 p-3">
                                 <a href="" style={{ 'text-decoration': 'none' }}>
-                                    <div className="card">
+                                    <div className="card rest-card ">
                                         <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
-                                        <div className="container p-3">
+                                        <div className="rest-container p-3">
                                             <h5><b>{item.Name}</b></h5>
                                             <p style={{ 'font-size': '0.875em' }}>營業時間:{item.OpenTime}</p>
                                             <p>{item.Address.substring(0, 6)}</p>
@@ -647,9 +647,9 @@ export default function RestaurantSearch() {
                                 selectedZipCodes.includes(item.ZipCode) && (
                                     <div className="col-xl-4 col-sm-6 p-3">
                                         <a href="" style={{ 'text-decoration': 'none' }}>
-                                            <div className="card">
+                                            <div className="card rest-card ">
                                                 <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
-                                                <div className="container p-3">
+                                                <div className="rest-container p-3">
                                                     <h5><b>{item.Name}</b></h5>
                                                     <p>營業時間:{item.OpenTime}</p>
                                                     <p>{item.Address.substring(0, 6)}</p>
@@ -666,9 +666,9 @@ export default function RestaurantSearch() {
                             return (
                                 <div className="col-xl-4 col-sm-6 p-3">
                                     <a href="" style={{ 'text-decoration': 'none' }}>
-                                        <div className="card">
+                                        <div className="card rest-card ">
                                             <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
-                                            <div className="container p-3">
+                                            <div className="rest-container p-3">
                                                 <h5><b>{item.Name}</b></h5>
                                                 <p>★ ★ ★ ★ ☆ 9527條評論</p>
                                                 <p>{item.Address.substring(0, 6)}</p>
@@ -681,9 +681,9 @@ export default function RestaurantSearch() {
                     })} */}
                     {/* <div className="col-xl-4 col-sm-6 p-3">
                             <a href="" style={{ 'text-decoration': 'none' }}>
-                                <div className="card">
+                                <div className="card rest-card ">
                                     <img src="../images/street.jpg" alt="rest-1" />
-                                    <div className="container p-3">
+                                    <div className="rest-container p-3">
                                         <h5><b>森森燒肉 台中西屯店</b></h5>
                                         <p>★ ★ ★ ★ ☆ 9527條評論</p>
                                         <p>台中市 西屯區</p>
@@ -691,14 +691,7 @@ export default function RestaurantSearch() {
                                 </div>
                             </a>
                         </div> */}
-                    <ul className="pagination">
-                        <li className="page-item"><a className="page-link" href="#">Previous</a></li>
-                        <li className="page-item"><a className="page-link" href="#">1</a></li>
-                        <li className="page-item"><a className="page-link" href="#">2</a></li>
-                        <li className="page-item"><a className="page-link" href="#">3</a></li>
-                        <li className="page-item"><a className="page-link" href="#">Next</a></li>
-                    </ul>
-
+                    
                 </div>
 
 

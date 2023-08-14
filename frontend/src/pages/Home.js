@@ -9,7 +9,7 @@ export default function Home() {
           <Link to="/restaurant">餐廳</Link>
           <Link to="/attractions">景點</Link>
           <Link to="/forum">討論區</Link>
-          <a href="#">自助旅遊排程</a>
+          <a href="/journey">自助旅遊排程</a>
         </div>
 
         <div

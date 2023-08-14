@@ -46,13 +46,13 @@ export default function Attractionmore() {
             }
         })();
     }, []);
-    
 
 
 
-    
 
-    
+
+
+
     // console.log(attractionPicture);
     const [ZipID, setZipID] = useState([{}]);
     console.log(ZipID);
@@ -96,12 +96,12 @@ export default function Attractionmore() {
         <>
             <div className="backgroundmountain">
                 {/* <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" /> */}
-                <div className="container hyperlink-location" >
-                    <Link to="#" className="button-hyperlink">餐廳</Link>
+                {/* <div className="container hyperlink-location" >
+                    <Link to="/restaurant" className="button-hyperlink">餐廳</Link>
                     <Link to="/attractions" className="button-hyperlink">景點</Link>
-                    <Link to="#" className="button-hyperlink">討論區</Link>
-                    <Link to="#" className="button-hyperlink">自助旅遊排程</Link>
-                </div>
+                    <Link to="/forum" className="button-hyperlink">討論區</Link>
+                    <Link to="/journey" className="button-hyperlink">自助旅遊排程</Link>
+                </div> */}
             </div>
             <div style={{ 'display': 'grid' }}>
                 <div className="container-fluid d-flex m-0 p-0">
@@ -112,7 +112,7 @@ export default function Attractionmore() {
                                 <Link to="/attractions/Attractionmore" state={item.TypeID} onClick={() => window.location.reload()}>{item.ChineseType}</Link>
                             )
                         })}
-                        
+
                         <Link to="/attractions/Attractioncountry"><h3 style={{ 'color': 'black' }}><b>地區</b></h3></Link>
                         <button className="dropdown-btn" onClick={(e) => {
                             dropDown(e);

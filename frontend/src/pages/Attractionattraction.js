@@ -62,12 +62,12 @@ export default function Attractionattraction() {
         <>
             <div className="backgroundmountain">
                 {/* <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" /> */}
-                <div className="container hyperlink-location" >
-                    <Link to="#" className="button-hyperlink">餐廳</Link>
+                {/* <div className="container hyperlink-location" >
+                    <Link to="/restaurant" className="button-hyperlink">餐廳</Link>
                     <Link to="/attractions" className="button-hyperlink">景點</Link>
-                    <Link to="#" className="button-hyperlink">討論區</Link>
-                    <Link to="#" className="button-hyperlink">自助旅遊排程</Link>
-                </div>
+                    <Link to="/forum" className="button-hyperlink">討論區</Link>
+                    <Link to="/journey" className="button-hyperlink">自助旅遊排程</Link>
+                </div> */}
             </div>
             <div style={{ 'display': 'grid', 'backgroundColor': '#487797' }}>
                 <div className="container-fluid d-flex m-0 p-0">

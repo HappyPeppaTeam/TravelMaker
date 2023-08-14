@@ -45,7 +45,6 @@ console.log(allAlbums);
     }
 
     const deleteAllAlbum = async () => {
-        const token = 'fgvuhbhinhhpi-bb876';
         await axios.delete(`http://localhost/TravelMaker/Backend/public/api/albums/${token}`)
         .then(() => alert('成功刪除所有相簿!'))
         window.location.reload();

@@ -2,37 +2,54 @@ import { Link } from 'react-router-dom';
 import '../css/index.css';
 import React from 'react';
 import Slider from '../components/Slick';
+import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const { useEffect } = React;
-const data = [
-    {
-      url:"https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-    },
-    {
-      url:"https://images.unsplash.com/photo-1689644917165-77ac0b422fe3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-    },
-    {
-      url:"https://images.unsplash.com/photo-1682686581413-0a0ec9bb35bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-    },
-    {
-      url:"https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-    },
-    {
-      url:"https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-    },
-    {
-      url:"https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-    },
-    {
-      url:"https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80"
-    },
-    {
-      url:"https://images.unsplash.com/photo-1689350098247-5e02f4106cad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-    },
-    
+
+const article = await axios.get(`http://localhost/TravelMaker/Backend/public/api/getBoardText`);
+console.log(article.data);
+const spot = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction`);
+
+const spotSummary = await axios.get(`http://localhost/TravelMaker/Backend/public/api/spotSummary`);
+
+const restaurant = [
+  {
+    type:'中式料理',
+    url:'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/6e/1e/e4/caption.jpg?w=600&h=-1&s=1',
+    state: [4]
+  },
+  {
+    type:'日式料理',
+    url:'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/81/74/ab/photo1jpg.jpg?w=600&h=400&s=1',
+    state: [3]
+  }
 ];
+
+const planType = [
+  {
+    name: '親子',
+    id: 1
+  },
+  {
+    name: '露營',
+    id: 2
+  },
+  {
+    name: '登山',
+    id: 3
+  },
+  {
+    name: '老街',
+    id: 4
+  },
+  {
+    name: '溫泉',
+    id: 5
+  }
+]
+
 const settings = {
     dots: false,
     infinite: true,
@@ -68,31 +85,36 @@ const settings = {
       }
     ]
 };
-const renderContent = data.map((item,index) => (
-  <a href="#" className="cardLink" key={index}>
-          <div className="card m-2 shadow-sm cardScale">
-            <img
-              src={item.url}
-              className="card-img-top spotImg"
-              alt=""
-            />
-            <div className="card-body">
-              <h4 className="card-title fw-bold">野柳地質公園</h4>
-              <p className="card-text">
-                擁有奇岩美石的野柳地質公園,是揚名國際的天然風景名勝地。
-              </p>
-              <p className="d-flex align-items-center mb-0">
-                <span className="sortIcon me-2"></span
-                ><span className="d-block">景點</span>
-              </p>
-            </div>
-          </div>
-  </a>
-));
+const renderContent = spotSummary.data.map((item,index) => {
+  if(index >= 14 && index <= 21) {
+    return (
+      <Link to="/Attractionmore/Attraction_innerpage" className="cardLink" key={index} state={spot.data[index]}>
+              <div className="card m-2 shadow-sm cardScale spotCard">
+                <img
+                  src={item.PictureUrl1}
+                  className="card-img-top spotImg"
+                  alt=""
+                />
+                <div className="card-body">
+                  <h4 className="card-title fw-bold">{item.Name}</h4>
+                  <p className="card-text description">
+                    {item.Description}
+                  </p>
+                  <p className="d-flex align-items-center mb-0">
+                    <span className="sortIcon me-2"></span
+                    ><span className="d-block">{item.ChineseType}</span>
+                  </p>
+                </div>
+              </div>
+      </Link>
+    )
+  }
+});
 
-const TravelPlan = () => {
+const TravelPlan = ({data}) => {
+  const type = planType.filter((item) => item.id == data.type);
   return (
-    <a href="#" className="cardLink">
+    <Link to={`/forum/discussion/article/${data.board_text_id}`} className="cardLink" state={data.board_text_id}>
       <div className="card cardShadow">
         <div className="row g-0">
           <div className="col-lg-4">
@@ -105,35 +127,35 @@ const TravelPlan = () => {
           <div className="col-lg-8">
             <div className="card-body p-0">
               <h4 className="card-title fw-bold mx-4 mb-4 mt-3">
-                好吃好喝又好玩!南投星空露營場
+                {data.Text_title}
               </h4>
+              <p className="card-text mx-4 mb-3 description">{data.Text}</p>
               <p className="card-text mx-4 mb-3">
                 <small className="text-muted">
-                  <span className="travelSort me-2">野餐</span>
-                  <span className="travelSort">親子同樂</span>
+                  <span className="travelSort">{type[0].name}</span>
                 </small>
               </p>
             </div>
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   )
 }
 
-const RestaurantCard = () => {
+const RestaurantCard = ({data}) => {
   return (
-    <a href="#" className="cardLink">
+    <Link to='/restaurant/search' className="cardLink" state={data.state}>
       <div className="restaurantImg cardShadow">
         <img
           className="w-100"
-          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+          src={data.url}
           alt=""
         />
         <div className="mask w-100 h-100"></div>
-        <h4 className="restaurantType">平價小吃</h4>
+        <h4 className="restaurantType">{data.type}</h4>
       </div>
-    </a>
+    </Link>
   )
 }
 
@@ -186,18 +208,15 @@ export default function Home() {
             <h2 className="fw-bold">精選旅遊攻略</h2>
             <p className="mb-0">沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
             <div className="row row-cols-2 g-3 mt-4">
-              <div className="col">
-                <TravelPlan></TravelPlan>
-              </div>
-              <div className="col">
-                <TravelPlan></TravelPlan>
-              </div>
-              <div className="col">
-                <TravelPlan></TravelPlan>
-              </div>
-              <div className="col">
-                <TravelPlan></TravelPlan>
-              </div>
+              { article.data.map((item,index) => {
+                if( index <=3 ) {
+                  return (
+                    <div className="col" key={item.board_text_id}>
+                      <TravelPlan data={item}></TravelPlan>
+                    </div>
+                  )
+                }
+              })}
             </div>
           </div>
 
@@ -206,10 +225,10 @@ export default function Home() {
             <p className="mb-0">沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
             <div className="row row-cols-2 mt-4">
               <div className="col">
-                <RestaurantCard></RestaurantCard>
+                <RestaurantCard data={restaurant[0]}></RestaurantCard>
               </div>
               <div className="col">
-                <RestaurantCard></RestaurantCard>
+                <RestaurantCard data={restaurant[1]}></RestaurantCard>
               </div>
             </div>
           </div>

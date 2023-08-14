@@ -7,6 +7,7 @@ import JourneyThumbnail from '../components/JourneyThumbnail';
 import Sidebar from '../components/Sidebar';
 import BotSidebar from '../components/BotSidebar';
 import JourneyModel from '../components/JourneyModal';
+import withAuthorization from '../hook/withAuthorization';
 
 
 const AddNewJourney = () => {
@@ -174,4 +175,4 @@ function Journey() {
     );
 }
 
-export default Journey;
+export default withAuthorization(['user'])(Journey);

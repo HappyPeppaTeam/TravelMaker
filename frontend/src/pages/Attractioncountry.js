@@ -55,7 +55,7 @@ export default function Attractioncountry() {
     return (
         <>
             <div className="backgroundmountain">
-                <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" />
+                {/* <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" /> */}
                 <div className="container hyperlink-location" >
                     <Link to="#" className="button-hyperlink">餐廳</Link>
                     <Link to="/attractions" className="button-hyperlink">景點</Link>
@@ -342,8 +342,8 @@ export default function Attractioncountry() {
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore"state='臺東'>
-                                    <img className="img-thumbnail2" src={require('../district/taitong.jpg')} />
+                                <Link to="/attractions/Attractionmore" state='臺中'>
+                                    <img className="img-thumbnail2" src={require('../district/taichung.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
@@ -397,8 +397,8 @@ export default function Attractioncountry() {
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" state='臺中'>
-                                    <img className="img-thumbnail2" src={require('../district/taichung.jpg')} />
+                                <Link to="/attractions/Attractionmore"state='臺東'>
+                                    <img className="img-thumbnail2" src={require('../district/taitong.jpg')} />
                                 </Link>
                             </div>                 
                             <div className="col-lg-3">

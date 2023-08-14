@@ -29,7 +29,7 @@ export default function Attractions() {
     return (
         <>
             <div className="backgroundmountain">
-                <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" />
+                {/* <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" /> */}
                 <div className="container hyperlink-location" >
                     <Link to="#" className="button-hyperlink">餐廳</Link>
                     <Link to="/attractions" className="button-hyperlink">景點</Link>

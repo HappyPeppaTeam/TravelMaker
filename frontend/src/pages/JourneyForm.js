@@ -202,9 +202,10 @@ const StepThree = ({ formData, setFormData }) => {
   useEffect(() => {
     setFormData((prevData) => ({
       ...prevData,
-      images: imagesData
+      images: images,
+      imagesData: imagesData
     }))
-  }, [imagesData])
+  }, [imagesData, images])
 
   return (
     <div id="newJourneyForm3" className='p-3 shadow rounded' style={formStyle}>
@@ -213,14 +214,14 @@ const StepThree = ({ formData, setFormData }) => {
           <div className="mb-1">加入圖片</div>
           <label htmlFor="formFileMultiple" className="form-label">本機上傳</label>
           {/* <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*' ref={inputRef} onChange={handleUpload}/> */}
-          <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*' 
-          onChange={(e) => {
-            handleUpload(e);
-            
-          }}   
-          ref={inputRef}/>
-          
-          
+          <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*'
+            onChange={(e) => {
+              handleUpload(e);
+
+            }}
+            ref={inputRef} />
+
+
           <div className='row row-cols-2 row-cols-lg-3 mt-3 g-3'>
             {images.map((image, index) => {
               return (
@@ -302,6 +303,8 @@ const StepFour = ({ calendarBrowseRef, formData }) => {
     // display: 'none'
   }
 
+
+
   return (
     <div id="newJourneyBrowse" className='rounded shadow p-3' style={formStyle}>
 
@@ -317,9 +320,26 @@ const StepFour = ({ calendarBrowseRef, formData }) => {
         <p>{formData.description}</p>
       </div>
       <div id="browseImageContainer" className="w-100 mb-3">
-        <h2>Image</h2>
+        <h2>相片</h2>
+
+        <div className='row g-2'>
+          {formData.images.map((image, index) => (
+            <div className='col-3' >
+              <div style={{
+                backgroundImage: `url(${image.url})`,
+                backgroundSize: 'cover',
+                height: '200px',
+              }}></div>
+            </div>
+          ))}
+        </div>
+
       </div>
+      
+
+
     </div>
+  
   )
 }
 
@@ -500,11 +520,14 @@ const NowJourneyForm = () => {
     thumbnailId: 0,
     journeyStart: "",
     journeyEnd: "",
+    images: [],
+    imagesData: [],
     events: [],
   });
 
   // set user id
   useEffect(() => {
+
     setFormData((prevData) => ({
       ...prevData,
       userId: 1,

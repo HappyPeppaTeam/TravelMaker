@@ -65,7 +65,7 @@ function App() {
           <Route path="/journey" element={<Journey/>} ></Route>
           <Route path="/journey/newjourney" element={<JourneyForm/>} ></Route>
           <Route path="/newtest" element={<NewJourneyTest/>} ></Route>
-          <Route path="/test" element={<MyJourney/>} ></Route>
+          <Route path="/journeytest" element={<MyJourney/>} ></Route>
           <Route path='/Admin' element={<Admin />}></Route>
           <Route path='/ErrorPage/:errorCode' element={<ErrorPage />}></Route>
         </Routes>

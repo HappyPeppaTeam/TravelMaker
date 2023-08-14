@@ -1,40 +1,65 @@
 .UserImage {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  margin: 0.5em;
 }
 
-.UserImage img{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 0.5em;
+.UserImage img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 0.5em;
 }
 
 .UserImage form {
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
 }
 
 .Message {
+  border: 1px gray solid;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.Message-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+.Message-item .Username{
+    font-size: 18px;
+}
+
+.Message-item .MessageTime{
+    font-size: 14px;
+}
+
+.Message-user {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.Message-text {
     margin: 0.5em;
 }
 
-.Username{
-    margin-left: 0.5em;
+.Username {
+  margin-left: 0.5em;
 }
 
 .MessageText {
-    width: 100%;
-    margin-right: 0.5em;
+  width: 100%;
+  margin: 0.5em;
 }
 
-
 .MessageSubmit {
-    width: 100%;
-    margin-right: 0.5em;
-    width: 60px;
-    height: 30px;
-    font-size: 12px;
+  width: 100%;
+  margin-right: 0.5em;
+  width: 60px;
+  height: 30px;
+  font-size: 12px;
 }

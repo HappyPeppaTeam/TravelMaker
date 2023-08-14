@@ -13,11 +13,13 @@ const MessageBoardInput = ({ board_text_id }) => {
   const userId = Cookies.get('userId');
 
   const [messages, setMessages] = useState([]);
-  console.log(messages);
+  const [userPhoto, setUserphoto] = useState([]);
 
-  useEffect(() => {
+  // console.log(userPhoto);
+
+  useEffect(async () => {
     // 在組件載入時從後端獲取資料
-    axios
+    await axios
       .get(`http://localhost/TravelMaker/Backend/public/api/getMessage/${state}`)
       .then((response) => {
         setMessages(response.data);
@@ -25,6 +27,16 @@ const MessageBoardInput = ({ board_text_id }) => {
       .catch((error) => {
         console.error("获取数据错误：", error);
       });
+    await axios
+      .post(`http://localhost/TravelMaker/Backend/public/api/getMessagerPhoto`, { userId })
+      .then((response) => {
+        setUserphoto(response.data);
+      })
+      .catch((error) => {
+        console.error("获取数据错误：", error);
+      });
+
+
   }, []);
 
   const handleChange = (e) => {
@@ -71,7 +83,7 @@ const MessageBoardInput = ({ board_text_id }) => {
       <div className="UserImage">
         <a href="">
           {userId ? (
-            <img src={`http://localhost/TravelMaker/Backend/public/storage/${userId.head_photo}`} alt="" />
+            <img src={`http://localhost/TravelMaker/Backend/public/storage/${userPhoto[0]?.head_photo}`} alt="" />
           ) : (
             <img src={require("../images/headimage.jpg")} alt="" />
           )}
@@ -96,12 +108,18 @@ const MessageBoardInput = ({ board_text_id }) => {
       <div>
         {messages.map((messageData, index) => (
           <div key={index} className="Message">
-            <div className="UserImage">
-              <img src={`http://localhost/TravelMaker/Backend/public/storage/${messageData.head_photo}`} alt="" />
+            <div className="Message-item">
+              <div className="UserImage">
+                <img src={`http://localhost/TravelMaker/Backend/public/storage/${messageData.head_photo}`} alt="" />
+              </div>
+              <div className="Message-user">
+                <div className="Username">{`${messageData.user_id}`}</div>
+                <div className="MessageTime">{messageData.message_time}</div>
+              </div>
             </div>
-            <div className="Username">{`${messageData.user_id}`}</div>
-            <div className="MessageTime">{messageData.message_time}</div>
-            <div className="MessageText">{messageData.message_text}</div>
+            <div className="Message-text">
+              <div className="MessageText">{messageData.message_text}</div>
+            </div>
           </div>
         ))}
       </div>

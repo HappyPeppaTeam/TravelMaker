@@ -477,9 +477,10 @@ Route::get('/spotSummary',function(){
     return response()->json($data);
 });
 
-Route::get('/getMessagerPhoto',function(Request $request){
+Route::post('/getMessagerPhoto',function(Request $request){
     $userId=$request['userId'];
-    $userPhoto=DB::select('select head_photo form users where user_id = ?',[$userId]);
+    $userPhoto=DB::select('select head_photo from users where user_id = ?',[$userId]);
+    return response()->json($userPhoto);
 });
 
 

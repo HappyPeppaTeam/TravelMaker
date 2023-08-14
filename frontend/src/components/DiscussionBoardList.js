@@ -23,32 +23,6 @@ const DiscussionBoard = () => {
     }));
   };
 
-  // const handleDropdownItemClick = (event, value) => {
-  //   event.stopPropagation();
-  //   axios.get(`http://localhost/TravelMaker/Backend/public/Linkpi/getArticle/${value}`)
-
-  //     .then(response => {
-  //       setData(response.data.data);
-  //       navigate(`/forum/discussion/ ${value}`);
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   axios.get(`http://localhost/TravelMaker/Backend/public/api/getArticle/1`)
-      
-  //     .then(response => {
-  //       setData(response.data.data);
-  //       // navigate(`/forum/discussion/ ${value}`);
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // },[])
-
-
   const handleDocumentClick = (event) => {
     for (const region in dropdownRefs) {
       if (dropdownRefs[region].current && !dropdownRefs[region].current.contains(event.target)) {

@@ -3,13 +3,24 @@ import '../css/Article.css';
 import MessageBoardInput from "../components/MessageBoardInput";
 import DiscussionBoard from '../components/DiscussionBoardList';
 import ArticleComponents from '../components/ArticleComponents';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'
+import axios from 'axios';
 
 export default function Article() {
+    const [userData, setUserData] = useState([]);
     let { state } = useLocation()
-    console.log(state);
 
+    useEffect(() => {
+        // Replace 'YOUR_BACKEND_API_ENDPOINT' with the actual API endpoint
+        axios.get(`http://localhost/TravelMaker/Backend/public/api/getBoardText/${state}`)
+            .then(response => {
+                setUserData(response.data); // Assuming response.data contains user data
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
+            });
+    }, []);
 
     return (
         <div className="main">
@@ -21,11 +32,11 @@ export default function Article() {
                     {/* <!-- user --> */}
                     <div className="col-12 col-lg-3 col-xl-2 Article-user">
                         <div className="Article-user-card">
-                            <img className="" src={require('../images/headimage.jpg')} alt="" />
+                            <img src={`http://localhost/TravelMaker/Backend/public/storage/${userData.head_photo}`} alt="" />
                             <div className="Article-user-item">
                                 <div className="Article-user-item-user">
-                                    <p className="Article-user-item-username-userid">UserID</p>
-                                    <p className="Article-user-item-user-regiterdate">註冊日期</p>
+                                    <p className="Article-user-item-username-userid">{userData.full_name}</p>
+                                    <p className="Article-user-item-user-regiterdate">{userData.register_time}</p>
                                 </div>
                             </div>
                         </div>

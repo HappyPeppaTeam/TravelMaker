@@ -8,7 +8,7 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 
 
 function CalendarView({ calenderRef, journeyDetail }) {
-    return (
+    return (    
         <FullCalendar
             plugins={[dayGridPlugin, bootstrap5Plugin, timeGridPlugin, listPlugin]}
             initialView="journeyTimeView"

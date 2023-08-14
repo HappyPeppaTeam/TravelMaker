@@ -1,5 +1,4 @@
 <?php
-// app/Http/Controllers/ImageController.php
 
 namespace App\Http\Controllers;
 

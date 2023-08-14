@@ -26,12 +26,16 @@ import RestaurantSearch from './pages/RestaurantSearch';
 import RestaurantInner from './pages/RestaurantInner';
 import RestaurantComment from './pages/RestaurantComment';
 import Journey from "./pages/Journey";
-import NewJourney from "./pages/NewJourney";
+import NewJourneyTest from "./pages/NewJourneyTest";
+import JourneyForm from "./pages/JourneyForm";
+import MyJourney from "./pages/MyJourney";
 import Admin from "./pages/Admin";
 import ErrorPage from "./pages/ErrorPage";
 import Article from "./pages/Article";
 import Discussion from "./pages/Discussion";
 import AddArticle from "./pages/AddArticle";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 
 function App() {
@@ -61,9 +65,13 @@ function App() {
           <Route path='/restaurant/inner' element={<RestaurantInner/>}></Route>
           <Route path='/restaurant/comment' element={<RestaurantComment/>}></Route>
           <Route path="/journey" element={<Journey/>} ></Route>
-          <Route path="/journey/newjourney" element={<NewJourney/>} ></Route>
+          <Route path="/journey/newjourney" element={<JourneyForm/>} ></Route>
+          <Route path="/newtest" element={<NewJourneyTest/>} ></Route>
+          <Route path="/journeytest" element={<MyJourney/>} ></Route>
           <Route path='/Admin' element={<Admin />}></Route>
           <Route path='/ErrorPage/:errorCode' element={<ErrorPage />}></Route>
+          <Route path='/ForgotPassword' element={<ForgotPassword />}></Route>
+          <Route path='/resetPassword/:token' element={<ResetPassword />}></Route>
         </Routes>
       <Footer/>
     </div>

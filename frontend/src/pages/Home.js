@@ -9,7 +9,7 @@ import 'aos/dist/aos.css';
 const { useEffect } = React;
 
 const article = await axios.get(`http://localhost/TravelMaker/Backend/public/api/getBoardText`);
-
+console.log(article.data);
 const spot = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction`);
 
 const spotSummary = await axios.get(`http://localhost/TravelMaker/Backend/public/api/spotSummary`);
@@ -26,6 +26,29 @@ const restaurant = [
     state: [3]
   }
 ];
+
+const planType = [
+  {
+    name: '親子',
+    id: 1
+  },
+  {
+    name: '露營',
+    id: 2
+  },
+  {
+    name: '登山',
+    id: 3
+  },
+  {
+    name: '老街',
+    id: 4
+  },
+  {
+    name: '溫泉',
+    id: 5
+  }
+]
 
 const settings = {
     dots: false,
@@ -89,6 +112,7 @@ const renderContent = spotSummary.data.map((item,index) => {
 });
 
 const TravelPlan = ({data}) => {
+  const type = planType.filter((item) => item.id == data.type);
   return (
     <Link to={`/forum/discussion/article/${data.board_text_id}`} className="cardLink" state={data.board_text_id}>
       <div className="card cardShadow">
@@ -103,12 +127,12 @@ const TravelPlan = ({data}) => {
           <div className="col-lg-8">
             <div className="card-body p-0">
               <h4 className="card-title fw-bold mx-4 mb-4 mt-3">
-                {data.text_title}
+                {data.Text_title}
               </h4>
-              <p className="card-text mx-4 mb-3 description">{data.text}</p>
+              <p className="card-text mx-4 mb-3 description">{data.Text}</p>
               <p className="card-text mx-4 mb-3">
                 <small className="text-muted">
-                  <span className="travelSort">{data.type}</span>
+                  <span className="travelSort">{type[0].name}</span>
                 </small>
               </p>
             </div>
@@ -184,12 +208,14 @@ export default function Home() {
             <h2 className="fw-bold">精選旅遊攻略</h2>
             <p className="mb-0">沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
             <div className="row row-cols-2 g-3 mt-4">
-              { article.data.map((item) => {
-                return (
-                  <div className="col" key={item.board_text_id}>
-                    <TravelPlan data={item}></TravelPlan>
-                  </div>
-                )
+              { article.data.map((item,index) => {
+                if( index <=3 ) {
+                  return (
+                    <div className="col" key={item.board_text_id}>
+                      <TravelPlan data={item}></TravelPlan>
+                    </div>
+                  )
+                }
               })}
             </div>
           </div>

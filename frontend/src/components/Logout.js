@@ -14,8 +14,8 @@ const LogoutModal = ({ closelogoutModal, onResponse, openMessageToast }) => {
           Cookies.remove('token')
           Cookies.remove('role')
           Cookies.remove('username')
-          Cookies.remove('fullname')
-          localStorage.removeItem('username');
+          Cookies.remove('fullName')
+          Cookies.remove('userId')
           onResponse('登出成功');
           openMessageToast();
           

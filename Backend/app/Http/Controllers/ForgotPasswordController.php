@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use Illuminate\Support\Str;
-use App\Mail\ResetPasswordController;
+use App\Mail\ResetPasswordMail;
 
 class ForgotPasswordController extends Controller
 {
@@ -15,23 +15,19 @@ class ForgotPasswordController extends Controller
     {
        
         $email = $request->input('email');
-        // $data = $request->json()->all();
-        // $email = $data['body']->email;
-        // return var_dump($email);
-        // $email = $request['email'];
         $user = DB::select('select user_id from users where email = ?',[$email]);
-       
-        // die();
         if (!$user) {
             return response()->json(['message' => '找不到該用戶的記錄'], 404);
         }
 
         // 生成重置令牌並存儲到 password_resets 資料表
         $token = Str::random(60);
+        date_default_timezone_set('Asia/Taipei');
+        $resetTime = date("Y-m-d H:i:s");
         DB::table('password_resets')->insert([
             'email' => $email,
             'token' => $token,
-            'created_at' => now(),
+            'created_at' => $resetTime,
         ]);
 
         // 發送包含重置連結的電子郵件

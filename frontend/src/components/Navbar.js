@@ -23,7 +23,7 @@ export default function Navbar() {
 
   useEffect(() => {
     handleToken();
-    setUsername(localStorage.getItem('username'));
+    setUsername(Cookies.get('fullName'));
     registerModal.current = new Modal('#registerModal', {
       backdrop: 'static',
     });
@@ -39,7 +39,7 @@ export default function Navbar() {
     navbarCollapse.current = new Collapse('#navbarNav', {
       toggle: false
     });
-  });
+  },[]);
 
   const handleCollapse = () => {
     navbarCollapse.current.toggle();
@@ -50,7 +50,6 @@ export default function Navbar() {
     if (Cookies.get('token')) {
       setCheckToken(true);
     }
-    // console.log(checkToken);
   }
   const handleResponse = (data) => {
     setMessage(data); // Assuming the backend returns a "message" field in the response
@@ -111,9 +110,9 @@ export default function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <a className="ms-auto me-3 d-none d-lg-block" href="#">
+            <div className="ms-auto me-3 d-none d-lg-block">
               {/* <img src="../images/dark-mode.png" style={{ height: '40px' }} alt=""/> */}
-              </a>
+              </div>
             <ul className="navbar-nav py-3">
               <li className="nav-item">
               </li>
@@ -124,7 +123,6 @@ export default function Navbar() {
                 )}
 
               <li className="nav-item">
-                {/* <Link className="nav-link" to='/album'>註冊</Link> */}
                 {checkToken ? (
                   <Link className="nav-link text-white" to='/memberCenter' >會員中心</Link>
                 ) : (

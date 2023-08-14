@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgotPasswordController;
-use App\Mail\ResetPasswordController;
+use App\Http\Controllers\ResetPasswordController;
+use App\Mail\ResetPasswordMail;
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -197,6 +198,7 @@ Route::post('/login', function (Request $request) {
     if (password_verify($password, $hashedPasswordFromDB)) {
         $setToken = DB::select('call set_token(?);', [$userName]);
         $getFullName = DB::select('select full_name from users where token = ?',[$setToken[0]->token]);
+        $getUserId = DB::select('select user_id from users where token = ?',[$setToken[0]->token]);
         $data = [
             "message" => "登入成功",
         ];
@@ -207,7 +209,8 @@ Route::post('/login', function (Request $request) {
     }
     setcookie('token',$setToken[0]->token,time() + 3600,'/');
     setcookie('username',$userName,time() + 3600,'/');
-    setcookie('fullname',$getFullName[0]->full_name,time() + 3600,'/');
+    setcookie('fullName',$getFullName[0]->full_name,time() + 3600,'/');
+    setcookie('userId',$getUserId[0]->user_id,time() + 3600,'/');
        return response()->json($data, 200);
         // 哈希值匹配，可以认为用户提供的密码是正确的
     } else {

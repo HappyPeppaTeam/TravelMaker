@@ -29,10 +29,10 @@ export default function Attractions() {
     return (
         <>
             <div className="backgroundmountain">
-                <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" />
+                {/* <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" /> */}
                 <div className="container hyperlink-location" >
                     <Link to="#" className="button-hyperlink">餐廳</Link>
-                    <Link to="/attractions" className="button-hyperlink">景點</Link>
+                    <Link to="/attractions" className="button-hyperlink" onClick={() => window.location.reload()}>景點</Link>
                     <Link to="#" className="button-hyperlink">討論區</Link>
                     <Link to="#" className="button-hyperlink">自助旅遊排程</Link>
                 </div>
@@ -70,22 +70,22 @@ export default function Attractions() {
                     <div className="container" style={{ 'clear': 'both' }}>
                         <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='新北市'>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='新北'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/new_taipei.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='臺中市'>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='臺中'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/taichung.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='臺南市'>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='臺南'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/tainan.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='高雄市'>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='高雄'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/kaohsiung.jpg')} />
                                 </Link>
                             </div>

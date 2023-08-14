@@ -314,7 +314,8 @@ Route::get('/getBoardText',function() {
 Route::get('/getBoardText/{boardText_id}', function ($board_text_id) {
     // 取得 board_text 資料及關聯的使用者名稱
     $boardText = DB::table('board_text')
-        ->select('board_text.text_title', 'board_text.text', 'board_text.Posting_time', 'users.full_name')
+        ->select('board_text.text_title', 'board_text.text', 'board_text.Posting_time', 
+        'users.full_name','users.head_photo','users.register_time')
         ->join('users', 'board_text.Posting_user_id', '=', 'users.user_id')
         ->where('board_text.board_text_id', $board_text_id)
         ->first();
@@ -336,6 +337,8 @@ Route::get('/getBoardText/{boardText_id}', function ($board_text_id) {
         'text' => $boardText->text,
         'Posting_time' => $boardText->Posting_time,
         'full_name' => $boardText->full_name,
+        'register_time' => $boardText->register_time,
+        'head_photo' => $boardText->head_photo,
         'images' => $imageArray,
     ];
 
@@ -471,3 +474,11 @@ Route::get('/spotSummary',function(){
     $data = DB::select('SELECT attraction.Name,attraction.Description,attraction.PictureUrl1,typeid.ChineseType FROM attraction JOIN typeid ON attraction.TypeID = typeid.TypeID');
     return response()->json($data);
 });
+
+Route::get('/getMessagerPhoto',function(Request $request){
+    $userId=$request['userId'];
+    $userPhoto=DB::select('select head_photo form users where user_id = ?',[$userId]);
+});
+
+
+

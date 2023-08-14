@@ -16,7 +16,7 @@ const DiscussionArticleList = ({Article}) => {
                     <tr key={article.board_text_id} className="discussion-page-list">
                         <td>
                             <Link to={`/forum/discussion/article/${article.board_text_id}`} className="d-flex" state={article.board_text_id}>
-                                <div className="discussion-page-list-image" style={{ backgroundImage: `url(${article.imageUrl})` }}></div>
+                                <div className="discussion-page-list-image" style={{ backgroundImage: `url(http://localhost/TravelMaker/Backend/public/storage/${article.image_path})` }}></div>
                                 <div>
                                     <div className="discussion-page-list-title">
                                         <p>{article.Text_title}</p>

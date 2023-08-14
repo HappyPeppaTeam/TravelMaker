@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 function useImage() {
     const inputRef = useRef(null);
     const [images, setImages] = useState([]);
     const [imagesData, setImagesData] = useState([]);
 
+    console.log(imagesData);
     // 上傳圖片
     const handleUpload = (e) => {
         const images = [...e.target.files].map((file) => {
@@ -69,7 +71,7 @@ function ArticleEditor() {
     const [content, setContent] = useState('');
     const { images, imagesData, handleUpload, handleRemove, handleRemoveAll, inputRef } = useImage();
     const [exceedLimit, setExceedLimit] = useState(false);
-
+    const userId = Cookies.get('userId');
 
     const handleBoardChange = (event) => {
         const selectBoard = event.target.value;
@@ -110,20 +112,27 @@ function ArticleEditor() {
 
     const handleSubmit = async (event) => {
         const ArticleData = new FormData();
-        ArticleData.append('Discussion_board_area', Board)
-        ArticleData.append('board_text_id', Location)
-        ArticleData.append('Text_type', Topic)
-        ArticleData.append('Text_title', Title)
-        ArticleData.append('Text', content)
+        ArticleData.append('postingUserId', userId)
+        ArticleData.append('DiscussionId', Board)
+        ArticleData.append('cityId', Location)
+        ArticleData.append('type', Topic)
+        ArticleData.append('textTitle', Title)
+        ArticleData.append('text', content)
         imagesData.forEach((image, index) => {
-            ArticleData.append(`images[${index}]`, image);
+            ArticleData.append(`image[${index}]`, image);
         });
+        const response = await axios.post('http://localhost/TravelMaker/Backend/public/api/createBoardText', ArticleData);
+        if (response.data) {
+            console.log("post成功！")
+        } else {
+            console.log("post Miss!")
+        }
         event.preventDefault();
     };
 
     return (
         <div>
-            <form className='row' onSubmit={handleSubmit}>
+            <form className='row'>
                 <h1>文章發布</h1>
                 <div className="col-md select-board">
                     <label htmlFor="board" className="form-label">選擇討論版</label>
@@ -230,7 +239,7 @@ function ArticleEditor() {
                 </div>
                 <div className='post_article'>
                     <button className='btn btn-danger' type="submit">取消發文</button>
-                    <button className='btn btn-primary' type="submit" disabled={exceedLimit}>我要發文</button>
+                    <button className='btn btn-primary' type="button" onClick={handleSubmit} disabled={exceedLimit}>我要發文</button>
                 </div>
             </form>
 

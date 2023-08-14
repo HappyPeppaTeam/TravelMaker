@@ -38,22 +38,6 @@ const ForumCards = () => {
         },
     ]
 
-    // const forums = [
-
-    //     {
-    //         "id": 1,
-    //         "title": "第一個討論區",
-    //         "description": "這是第一個討論區的描述。",
-    //         "imagePath": ""
-    //     },
-    //     {
-    //         "id": 2,
-    //         "title": "第二個討論區",
-    //         "description": "這是第二個討論區的描述。",
-    //         "imagePath": "/path/to/image2.jpg"
-    //     }
-
-
     // ]
     //   const [forums, setForums] = useState([]);
 

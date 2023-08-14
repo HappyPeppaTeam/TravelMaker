@@ -366,6 +366,7 @@ Route::post('/createBoardText', function (Request $request) {
     $text = $request->input('text');
     $postingUserId = $request->input('postingUserId'); // Assuming you have a way to get the posting user ID
     $type = $request->input('type'); // Assuming you have a way to get the posting user ID
+    $DiscussionId = $request->input('DiscussionId'); // Assuming you have a way to get the posting user ID
     $cityId = $request->input('cityId'); // Assuming you have a way to get the posting user ID
     date_default_timezone_set('Asia/Taipei');
     $postTime=date("Y-m-d H:i:s");
@@ -378,6 +379,7 @@ Route::post('/createBoardText', function (Request $request) {
         'posting_time' => $postTime,
         'type' => $type,
         'posting_user_id' => $postingUserId,
+        'Discussion_board_id' => $DiscussionId,
         'Discussion_board_area' => $cityId,
     ]);
 

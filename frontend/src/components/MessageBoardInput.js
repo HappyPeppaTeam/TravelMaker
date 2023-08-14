@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import "../css/MessageBoard.css";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 const MessageBoardInput = ({ board_text_id }) => {
   const [inputValue, setInputValue] = useState({
     messageText: "",
-    userId: '29',
   });
   let { state } = useLocation();
+
+  const userId = Cookies.get('userId');
 
   const [messages, setMessages] = useState([]);
 
@@ -38,7 +40,7 @@ const MessageBoardInput = ({ board_text_id }) => {
         {
           boardTextId: board_text_id,
           messageText: inputValue.messageText,
-          userId: inputValue.userId,
+          userId: userId,
         }
       )
       .then((response) => {
@@ -67,7 +69,11 @@ const MessageBoardInput = ({ board_text_id }) => {
     <div className="MessageBoardInput-main">
       <div className="UserImage">
         <a href="">
-          <img src={require("../images/headimage.jpg")} alt="" />
+          {userId ? (
+        <img src={`path/to/user/images/${userId}.jpg`} alt="" />
+      ) : (
+        <img src={require("../images/headimage.jpg")} alt="" />
+      )}
         </a>
 
         <form>
@@ -90,7 +96,7 @@ const MessageBoardInput = ({ board_text_id }) => {
         {messages.map((messageData, index) => (
           <div key={index} className="Message">
             <div className="UserImage">
-              <img src={messageData.photoPath} alt="" />
+              <img src={messageData.head_photo} alt="" />
             </div>
             <div className="MessageContent">
               <div className="Username">{`用户ID${messageData.user_id}`}</div>

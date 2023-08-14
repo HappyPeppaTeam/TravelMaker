@@ -12,7 +12,8 @@ export default function Discussion() {
     let { state } = useLocation();
     const { useState, useEffect } = React;
     const [data, setData] = useState([]);
-   
+    
+    console.log(data);
     useEffect(() => {
         (async() => {
             await axios.get(`http://localhost/TravelMaker/Backend/public/api/getArticle/${state}`)

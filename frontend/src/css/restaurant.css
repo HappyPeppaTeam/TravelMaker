@@ -78,3 +78,7 @@ aside {
     text-decoration: none;
     color: black;
 }
+
+.rest-main{
+    min-height: 75.6vh;
+}

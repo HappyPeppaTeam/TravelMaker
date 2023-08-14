@@ -22,8 +22,8 @@ export default function Attractionmore() {
                 const test = response.data.filter(item => item.ZipCode === state);
                 setAttractionPicture(test);
             } else {
-                console.log(state.substring(0, 3));
-                const test = response.data.filter(item => item.Address.substring(0, 3) === state);
+                console.log(state.substring(0, 2));
+                const test = response.data.filter(item => item.Address.substring(0, 2) === state);
                 setAttractionPicture(test);
             }
         })();
@@ -95,7 +95,7 @@ export default function Attractionmore() {
     return (
         <>
             <div className="backgroundmountain">
-                <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" />
+                {/* <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" /> */}
                 <div className="container hyperlink-location" >
                     <Link to="#" className="button-hyperlink">餐廳</Link>
                     <Link to="/attractions" className="button-hyperlink">景點</Link>

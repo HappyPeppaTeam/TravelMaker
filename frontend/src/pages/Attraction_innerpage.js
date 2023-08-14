@@ -65,7 +65,7 @@ export default function Attraction_innerpage() {
     return (
         <>
             <div className="backgroundmountain">
-                <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" />
+                {/* <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" /> */}
                 <div className="container hyperlink-location" >
                     <Link to="#" className="button-hyperlink">餐廳</Link>
                     <Link to="/attractions" className="button-hyperlink">景點</Link>
@@ -348,9 +348,9 @@ export default function Attraction_innerpage() {
                         <h4>
                             <b><Link to="/attractions" className="bottom-line">景點</Link></b>
                             <b>→</b>
-                            <b><Link to="/attractions/Attractionmore" className="bottom-line">南投</Link></b>
+                            <b><Link to="/attractions/Attractionmore" className="bottom-line"state={state.Address.substring(0, 2)}>{state.Address.substring(0, 3)}</Link></b>
                             <b>→</b>
-                            <b><Link to="/attractions/Attractionmore" className="bottom-line">魚池鄉</Link></b>
+                            <b><Link to="/attractions/Attractionmore" className="bottom-line"state={state.ZipCode}>{state.Address.substring(6, 3)}</Link></b>
                             <b>→</b>
                             <b className="bottom-line">{state.Name}</b>
                         </h4>
@@ -397,8 +397,11 @@ export default function Attraction_innerpage() {
                                 <div style={{ 'marginLeft': '10%' }}>
                                     <h3><b>交通資訊</b></h3>
                                     <hr style={{ 'border': '1px', 'solid': 'black', 'width': '100%' }}></hr>
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.835250205995!2d120.67618207629839!3d24.142423273611676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d12ca93cb15%3A0xbd0f6a8f559b6d54!2z6Ie65Lit56ys5LqM5biC5aC0!5e0!3m2!1szh-TW!2stw!4v1691584479756!5m2!1szh-TW!2stw"
+                                    {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.835250205995!2d120.67618207629839!3d24.142423273611676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d12ca93cb15%3A0xbd0f6a8f559b6d54!2z6Ie65Lit56ys5LqM5biC5aC0!5e0!3m2!1szh-TW!2stw!4v1691584479756!5m2!1szh-TW!2stw"
                                         width="100%" height="100%" style={{ 'border': '0' }} allowfullscreen="" loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade"></iframe> */}
+                                    <iframe src={state.mapurl}
+                                        width="95%" height="100%" style={{ 'border': '0' }} allowfullscreen="" loading="lazy"
                                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                                 <div style={{ 'marginLeft': '10%', 'paddingTop': '1%' }}>

@@ -372,9 +372,28 @@ Route::get('/auth/google/register/{googleId}&{fullName}&{email}', [AuthControlle
 Route::get('/auth/google/login', [AuthController::class,'googleLogin'])->name('google.login');
 
 
+
+
+
+
+
+
+
+
+
+// Journey Api
+
 Route::get('/getJourneys',[JourneyController::class, 'getUserJourneys']);
 Route::get('/getEvents',[JourneyController::class, 'getJourneyEvents']);
 Route::post('/addJourney',[JourneyController::class, 'addNewJourney']);
+Route::delete('/deleteJourney',[JourneyController::class, 'deleteJourney']);
+Route::put('/updateJourney', [JourneyController::class, 'updateJourney']);
+Route::post('/addEvents', [JourneyController::class, 'addNewEvents']);
+Route::post('/updateEvents', [JourneyController::class, 'updateEvents']);
+
+
+
+
 Route::get('/test',function() {
     $data = DB::select('SELECT * FROM Attraction_infomation'); 
     return response()->json($data);
@@ -457,6 +476,7 @@ Route::post('/createBoardText', function (Request $request) {
 
     return response()->json($responseData, 201); // 201 Created status code
 });
+<<<<<<< HEAD
 Route::post('/forgotPassword', [ForgotPasswordController::class,'sendResetLink']);
 
 Route::post('/resetPassword', [ResetPasswordController::class,'resetPassword']);
@@ -482,3 +502,5 @@ Route::get('/getMessagerPhoto',function(Request $request){
 
 
 
+=======
+>>>>>>> Eric

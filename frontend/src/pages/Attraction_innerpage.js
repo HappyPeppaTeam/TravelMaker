@@ -66,17 +66,17 @@ export default function Attraction_innerpage() {
         <>
             <div className="backgroundmountain">
                 {/* <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" /> */}
-                <div className="container hyperlink-location" >
-                    <Link to="#" className="button-hyperlink">餐廳</Link>
+                {/* <div className="container hyperlink-location" >
+                    <Link to="/restaurant" className="button-hyperlink">餐廳</Link>
                     <Link to="/attractions" className="button-hyperlink">景點</Link>
-                    <Link to="#" className="button-hyperlink">討論區</Link>
-                    <Link to="#" className="button-hyperlink">自助旅遊排程</Link>
-                </div>
+                    <Link to="/forum" className="button-hyperlink">討論區</Link>
+                    <Link to="/journey" className="button-hyperlink">自助旅遊排程</Link>
+                </div> */}
             </div>
             <div style={{ 'display': 'grid' }}>
                 <div className="container-fluid d-flex m-0 p-0">
                     <div className="sidenav">
-                    <Link to="/attractions/Attractionattraction" onClick={() => window.location.reload()}><h3 style={{ 'color': 'black' }}><b>種類</b></h3></Link>
+                        <Link to="/attractions/Attractionattraction" onClick={() => window.location.reload()}><h3 style={{ 'color': 'black' }}><b>種類</b></h3></Link>
                         {TypeName.map((item, index) => {
                             return (
                                 <Link to="/attractions/Attractionmore" state={item.TypeID}>{item.ChineseType}</Link>
@@ -348,9 +348,9 @@ export default function Attraction_innerpage() {
                         <h4>
                             <b><Link to="/attractions" className="bottom-line">景點</Link></b>
                             <b>→</b>
-                            <b><Link to="/attractions/Attractionmore" className="bottom-line"state={state.Address.substring(0, 2)}>{state.Address.substring(0, 3)}</Link></b>
+                            <b><Link to="/attractions/Attractionmore" className="bottom-line" state={state.Address.substring(0, 2)}>{state.Address.substring(0, 3)}</Link></b>
                             <b>→</b>
-                            <b><Link to="/attractions/Attractionmore" className="bottom-line"state={state.ZipCode}>{state.Address.substring(6, 3)}</Link></b>
+                            <b><Link to="/attractions/Attractionmore" className="bottom-line" state={state.ZipCode}>{state.Address.substring(6, 3)}</Link></b>
                             <b>→</b>
                             <b className="bottom-line">{state.Name}</b>
                         </h4>

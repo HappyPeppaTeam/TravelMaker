@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <?php
 
+
 use App\Http\Controllers\JourneyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Mail\ResetPasswordMail;
 use Illuminate\Support\Facades\Redirect;
+
 
 
 /*
@@ -304,6 +306,11 @@ Route::get('/getArticle/{discussionBoardArea}', function($discussionBoardArea){
     return response()->json($getArticle,200);
 });
 
+Route::get('/getBoardText',function() {
+    $data = DB::select('SELECT * FROM board_text'); 
+    return response()->json($data);
+});
+
 Route::get('/getBoardText/{boardText_id}', function ($board_text_id) {
     // 取得 board_text 資料及關聯的使用者名稱
     $boardText = DB::table('board_text')
@@ -388,6 +395,7 @@ Route::get('/zipcode',function() {
     return response()->json($data);
 });
 
+<<<<<<< HEAD
 Route::post('/createBoardText', function (Request $request) {
     $textTitle = $request->input('textTitle');
     $text = $request->input('text');
@@ -447,3 +455,19 @@ Route::post('/createBoardText', function (Request $request) {
 Route::post('/forgotPassword', [ForgotPasswordController::class,'sendResetLink']);
 
 Route::post('/resetPassword', [ResetPasswordController::class,'resetPassword']);
+=======
+Route::get('/typeid',function() {
+    $data = DB::select('SELECT * FROM typeid'); 
+    return response()->json($data);
+});
+
+Route::get('/attraction/{typeid}',function($typeid) {
+    $data = DB::select('SELECT * FROM attraction WHERE TypeID = ?',[$typeid]); 
+    return response()->json($data);
+});
+
+Route::get('/spotSummary',function(){
+    $data = DB::select('SELECT attraction.Name,attraction.Description,attraction.PictureUrl1,typeid.ChineseType FROM attraction JOIN typeid ON attraction.TypeID = typeid.TypeID');
+    return response()->json($data);
+});
+>>>>>>> mingyo/integrate

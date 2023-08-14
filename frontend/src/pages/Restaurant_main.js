@@ -31,7 +31,7 @@ export default function Restaurant_main() {
                     </button> */}
                 </form>
             </div>
-            <div className="rest-container">
+            <div className="container rest-container">
                 <div className="d-flex p-3">
                     <h4>推薦餐廳</h4>
                     <Link to="/restaurant/search" className="ms-auto rm-link-style">
@@ -45,7 +45,7 @@ export default function Restaurant_main() {
                             return (
                                 <div className="col-xl-3 col-sm-6 p-3" key={item.ID}>
                                     <Link to="/restaurant/inner" style={{ 'text-decoration': 'none' }} state={item.ID}>
-                                        <div className="card">
+                                        <div className="card rest-card">
                                             <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
                                             <div className="rest-container p-3">
                                                 <h5><b>{item.Name}</b></h5>

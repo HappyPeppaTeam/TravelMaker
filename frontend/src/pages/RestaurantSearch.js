@@ -16,7 +16,7 @@ export default function RestaurantSearch() {
         console.log(state);
         if (state < 10 && state >= 1) {
             setSelectedTypeID(state);
-        } else{
+        } else if (state !== null){
             setSelectedZipCodes(state);
         }
         // if(state){
@@ -607,97 +607,8 @@ export default function RestaurantSearch() {
                             )
                         }
                     }))}
-                            {/* (
-                            selectedZipCodes.includes(item.ZipCode) && selectedTypeID.includes(item.TypeID) && (
-                                <div className="col-xl-4 col-sm-6 p-3">
-                                    <a href="" style={{ 'text-decoration': 'none' }}>
-                                        <div className="card rest-card ">
-                                            <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
-                                            <div className="rest-container p-3">
-                                                <h5><b>{item.Name}</b></h5>
-                                                <p style={{ 'font-size': '0.875em' }}>營業時間:{item.OpenTime}</p>
-                                                <p>{item.Address.substring(0, 6)}</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            )
-                        )
-                    ))} */}
-
-                    {/* (attraction.map(item => (
-                        selectedZipCodes.includes(item.ZipCode) && (
-                            <div className="col-xl-4 col-sm-6 p-3">
-                                <a href="" style={{ 'text-decoration': 'none' }}>
-                                    <div className="card rest-card ">
-                                        <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
-                                        <div className="rest-container p-3">
-                                            <h5><b>{item.Name}</b></h5>
-                                            <p style={{ 'font-size': '0.875em' }}>營業時間:{item.OpenTime}</p>
-                                            <p>{item.Address.substring(0, 6)}</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        )
-                    ))) */}
-                    {/* {attraction.map(item => {
-                        if () {
-                            return (
-                                selectedZipCodes.includes(item.ZipCode) && (
-                                    <div className="col-xl-4 col-sm-6 p-3">
-                                        <a href="" style={{ 'text-decoration': 'none' }}>
-                                            <div className="card rest-card ">
-                                                <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
-                                                <div className="rest-container p-3">
-                                                    <h5><b>{item.Name}</b></h5>
-                                                    <p>營業時間:{item.OpenTime}</p>
-                                                    <p>{item.Address.substring(0, 6)}</p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                )
-                            )
-                        }
-                    })} */}
-                    {/* {attraction.map((item) => {
-                        if (item.Name) {
-                            return (
-                                <div className="col-xl-4 col-sm-6 p-3">
-                                    <a href="" style={{ 'text-decoration': 'none' }}>
-                                        <div className="card rest-card ">
-                                            <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
-                                            <div className="rest-container p-3">
-                                                <h5><b>{item.Name}</b></h5>
-                                                <p>★ ★ ★ ★ ☆ 9527條評論</p>
-                                                <p>{item.Address.substring(0, 6)}</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            )
-                        } return null;
-                    })} */}
-                    {/* <div className="col-xl-4 col-sm-6 p-3">
-                            <a href="" style={{ 'text-decoration': 'none' }}>
-                                <div className="card rest-card ">
-                                    <img src="../images/street.jpg" alt="rest-1" />
-                                    <div className="rest-container p-3">
-                                        <h5><b>森森燒肉 台中西屯店</b></h5>
-                                        <p>★ ★ ★ ★ ☆ 9527條評論</p>
-                                        <p>台中市 西屯區</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div> */}
-                    
                 </div>
-
-
             </div>
-
-
         </div>
     )
 }

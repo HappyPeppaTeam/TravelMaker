@@ -70,9 +70,11 @@ const LoginModal = ({ closeloginModal, onResponse, openMessageToast }) => {
           </div>
           <div className="modal-footer justify-content-center">
             <div>
-            <Link className="btn btn-info"  to='/ForgotPassword' onClick={closeloginModal} >忘記密碼</Link>
+              <Link className="btn btn-link" to='/ForgotPassword' onClick={closeloginModal} >忘記密碼</Link>
             </div>
-            快速登入：<i className="bi bi-google" style={hoverPointerStyle} onClick={handleGoogle}></i>
+            <label htmlFor="quickLogin"> 快速登入：
+            <i className="bi bi-google" id="quickLogin" style={hoverPointerStyle} onClick={handleGoogle}></i>
+            </label>
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">取消</button>
             <button type="button" className="btn btn-primary" onClick={login}>確認</button>
           </div>

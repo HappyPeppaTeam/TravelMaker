@@ -144,4 +144,5 @@ export default function Navbar() {
       <MessageToast messageData={message} closeMessageToast={closeMessageToast} />
     </>
   )
-}
+};
+

@@ -348,9 +348,9 @@ export default function Attraction_innerpage() {
                         <h4>
                             <b><Link to="/attractions" className="bottom-line">景點</Link></b>
                             <b>→</b>
-                            <b><Link to="/attractions/Attractionmore" className="bottom-line">台中市</Link></b>
+                            <b><Link to="/attractions/Attractionmore" className="bottom-line"state={state.Address.substring(0, 2)}>{state.Address.substring(0, 3)}</Link></b>
                             <b>→</b>
-                            <b><Link to="/attractions/Attractionmore" className="bottom-line">中區</Link></b>
+                            <b><Link to="/attractions/Attractionmore" className="bottom-line"state={state.ZipCode}>{state.Address.substring(6, 3)}</Link></b>
                             <b>→</b>
                             <b className="bottom-line">{state.Name}</b>
                         </h4>

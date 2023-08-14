@@ -32,7 +32,7 @@ export default function Attractions() {
                 {/* <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" /> */}
                 <div className="container hyperlink-location" >
                     <Link to="#" className="button-hyperlink">餐廳</Link>
-                    <Link to="/attractions" className="button-hyperlink">景點</Link>
+                    <Link to="/attractions" className="button-hyperlink" onClick={() => window.location.reload()}>景點</Link>
                     <Link to="#" className="button-hyperlink">討論區</Link>
                     <Link to="#" className="button-hyperlink">自助旅遊排程</Link>
                 </div>
@@ -41,7 +41,7 @@ export default function Attractions() {
                 <div style={{ 'paddingTop': '1%' }} className="image-container">
                     <div className="container">
                         <h3 style={{ 'float': 'left' }}>推薦景點</h3>
-                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right' }} className="bottom-line" state='臺灣'>more</Link>
+                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right' }} className="bottom-line">more</Link>
                     </div>
                     <div className="container" style={{ 'clear': 'both' }}>
                         <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">

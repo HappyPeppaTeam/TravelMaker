@@ -21,13 +21,11 @@ export default function Article() {
                     {/* <!-- user --> */}
                     <div className="col-12 col-lg-3 col-xl-2 Article-user">
                         <div className="Article-user-card">
-                            <a href="" target="_blank">
-                                <img className="" src={require('../images/headimage.jpg')} alt="" />
-                            </a>
+                            <img className="" src={require('../images/headimage.jpg')} alt="" />
                             <div className="Article-user-item">
-                                <div className="Article-user-item-username">
-                                    <a href="" target="_blank">UserID</a>
-                                    <p>註冊日期</p>
+                                <div className="Article-user-item-user">
+                                    <p className="Article-user-item-username-userid">UserID</p>
+                                    <p className="Article-user-item-user-regiterdate">註冊日期</p>
                                 </div>
                             </div>
                         </div>

@@ -31,11 +31,17 @@
     display: block;
 }
 
-.Article-user-item-username p {
+.Article-user-item-username-userid {
+    font-size: 20px;
+    margin: 0;
+}
+.Article-user-item-user-regiterdate{
     font-size: 14px;
     color: gray;
     margin: 0;
 }
+
+
 
 /* Article */
 .Article-information-main {

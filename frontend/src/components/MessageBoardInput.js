@@ -13,6 +13,7 @@ const MessageBoardInput = ({ board_text_id }) => {
   const userId = Cookies.get('userId');
 
   const [messages, setMessages] = useState([]);
+  console.log(messages);
 
   useEffect(() => {
     // 在組件載入時從後端獲取資料
@@ -70,10 +71,10 @@ const MessageBoardInput = ({ board_text_id }) => {
       <div className="UserImage">
         <a href="">
           {userId ? (
-        <img src={`path/to/user/images/${userId}.jpg`} alt="" />
-      ) : (
-        <img src={require("../images/headimage.jpg")} alt="" />
-      )}
+            <img src={`http://localhost/TravelMaker/Backend/public/storage/${userId.head_photo}`} alt="" />
+          ) : (
+            <img src={require("../images/headimage.jpg")} alt="" />
+          )}
         </a>
 
         <form>
@@ -96,13 +97,11 @@ const MessageBoardInput = ({ board_text_id }) => {
         {messages.map((messageData, index) => (
           <div key={index} className="Message">
             <div className="UserImage">
-              <img src={messageData.head_photo} alt="" />
+              <img src={`http://localhost/TravelMaker/Backend/public/storage/${messageData.head_photo}`} alt="" />
             </div>
-            <div className="MessageContent">
-              <div className="Username">{`用户ID${messageData.user_id}`}</div>
-              <div className="MessageText">{messageData.message_text}</div>
-              <div className="MessageTime">{messageData.message_time}</div>
-            </div>
+            <div className="Username">{`${messageData.user_id}`}</div>
+            <div className="MessageTime">{messageData.message_time}</div>
+            <div className="MessageText">{messageData.message_text}</div>
           </div>
         ))}
       </div>

@@ -9,6 +9,9 @@ use App\Http\Controllers\AlbumController;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
+use App\Mail\ResetPasswordMail;
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -194,6 +197,7 @@ Route::post('/login', function (Request $request) {
     $hashedPasswordFromDB = $user_result[0]->password;
     if (password_verify($password, $hashedPasswordFromDB)) {
         $setToken = DB::select('call set_token(?);', [$userName]);
+        $getFullName = DB::select('select full_name from users where token = ?',[$setToken[0]->token]);
         $getUserId = DB::select('select user_id from users where token = ?',[$setToken[0]->token]);
         $data = [
             "message" => "登入成功",
@@ -205,6 +209,7 @@ Route::post('/login', function (Request $request) {
     }
     setcookie('token',$setToken[0]->token,time() + 3600,'/');
     setcookie('username',$userName,time() + 3600,'/');
+    setcookie('fullName',$getFullName[0]->full_name,time() + 3600,'/');
     setcookie('userId',$getUserId[0]->user_id,time() + 3600,'/');
        return response()->json($data, 200);
         // 哈希值匹配，可以认为用户提供的密码是正确的
@@ -245,10 +250,32 @@ Route::post('/postimgurl', function (Request $request) {
 // by cookie/token get profile data
 Route::post('/profile',function(Request $request){  
 $token = $request['token'];
-$getProfile = DB::select("select user_name,full_name,nick_name,email,birthday,gender,head_photo from users where token= ?",[$token]);
+$getProfile = DB::select("select 
+user_name,full_name,nick_name,email,
+birthday,password,gender,
+head_photo 
+from users where token= ?",[$token]);
 $getProfile[0]->head_photo =  Storage::url("{$getProfile[0]->head_photo}");
 return response()->json($getProfile,200);
 });
+
+// by cookie/token update profile data
+Route::post('/updateProfile',function(Request $request){  
+    $formData = $request->all();
+    $token = $request['token'];
+    unset($formData['token']);
+    $query = DB::table('users');
+    foreach ($formData as $key => $value) {
+        if ($key === 'password') {
+            // 雜湊密碼並更新
+            $value = Hash::make($value);
+        }
+        $query
+        ->where('token', $token)
+        ->update([$key => $value]);
+    }
+    return response()->json(['message' => 'Data updated successfully']);
+    });
 
 //admin get all user
 Route::get('/getAllProfileData',function(Request $request){  
@@ -417,3 +444,6 @@ Route::post('/createBoardText', function (Request $request) {
 
     return response()->json($responseData, 201); // 201 Created status code
 });
+Route::post('/forgotPassword', [ForgotPasswordController::class,'sendResetLink']);
+
+Route::post('/resetPassword', [ResetPasswordController::class,'resetPassword']);

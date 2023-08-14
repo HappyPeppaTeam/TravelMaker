@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -24,14 +25,14 @@ const LoginModal = ({ closeloginModal, onResponse, openMessageToast }) => {
       if (!response.status === 200) {
         throw new Error('Network response was not ok');
       }
-      
+
       localStorage.setItem('username', userData.username);
       const data = response.data.message;
       // Handle the response from the backend, if needed
       onResponse(data);
       closeloginModal();
       openMessageToast();
-      if (Cookies.get('role')==='admin') {
+      if (Cookies.get('role') === 'admin') {
         window.location.href = 'http://localhost:3000/Admin';
       }
       console.log('Response from backend:', data, sessionStorage.getItem('username'));
@@ -41,6 +42,14 @@ const LoginModal = ({ closeloginModal, onResponse, openMessageToast }) => {
       console.error(error);
     }
   };
+
+  const hoverPointerStyle = {
+    cursor: 'pointer',
+    color: 'blue',
+    transition: 'color 0.3s ease, transform 0.3s ease',
+    transform: 'scale(1)',
+  };
+
   return (
     <div className="modal fade" id="loginModal" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
       <div className="modal-dialog">
@@ -60,7 +69,10 @@ const LoginModal = ({ closeloginModal, onResponse, openMessageToast }) => {
             </div>
           </div>
           <div className="modal-footer justify-content-center">
-            快速登入：<i className="bi bi-google" onClick={handleGoogle}></i>
+            <div>
+            <Link className="btn btn-info"  to='/ForgotPassword' onClick={closeloginModal} >忘記密碼</Link>
+            </div>
+            快速登入：<i className="bi bi-google" style={hoverPointerStyle} onClick={handleGoogle}></i>
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">取消</button>
             <button type="button" className="btn btn-primary" onClick={login}>確認</button>
           </div>

@@ -32,6 +32,8 @@ import ErrorPage from "./pages/ErrorPage";
 import Article from "./pages/Article";
 import Discussion from "./pages/Discussion";
 import AddArticle from "./pages/AddArticle";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 
 function App() {
@@ -64,6 +66,8 @@ function App() {
           <Route path="/journey/newjourney" element={<NewJourney/>} ></Route>
           <Route path='/Admin' element={<Admin />}></Route>
           <Route path='/ErrorPage/:errorCode' element={<ErrorPage />}></Route>
+          <Route path='/ForgotPassword' element={<ForgotPassword />}></Route>
+          <Route path='/resetPassword/:token' element={<ResetPassword />}></Route>
         </Routes>
       <Footer/>
     </div>

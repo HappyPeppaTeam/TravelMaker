@@ -62,10 +62,8 @@ function App() {
           <Route path='/restaurant/search' element={<RestaurantSearch/>}></Route>
           <Route path='/restaurant/inner' element={<RestaurantInner/>}></Route>
           <Route path='/restaurant/comment' element={<RestaurantComment/>}></Route>
-          <Route path="/journey" element={<Journey/>} ></Route>
           <Route path="/journey/newjourney" element={<JourneyForm/>} ></Route>
-          <Route path="/newtest" element={<NewJourneyTest/>} ></Route>
-          <Route path="/journeytest" element={<MyJourney/>} ></Route>
+          <Route path="/journey" element={<MyJourney/>} ></Route>
           <Route path='/Admin' element={<Admin />}></Route>
           <Route path='/ErrorPage/:errorCode' element={<ErrorPage />}></Route>
         </Routes>

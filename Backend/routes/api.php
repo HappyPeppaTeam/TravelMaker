@@ -395,7 +395,6 @@ Route::get('/zipcode',function() {
     return response()->json($data);
 });
 
-<<<<<<< HEAD
 Route::post('/createBoardText', function (Request $request) {
     $textTitle = $request->input('textTitle');
     $text = $request->input('text');
@@ -455,7 +454,6 @@ Route::post('/createBoardText', function (Request $request) {
 Route::post('/forgotPassword', [ForgotPasswordController::class,'sendResetLink']);
 
 Route::post('/resetPassword', [ResetPasswordController::class,'resetPassword']);
-=======
 Route::get('/typeid',function() {
     $data = DB::select('SELECT * FROM typeid'); 
     return response()->json($data);
@@ -470,4 +468,3 @@ Route::get('/spotSummary',function(){
     $data = DB::select('SELECT attraction.Name,attraction.Description,attraction.PictureUrl1,typeid.ChineseType FROM attraction JOIN typeid ON attraction.TypeID = typeid.TypeID');
     return response()->json($data);
 });
->>>>>>> mingyo/integrate

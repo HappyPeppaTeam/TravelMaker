@@ -9,7 +9,8 @@ const ErrorPage = () => {
 
     switch (errorCodeNumber) {
         case 401:
-            errorMessage = 'Unauthorized: You do not have permission to access this resource.';
+            
+            errorMessage = 'Unauthorized: You do not have permission to access this resource.<br />沒有權限進入此頁面';
             break;
         case 404:
             errorMessage = 'Page not found';
@@ -24,14 +25,16 @@ const ErrorPage = () => {
     }
 
     return (
-        <div className="main">
-            <div className="container mt-5">
-                <div className="row justify-content-center">
-                    <div className="col-md-6">
+        <div className="container">
+            <div className="row justify-content-center align-items-center vh-100">
+                <div className="col-md-6">
+                    <div className="col-md-12">
                         <div className="card text-center">
                             <div className="card-body">
                                 <h1 className="card-title text-danger">Error {errorCode}</h1>
-                                <p className="card-text text-muted">{errorMessage}</p>
+                                {/* <p className="card-text text-muted">{errorMessage}</p>
+                                 */}
+                                 <div dangerouslySetInnerHTML={{ __html: errorMessage }} />
                             </div>
                         </div>
                     </div>

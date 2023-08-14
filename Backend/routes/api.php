@@ -476,7 +476,6 @@ Route::post('/createBoardText', function (Request $request) {
 
     return response()->json($responseData, 201); // 201 Created status code
 });
-<<<<<<< HEAD
 Route::post('/forgotPassword', [ForgotPasswordController::class,'sendResetLink']);
 
 Route::post('/resetPassword', [ResetPasswordController::class,'resetPassword']);
@@ -502,5 +501,3 @@ Route::get('/getMessagerPhoto',function(Request $request){
 
 
 
-=======
->>>>>>> Eric

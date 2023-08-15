@@ -73,16 +73,17 @@ function ArticleEditor() {
     const [exceedLimit, setExceedLimit] = useState(false);
     const userId = Cookies.get('userId');
 
+    const locationMapping = {
+        '1': '1', // '1' 对应 '北部討論版'
+        '2': '8', // '2' 对应 '中部討論版'
+        '3': '13', // '3' 对应 '南部討論版'
+        '4': '18', // '4' 对应 '花東離島討論版'
+    };
+
     const handleBoardChange = (event) => {
         const selectBoard = event.target.value;
         setBoard(selectBoard);
-        if (selectBoard === '1') {
-            setLocation('1');
-        } else if (selectBoard === '2') {
-            setLocation('2');
-        } else if (selectBoard === '3') {
-            setLocation('3');
-        }
+        setLocation(locationMapping[selectBoard]);
     };
 
     const handleLocationChange = (event) => {

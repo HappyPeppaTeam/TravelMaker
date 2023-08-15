@@ -23,7 +23,7 @@ const ForumCards = () => {
                     return (
                         <div key={forum.board_text_id} className="col-md-6 mb-1">
                             <div className="card forum">
-                                <img src={require('../images/card-1.jpg')} className="card-img-top card-img-size" />
+                                <img src={`http://localhost/TravelMaker/Backend/public/storage/${forum.image_path}`} className="card-img-top card-img-size" />
                                 <div className="card-body">
                                     <h5 className="card-title">{forum.Text_title}</h5>
                                     <p className="card-text">{`${forum.Text.slice(0,200)}...`}</p>

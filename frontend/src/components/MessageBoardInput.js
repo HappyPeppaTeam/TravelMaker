@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../css/MessageBoard.css"; 
+import "../css/MessageBoard.css";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import Cookies from 'js-cookie';
@@ -17,9 +17,9 @@ const MessageBoardInput = ({ board_text_id }) => {
 
   // console.log(userPhoto);
 
-  useEffect(async () => {
+  useEffect(() => {
     // 在組件載入時從後端獲取資料
-    await axios
+    axios
       .get(`http://localhost/TravelMaker/Backend/public/api/getMessage/${state}`)
       .then((response) => {
         setMessages(response.data);
@@ -27,7 +27,7 @@ const MessageBoardInput = ({ board_text_id }) => {
       .catch((error) => {
         console.error("获取数据错误：", error);
       });
-    await axios
+    axios
       .post(`http://localhost/TravelMaker/Backend/public/api/getMessagerPhoto`, { userId })
       .then((response) => {
         setUserphoto(response.data);
@@ -68,9 +68,7 @@ const MessageBoardInput = ({ board_text_id }) => {
             console.error("获取数据错误：", error);
           });
       })
-      .catch((error) => {
-        console.error("错误：", error);
-      });
+
 
     setInputValue({
       ...inputValue,

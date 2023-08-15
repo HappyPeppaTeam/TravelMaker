@@ -512,6 +512,3 @@ Route::get('/getMessagerPhoto',function(Request $request){
     $userId=$request['userId'];
     $userPhoto=DB::select('select head_photo form users where user_id = ?',[$userId]);
 });
-
-
-

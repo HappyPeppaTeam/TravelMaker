@@ -77,7 +77,7 @@ export default function RestaurantSearch() {
                     <div className="list-group list-group-flush p-3" >
                         <div className='card rest-card p-3'>
                             <button
-                                className={`p-2 dropdown-btn rest-dropdown-btn ${dropdownStates[22] ? '1' : ''}`}
+                                className={`p-2 rest-dropdown-btn ${dropdownStates[22] ? '1' : ''}`}
                                 onClick={() => toggleDropdown(22)}
                             >
                                 地區分類
@@ -88,7 +88,7 @@ export default function RestaurantSearch() {
                                     <ul id="collapseExample1" className="collapse show list-group list-group-flush">
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={` dropdown-btn rest-dropdown-btn ${dropdownStates[0] ? '1' : ''}`}
+                                                className={`   rest-dropdown-btn ${dropdownStates[0] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(0)}
                                             >
                                                 基隆市
@@ -119,7 +119,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={` dropdown-btn rest-dropdown-btn ${dropdownStates[1] ? '1' : ''}`}
+                                                className={`   rest-dropdown-btn ${dropdownStates[1] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(1)}
                                             >
                                                 台北市
@@ -149,7 +149,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={` dropdown-btn rest-dropdown-btn ${dropdownStates[2] ? '1' : ''}`}
+                                                className={`   rest-dropdown-btn ${dropdownStates[2] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(2)}
                                             >
                                                 新北市
@@ -179,7 +179,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={` dropdown-btn rest-dropdown-btn ${dropdownStates[3] ? '1' : ''}`}
+                                                className={`   rest-dropdown-btn ${dropdownStates[3] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(3)}
                                             >
                                                 桃園市
@@ -209,7 +209,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={` dropdown-btn rest-dropdown-btn ${dropdownStates[4] ? '1' : ''}`}
+                                                className={`   rest-dropdown-btn ${dropdownStates[4] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(4)}
                                             >
                                                 新竹市
@@ -239,7 +239,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={` dropdown-btn rest-dropdown-btn ${dropdownStates[5] ? '1' : ''}`}
+                                                className={`   rest-dropdown-btn ${dropdownStates[5] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(5)}
                                             >
                                                 新竹縣
@@ -269,7 +269,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={` dropdown-btn rest-dropdown-btn ${dropdownStates[6] ? '1' : ''}`}
+                                                className={`   rest-dropdown-btn ${dropdownStates[6] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(6)}
                                             >
                                                 苗栗縣
@@ -299,7 +299,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={` dropdown-btn rest-dropdown-btn ${dropdownStates[7] ? '1' : ''}`}
+                                                className={`   rest-dropdown-btn ${dropdownStates[7] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(7)}
                                             >
                                                 台中市
@@ -329,7 +329,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={`dropdown-btn rest-dropdown-btn ${dropdownStates[8] ? '1' : ''}`}
+                                                className={`  rest-dropdown-btn ${dropdownStates[8] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(8)}
                                             >
                                                 彰化縣
@@ -359,7 +359,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={`dropdown-btn rest-dropdown-btn ${dropdownStates[9] ? '1' : ''}`}
+                                                className={`  rest-dropdown-btn ${dropdownStates[9] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(9)}
                                             >
                                                 南投縣
@@ -389,7 +389,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={`dropdown-btn rest-dropdown-btn ${dropdownStates[10] ? '1' : ''}`}
+                                                className={`  rest-dropdown-btn ${dropdownStates[10] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(10)}
                                             >
                                                 雲林縣
@@ -419,7 +419,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={`dropdown-btn rest-dropdown-btn ${dropdownStates[11] ? '1' : ''}`}
+                                                className={`  rest-dropdown-btn ${dropdownStates[11] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(11)}
                                             >
                                                 嘉義市
@@ -449,7 +449,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={`dropdown-btn rest-dropdown-btn ${dropdownStates[12] ? '1' : ''}`}
+                                                className={`  rest-dropdown-btn ${dropdownStates[12] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(12)}
                                             >
                                                 嘉義縣
@@ -479,7 +479,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={`dropdown-btn rest-dropdown-btn ${dropdownStates[13] ? '1' : ''}`}
+                                                className={`  rest-dropdown-btn ${dropdownStates[13] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(13)}
                                             >
                                                 台南市
@@ -509,7 +509,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={`dropdown-btn rest-dropdown-btn ${dropdownStates[14] ? '1' : ''}`}
+                                                className={`  rest-dropdown-btn ${dropdownStates[14] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(14)}
                                             >
                                                 高雄市
@@ -539,7 +539,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={`dropdown-btn rest-dropdown-btn ${dropdownStates[15] ? '1' : ''}`}
+                                                className={`  rest-dropdown-btn ${dropdownStates[15] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(15)}
                                             >
                                                 屏東縣
@@ -569,7 +569,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={`dropdown-btn rest-dropdown-btn ${dropdownStates[16] ? '1' : ''}`}
+                                                className={`  rest-dropdown-btn ${dropdownStates[16] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(16)}
                                             >
                                                 台東縣
@@ -599,7 +599,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={`dropdown-btn rest-dropdown-btn ${dropdownStates[17] ? '1' : ''}`}
+                                                className={`  rest-dropdown-btn ${dropdownStates[17] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(17)}
                                             >
                                                 花蓮縣
@@ -629,7 +629,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={`dropdown-btn rest-dropdown-btn ${dropdownStates[18] ? '1' : ''}`}
+                                                className={`  rest-dropdown-btn ${dropdownStates[18] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(18)}
                                             >
                                                 宜蘭縣
@@ -659,7 +659,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={`dropdown-btn rest-dropdown-btn ${dropdownStates[19] ? '1' : ''}`}
+                                                className={`  rest-dropdown-btn ${dropdownStates[19] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(19)}
                                             >
                                                 澎湖縣
@@ -689,7 +689,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={`dropdown-btn rest-dropdown-btn ${dropdownStates[20] ? '1' : ''}`}
+                                                className={`  rest-dropdown-btn ${dropdownStates[20] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(20)}
                                             >
                                                 金門縣
@@ -719,7 +719,7 @@ export default function RestaurantSearch() {
                                         </li>
                                         <li className="list-group-item py-1">
                                             <button
-                                                className={`dropdown-btn rest-dropdown-btn ${dropdownStates[21] ? '1' : ''}`}
+                                                className={`  rest-dropdown-btn ${dropdownStates[21] ? '1' : ''}`}
                                                 onClick={() => toggleDropdown(21)}
                                             >
                                                 連江縣

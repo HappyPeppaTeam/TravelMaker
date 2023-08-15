@@ -91,7 +91,7 @@ const registerFormValidate = (userData) => {
   if (userData.hasOwnProperty("email") && !userData.get('email')) {
     valid = false;
   } else if (!emailPattern.test(userData.get('email'))) {
-    alert(userData.get('email'));
+    // alert(userData.get('email'));
     valid = false;
   }
 

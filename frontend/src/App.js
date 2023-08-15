@@ -26,7 +26,9 @@ import RestaurantSearch from './pages/RestaurantSearch';
 import RestaurantInner from './pages/RestaurantInner';
 import RestaurantComment from './pages/RestaurantComment';
 import Journey from "./pages/Journey";
-import NewJourney from "./pages/NewJourney";
+import NewJourneyTest from "./pages/NewJourneyTest";
+import JourneyForm from "./pages/JourneyForm";
+import MyJourney from "./pages/MyJourney";
 import Admin from "./pages/Admin";
 import ErrorPage from "./pages/ErrorPage";
 import Article from "./pages/Article";
@@ -62,8 +64,8 @@ function App() {
           <Route path='/restaurant/search' element={<RestaurantSearch/>}></Route>
           <Route path='/restaurant/inner' element={<RestaurantInner/>}></Route>
           <Route path='/restaurant/comment' element={<RestaurantComment/>}></Route>
-          <Route path="/journey" element={<Journey/>} ></Route>
-          <Route path="/journey/newjourney" element={<NewJourney/>} ></Route>
+          <Route path="/journey/newjourney" element={<JourneyForm/>} ></Route>
+          <Route path="/journey" element={<MyJourney/>} ></Route>
           <Route path='/Admin' element={<Admin />}></Route>
           <Route path='/ErrorPage/:errorCode' element={<ErrorPage />}></Route>
           <Route path='/ForgotPassword' element={<ForgotPassword />}></Route>

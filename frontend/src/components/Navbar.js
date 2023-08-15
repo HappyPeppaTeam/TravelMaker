@@ -60,14 +60,16 @@ export default function Navbar() {
       setTimeout(() => {
         // 隐藏 Toast
         messageToast.current.hide();
-        window.location.href = '/';
+        // window.location.href = '/';
+        window.location.reload();
         // 2秒后重新加载页面
       }, 2000);
     }
   };
   const closeMessageToast = () => {
     messageToast.current.hide();
-    window.location.href = '/';
+    // window.location.href = '/';
+    window.location.reload();
   };
 
   const openRegisterModal = () => {

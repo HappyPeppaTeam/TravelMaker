@@ -306,8 +306,22 @@ Route::get('/getArticle/{discussionBoardArea}', function($discussionBoardArea){
     return response()->json($getArticle,200);
 });
 
-Route::get('/getBoardText',function() {
-    $data = DB::select('SELECT * FROM board_text'); 
+Route::get('/getBoardTextAndImage',function() {
+    $data = DB::select(
+    'SELECT 
+    board_text.*, 
+    users.full_name,
+    users.user_name,
+    COALESCE(board_image.image_path, \'default_image_path\') AS image_path
+        FROM board_text
+        JOIN users ON board_text.Posting_user_id = users.user_id
+        LEFT JOIN (
+            SELECT 
+            board_text_id,
+            MIN(image_path) AS image_path -- 選擇其中一筆圖片（這裡使用最小的 image_path）
+            FROM board_image
+        GROUP BY board_text_id
+    ) board_image ON board_text.board_text_id = board_image.board_text_id;'); 
     return response()->json($data);
 });
 
@@ -373,9 +387,28 @@ Route::get('/auth/google/register/{googleId}&{fullName}&{email}', [AuthControlle
 Route::get('/auth/google/login', [AuthController::class,'googleLogin'])->name('google.login');
 
 
+
+
+
+
+
+
+
+
+
+// Journey Api
+
 Route::get('/getJourneys',[JourneyController::class, 'getUserJourneys']);
 Route::get('/getEvents',[JourneyController::class, 'getJourneyEvents']);
 Route::post('/addJourney',[JourneyController::class, 'addNewJourney']);
+Route::delete('/deleteJourney',[JourneyController::class, 'deleteJourney']);
+Route::put('/updateJourney', [JourneyController::class, 'updateJourney']);
+Route::post('/addEvents', [JourneyController::class, 'addNewEvents']);
+Route::post('/updateEvents', [JourneyController::class, 'updateEvents']);
+
+
+
+
 Route::get('/test',function() {
     $data = DB::select('SELECT * FROM Attraction_infomation'); 
     return response()->json($data);

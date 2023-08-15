@@ -384,6 +384,15 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
         .then(response => {
             console.log(response);
         })
+        .then(() => {
+            setPageTitle(journeyData.title);
+            const editJourney = journeys.map(journey => 
+                (
+                    journey.journey_id === journeyData.journeyId ? {...journey, journey_name: journeyData.title} : journey 
+                ));
+            setJourneys(editJourney);
+            setShow(2);
+        })
         .catch(error => {
             console.error("Error: ", error);
         });
@@ -408,6 +417,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
         .then(() => {
             const wantedJourneys = journeys.filter(journey => journey.journey_id != journeyData.journeyId);
             setJourneys(wantedJourneys);
+            setPageTitle("我的行程");
             setShow(1);
         })
         .catch(error => {
@@ -641,7 +651,7 @@ const MyJourney = () => {
         
 
 
-    }, [clickJourney, journeys])
+    }, [clickJourney, journeys, show])
 
 
     
@@ -817,7 +827,7 @@ const MyJourney = () => {
                     {show === 1 && <div className='container'>
                         <div className='row'>
                             {journeys.map((journey, index) => (
-                                <JourneyThumbnail key={index} journey={journey} setShow={setShow} setClickJourney={setClickJourney} setPageTitle={setPageTitle} setJourneyData={setJourneyData}/>
+                                <JourneyThumbnail key={index} journey={journey} setShow={setShow} setClickJourney={setClickJourney} setPageTitle={setPageTitle} setJourneyData={setJourneyData} />
                             ))}
                             {/* <JourneyThumbnail /> */}
                             <AddNewJourney />

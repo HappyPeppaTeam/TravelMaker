@@ -1,0 +1,96 @@
+.Article-page {
+    margin-top: 10px;
+}
+
+/* user */
+.Article-user {
+    display: flex;
+    justify-content: center;
+}
+
+.Article-user-card {
+    margin: 10px;   
+}
+
+.Article-user-card img {
+    border: 1px white solid;
+    width: 150px;
+    height: 150px;
+}
+
+.Article-user-item {
+    margin: 5px;
+}
+.Article-user-item-username {
+    line-height: 20px;
+}
+
+.Article-user-item-username a {
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+}
+
+.Article-user-item-username p {
+    font-size: 14px;
+    color: gray;
+    margin: 0;
+}
+
+/* Article */
+.Article-information-main {
+    padding: 0;
+}
+
+.Article-information-main-header {
+    margin: 0.5em;
+}
+
+.Article-information-main-body {
+    margin: 0.5em;
+}
+
+.Article-information-main-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+.Article-information-main-footer-left button {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.Article-information-main-footer-right button {
+    width: 70px;
+    height: 50px;
+}
+/* 留言板 */
+.Article-information-footer-messageboard-user {
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+/* user RWD */
+@media (max-width: 992px) {
+
+    .Article-user {
+        justify-content: flex-start;
+    }
+
+    .Article-user-card {
+        display: flex;
+        align-items: center;
+    }
+
+    .Article-user-card img {
+        border: 1px white solid;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+    }
+
+}

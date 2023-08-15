@@ -1,0 +1,47 @@
+.imgInfo {
+    position: relative;
+}
+
+.fileName {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);;
+}
+
+.fileName p {
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.selectedImg {
+    height: 150px;
+    object-fit: cover;
+}
+
+@media (min-width:768px) {
+    .selectedImg {
+        height: 200px;
+    }
+}
+@media (min-width:992px) {
+    .selectedImg {
+        height: 250px;
+    }
+}
+@media (min-width:1200px) {
+    .selectedImg {
+        height: 300px;
+    }
+}
+
+.remove {
+    color: white;
+    transition: transform .2s;
+}
+
+.remove:hover {
+    color: red;
+    transform: scale(1.3,1.3);
+}
+

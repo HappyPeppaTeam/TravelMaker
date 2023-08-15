@@ -1,28 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Modal} from 'bootstrap';
-
+import { Link } from 'react-router-dom';
+import { Modal } from 'bootstrap';
+import axios from 'axios';
 import '../css/journey.css';
 import JourneyThumbnail from '../components/JourneyThumbnail';
 import Sidebar from '../components/Sidebar';
 import BotSidebar from '../components/BotSidebar';
-
-
-
-
-const MoreDropDown = ({handleOpenModal}) => {
-
-    return (
-        <div className="dropdown-menu" id="moreDropdown">
-            <a className="dropdown-item" onClick={handleOpenModal}><i
-                className="bi bi-arrow-up-right-square"></i><span className="ps-1">開啟</span></a>
-            <a className="dropdown-item" href="#"><i className="bi bi-pencil-square"></i><span className="ps-1">編輯</span></a>
-            <a className="dropdown-item" href="#"><i className="bi bi-pencil"></i><span className="ps-1">重新命名</span></a>
-            <a className="dropdown-item" href="#"><i className="bi bi-image"></i><span className="ps-1">更改封面圖片</span></a>
-            <a className="dropdown-item" href="#"><i className="bi bi-trash3"></i><span className="ps-1">刪除</span></a>
-        </div>
-    )
-}
-
+import JourneyModel from '../components/JourneyModal';
+import withAuthorization from '../hook/withAuthorization';
 
 
 const AddNewJourney = () => {
@@ -39,157 +24,155 @@ const AddNewJourney = () => {
     }
 
     return (
-        <div
+        <Link to="/journey/newjourney"
             className="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center">
             <div style={addNewThumbnailStyle}
                 className="d-flex align-items-center justify-content-center rounded shadow add-new-journey"
                 id="addNewBox">
                 <i className="bi bi-plus-lg" style={plusIconStyle}></i>
             </div>
-        </div>
+        </Link>
     )
 }
 
-
-
-const JourneyModel = ({ handleCloseModal }) => {
-
-    const modalHeaderStyle = {
-        height: '200px',
-        backgroundImage: 'url(../images/street.jpg)',
-        backgroundSize: 'cover',
-    }
-
-    const mapContainerStyle = {
-        width: '100%',
-        height: '500px',
-        border: 'lightblue solid',
-    }
-
-    const imageContainerStyle = {
-        width: '100%',
-        height: '200px',
-    }
-
-    const journeyContainerStyle = {
-        width: '100%',
-        minHeight: '500px',
-        background: 'linear-gradient(135deg, rgba(235,244,245,0.5) 57%, rgba(181,198,224,0.5) 100%)',
-    }
-
-    return (
-        <div className="modal fade" id="journeyModal" tabIndex="-1" aria-labelledby="journeyModalLabel" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-scrollable modal-xl modal-fullscreen-lg-down">
-                <div className="modal-content">
-                    <div className="modal-header"
-                        style={modalHeaderStyle}>
-                        <h1 className="modal-title fs-5 align-self-end text-white" id="journeyModalLabel">Modal title</h1>
-                        <button type="button" className="btn-close btn-close-white align-self-start" onClick={handleCloseModal}
-                            aria-label="Close"></button>
-                    </div>
-                    <div className="modal-body">
-                        <div id="journeyRegView" className="">
-                            <div id="contentHeader" className="d-flex align-items-center">
-                                <h1>Model</h1>
-                                <div className="h5 ms-auto active-text"><i className="bi bi-pencil-square"></i><span
-                                    className="ms-2">編輯</span></div>
-                            </div>
-                            <div id="journeyContainer" className="p-3 rounded shadow" style={journeyContainerStyle}>
-
-                            </div>
-                            <div id="mapContainer" style={mapContainerStyle} className="mt-3">
-                            </div>
-
-                            <div className="h2 mt-3">備註</div>
-                            <div id="text-content" className="mt-3">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem, recusandae? Veniam, error
-                                iure et voluptas quae enim! Amet consequuntur dolorum odit, vero nulla mollitia suscipit libero,
-                                iste ullam, inventore quisquam?
-                                Saepe doloremque labore rem cum reprehenderit totam, maxime eaque. Repudiandae maiores eligendi
-                            </div>
-                            <div className="h2 mt-3">相片</div>
-                            <div id="imageContainer" className="mt-3 image-overflow rounded shadow"
-                                style={imageContainerStyle}>
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                                <img src="../images/street.jpg" alt="" className="h-100" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
 
 
 
 function Journey() {
 
-    const journeyModal = useRef(null);
-    const moreDropdown = useRef(null);
 
+    const [journeys, setJourneys] = useState([
+        {
+            journey_id: 0,
+            journey_name: "test",
+            description: "test",
+            user_id: 0,
+            privacy: 0,
+            thumbnail_id: 0,
+            edit_time: "2023-07-26 15:18:33",
+            journey_start: "2023-07-25 08:00:00",
+            journey_end: "2023-07-25 19:00:00"
+        }
+    ]);
 
     useEffect(() => {
-        journeyModal.current = new Modal('#journeyModal');
+        const getJourneyUrl = 'http://localhost/TravelMaker/Backend/public/api/getJourneys?user_id=1';
+
+        axios.get(getJourneyUrl)
+            .then((response) => {
+                if (response.status < 200 || response.status >= 300) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response;
+            })
+            .then((response) => {
+                setJourneys(response.data);
+            })
+            .catch((error) => {
+                console.error('Axios error:', error);
+            })
     }, [])
 
+
+    const [journeyDetail, setJourneyDetail] = useState({
+        journey_id: 0,
+        journey_name: "test",
+        description: "test",
+        user_id: 0,
+        privacy: 0,
+        thumbnail_id: 0,
+        edit_time: "2023-07-26 15:18:33",
+        journey_start: "2023-07-25 08:00:00",
+        journey_end: "2023-07-25 19:00:00",
+        events: [],
+
+    });
+
+    const [clickJourneyId, setClickJourneyId] = useState(0);
+
+    useEffect(() => {
+        const getEventUrl = `http://localhost/TravelMaker/Backend/public/api/getEvents?journey_id=${clickJourneyId}`;
+        axios.get(getEventUrl)
+            .then((response) => {
+                if (response.status < 200 || response.status >= 300) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response;
+            })
+            .then((response) => {
+                const currentJourney = journeys.find(journey => journey.journey_id === clickJourneyId);
+                setJourneyDetail({
+                    ...currentJourney,
+                    events: response.data,
+                })
+                // console.log("journeyDetail response:", journeyDetail);
+            })
+            .catch((error) => {
+                console.error('Axios error:', error);
+            })
+
+    }, [clickJourneyId, journeys])
+
+
+
+
+    const journeyModalRef = useRef(null);
+    const calenderRef = useRef(null);
+    const calendarEditRef = useRef(null);
+
+    useEffect(() => {
+        journeyModalRef.current = new Modal('#journeyModal');
+        journeyModalRef.current._element.addEventListener('shown.bs.modal', function () {
+            calenderRef.current.getApi().render();
+            calendarEditRef.current.getApi().render();
+        })
+    }, []);
+
     const handleOpenModal = () => {
-        journeyModal.current.show();
+        journeyModalRef.current.show();
     }
 
     const handleCloseModal = () => {
-        journeyModal.current.hide();
+        journeyModalRef.current.hide();
     }
 
+
+    // const [clickInfo, setClickInfo] = useState('');
+    // const [editEvents, setEditEvents] = useState([]);
+
+
     return (
-        <div className="container-lg shadow p-0 mb-3 bg-white" id="bodyContainer">
-            <div className="d-flex flex-nowrap row container-fluid m-0 p-0 bg-white" id="contentContainer">
-                <Sidebar />
+        <>
+            <div className="container-fluid shadow p-0  bg-white" id="bodyContainer">
+                <div className="d-flex flex-nowrap row container-fluid m-0 p-0 bg-white" id="contentContainer">
+                    <Sidebar />
 
-                {/* <!-- main content --> */}
-                <div className="flex-fill px-0 justify-content-center" id="content">
-                    <div className="m-5">
-                        <div className="d-flex align-items-end">
-                            <a href="#" className="rm-link-style">
-                                <div className="h1">我的行程</div>
-                            </a>
-
-                            <div className="h5 ms-auto active-text add-new-journey"><i className="bi bi-plus-lg"></i><span className="ms-1">建立行程</span>
+                    {/* <!-- main content --> */}
+                    <div className="flex-fill px-0 justify-content-center" id="content">
+                        <div className="m-5">
+                            <div className="d-flex align-items-end" id='headLinkContainer'>
+                                <Link to="/journey" className="h1 rm-link-style">我的行程</Link>
+                                <Link to="/journey/newjourney" className="h5 ms-auto active-text add-new-journey" style={{ textDecoration: 'none' }}><i className="bi bi-plus-lg"></i><span className="ms-1">建立行程</span>
+                                </Link>
                             </div>
-                        </div>
-                        <hr />
-                        <div className="container-fluid">
-                            <div className="row">
-                                <JourneyThumbnail key={1} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={2} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={3} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={4} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={5} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={6} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={7} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={8} handleOpenModal={handleOpenModal} />
-                                <JourneyThumbnail key={9} handleOpenModal={handleOpenModal} />
-                                <AddNewJourney />
+                            <hr />
+                            <div className="container-fluid">
+                                <div className="row">
+                                    {journeys.map((journey) => {
+                                        return (<JourneyThumbnail key={journey.journey_id} handleOpenModal={handleOpenModal} journey={journey} setClickJourneyId={setClickJourneyId} />)
+                                    })}
+                                    <AddNewJourney />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <BotSidebar />
+                <JourneyModel handleCloseModal={handleCloseModal} calenderRef={calenderRef} calendarEditRef={calendarEditRef} journeyDetail={journeyDetail} setJourneyDetail={setJourneyDetail} clickJourneyId={clickJourneyId} />
+    
             </div>
-            <BotSidebar />
-            <JourneyModel handleCloseModal={handleCloseModal} />
-            {/* <MoreDropDown handleOpenModal={handleOpenModal}/> */}
-        </div>
+        </>
     );
 }
 
-export default Journey;
+export default withAuthorization(['user'])(Journey);

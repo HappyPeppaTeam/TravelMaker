@@ -1,34 +1,55 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
-const LoginModal = ({closeloginModal}) => {
+const LoginModal = ({ closeloginModal, onResponse, openMessageToast }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
-
-  
-    const login = () => {
-      const userData = {
-        username,
-        password,
-      };
-      // Send the data to the backend using Fetch API
-      fetch('http://localhost/public/api/login', {
-        method: 'POST',
+  const handleGoogle = () => {
+    window.location.href = 'http://localhost/TravelMaker/Backend/public/api/auth/google';
+  };
+  const login = async () => {
+    const userData = {
+      username,
+      password,
+    };
+    try {
+      const response = await axios.post('http://localhost/TravelMaker/Backend/public/api/login', userData, {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData),
-      })
-      .then(response => response.json())
-      .then(data => {
-        // Handle the response from the backend, if needed
-        console.log('Response from backend:', data);
-      })
-      .catch(error => {
-        // Handle error, if any
-        console.error('Error:', error);
+        withCredentials: true,
       });
-    };
+
+      if (!response.status === 200) {
+        throw new Error('Network response was not ok');
+      }
+
+      localStorage.setItem('username', userData.username);
+      const data = response.data.message;
+      // Handle the response from the backend, if needed
+      onResponse(data);
+      closeloginModal();
+      openMessageToast();
+      if (Cookies.get('role') === 'admin') {
+        window.location.href = 'http://localhost:3000/Admin';
+      }
+      console.log('Response from backend:', data, sessionStorage.getItem('username'));
+    } catch (error) {
+      // Handle error, if any
+      closeloginModal();
+      console.error(error);
+    }
+  };
+
+  const hoverPointerStyle = {
+    cursor: 'pointer',
+    color: 'blue',
+    transition: 'color 0.3s ease, transform 0.3s ease',
+    transform: 'scale(1)',
+  };
+
   return (
     <div className="modal fade" id="loginModal" tabIndex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
       <div className="modal-dialog">
@@ -48,9 +69,14 @@ const LoginModal = ({closeloginModal}) => {
             </div>
           </div>
           <div className="modal-footer justify-content-center">
-            快速登入：<i className="bi bi-google"></i>
+            <div>
+              <Link className="btn btn-link" to='/ForgotPassword' onClick={closeloginModal} >忘記密碼</Link>
+            </div>
+            <label htmlFor="quickLogin"> 快速登入：
+            <i className="bi bi-google" id="quickLogin" style={hoverPointerStyle} onClick={handleGoogle}></i>
+            </label>
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={login}>確認</button>
+            <button type="button" className="btn btn-primary" onClick={login}>確認</button>
           </div>
         </div>
       </div>

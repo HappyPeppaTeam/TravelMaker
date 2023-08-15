@@ -278,24 +278,36 @@ const StepFour = ({ calendarBrowseRef, formData }) => {
   const formStyle = {
     backgroundColor: 'rgb(178, 210, 232, 0.5)',
     minHeight: '500px',
+    borderRadius: '10px',
     // display: 'none'
+  }
+
+  const sectionStyle = {
+    backgroundColor: 'rgb(178, 210, 232, 0.5)',
+    minHeight: '100px',
+    borderRadius: '10px',
   }
 
 
 
   return (
-    <div id="newJourneyBrowse" className='rounded shadow p-3' style={formStyle}>
+    <div id="newJourneyBrowse" className='p-3' >
 
       <div id="browseCalendarContainer" className="w-100 mb-3" >
-        <h2>行程表</h2>
-        <div id="browserCalendar" ref={calendarBrowseRef}>
+        <h2 className='mb-3'>行程表</h2>
+        <div id="browserCalendar" ref={calendarBrowseRef} className='p-3 shadow' style={formStyle}>
 
         </div>
       </div>
-      <div id="browseTextContainer" className="w-100 mb-3" >
-        <h2>目的地: {formData.destination}</h2>
+      <div id="browseTextContainer" className="w-100 my-5" >
+        <h2>目的地: </h2>
+        <div className='shadow mb-5 d-flex align-items-center' style={sectionStyle}>
+          <p className='fs-2 ps-3'>{formData.destination}</p> 
+        </div>
         <h2>備註</h2>
-        <p>{formData.description}</p>
+        <div className='shadow mb-5' style={sectionStyle}>
+          <p>{formData.description}</p>
+        </div>
       </div>
       <div id="browseImageContainer" className="w-100 mb-3">
         <h2>相片</h2>
@@ -495,7 +507,7 @@ const NowJourneyForm = () => {
     destination: "",
     userId: 0,
     privacy: 0,
-    thumbnailId: 0,
+    thumbnailId: "images/taipei101.jpg",
     journeyStart: "",
     journeyEnd: "",
     images: [],

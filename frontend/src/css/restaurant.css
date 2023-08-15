@@ -44,7 +44,7 @@ aside {
     object-fit: cover;
 }
 
-.p-rest{
+.p-rest {
     padding: 30px 50px 0px 50px;
 }
 
@@ -53,6 +53,13 @@ aside {
     color: black;
 }
 
-.rest-main{
+.rest-main {
     min-height: 75.6vh;
+}
+
+
+.rest-dropdown-btn {
+    display: block;
+    border: none;
+    background-color: white;
 }

@@ -6,6 +6,7 @@ export default function Restaurant_main() {
     const { useState, useEffect } = React;
 
     const [attraction, setAttraction] = useState([{}]);
+    const [zipcode, setZipcode] = useState([{}]);
 
     console.log(attraction);
     useEffect(() => {
@@ -13,6 +14,11 @@ export default function Restaurant_main() {
             const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/restaurant`);
             console.log(response);
             setAttraction(response.data);
+        })();
+        (async () => {
+            const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/zipcode`);
+            console.log(response);
+            setZipcode(response.data);
         })();
     }, [])
     return (
@@ -42,6 +48,7 @@ export default function Restaurant_main() {
                     {attraction.map((item, index) => {
                         // 設定範圍，只渲染第1到第4筆資料
                         if (index >= 0 && index <= 3 && item.Name) {
+                            const matchedZipCode = zipcode.find(zip => zip.ZipCode === item.ZipCode);
                             return (
                                 <div className="col-xl-3 col-sm-6 p-3" key={item.ID}>
                                     <Link to="/restaurant/inner" style={{ 'text-decoration': 'none' }} state={item.ID}>
@@ -50,7 +57,9 @@ export default function Restaurant_main() {
                                             <div className="rest-container p-3">
                                                 <h5><b>{item.Name}</b></h5>
                                                 <p style={{ 'font-size': '0.875em' }}>營業時間:{item.OpenTime}</p>
-                                                <p>{item.Address.substring(0, 6)}</p>
+                                                {matchedZipCode && (
+                                                    <p>{matchedZipCode.City} {matchedZipCode.Area}</p>
+                                                )}
                                             </div>
                                         </div>
                                     </Link>

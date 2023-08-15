@@ -371,7 +371,7 @@ return response()->json($postMessage,200);
 });
 //get文章 boardTextId 下所有留言
 Route::get('/getMessage/{boardTextId}',function($boardTextId){
-$getMessage=DB::select('select mb.*, COALESCE(u.head_photo, \'default.jpg\') AS head_photo
+$getMessage=DB::select('select mb.*, COALESCE(u.head_photo, \'default.jpg\') AS head_photo , full_name
 FROM message_board mb
 LEFT JOIN users u ON mb.user_id = u.user_id
 WHERE mb.board_text_id = ?;',[$boardTextId]);

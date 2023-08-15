@@ -24,7 +24,6 @@ const ArticleComponents = () => {
             <h1>{articleData.text_title}</h1>
             <div className="Article-information-main-header-item">
               <span>{articleData.Posting_time}</span>
-              <span>點閱率</span>
             </div>
           </div>
           <hr />

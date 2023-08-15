@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../css/MessageBoard.css";
+import "../css/MessageBoard.css"; 
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import Cookies from 'js-cookie';
@@ -113,7 +113,7 @@ const MessageBoardInput = ({ board_text_id }) => {
                 <img src={`http://localhost/TravelMaker/Backend/public/storage/${messageData.head_photo}`} alt="" />
               </div>
               <div className="Message-user">
-                <div className="Username">{`${messageData.user_id}`}</div>
+                <div className="Username">{`${messageData.full_name}`}</div>
                 <div className="MessageTime">{messageData.message_time}</div>
               </div>
             </div>

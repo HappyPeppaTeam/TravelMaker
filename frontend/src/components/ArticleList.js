@@ -9,7 +9,6 @@ const DiscussionArticleList = ({Article}) => {
                 <tr>
                     <th>標題</th>
                     <th>作者</th>
-                    <th>點閱率</th>
                     <th>發表日期</th>
                 </tr>
                 {Article.map((article) => (
@@ -26,7 +25,6 @@ const DiscussionArticleList = ({Article}) => {
                             </Link>
                         </td>
                         <td className="discussion-page-list-author">{article.full_name}</td>
-                        <td className="discussion-page-list-views">100</td>
                         <td className="discussion-page-list-date">{article.Posting_time}</td>
                     </tr>
                 ))}

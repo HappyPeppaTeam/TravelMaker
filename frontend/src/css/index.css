@@ -44,10 +44,6 @@ body {
   object-fit: cover;
 }
 
-.card {
-  border-radius: 20px;
-}
-
 .card img {
   object-fit: cover;
 }
@@ -77,6 +73,7 @@ body {
 
 .cardShadow {
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  border-radius: 20px;
 }
 
 .cardLink:hover .cardShadow {
@@ -151,4 +148,19 @@ body {
   height: 10px;
   background: #6BB3E3;
   border-radius: 5px;
+}
+
+.description {
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2; /*行數*/
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.spotCard {
+  height: 375px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }

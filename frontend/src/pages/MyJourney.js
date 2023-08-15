@@ -13,6 +13,7 @@ import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import { Modal } from 'bootstrap';
 import moment from 'moment';
+import withAuthorization from '../hook/withAuthorization';
 
 
 function useImage() {
@@ -844,4 +845,4 @@ const MyJourney = () => {
     )
 }
 
-export default MyJourney;
+export default withAuthorization(['user'])(MyJourney);

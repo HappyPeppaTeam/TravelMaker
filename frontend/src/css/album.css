@@ -6,6 +6,12 @@
 .albumLink:hover .card-title {
     bottom: 20px;
     transform: scale(1.2);
+    color: black;
+}
+
+.albumLink:hover .album {
+    transform: scale(1.04);
+    transition: all .4s;
 }
 
 .albumBody {
@@ -16,6 +22,8 @@
     position: absolute;
     bottom: 0;
     transition: all .4s;
+    color: rgb(70, 68, 68);
+    text-shadow: 1px 1px 2px pink;
 }
 
 .wrap img{

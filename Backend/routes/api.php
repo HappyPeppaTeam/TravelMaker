@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <?php
 
+
 use App\Http\Controllers\JourneyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -9,7 +10,11 @@ use App\Http\Controllers\AlbumController;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
+use App\Mail\ResetPasswordMail;
 use Illuminate\Support\Facades\Redirect;
+
 
 
 /*
@@ -194,6 +199,7 @@ Route::post('/login', function (Request $request) {
     $hashedPasswordFromDB = $user_result[0]->password;
     if (password_verify($password, $hashedPasswordFromDB)) {
         $setToken = DB::select('call set_token(?);', [$userName]);
+        $getFullName = DB::select('select full_name from users where token = ?',[$setToken[0]->token]);
         $getUserId = DB::select('select user_id from users where token = ?',[$setToken[0]->token]);
         $data = [
             "message" => "登入成功",
@@ -205,6 +211,7 @@ Route::post('/login', function (Request $request) {
     }
     setcookie('token',$setToken[0]->token,time() + 3600,'/');
     setcookie('username',$userName,time() + 3600,'/');
+    setcookie('fullName',$getFullName[0]->full_name,time() + 3600,'/');
     setcookie('userId',$getUserId[0]->user_id,time() + 3600,'/');
        return response()->json($data, 200);
         // 哈希值匹配，可以认为用户提供的密码是正确的
@@ -245,10 +252,32 @@ Route::post('/postimgurl', function (Request $request) {
 // by cookie/token get profile data
 Route::post('/profile',function(Request $request){  
 $token = $request['token'];
-$getProfile = DB::select("select user_name,full_name,nick_name,email,birthday,gender,head_photo from users where token= ?",[$token]);
+$getProfile = DB::select("select 
+user_name,full_name,nick_name,email,
+birthday,password,gender,
+head_photo 
+from users where token= ?",[$token]);
 $getProfile[0]->head_photo =  Storage::url("{$getProfile[0]->head_photo}");
 return response()->json($getProfile,200);
 });
+
+// by cookie/token update profile data
+Route::post('/updateProfile',function(Request $request){  
+    $formData = $request->all();
+    $token = $request['token'];
+    unset($formData['token']);
+    $query = DB::table('users');
+    foreach ($formData as $key => $value) {
+        if ($key === 'password') {
+            // 雜湊密碼並更新
+            $value = Hash::make($value);
+        }
+        $query
+        ->where('token', $token)
+        ->update([$key => $value]);
+    }
+    return response()->json(['message' => 'Data updated successfully']);
+    });
 
 //admin get all user
 Route::get('/getAllProfileData',function(Request $request){  
@@ -277,10 +306,30 @@ Route::get('/getArticle/{discussionBoardArea}', function($discussionBoardArea){
     return response()->json($getArticle,200);
 });
 
+Route::get('/getBoardTextAndImage',function() {
+    $data = DB::select(
+    'SELECT 
+    board_text.*, 
+    users.full_name,
+    users.user_name,
+    COALESCE(board_image.image_path, \'default_image_path\') AS image_path
+        FROM board_text
+        JOIN users ON board_text.Posting_user_id = users.user_id
+        LEFT JOIN (
+            SELECT 
+            board_text_id,
+            MIN(image_path) AS image_path -- 選擇其中一筆圖片（這裡使用最小的 image_path）
+            FROM board_image
+        GROUP BY board_text_id
+    ) board_image ON board_text.board_text_id = board_image.board_text_id;'); 
+    return response()->json($data);
+});
+
 Route::get('/getBoardText/{boardText_id}', function ($board_text_id) {
     // 取得 board_text 資料及關聯的使用者名稱
     $boardText = DB::table('board_text')
-        ->select('board_text.text_title', 'board_text.text', 'board_text.Posting_time', 'users.full_name')
+        ->select('board_text.text_title', 'board_text.text', 'board_text.Posting_time', 
+        'users.full_name','users.head_photo','users.register_time')
         ->join('users', 'board_text.Posting_user_id', '=', 'users.user_id')
         ->where('board_text.board_text_id', $board_text_id)
         ->first();
@@ -302,6 +351,8 @@ Route::get('/getBoardText/{boardText_id}', function ($board_text_id) {
         'text' => $boardText->text,
         'Posting_time' => $boardText->Posting_time,
         'full_name' => $boardText->full_name,
+        'register_time' => $boardText->register_time,
+        'head_photo' => $boardText->head_photo,
         'images' => $imageArray,
     ];
 
@@ -319,7 +370,10 @@ return response()->json($postMessage,200);
 });
 //get文章 boardTextId 下所有留言
 Route::get('/getMessage/{boardTextId}',function($boardTextId){
-$getMessage=DB::select('select * from message_board where board_text_id = ?',[$boardTextId]);
+$getMessage=DB::select('select mb.*, COALESCE(u.head_photo, \'default.jpg\') AS head_photo
+FROM message_board mb
+LEFT JOIN users u ON mb.user_id = u.user_id
+WHERE mb.board_text_id = ?;',[$boardTextId]);
 return response()->json($getMessage,200);
 });
 
@@ -439,3 +493,28 @@ Route::post('/createBoardText', function (Request $request) {
 
     return response()->json($responseData, 201); // 201 Created status code
 });
+Route::post('/forgotPassword', [ForgotPasswordController::class,'sendResetLink']);
+
+Route::post('/resetPassword', [ResetPasswordController::class,'resetPassword']);
+Route::get('/typeid',function() {
+    $data = DB::select('SELECT * FROM typeid'); 
+    return response()->json($data);
+});
+
+Route::get('/attraction/{typeid}',function($typeid) {
+    $data = DB::select('SELECT * FROM attraction WHERE TypeID = ?',[$typeid]); 
+    return response()->json($data);
+});
+
+Route::get('/spotSummary',function(){
+    $data = DB::select('SELECT attraction.Name,attraction.Description,attraction.PictureUrl1,typeid.ChineseType FROM attraction JOIN typeid ON attraction.TypeID = typeid.TypeID');
+    return response()->json($data);
+});
+
+Route::get('/getMessagerPhoto',function(Request $request){
+    $userId=$request['userId'];
+    $userPhoto=DB::select('select head_photo form users where user_id = ?',[$userId]);
+});
+
+
+

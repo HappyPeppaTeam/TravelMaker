@@ -49,7 +49,6 @@ class AlbumController extends Controller
                 'description' => $description,
                 'user_id' => $user_id,
             ]);
-
             // 處理上傳的相片內容
             if ($request->has('images')) {
                 // $photos = $request->input('photos');

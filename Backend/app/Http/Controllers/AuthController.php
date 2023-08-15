@@ -62,28 +62,49 @@ return Redirect::route('google.register',[
         // return redirect('https://localhost:3000'); // 重新導向到前端應用
     }
     
+    
+
     public function googleRegister($googleId, $fullName, $email){
+         function generateRandomUsername($length = 8) {
+            $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            $username = '';
+            
+            for ($i = 0; $i < $length; $i++) {
+                $randomIndex = mt_rand(0, strlen($characters) - 1);
+                $username .= $characters[$randomIndex];
+            }
+            
+            return $username;
+        }
         $quickRegisterResult=DB::select('select count(*) as result from users where google_id = ?',[$googleId]);
         if ($quickRegisterResult[0]->result>0) {
             $quickRegisterResult='register already';
             $setToken= DB::select('call set_token_google(?);',[$googleId]);
+            $getFullName=DB::select('select full_name from users where google_id = ?',[$googleId]);
                     setcookie('token',$setToken[0]->token,time() + 3600,'/');
+                    setcookie('fullName',$getFullName[0]->full_name,time() + 3600,'/');
+                    setcookie('role','user',time() + 3600,'/');
                     return redirect('http://localhost:3000/memberCenter?register already');
         }else{
+            $randomUsername = generateRandomUsername();
             date_default_timezone_set('Asia/Taipei');
             $registerTime = date("Y-m-d H:i:s");
-                DB::select('insert into users(email,full_Name,google_id,register_time)
-                VALUES (?, ?, ?, ?);',
+                DB::select('insert into users(email,full_Name,google_id,register_time,user_name)
+                VALUES (?, ?, ?, ? ,?);',
                 [
                 $email,
                 $fullName,
                 $googleId,
-                $registerTime]);
+                $registerTime,
+                $randomUsername]);
                 $quickRegisterResult=DB::select('select count(*) as result from users where google_id = ?',[$googleId]);
                 if ($quickRegisterResult[0]->result>0) {
                     $quickRegisterResult='resgister success';
                     $setToken= DB::select('call set_token_google(?);',[$googleId]);
+                    $getFullName=DB::select('select full_name from users where google_id = ?',[$googleId]);
                     setcookie('token',$setToken[0]->token,time() + 3600,'/');
+                    setcookie('fullName',$getFullName[0]->full_name,time() + 3600,'/');
+                    setcookie('role','user',time() + 3600,'/');
                     return redirect('http://localhost:3000/memberCenter?resgister success');
                 }
         }

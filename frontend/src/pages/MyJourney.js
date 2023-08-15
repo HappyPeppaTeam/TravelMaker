@@ -134,7 +134,7 @@ function JourneyThumbnail({ journey, setShow, setClickJourney, setPageTitle, set
         // .catch(error => console.error("Error: ", error));
         // modify ------------ //
 
-
+        
 
         setClickJourney(journey.journey_id);
         setPageTitle(journey.journey_name);

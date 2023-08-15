@@ -22,6 +22,23 @@ class JourneyController extends Controller
         return response()->json($journeyData);
     }
 
+    function getJourneyId(Request $request){
+
+        try {
+            $title = $request['title'];
+            $userId = $request['user_id'];
+    
+            $result = DB::select(
+                "select journey_id from journey where journey_name = ? and user_id = ?"
+            , [$title, $userId])[0];
+    
+            return response()->json($result);
+        }
+        catch (Exception $e){
+            return response("Error: " . $e->getMessage(), 404);
+        }
+    }
+
     function getJourneyEvents(Request $request)
     {
         $journeyId = $request['journey_id'];
@@ -159,7 +176,7 @@ class JourneyController extends Controller
             $events = $request['events'];
 
             if ($isUpdate) {
-                $isUpdateEvents = $this->updateEvents($journeyId, $events);
+                $isUpdateEvents = $this->updateEvents2($journeyId, $events);
                 return response("Update journey ID:{$journeyId} Name:{$journeyName} successfully");
             } else {
                 return response("Error: not found journey ID:{$journeyId} Name:{$journeyName}", 500);
@@ -175,6 +192,22 @@ class JourneyController extends Controller
         try {
             $journeyId = $request['journey_id'];
             $events = $request['events'];
+            $isDelete = $this->deleteEvents($journeyId);
+            $isUpdate = $this->addNewEvents($journeyId, $events); 
+
+            return response("Update journey events successfully.isDelete: {$isDelete}, isUpdate: {$isUpdate}");
+        }
+        catch (Exception $e) {
+            return response("Error updating events: " . $e->getMessage(), 500);
+        }
+
+        
+    }
+
+    function updateEvents2($journeyId, $events)
+    {
+
+        try {
             $isDelete = $this->deleteEvents($journeyId);
             $isUpdate = $this->addNewEvents($journeyId, $events); 
 
@@ -216,9 +249,11 @@ class JourneyController extends Controller
             }
 
             if ($uploadCount > 0){
+                DB::commit();
                 return response()->json(['message' => "{$uploadCount} files uploaded successfully"]);
             }
             else {
+                DB::rollBack();
                 return response()->json(['message' => 'No valid files uploaded'], 400);
             }
 
@@ -226,18 +261,28 @@ class JourneyController extends Controller
 
 
         return response()->json(['message' => 'No files uploaded'], 400);
-        // $imagesData = $request['images'];
+        
+    }
 
-        // if ($request->hasFile('image')) {
-        //     $image = $request->file('image');
-        //     $path = $image->store('images', 'public'); // 將圖片儲存在storage/app/public/images資料夾中
-        //     // DB::select('update users set head_photo = ? where token = ?'.['testpath',$token]);
-        //     DB::update('update users set head_photo = ? where token = ?', [$path, $token]);
+    function getImage(Request $request){
+        
+        try {
 
-        //     return response()->json(['message' => '圖片上傳成功', 'path' => $path]);
-        // }
-
-        // return response()->json(['message' => '未收到圖片'], 400);
+            $journeyId = $request['journey_id'];
+    
+            $result = DB::select(
+                "select * from journey_image where journey_id = ?"
+            , [$journeyId]);
+    
+            if(!$result) {
+                return response("No image founded.");
+            }
+    
+            return response()->json($result);
+        }
+        catch (Exception $e) {
+            return response("Error get journey image: " . $e->getMessage(), 500);
+        }
     }
 }
 

@@ -104,7 +104,7 @@ const AddNewJourney = () => {
 }
 
 
-function JourneyThumbnail({ journey, setShow, setClickJourney, setPageTitle }) {
+function JourneyThumbnail({ journey, setShow, setClickJourney, setPageTitle, setJourneyData }) {
 
     const thumbNailStyle = {
         backgroundImage: 'url(../images/street.jpg)',
@@ -115,6 +115,26 @@ function JourneyThumbnail({ journey, setShow, setClickJourney, setPageTitle }) {
 
     const handleThumbnailClick = (e) => {
         e.preventDefault();
+
+        // modify ------------ //
+        // const reqImgUrl = "http://localhost/TravelMaker/Backend/public/api/getJourneyImages"; 
+        // axios.get(reqImgUrl, {
+        //     params: {
+        //         journey_id: journey.journey_id
+        //     }
+        // })
+        // .then(response => {
+        //     setJourneyData((prevData) => ({
+        //         ...prevData,
+        //         images: response.data || [],
+        //     }))
+        //     console.log(response.data);
+        // })
+        // .catch(error => console.error("Error: ", error));
+        // modify ------------ //
+
+
+
         setClickJourney(journey.journey_id);
         setPageTitle(journey.journey_name);
         setShow(2);
@@ -226,7 +246,7 @@ const JourneyDetail = ({ setShow, journeyData, calendarViewRef, setPageTitle }) 
             <div id="browseCalendarContainer" className="w-100 mb-5" >
                 <div className='d-flex align-items-center'>
                     <h2 className='mb-3'>行程表</h2>
-                    <a className='ms-auto fs-3' style={editLinkStyle}
+                    <a className='ms-auto fs-3' style={editLinkStyle} href='/#'
                         onClick={handleEditView}><i className="bi bi-pencil-square"></i><span className='ms-2'>編緝</span></a>
                 </div>
                 <div className='shadow p-3' style={browserCalendarStyle}>
@@ -245,10 +265,20 @@ const JourneyDetail = ({ setShow, journeyData, calendarViewRef, setPageTitle }) 
                 <h2 className='mb-3'>相片</h2>
                 <div className='shadow p-3' style={imageViewStyle}>
                     <div className='row g-2'>
-                        {/* {formData.images.map((image, index) => (
-                            <div className='col-3' >
+                        {/* {console.log(journeyData.images)} */}
+                        {/* {journeyData.images && journeyData.images.map((image, index) => (
+                            <img key={index} src={`http://localhost/TravelMaker/Backend/storage/app/public/${image.image_url}`}></img>
+                        ))} */}
+                        {/* {journeyData.images && journeyData.images.map((image, index) => (
+                            <div className='col-3'>
+                                <img className='img-fluid' key={index} src={`http://localhost/TravelMaker/Backend/storage/app/public/${image.image_url}`}></img>
+                            </div>
+                        ))} */}
+                        {/* {journeyData.images && journeyData.images.map((image, index) => (
+
+                            <div className='col-3 rounded shadow' >
                                 <div style={{
-                                    backgroundImage: `url(${image.url})`,
+                                    backgroundImage: `url(http://localhost/TravelMaker/Backend/storage/app/public/${image.image_url})`,
                                     backgroundSize: 'cover',
                                     height: '200px',
                                 }}></div>
@@ -266,7 +296,7 @@ const JourneyDetail = ({ setShow, journeyData, calendarViewRef, setPageTitle }) 
 
 
 
-const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef, setPageTitle, calendarEditViewObj }) => {
+const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef, setPageTitle, calendarEditViewObj, setUploadImg, uploadImg, journeys, setJourneys}) => {
 
     const editFormStyle = {
         borderRadius: '10px',
@@ -283,16 +313,21 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
         setShow(2);
     }
 
-    const { images, imagesData, handleUpload, handleRemove, handleRemoveAll, inputRef } = useImage();
+    const { images, imagesData, handleUpload, handleRemove, inputRef } = useImage();
 
-
+    
     useEffect(() => {
-        setJourneyData((prevData) => ({
-            ...prevData,
+        // setJourneyData((prevData) => ({
+        //     ...prevData,
+        //     images: images,
+        //     imagesData: imagesData
+        // }))
+
+        setUploadImg({
             images: images,
             imagesData: imagesData
-        }))
-    }, [journeyData])
+        });
+    }, [images, imagesData])
 
 
     const handleTitleChange = (e) => {
@@ -321,6 +356,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
     }
 
     const handleUpdateSubmit = (e) => {
+        
         e.preventDefault();
 
         const updateEvents = calendarEditViewObj.current.getEvents().map(({ title, start, end, extendedProps }) => ({
@@ -330,7 +366,53 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
             description: extendedProps.description
         }));
 
-        console.log(updateEvents);
+        // console.log(updateEvents);
+
+        const requestData = {
+            journey_id: journeyData.journeyId,
+            title: journeyData.title,
+            description: journeyData.description,
+            user_id: journeyData.userId,
+            privacy: journeyData.privacy,
+            thumbnail_id: journeyData.thumbnailId,
+            events: updateEvents
+        }
+
+        const reqUrl = "http://localhost/TravelMaker/Backend/public/api/updateJourney";
+        
+        axios.put(reqUrl, requestData)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.error("Error: ", error);
+        });
+
+        
+
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+
+        const reqUrl = "http://localhost/TravelMaker/Backend/public/api/deleteJourney";
+        
+        axios.delete(reqUrl, {
+            params: {
+                journey_id: journeyData.journeyId
+            }
+        })
+        .then(response => {
+            console.log(response);
+        })
+        .then(() => {
+            const wantedJourneys = journeys.filter(journey => journey.journey_id != journeyData.journeyId);
+            setJourneys(wantedJourneys);
+            setShow(1);
+        })
+        .catch(error => {
+            console.error("Error: ", error);
+        })
 
     }
 
@@ -339,7 +421,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
     return (
         <>
             <div className='d-flex mb-3'>
-                <div className='ms-auto text-danger fs-4'><i class="bi bi-trash3"></i><span>刪除</span></div>
+                <div className='ms-auto text-danger fs-4' onClick={handleDelete}><i className="bi bi-trash3"></i><span>刪除</span></div>
             </div>
             <div id="newJourneyForm1" className='p-3 shadow bg-light mb-3' style={editFormStyle}>
                 <div className="my-3">
@@ -446,7 +528,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
 const MyJourney = () => {
 
 
-
+   
 
     const containerStyle = {
         minHeight: 'calc(100vh - 96px)',
@@ -464,9 +546,14 @@ const MyJourney = () => {
         thumbnailId: "",
         events: [],
         images: [],
-        imagesData: [],
+        // imagesData: [],
 
     });
+
+    const [uploadImg, setUploadImg] = useState({
+        images: [],
+        imagesData: [],
+    })
 
     const [journeys, setJourneys] = useState([{
         journey_name: "123",
@@ -535,7 +622,29 @@ const MyJourney = () => {
             .catch((error) => {
                 console.error('Axios error:', error);
             })
+        
+        // get images API
+        // const reqImgUrl = "http://localhost/TravelMaker/Backend/public/api/getJourneyImages"; 
+        // axios.get(reqImgUrl, {
+        //     params: {
+        //         journey_id: journeyData.journeyId
+        //     }
+        // })
+        // .then(response => {
+        //     setJourneyData((prevData) => ({
+        //         ...prevData,
+        //         images: response.data || []
+        //     }))
+        //     console.log(response.data);
+        // })
+        // .catch(error => console.error("Error: ", error));
+        
+
+
     }, [clickJourney, journeys])
+
+
+    
 
     // set page title 
     const [pageTitle, setPageTitle] = useState("我的行程");
@@ -700,15 +809,15 @@ const MyJourney = () => {
                 <div className='container rounded my-4' style={containerStyle}>
                     <div className='d-flex align-items-end'>
                         <h1 className='mb-0'>{pageTitle}</h1>
-                        <div className='ms-auto'>
-                           <Link to="/journey/newjourney" className='fs-4' style={linkStyle}><i className="bi bi-plus-lg"></i><span className="ms-1">建立行程</span></Link>
-                        </div>
+                        {show === 1 && <div className='ms-auto'>
+                           <Link to="/journey/newjourney" className='fs-4 add-journey-link' style={linkStyle}><i className="bi bi-plus-lg"></i><span className="ms-1">建立行程</span></Link>
+                        </div>}
                     </div>
                     <hr></hr>
                     {show === 1 && <div className='container'>
                         <div className='row'>
                             {journeys.map((journey, index) => (
-                                <JourneyThumbnail key={index} journey={journey} setShow={setShow} setClickJourney={setClickJourney} setPageTitle={setPageTitle} />
+                                <JourneyThumbnail key={index} journey={journey} setShow={setShow} setClickJourney={setClickJourney} setPageTitle={setPageTitle} setJourneyData={setJourneyData}/>
                             ))}
                             {/* <JourneyThumbnail /> */}
                             <AddNewJourney />
@@ -716,7 +825,7 @@ const MyJourney = () => {
                     </div>}
 
                     {show === 2 && <JourneyDetail setShow={setShow} journeyData={journeyData} calendarViewRef={calendarViewRef} setPageTitle={setPageTitle} />}
-                    {show === 3 && <JourneyEdit setShow={setShow} journeyData={journeyData} calendarEditViewRef={calendarEditViewRef} setJourneyData={setJourneyData} setPageTitle={setPageTitle} calendarEditViewObj={calendarEditViewObj} />}
+                    {show === 3 && <JourneyEdit setShow={setShow} journeyData={journeyData} calendarEditViewRef={calendarEditViewRef} setJourneyData={setJourneyData} setPageTitle={setPageTitle} calendarEditViewObj={calendarEditViewObj} uploadImg={uploadImg} setUploadImg={setUploadImg} journeys={journeys} setJourneys={setJourneys}/>}
                     <EventAddModal modalTitle={modalTitle} handleModalSave={handleModalSave} handleCloseModal={handleCloseModal} handleRemoveEvent={handleRemoveEvent} addEvent={addEvent} setAddEvent={setAddEvent} />
                 </div>
             </div>

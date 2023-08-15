@@ -344,13 +344,16 @@ Route::get('/auth/google/login', [AuthController::class,'googleLogin'])->name('g
 // Journey Api
 
 Route::get('/getJourneys',[JourneyController::class, 'getUserJourneys']);
+Route::get('/getJourneyId',[JourneyController::class, 'getJourneyId']);
+
 Route::get('/getEvents',[JourneyController::class, 'getJourneyEvents']);
 Route::post('/addJourney',[JourneyController::class, 'addNewJourney']);
 Route::delete('/deleteJourney',[JourneyController::class, 'deleteJourney']);
 Route::put('/updateJourney', [JourneyController::class, 'updateJourney']);
 Route::post('/addEvents', [JourneyController::class, 'addNewEvents']);
 Route::post('/updateEvents', [JourneyController::class, 'updateEvents']);
-
+Route::post('/uploadJourneyImages', [JourneyController::class, 'uploadImage']);
+Route::get('/getJourneyImages', [JourneyController::class, 'getImage']);
 
 
 

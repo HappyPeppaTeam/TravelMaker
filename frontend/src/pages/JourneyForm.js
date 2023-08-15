@@ -11,7 +11,7 @@ import { Modal } from 'bootstrap';
 
 import Sidebar from '../components/Sidebar';
 import BotSidebar from '../components/BotSidebar';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import '../css/createAlbum.css';
 
 
@@ -20,7 +20,7 @@ function useImage() {
   const [images, setImages] = useState([]);
   const [imagesData, setImagesData] = useState([]);
 
-  console.log(imagesData);
+  // console.log(imagesData);
   // 上傳圖片
   const handleUpload = (e) => {
     const images = [...e.target.files].map((file) => {
@@ -197,7 +197,7 @@ const StepThree = ({ formData, setFormData }) => {
     }))
   }
 
-  const { images, imagesData, handleUpload, handleRemove, handleRemoveAll, inputRef } = useImage();
+  const { images, imagesData, handleUpload, handleRemove, inputRef } = useImage();
 
   useEffect(() => {
     setFormData((prevData) => ({
@@ -211,8 +211,7 @@ const StepThree = ({ formData, setFormData }) => {
     <div id="newJourneyForm3" className='p-3 shadow rounded' style={formStyle}>
       <div className="mb-3">
         <div className="mb-3">
-          <div className="mb-1">加入圖片</div>
-          <label htmlFor="formFileMultiple" className="form-label">本機上傳</label>
+          <label htmlFor="formFileMultiple" className="form-label">圖片上傳</label>
           {/* <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*' ref={inputRef} onChange={handleUpload}/> */}
           <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*'
             onChange={(e) => {
@@ -226,7 +225,7 @@ const StepThree = ({ formData, setFormData }) => {
             {images.map((image, index) => {
               return (
                 <div className='col' key={index}>
-                  <img className='selectedImg w-100' src={image.url} />
+                  <img className='selectedImg w-100' src={image.url} alt={image.name}/>
                   <div className='imgInfo'>
                     <div className='fileName w-100 d-flex justify-content-between align-items-center'>
                       <p className='m-0 py-2 text-white text-center'>{image.name}</p>
@@ -238,28 +237,7 @@ const StepThree = ({ formData, setFormData }) => {
             })}
           </div>
 
-          <label htmlFor="fromAlbum" className="form-label">相簿上傳</label>
-
-          <div className="input-group mb-3">
-            <button className="btn btn-outline-secondary dropdown-toggle" data-bs-auto-close="outside"
-              data-bs-toggle="dropdown" type="button" id="fromAlbum" aria-expanded="false">
-              選擇相簿
-            </button>
-            <ul className="dropdown-menu" id="albumMenu">
-
-              <li><a className="dropdown-item" href="#" data-bs-toggle="modal"
-                data-bs-target="#albumModal">新北兩日遊</a></li>
-              <li><a className="dropdown-item" href="#" data-bs-toggle="modal"
-                data-bs-target="#albumModal">金瓜石之旅</a></li>
-              <li><a className="dropdown-item" href="#" data-bs-toggle="modal"
-                data-bs-target="#albumModal">安平好熱</a></li>
-              <li><a className="dropdown-item" href="#">我的收藏</a></li>
-
-            </ul>
-            <input type="text" className="form-control" placeholder="" aria-label="Example text with button addon"
-              aria-describedby="button-addon1" />
-          </div>
-
+          
           <div className="container-fluid mt-3" id='imageContainer'></div>
         </div>
 
@@ -489,7 +467,7 @@ const NowJourneyForm = () => {
       console.log(formData);
     }
 
-    if (step == 3) {
+    if (step === 3) {
 
       const currentEvents = calendarObjRef.current.getEvents().map(({ title, start, end, extendedProps }) => ({
         title: title,
@@ -632,17 +610,103 @@ const NowJourneyForm = () => {
       user_id: formData.userId
     };
 
-    console.log(requestData);
+    
+    // get journeyId request data
+
+    const reqJourneyIdUrl = `http://localhost/TravelMaker/Backend/public/api/getJourneyId`;
+    const reqJourneyIdParams = {
+      title: formData.title,
+      user_id: formData.userId
+    }
+
+     // get upload image request data
+    const reqImgUploadUrl = "http://localhost/TravelMaker/Backend/public/api/uploadJourneyImages";
+    const imageReqForm = new FormData();
+
+    
+    
+    formData.imagesData.forEach((image, index) => {
+      imageReqForm.append(`images[${index}]`, image);
+    });
+
+
 
     axios.post(reqUrl, requestData)
       .then(response => {
         console.log("response: ", response.data);
-        window.location = "http://localhost:3000/journey";
+        return  axios.get(reqJourneyIdUrl, {
+          params: reqJourneyIdParams
+        })
       })
+      .then(response => {
+        const journeyId = response.data['journey_id'];
+        imageReqForm.append('journey_id', journeyId);
+        return axios.post(reqImgUploadUrl, imageReqForm);
+      })
+      .then(uploadResponse => {
+        console.log(uploadResponse); 
+      })
+      .then(() => {
+        window.location = "http://localhost:3000/journey";
+      }) 
       .catch(error => {
         console.error("Error: ", error);
-      });
+      })
+      
 
+    
+    
+    
+
+    // axios.get(reqJourneyIdUrl, {
+    //   params: reqJourneyIdParams
+    // })
+    // .then(response => {
+    //   const journeyId = response.data['journey_id'];
+    //   imageReqForm.append('journey_id', journeyId);
+    //   return axios.post(reqImgUploadUrl, imageReqForm);
+    // })
+    // .then(uploadResponse => {
+    //   console.log(uploadResponse); 
+    // })
+    // .then(() => {
+    //   window.location = "http://localhost:3000/journey";
+    // }) 
+    // .catch(error => {
+    //   console.error("Error: ", error);
+    // })
+
+
+    // axios.get(reqJourneyIdUrl, {
+    //   params: reqJourneyIdParams
+    // })
+    // .then(response => {
+    //   journeyId = response.data['journey_id'];
+    //   // console.log(response.data);
+    // })
+    // .catch(error => {
+    //   console.error("Error: ", error);
+    // });
+
+    
+    // axios.post(reqImgUploadUrl, imageReqForm)
+    // .then(response => {
+    //   console.log(response);
+    // })
+    // .catch(error => {
+    //   console.error("Error: ", error);
+    // });
+
+   
+
+
+    
+
+
+
+    // console.log(formData.imagesData);
+    // console.log(imageReqForm.get('images'));
+    // window.location = "http://localhost:3000/journey";
     
   }
 

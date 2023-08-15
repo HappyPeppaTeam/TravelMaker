@@ -124,7 +124,7 @@ function ArticleEditor() {
         });
         const response = await axios.post('http://localhost/TravelMaker/Backend/public/api/createBoardText', ArticleData);
         if (response.data) {
-            console.log("post成功！")
+            alert('文章發布成功！');
         } else {
             console.log("post Miss!")
         }

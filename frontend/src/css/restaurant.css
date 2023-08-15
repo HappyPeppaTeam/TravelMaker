@@ -2,18 +2,18 @@
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.container {
+.rest-container {
     padding: 2px 16px;
 }
 
-.card {
+.rest-card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     width: auto;
     border-radius: 5px;
 }
 
-.card img {
+.rest-card img {
     width: 100%;
     height: 25vh;
     border-radius: 5px
@@ -21,32 +21,6 @@
     ;
 }
 
-form.example input[type=text] {
-    padding: 10px;
-    /* font-size: 17px; */
-    border: 1px solid grey;
-    float: left;
-    width: 80%;
-    background: #f1f1f1;
-    border-radius: 100px 0 0 100px;
-}
-
-form.example button {
-    float: left;
-    width: 20%;
-    padding: 10px;
-    background: #2196F3;
-    color: white;
-    /* font-size: 17px; */
-    border: 1px solid grey;
-    border-left: none;
-    /* cursor: pointer; */
-    border-radius: 0 100px 100px 0;
-}
-
-form.example button:hover {
-    background: #0b7dda;
-}
 
 .search-banner {
     height: 27vh;
@@ -70,11 +44,22 @@ aside {
     object-fit: cover;
 }
 
-.p-rest{
+.p-rest {
     padding: 30px 50px 0px 50px;
 }
 
 .rm-link-style {
     text-decoration: none;
     color: black;
+}
+
+.rest-main {
+    min-height: 75.6vh;
+}
+
+
+.rest-dropdown-btn {
+    display: block;
+    border: none;
+    background-color: white;
 }

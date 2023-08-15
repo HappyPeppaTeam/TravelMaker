@@ -8,7 +8,7 @@ import 'aos/dist/aos.css';
 
 const { useEffect } = React;
 
-const article = await axios.get(`http://localhost/TravelMaker/Backend/public/api/getBoardText`);
+const article = await axios.get(`http://localhost/TravelMaker/Backend/public/api/getBoardTextAndImage`);
 console.log(article.data);
 const spot = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction`);
 
@@ -119,7 +119,7 @@ const TravelPlan = ({data}) => {
         <div className="row g-0">
           <div className="col-lg-4">
             <img
-              src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+              src={`http://localhost/TravelMaker/Backend/public/storage/${data.image_path}`}
               className="img-fluid round h-100"
               alt="..."
             />

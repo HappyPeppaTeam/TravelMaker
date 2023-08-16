@@ -15,6 +15,8 @@ import { Modal } from 'bootstrap';
 import moment from 'moment';
 import withAuthorization from '../hook/withAuthorization';
 
+const DEFUALT_IMG_URL = "http://localhost/TravelMaker/Backend/storage/app/public/images/defaultJourney.jpg";
+
 
 function useImage() {
     const inputRef = useRef(null);
@@ -108,8 +110,8 @@ const AddNewJourney = () => {
 function JourneyThumbnail({ journey, setShow, setClickJourney, setPageTitle, setJourneyData }) {
 
     const thumbNailStyle = {
-        // backgroundImage: 'url(../images/street.jpg)',
-        backgroundImage: `url(http://localhost/TravelMaker/Backend/storage/app/public/${journey.thumbnail_id?journey.thumbnail_id:"images/taipei101.jpg"})`,
+        backgroundImage: journey.thumbnail_id? `url(http://localhost/TravelMaker/Backend/storage/app/public/${journey.thumbnail_id})` : `url(${DEFUALT_IMG_URL})`,
+        backgroundPosition: 'center',
         backgroundSize: 'cover',
         height: '200px',
         width: '100%',
@@ -267,66 +269,9 @@ const JourneyDetail = ({ setShow, journeyData, calendarViewRef, setPageTitle }) 
                 <h2 className='mb-3'>相片</h2>
                 <div className='shadow p-3' style={imageViewStyle}>
                     <div className='row g-2'>
-                        {/* {console.log(journeyData.images)} */}
-                        {/* {journeyData.images && journeyData.images.map((image, index) => (
-                            <img key={index} src={`http://localhost/TravelMaker/Backend/storage/app/public/${image.image_url}`}></img>
-                        ))} */}
-                        {/* {journeyData.images && journeyData.images.map((image, index) => (
-                            <div className='col-3'>
-                                <img className='img-fluid' key={index} src={`http://localhost/TravelMaker/Backend/storage/app/public/${image.image_url}`}></img>
-                            </div>
-                        ))} */}
-                        {/* {journeyData.images && journeyData.images.map((image, index) => (
-
-                            <div className='col-3 rounded shadow' >
-                                <div style={{
-                                    backgroundImage: `url(http://localhost/TravelMaker/Backend/storage/app/public/${image.image_url})`,
-                                    backgroundSize: 'cover',
-                                    height: '200px',
-                                }}></div>
-                            </div>
-                        ))} */}
+                        
                         {/* TODO */}
-                        <div className='col-3' >
-                            <div className='rounded shadow' style={{
-                                backgroundImage: `url(http://localhost/TravelMaker/Backend/storage/app/public/images//taipei101.jpg)`,
-                                backgroundSize: 'cover',
-                                width: '100%',
-                                height: '200px',
-                            }}>
-                                
-                            </div>
-                        </div>
-                        <div className='col-3' >
-                            <div className='rounded shadow' style={{
-                                backgroundImage: `url(http://localhost/TravelMaker/Backend/storage/app/public/images/taipei2.jpg)`,
-                                backgroundSize: 'cover',
-                                width: '100%',
-                                height: '200px',
-                            }}>
-                                
-                            </div>
-                        </div>
-                        <div className='col-3' >
-                            <div className='rounded shadow' style={{
-                                backgroundImage: `url(http://localhost/TravelMaker/Backend/storage/app/public/images/taipei3.jpg)`,
-                                backgroundSize: 'cover',
-                                width: '100%',
-                                height: '200px',
-                            }}>
-                                
-                            </div>
-                        </div>
-                        <div className='col-3' >
-                            <div className='rounded shadow' style={{
-                                backgroundImage: `url(http://localhost/TravelMaker/Backend/storage/app/public/images/taipei4.jpg)`,
-                                backgroundSize: 'cover',
-                                width: '100%',
-                                height: '200px',
-                            }}>
-                                
-                            </div>
-                        </div>
+                   
                     </div>
                 </div>
             </div>
@@ -617,8 +562,8 @@ const MyJourney = () => {
 
     useEffect(() => {
         const reqJourneysUrl = "http://localhost/TravelMaker/Backend/public/api/getJourneys";
-        // const token = Cookies.get('token');
-        const userId = 1;
+        const userId = Cookies.get('userId');
+        // const userId = 1;
         const reqParams = {
             user_id: userId
         }
@@ -628,6 +573,7 @@ const MyJourney = () => {
         })
             .then(response => {
                 setJourneys(response.data);
+                console.log(response.data);
             })
             .catch((error) => {
                 console.error('Axios error:', error);

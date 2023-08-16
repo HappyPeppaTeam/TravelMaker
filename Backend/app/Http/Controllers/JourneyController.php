@@ -243,6 +243,10 @@ class JourneyController extends Controller
                         values (?, ?, ?);
                         "
                     ,[$fileName, $path, $journeyId]);
+                    
+                    if ($uploadCount == 0){
+                        $isThumbnail = $this->insertThumbnailImg($journeyId, $path);
+                    }
 
                     $uploadCount ++;
                 }
@@ -250,7 +254,7 @@ class JourneyController extends Controller
 
             if ($uploadCount > 0){
                 DB::commit();
-                return response()->json(['message' => "{$uploadCount} files uploaded successfully"]);
+                return response()->json(['message' => "{$uploadCount} files uploaded successfully, {$isThumbnail}"]);
             }
             else {
                 DB::rollBack();
@@ -282,6 +286,20 @@ class JourneyController extends Controller
         }
         catch (Exception $e) {
             return response("Error get journey image: " . $e->getMessage(), 500);
+        }
+    }
+
+    function insertThumbnailImg($journeyId, $path){
+        try{
+            $isUpdate = DB::update("update journey set thumbnail_id = ? where journey_id = ?;", [$path, $journeyId]);
+            
+            if (!$isUpdate){
+                return response("Error: can not find journey");
+            }
+            return response("Update thumbnail sccessfully.");
+        }
+        catch (Exception $e){
+            return response("Error update thumbnail id: " . $e->getMessage(), 500);
         }
     }
 }

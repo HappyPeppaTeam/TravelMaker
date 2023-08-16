@@ -13,6 +13,7 @@ import Sidebar from '../components/Sidebar';
 import BotSidebar from '../components/BotSidebar';
 // import { useLocation } from 'react-router-dom';
 import '../css/createAlbum.css';
+import Cookies from 'js-cookie';
 
 
 function useImage() {
@@ -205,6 +206,7 @@ const StepThree = ({ formData, setFormData }) => {
       images: images,
       imagesData: imagesData
     }))
+    
   }, [imagesData, images])
 
   return (
@@ -305,7 +307,7 @@ const StepFour = ({ calendarBrowseRef, formData }) => {
           <p className='fs-2 ps-3'>{formData.destination}</p> 
         </div>
         <h2>備註</h2>
-        <div className='shadow mb-5' style={sectionStyle}>
+        <div className='shadow mb-5 p-3' style={sectionStyle}>
           <p>{formData.description}</p>
         </div>
       </div>
@@ -507,7 +509,7 @@ const NowJourneyForm = () => {
     destination: "",
     userId: 0,
     privacy: 0,
-    thumbnailId: "images/taipei101.jpg",
+    thumbnailId: "",
     journeyStart: "",
     journeyEnd: "",
     images: [],
@@ -520,7 +522,7 @@ const NowJourneyForm = () => {
 
     setFormData((prevData) => ({
       ...prevData,
-      userId: 1,
+      userId: Cookies.get('userId'),
     }))
   }, []);
 
@@ -611,8 +613,9 @@ const NowJourneyForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const reqUrl = "http://localhost/TravelMaker/Backend/public/api/addJourney";
 
+
+    const reqUrl = "http://localhost/TravelMaker/Backend/public/api/addJourney";
     const requestData = {
       title: formData.title,
       description: formData.description,
@@ -621,6 +624,8 @@ const NowJourneyForm = () => {
       privacy: formData.privacy,
       user_id: formData.userId
     };
+
+    console.log(formData.thumbnailId);
 
     
     // get journeyId request data
@@ -635,15 +640,16 @@ const NowJourneyForm = () => {
     const reqImgUploadUrl = "http://localhost/TravelMaker/Backend/public/api/uploadJourneyImages";
     const imageReqForm = new FormData();
 
+    console.log(formData.imagesData);
     
-    
-    formData.imagesData.forEach((image, index) => {
-      imageReqForm.append(`images[${index}]`, image);
-    });
+    if (formData.imagesData.length !== 0) {
+      console.log('image request: ', formData.imagesData);
+      formData.imagesData.forEach((image, index) => {
+        imageReqForm.append(`images[${index}]`, image);
+      });
 
-
-
-    axios.post(reqUrl, requestData)
+      // with image upload
+      axios.post(reqUrl, requestData)
       .then(response => {
         console.log("response: ", response.data);
         return  axios.get(reqJourneyIdUrl, {
@@ -664,6 +670,27 @@ const NowJourneyForm = () => {
       .catch(error => {
         console.error("Error: ", error);
       })
+      
+    }
+    else {
+      // no image upload
+      console.log('no image request');
+      axios.post(reqUrl, requestData)
+        .then(response => {
+          console.log("response: ", response.data);
+        })
+        .then(() => {
+          window.location = "http://localhost:3000/journey";
+        }) 
+        .catch(error => {
+          console.error("Error: ", error);
+        })
+    }
+
+    
+
+
+
       
 
     

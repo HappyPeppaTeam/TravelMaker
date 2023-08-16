@@ -23,32 +23,6 @@ const DiscussionBoard = () => {
     }));
   };
 
-  // const handleDropdownItemClick = (event, value) => {
-  //   event.stopPropagation();
-  //   axios.get(`http://localhost/TravelMaker/Backend/public/Linkpi/getArticle/${value}`)
-
-  //     .then(response => {
-  //       setData(response.data.data);
-  //       navigate(`/forum/discussion/ ${value}`);
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   axios.get(`http://localhost/TravelMaker/Backend/public/api/getArticle/1`)
-      
-  //     .then(response => {
-  //       setData(response.data.data);
-  //       // navigate(`/forum/discussion/ ${value}`);
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // },[])
-
-
   const handleDocumentClick = (event) => {
     for (const region in dropdownRefs) {
       if (dropdownRefs[region].current && !dropdownRefs[region].current.contains(event.target)) {
@@ -71,7 +45,7 @@ const DiscussionBoard = () => {
 
   
   return (
-    <div className="discussion-board bg-blue-3 mx-0 row gy-2">
+    <div className="discussion-board bg-blue-3 my-0 row gy-1">
       <div className="sub-discussion-board-home col-6 col-md">
         <button className="btn btn-secondary" type="button" id="defaultDropdown">
           <Link to="/forum">首頁</Link>

@@ -85,10 +85,14 @@ const settings = {
       }
     ]
 };
+
+const handleLink = () => {
+  window.scrollTo(0, 0);
+}
 const renderContent = spotSummary.data.map((item,index) => {
   if(index >= 14 && index <= 21) {
     return (
-      <Link to="/Attractionmore/Attraction_innerpage" className="cardLink" key={index} state={spot.data[index]}>
+      <Link to="/Attractionmore/Attraction_innerpage" className="cardLink" key={index} state={spot.data[index]} onClick={handleLink}>
               <div className="card m-2 shadow-sm cardScale spotCard">
                 <img
                   src={item.PictureUrl1}

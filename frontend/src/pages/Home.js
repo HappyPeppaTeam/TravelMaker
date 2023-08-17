@@ -9,7 +9,7 @@ import 'aos/dist/aos.css';
 const { useEffect } = React;
 
 const article = await axios.get(`http://localhost/TravelMaker/Backend/public/api/getBoardTextAndImage`);
-console.log(article.data);
+
 const spot = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction`);
 
 const spotSummary = await axios.get(`http://localhost/TravelMaker/Backend/public/api/spotSummary`);

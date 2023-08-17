@@ -122,31 +122,37 @@ class JourneyController extends Controller
 
     function deleteJourney(Request $request)
     {
+        DB::transaction();
         try {
             $journeyId = $request['journey_id'];
             $rowsDeleted = DB::delete("delete from journey where journey_id = ?", [$journeyId]);
             $delEventRes = $this->deleteEvents($journeyId);
             if ($rowsDeleted > 0) {
+                DB::commit();
                 return response("Delete {$journeyId} successfully. Event handling: {$delEventRes}");
             } else {
                 return response("Journey with ID {$journeyId} not found", 404);
             }
         } catch (Exception $e) {
+            DB::rollBack();
             return response("Error deleting journey: " . $e->getMessage(), 500);
         }
     }
 
     function deleteEvents($journeyId)
     {
-
+        DB::beginTransaction();
         try {
             $rowsDeleted = DB::delete("delete from journey_event where journey_id = ?", [$journeyId]);
             if ($rowsDeleted > 0) {
+                DB::commit();
                 return "Delete all events of {$journeyId} successful";
             } else {
+                DB::commit();
                 return "Journey {$journeyId} have no event";
             }
         } catch (Exception $e) {
+            DB::rollBack();
             return response("Error deleting events: " . $e->getMessage(), 500);
         }
     }
@@ -230,8 +236,8 @@ class JourneyController extends Controller
             $files = $request->file('images');
 
             $uploadCount = 0;
-
             DB::beginTransaction();
+            $getCurrentJourneyImages = DB::select("select * from journey_image where journey_id = ?", [$journeyId]);
             foreach($files as $file){
                 if ($file->isValid()){
                     $fileName = $file->getClientOriginalName();
@@ -244,7 +250,8 @@ class JourneyController extends Controller
                         "
                     ,[$fileName, $path, $journeyId]);
                     
-                    if ($uploadCount == 0){
+                   
+                    if ($uploadCount == 0 && !$getCurrentJourneyImages){
                         $isThumbnail = $this->insertThumbnailImg($journeyId, $path);
                     }
 
@@ -301,6 +308,11 @@ class JourneyController extends Controller
         catch (Exception $e){
             return response("Error update thumbnail id: " . $e->getMessage(), 500);
         }
+    }
+
+
+    function editJourneyImage(Request $request) {
+    
     }
 }
 

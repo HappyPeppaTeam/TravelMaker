@@ -56,3 +56,13 @@
         top: 45%;
     }
 }
+
+.addNewAlbum {
+    background: gray;
+    border-radius: 20px;
+}
+
+.plusIcon {
+    font-size: 2rem;
+    color: #2F4E63;
+}

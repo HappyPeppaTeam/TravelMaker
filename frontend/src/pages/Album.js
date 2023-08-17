@@ -118,6 +118,15 @@ console.log(allAlbums);
                                 </div>
                                 )
                             })}
+                            <div className="col">
+                                <Link to='/album/create' className='albumLink'>
+                                    <div className="card m-2 album">
+                                        <div className="card-body addNewAlbum d-flex align-items-center justify-content-center">
+                                            <i className="bi bi-plus-lg plusIcon"></i>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

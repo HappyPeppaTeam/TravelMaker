@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class JourneyController extends Controller
 {
@@ -311,8 +312,15 @@ class JourneyController extends Controller
     }
 
 
-    function editJourneyImage(Request $request) {
-    
+    function deleteImages(Request $request) {
+        $journeyId = $request['journey_id'];
+        $images = $request['images'];
+
+        DB::beginTransaction();
+        
+        DB::delete("delete from journey_image where journey_id = ? ;", [$journeyId]);
+
+
     }
 }
 

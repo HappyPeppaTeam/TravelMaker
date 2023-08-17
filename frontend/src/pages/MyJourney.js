@@ -389,6 +389,22 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
             .catch(error => {
                 console.error("Error: ", error);
             });
+        
+
+        const reqImgUploadUrl = "http://localhost/TravelMaker/Backend/public/api/uploadJourneyImages";
+        const imageReqForm = new FormData();
+
+        imageReqForm.append('journey_id', journeyData.journeyId);
+        uploadImg.imagesData.forEach((image, index) => {
+            imageReqForm.append(`images[${index}]`, image);
+          });
+        axios.post(reqImgUploadUrl, imageReqForm)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.error("Error uploading images: ", error);
+        })
 
 
 

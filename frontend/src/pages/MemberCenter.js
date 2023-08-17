@@ -159,7 +159,7 @@ const MemberCenter = () => {
     return (
         <>
             <div className="container-fluid shadow p-0 bg-white" id="body-container">
-                <div className="d-flex flex-nowrap row" id="content-container">
+                <div className="d-flex flex-nowrap row container-fluid m-0 p-0" id="content-container">
                     {/* side bar */}
                     <Sidebar MemberCenter="active"></Sidebar>
                     {/* main content */}

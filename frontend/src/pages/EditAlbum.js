@@ -146,7 +146,7 @@ const EditAlbum = () => {
                                         <img className='selectedImg w-100' src={image.url} />
                                         <div className='imgInfo'>
                                             <div className='fileName w-100 d-flex justify-content-between align-items-center'>
-                                                <p className='m-0 py-2 text-white text-center'>{image.name}</p>
+                                                <p className='m-0 py-2 ps-2 text-white text-center'>{image.name}</p>
                                                 <button className='btn remove' onClick={(e) => handleRemove(e,index)}><i className="bi bi-x-circle fs-4"></i></button>
                                             </div>
                                         </div>

@@ -84,7 +84,7 @@ const StepOne = ({ formData, setFormData }) => {
 
   const formStyle = {
     backgroundColor: 'rgb(178, 210, 232, 0.5)',
-    minHeight: '500px',
+    minHeight: '300px',
   }
 
   const handleTitle = (e) => {
@@ -111,19 +111,19 @@ const StepOne = ({ formData, setFormData }) => {
     }))
   }
 
-  const handleJourneyEnd = (e) => {
-    e.preventDefault();
-    const endDay = moment(formData.journeyStart).add(e.target.value, 'days').format('YYYY-MM-DD');
-    setFormData((prevData) => ({
-      ...prevData,
-      journeyEnd: endDay,
-    }))
-  }
+  // const handleJourneyEnd = (e) => {
+  //   e.preventDefault();
+  //   const endDay = moment(formData.journeyStart).add(e.target.value, 'days').format('YYYY-MM-DD');
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     journeyEnd: endDay,
+  //   }))
+  // }
 
 
   return (
     <div id="newJourneyForm1" className='p-3 shadow rounded' style={formStyle}>
-      <div className="my-3">
+      <div className="mb-3">
         <label htmlFor="inputJourneyName" className="form-label">行程名稱</label>
         <input type="text" className="form-control" id="inputJourneyName" aria-describedby="inputJourneyName"
           placeholder="ex. 金瓜石兩日遊"
@@ -142,11 +142,11 @@ const StepOne = ({ formData, setFormData }) => {
         <input type="date" className="form-control" id="inputJourneyStart" aria-describedby="inputJourneyStart"
           onChange={handleJourneyStart} />
       </div>
-      <div className="my-3">
+      {/* <div className="my-3">
         <label htmlFor="inputJourneyDays" className="form-label">行程天數</label>
-        <input type="number" className="form-control" id="inputJourneyDays" aria-describedby="inputJourneyDays"
+        <input type="number" min="1" className="form-control" id="inputJourneyDays" aria-describedby="inputJourneyDays"
           onChange={handleJourneyEnd} />
-      </div>
+      </div> */}
     </div>
   )
 }
@@ -189,14 +189,14 @@ const StepThree = ({ formData, setFormData }) => {
     }))
   }
 
-  const handlePrivacyChange = (e) => {
-    e.preventDefault();
-    const newPrivacyValue = parseInt(e.target.value);
-    setFormData((prevData) => ({
-      ...prevData,
-      privacy: newPrivacyValue,
-    }))
-  }
+  // const handlePrivacyChange = (e) => {
+  //   e.preventDefault();
+  //   const newPrivacyValue = parseInt(e.target.value);
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     privacy: newPrivacyValue,
+  //   }))
+  // }
 
   const { images, imagesData, handleUpload, handleRemove, inputRef } = useImage();
 
@@ -243,7 +243,7 @@ const StepThree = ({ formData, setFormData }) => {
           <div className="container-fluid mt-3" id='imageContainer'></div>
         </div>
 
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <label htmlFor="publicRadio" className="form-label">公開設定</label>
           <div className="form-check">
             <input className="form-check-input" type="radio" name="privacyRadio" value={1} id="publicRadio"
@@ -261,7 +261,7 @@ const StepThree = ({ formData, setFormData }) => {
               不公開
             </label>
           </div>
-        </div>
+        </div> */}
 
         <div className="mb-3">
           <label htmlFor="inputNoteJourney" className="form-label">備註</label>
@@ -621,7 +621,8 @@ const NowJourneyForm = () => {
       description: formData.description,
       events: formData.events,
       thumbnail_id: formData.thumbnailId,
-      privacy: formData.privacy,
+      // privacy: formData.privacy,
+      privacy: 0,
       user_id: formData.userId
     };
 

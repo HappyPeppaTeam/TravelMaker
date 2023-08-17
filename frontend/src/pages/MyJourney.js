@@ -361,14 +361,14 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
         }))
     }
 
-    const handlePrivacyChange = (e) => {
-        e.preventDefault();
-        const newPrivacyValue = parseInt(e.target.value);
-        setJourneyData((prevData) => ({
-            ...prevData,
-            privacy: newPrivacyValue,
-        }))
-    }
+    // const handlePrivacyChange = (e) => {
+    //     e.preventDefault();
+    //     const newPrivacyValue = parseInt(e.target.value);
+    //     setJourneyData((prevData) => ({
+    //         ...prevData,
+    //         privacy: newPrivacyValue,
+    //     }))
+    // }
 
     const handleUpdateSubmit = (e) => {
 
@@ -547,7 +547,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
                     />
                 </div>
 
-                <div className="my-3">
+                {/* <div className="my-3">
                     <label htmlFor="inputJourneyStart" className="form-label">開始日期</label>
                     <input type="date" className="form-control" id="inputJourneyStart" aria-describedby="inputJourneyStart"
                     />
@@ -556,7 +556,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
                     <label htmlFor="inputJourneyDays" className="form-label">行程天數</label>
                     <input type="number" min="1" className="form-control" id="inputJourneyDays" aria-describedby="inputJourneyDays"
                     />
-                </div>
+                </div> */}
             </div>
             <h2 className='mt-5 mb-3'>行程表</h2>
             <div className='mb-3 p-3 shadow' style={calendarContainerStyle}>
@@ -666,11 +666,12 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
                     </div>
                 </div>
             </div>
-
+            
+            <label htmlFor="inputNoteJourney" className="form-label h2 mt-5 mb-3">備註</label>
             <div id="newJourneyForm3" className='p-3 shadow bg-light' style={editFormStyle}>
 
 
-                <div className="mb-3">
+                {/* <div className="mb-3">
                     <label htmlFor="publicRadio" className="form-label">公開設定</label>
                     <div className="form-check">
                         <input className="form-check-input" type="radio" name="privacyRadio" value={1} id="publicRadio"
@@ -688,10 +689,10 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
                             不公開
                         </label>
                     </div>
-                </div>
+                </div> */}
 
-                <div className="mb-3">
-                    <label htmlFor="inputNoteJourney" className="form-label">備註</label>
+                   
+                <div className="">
                     <textarea className="form-control" id="inputNoteJourney" rows="3"
                         value={journeyData.description}
                         onChange={handleDescriptionChange}
@@ -858,7 +859,8 @@ const MyJourney = () => {
                         journeyEnd: currentJourney.journey_end,
                         journeyId: currentJourney.journey_id,
                         description: currentJourney.description,
-                        privacy: currentJourney.privacy,
+                        // privacy: currentJourney.privacy,
+                        privacy: 0,
                         thumbnailId: currentJourney.thumbnail_id,
                         events: eventsResponse.data,
                         images: imagesResponse.data || [],

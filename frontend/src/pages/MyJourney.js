@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import '../css/MyJourney.css';
+import '../css/imageCheckBox.css';
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -300,7 +301,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
 
     const imageStyle = {
         width: "100%",
-        height: "200px",
+        Height: "200px",
         objectFit: "cover",
     }
 
@@ -318,7 +319,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
     // image checkbox
 
 
-
+    const [selectImage, setSelectImage] = useState([]);
 
 
     const handleEditCancel = (e) => {
@@ -441,6 +442,22 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
                 });
         }
 
+        if (selectImage.length > 0){
+            const reqDeletImgUrl = "http://localhost/TravelMaker/Backend/public/api/deleteJourneyImages";
+            const reqDeletImgData = {
+                journey_id: journeyData.journeyId,
+                images: selectImage,
+            }
+
+            axios.post(reqDeletImgUrl, reqDeletImgData)
+            .then(response => {
+                console.log("Delete image response: ", response);
+            })
+            .catch(error => {
+                console.error("Error deleting images: ", error);
+            })
+        }
+
 
 
 
@@ -508,6 +525,9 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
         }
 
     }
+
+    
+
 
 
 
@@ -580,28 +600,71 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
 
 
                 <div className='mb-3'>
-                
-                        <div className='mb-3'>行程圖片</div>
-                        <div className='shadow p-3' style={imageViewStyle}>
-                            <div className='row g-2'>
 
-                                {/* TODO */}
+                    <div className='mb-3'>行程圖片</div>
+                    <div className='shadow p-3' style={imageViewStyle}>
+                        <div className='row g-2'>
 
-
-                                {journeyData.images.map((image, index) => (
-                                    <div key={index} className='col-md-6 col-lg-4 col-xl-3'>
-                                        <img src={`http://localhost/TravelMaker/Backend/storage/app/public/${image.image_url}`} className='rounded shadow' style={imageStyle}></img>
-                                    </div>
-                                ))}
+                            {/* TODO */}
 
 
+                            {/* {journeyData.images.map((image, index) => (
+                                <div key={index} className='col-md-6 col-lg-4 col-xl-3'>
+                                    <img src={`http://localhost/TravelMaker/Backend/storage/app/public/${image.image_url}`} className='rounded shadow' style={imageStyle}></img>
+                                </div>
+                            ))} */}
 
 
-                                {/* TODO */}
 
-                            </div>
+                            {journeyData.images.map((image, index) => (
+                                <div key={index} className="col-md-6 col-lg-4 col-xl-3">
+                                    <label className="image-checkbox">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectImage.includes(image)} // Check if image is selected
+                                            onChange={() => {
+                                                if (selectImage.includes(image)) {
+                                                    setSelectImage(selectImage.filter((img) => img !== image));
+                                                } else {
+                                                    setSelectImage([...selectImage, image]);
+                                                }
+                                            }}
+                                        />
+                                        <div className='checkbox-img-container'>
+                                            <img
+                                                src={`http://localhost/TravelMaker/Backend/storage/app/public/${image.image_url}`}
+                                                className={`rounded shadow ${selectImage.includes(image) ? 'selected' : ''}`}
+                                                style={imageStyle}
+                                                alt={`Image ${index}`}
+                                            />
+                                        </div>
+                                        {/* {selectImage.includes(image) && (
+                                            <img
+                                                src="delete.png" // Replace with the path to your delete image
+                                                alt="Delete"
+                                                className="delete-image"
+                                            />
+                                        )} */}
+                                        {selectImage.includes(image) && (
+                                            <div className="check-icon-overlay rounded">
+                                                <i className="bi bi-check"></i>
+                                            </div>
+                                        )}
+                                        {/* {console.log("select images: ", selectImage)} */}
+                                    </label>
+                                </div>
+                            ))}
+
+
+
+
+
+
+                            {/* TODO */}
+
                         </div>
                     </div>
+                </div>
             </div>
 
             <div id="newJourneyForm3" className='p-3 shadow bg-light' style={editFormStyle}>
@@ -634,7 +697,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
                         onChange={handleDescriptionChange}
                     ></textarea>
                 </div>
-                
+
             </div>
 
             <div className='d-flex justify-content-center my-5'>

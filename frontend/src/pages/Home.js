@@ -57,7 +57,7 @@ const settings = {
     slidesToShow: 4,
     slidesToScroll: 4,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 3500,
     responsive: [
       {
         breakpoint: 1024,
@@ -226,7 +226,7 @@ export default function Home() {
 
           <div className="popularRestaurant mb-5" data-aos="fade-up">
             <h2 className="fw-bold">熱門餐廳</h2>
-            <p className="mb-0">沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
+            <p className="mb-0">沒有想法嗎? 快來看看各式精選料理 !</p>
             <div className="row row-cols-2 mt-4">
               <div className="col">
                 <RestaurantCard data={restaurant[0]}></RestaurantCard>
@@ -239,7 +239,7 @@ export default function Home() {
 
           <div className="popularSpot" data-aos="fade-up">
             <h2 className="fw-bold">熱門景點</h2>
-            <p className="mb-0">沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
+            <p className="mb-0">沒有想法嗎? 快來看看熱門景點有哪些 !</p>
             <Slider settings={settings} renderContent={renderContent}/>
           </div>
         </div>

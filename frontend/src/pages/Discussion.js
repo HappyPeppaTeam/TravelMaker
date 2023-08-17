@@ -24,7 +24,7 @@ export default function Discussion() {
                     console.error(error);
                 });
         })();
-    }, [])
+    }, [state])
     return (
         <div className="main">
             {/* <!-- 導覽列 --> */}

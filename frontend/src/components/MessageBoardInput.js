@@ -108,7 +108,11 @@ const MessageBoardInput = ({ board_text_id }) => {
           <div key={index} className="Message">
             <div className="Message-item">
               <div className="UserImage">
-                <img src={`http://localhost/TravelMaker/Backend/public/storage/${messageData.head_photo}`} alt="" />
+                {messageData.head_photo ? (
+                  <img src={`http://localhost/TravelMaker/Backend/public/storage/${messageData.head_photo}`} alt="" />
+                ) : (
+                  <img src={require("../images/headimage.jpg")} alt="" />
+                )}
               </div>
               <div className="Message-user">
                 <div className="Username">{`${messageData.full_name}`}</div>

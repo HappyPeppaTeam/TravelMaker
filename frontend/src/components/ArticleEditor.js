@@ -125,6 +125,8 @@ function ArticleEditor() {
         const response = await axios.post('http://localhost/TravelMaker/Backend/public/api/createBoardText', ArticleData);
         if (response.data) {
             alert('文章發布成功！');
+            window.location.href = "/forum";
+
         } else {
             console.log("post Miss!")
         }

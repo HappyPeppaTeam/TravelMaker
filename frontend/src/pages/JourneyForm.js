@@ -206,7 +206,7 @@ const StepThree = ({ formData, setFormData }) => {
       images: images,
       imagesData: imagesData
     }))
-    
+
   }, [imagesData, images])
 
   return (
@@ -376,9 +376,9 @@ const EventAddModal = ({ modalTitle, handleModalSave, handleCloseModal, handleRe
             </div>
           </div>
           <div className="modal-footer">
-            {modalTitle === "修改活動" && <button type="button" className="btn btn-danger me-auto" onClick={handleRemoveEvent}>Remove Event</button>}
-            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={handleCloseModal}>Cancel</button>
-            <button type="button" className="btn btn-primary" id="saveEventChanges" onClick={handleModalSave}>Save Changes</button>
+            {modalTitle === "修改活動" && <button type="button" className="btn btn-danger me-auto" onClick={handleRemoveEvent}>刪除活動</button>}
+            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={handleCloseModal}>取消</button>
+            <button type="button" className="btn btn-primary" id="saveEventChanges" onClick={handleModalSave}>確認</button>
           </div>
         </div>
       </div>

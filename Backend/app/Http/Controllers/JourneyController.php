@@ -279,7 +279,7 @@ class JourneyController extends Controller
             , [$journeyId]);
     
             if(!$result) {
-                return response("No image founded.");
+                return response()->json([]);
             }
     
             return response()->json($result);

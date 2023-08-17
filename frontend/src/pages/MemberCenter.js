@@ -44,7 +44,8 @@ const MemberCenter = () => {
             ...errors,
             [id]: errorMessage,
         });
-        if (id === 'password') {
+        if (id === 'originalPassword') {
+            console.log('strength'+originalPassword);
             const strength = calculatePasswordStrength(originalPassword);
             setPasswordStrength(strength);
         }
@@ -127,10 +128,14 @@ const MemberCenter = () => {
         userData.append('birthday', birthday);
         userData.append('gender', gender);
         userData.append('token', Cookies.get('token'));
-        if (registerFormValidate(userData)) {
-            if (showConfirmPassword) {
-                userData.append("password", originalPassword);
-            }
+        const userDataValidate = new FormData();
+        if (showConfirmPassword) {
+            userData.append("password", originalPassword);
+            userDataValidate.append("password", originalPassword);
+            userDataValidate.append("confirmPassword", newPassword);
+            userDataValidate.append("from", 'userDataValidate');
+        }
+        if (registerFormValidate(userData)&&registerFormValidate(userDataValidate)) {
             try {
 
                 const response = await axios.post('http://localhost/TravelMaker/Backend/public/api/updateProfile', userData, {
@@ -201,13 +206,13 @@ const MemberCenter = () => {
                                                         <li className="mb-2 mb-xl-3 display-28">
                                                             <div className="input-group mb-3">
                                                                 <span className="input-group-text" id="basic-addon1">會員帳號</span>
-                                                                <input type="text" className="form-control" id="username" disabled="true" value={username} />
+                                                                <input type="text" className="form-control" id="username" disabled value={username} />
                                                             </div>
                                                         </li>
                                                         <li className="mb-2 mb-xl-3 display-28">
                                                             <div className="input-group mb-3">
                                                                 <span className="input-group-text" id="basic-addon1">論壇身份</span>
-                                                                <input type="text" className="form-control" id="username" disabled="true" value="普通" />
+                                                                <input type="text" className="form-control" id="username" disabled value="普通" />
                                                             </div>
                                                         </li>
 
@@ -219,11 +224,12 @@ const MemberCenter = () => {
                                                                     value={originalPassword}
                                                                     onChange={handleOriginalPasswordChange}
                                                                     onBlur={handleBlur}
-                                                                    onClick={handleClearPassword} />
+                                                                    onClick={handleClearPassword}
+                                                                     />
                                                                 <div className="mx-3">密碼強度：{getPasswordStrengthLabel(passwordStrength)}</div>
 
                                                             </div>
-                                                            <div className="error-message text-danger">{errors.password}</div>
+                                                            <div className="error-message text-danger">{errors.originalPassword}</div>
                                                         </li>
                                                         {showConfirmPassword && (
                                                             <li className="mb-2 mb-xl-3 display-28">
@@ -235,7 +241,7 @@ const MemberCenter = () => {
                                                                         onChange={handleNewPasswordChange}
                                                                         onBlur={handleBlur} />
                                                                 </div>
-                                                                <div className="error-message text-danger">{errors.confirmPassword}</div>
+                                                                <div className="error-message text-danger">{errors.newPassword}</div>
                                                             </li>
                                                         )}
                                                         <li className="mb-2 mb-xl-3 display-28">

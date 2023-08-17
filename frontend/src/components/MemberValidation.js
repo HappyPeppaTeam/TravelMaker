@@ -1,4 +1,4 @@
-const memberValidateField = (fieldName, value, passowrd, originalPassword) => {
+const memberValidateField = (fieldName, value, passowrd) => {
   let errorMessage = '';
   let checkPassword = passowrd;
   switch (fieldName) {
@@ -39,7 +39,7 @@ const memberValidateField = (fieldName, value, passowrd, originalPassword) => {
     case 'newPassword':
       if (!value) {
         errorMessage = '此欄位為必要';
-      } else if (value !== originalPassword) {
+      } else if (value !== passowrd) {
         errorMessage = '與密碼不相符';
       }
       break;
@@ -71,52 +71,57 @@ const memberValidateField = (fieldName, value, passowrd, originalPassword) => {
 };
 
 const registerFormValidate = (userData) => {
-
+  // for (let pair of userData.entries()) {
+  //   console.log(pair[0], pair[1]);
+  // }
   let valid = true;
   // alert([...userData.entries()].map(entry => entry.join(': ')).join('\n'));
-  if (userData.hasOwnProperty("username") && !userData.get('username')) {
+  if (userData.has("username") && !userData.get('username')) {
     valid = false;
   }
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (userData.hasOwnProperty("email") && !userData.get('email')) {
+  if (userData.has("email") && !userData.get('email')) {
     valid = false;
-  } else if (!emailPattern.test(userData.get('email'))) {
-    // alert(userData.get('email'));
-    valid = false;
-  }
-
-  if (userData.hasOwnProperty("password") && !userData.get('password')) {
-    valid = false;
-  } else if (userData.hasOwnProperty("password") && userData.get('password').length < 6) {
+  } else if (userData.has("email")&&!emailPattern.test(userData.get('email'))) {
     valid = false;
   }
 
-  if (userData.hasOwnProperty("originalPassword") && !userData.get('originalPassword')) {
+  if (userData.has("password") && !userData.get('password')) {
     valid = false;
-  } else if (userData.hasOwnProperty("originalPassword") && userData.get('originalPassword').length < 6) {
-    valid = false;
-  }
-
-  if (userData.hasOwnProperty("confirmPassword") && !userData.get('confirmPassword')) {
-    valid = false;
-  } else if (userData.hasOwnProperty("confirmPassword") && userData.get('confirmPassword') !== userData.get('password')) {
+  } else if (userData.has("password") && userData.get('password').length < 6) {
     valid = false;
   }
 
-  if (userData.hasOwnProperty("fullName") && !userData.get('fullName')) {
+  if (userData.has("originalPassword") && !userData.get('originalPassword')) {
+    valid = false;
+  } else if (userData.has("originalPassword") && userData.get('originalPassword').length < 6) {
+    valid = false;
+  }
+  if (userData.has("confirmPassword") && !userData.get('confirmPassword')) {
+    valid = false;
+  } else if (userData.has("confirmPassword") && userData.get('confirmPassword') !== userData.get('password')) {
+    valid = false;
+  }
+  if (userData.has("newPassword") && !userData.get('newPassword')) {
+    valid = false;
+  } else if (userData.has("newPassword") && userData.get('newPassword') !== userData.get('originalPassword')) {
     valid = false;
   }
 
-  if (userData.hasOwnProperty("nickName") && !userData.get('nickName')) {
+  if (userData.has("fullName") && !userData.get('fullName')) {
     valid = false;
   }
 
-  if (userData.hasOwnProperty("birthday") && !userData.get('birthday')) {
+  if (userData.has("nickName") && !userData.get('nickName')) {
     valid = false;
   }
 
-  if (userData.hasOwnProperty("gender") && !userData.get('gender')) {
+  if (userData.has("birthday") && !userData.get('birthday')) {
+    valid = false;
+  }
+
+  if (userData.has("gender") && !userData.get('gender')) {
     valid = false;
   }
   return valid;

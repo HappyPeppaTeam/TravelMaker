@@ -69,7 +69,7 @@ export default function Attractionattraction() {
                     <Link to="/journey" className="button-hyperlink">自助旅遊排程</Link>
                 </div> */}
             </div>
-            <div style={{ 'display': 'grid', 'backgroundColor': '#487797' }}>
+            <div style={{ 'display': 'grid'}}>
                 <div className="container-fluid d-flex m-0 p-0">
                     <div className="sidenav">
                         <Link to="/attractions/Attractionattraction" onClick={() => window.location.reload()}><h3 style={{ 'color': 'black' }}><b>種類</b></h3></Link>
@@ -343,12 +343,12 @@ export default function Attractionattraction() {
                     <div className="container image-container">
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>夜市</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line" state='夜市'>
-                            <h4>
+                            <h5>
                                 more
-                            </h4>
+                            </h5>
                         </Link>
                         <div style={{ 'clear': 'both' }}>
-                            <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                            <div className=" row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
                                 {attractionPicture.filter((item, index) => {
                                     return item.TypeID == 1;
                                 }).map((item, index) => {
@@ -356,7 +356,7 @@ export default function Attractionattraction() {
                                         return (
                                             <div className="col-lg-3">
                                                 <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
-                                                    <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                    <img className="img-thumbnail2" src={item.PictureUrl1} style={{width:'100%'}}/>
                                                     <div>
                                                         <b>{item.Name}</b>
                                                     </div>
@@ -369,12 +369,12 @@ export default function Attractionattraction() {
                         </div>
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>港口</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line" state='港口'>
-                            <h4>
+                            <h5>
                                 more
-                            </h4>
+                            </h5>
                         </Link>
                         <div style={{ 'clear': 'both' }}>
-                            <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                            <div className=" row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
                                 {
                                     attractionPicture.filter((item, index) => {
                                         return item.TypeID == 2;
@@ -383,7 +383,7 @@ export default function Attractionattraction() {
                                             return (
                                                 <div className="col-lg-3">
                                                     <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
-                                                        <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                        <img className="img-thumbnail2" src={item.PictureUrl1} style={{width:'100%'}}/>
                                                         <div>
                                                             <b>{item.Name}</b>
                                                         </div>
@@ -397,12 +397,12 @@ export default function Attractionattraction() {
                         </div>
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>市集</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line" state='市集'>
-                            <h4>
+                            <h5>
                                 more
-                            </h4>
+                            </h5>
                         </Link>
                         <div style={{ 'clear': 'both' }}>
-                            <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                            <div className=" row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
                                 {attractionPicture.filter((item, index) => {
                                     return item.TypeID == 3;
                                 }).map((item, index) => {
@@ -410,7 +410,7 @@ export default function Attractionattraction() {
                                         return (
                                             <div className="col-lg-3">
                                                 <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
-                                                    <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                    <img className="img-thumbnail2" src={item.PictureUrl1} style={{width:'100%'}}/>
                                                     <div>
                                                         <b>{item.Name}</b>
                                                     </div>
@@ -423,12 +423,12 @@ export default function Attractionattraction() {
                         </div>
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>購物</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line" state='購物'>
-                            <h4>
+                            <h5>
                                 more
-                            </h4>
+                            </h5>
                         </Link>
                         <div style={{ 'clear': 'both' }}>
-                            <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                            <div className=" row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
                                 {attractionPicture.filter((item, index) => {
                                     return item.TypeID == 4;
                                 }).map((item, index) => {
@@ -436,7 +436,7 @@ export default function Attractionattraction() {
                                         return (
                                             <div className="col-lg-3">
                                                 <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
-                                                    <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                    <img className="img-thumbnail2" src={item.PictureUrl1} style={{width:'100%'}}/>
                                                     <div>
                                                         <b>{item.Name}</b>
                                                     </div>
@@ -449,12 +449,12 @@ export default function Attractionattraction() {
                         </div>
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>人文景點</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line" state='人文景點'>
-                            <h4>
+                            <h5>
                                 more
-                            </h4>
+                            </h5>
                         </Link>
                         <div style={{ 'clear': 'both' }}>
-                            <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                            <div className=" row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
                                 {attractionPicture.filter((item, index) => {
                                     return item.TypeID == 5;
                                 }).map((item, index) => {
@@ -462,7 +462,7 @@ export default function Attractionattraction() {
                                         return (
                                             <div className="col-lg-3">
                                                 <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
-                                                    <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                    <img className="img-thumbnail2" src={item.PictureUrl1} style={{width:'100%'}}/>
                                                     <div>
                                                         <b>{item.Name}</b>
                                                     </div>
@@ -475,12 +475,12 @@ export default function Attractionattraction() {
                         </div>
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>自然景觀</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line" state='自然景觀'>
-                            <h4>
+                            <h5>
                                 more
-                            </h4>
+                            </h5>
                         </Link>
                         <div style={{ 'clear': 'both' }}>
-                            <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                            <div className=" row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
                                 {attractionPicture.filter((item, index) => {
                                     return item.TypeID == 6;
                                 }).map((item, index) => {
@@ -488,7 +488,7 @@ export default function Attractionattraction() {
                                         return (
                                             <div className="col-lg-3">
                                                 <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
-                                                    <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                    <img className="img-thumbnail2" src={item.PictureUrl1} style={{width:'100%'}}/>
                                                     <div>
                                                         <b>{item.Name}</b>
                                                     </div>
@@ -501,12 +501,12 @@ export default function Attractionattraction() {
                         </div>
                         <h3 style={{ 'float': 'left', 'paddingTop': '1%' }}><b>觀光工廠</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right', 'paddingTop': '1%', 'paddingLeft': '1%' }} className="bottom-line" state='觀光工廠'>
-                            <h4>
+                            <h5>
                                 more
-                            </h4>
+                            </h5>
                         </Link>
                         <div style={{ 'clear': 'both' }}>
-                            <div className=" row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                            <div className=" row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
                                 {attractionPicture.filter((item, index) => {
                                     return item.TypeID == 7;
                                 }).map((item, index) => {
@@ -514,7 +514,7 @@ export default function Attractionattraction() {
                                         return (
                                             <div className="col-lg-3">
                                                 <Link to="/Attractionmore/Attraction_innerpage" style={{ 'textDecoration': 'none', 'color': 'black' }} state={item}>
-                                                    <img className="img-thumbnail2" src={item.PictureUrl1} />
+                                                    <img className="img-thumbnail2" src={item.PictureUrl1} style={{width:'100%'}}/>
                                                     <div>
                                                         <b>{item.Name}</b>
                                                     </div>

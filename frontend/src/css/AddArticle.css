@@ -37,6 +37,9 @@
     height: 300px;
 }
 
+.post_article button{
+    margin: 0.5em;
+}
 .exceed-limit {
     border-color: red;
     color: red;

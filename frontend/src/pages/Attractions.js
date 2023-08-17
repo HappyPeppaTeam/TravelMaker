@@ -16,8 +16,8 @@ export default function Attractions() {
 
     console.log(attractionPicture);
     useEffect(() => {
-
-
+        
+        
         (async () => {
             const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction`);
             console.log(response);
@@ -70,22 +70,22 @@ export default function Attractions() {
                     <div className="container" style={{ 'clear': 'both' }}>
                         <div className="row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='新北'>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }} state='新北'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/new_taipei.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='臺中'>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }} state='臺中'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/taichung.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='臺南'>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }} state='臺南'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/tainan.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='高雄'>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }} state='高雄'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/kaohsiung.jpg')} />
                                 </Link>
                             </div>
@@ -100,22 +100,22 @@ export default function Attractions() {
                     <div className="container" style={{ 'clear': 'both' }}>
                         <div className="row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='人文景點'>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }} state='人文景點'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/人文景點.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='市集'>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }} state='市集'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/市集.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='自然景觀'>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }} state='自然景觀'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/自然景觀.jpg')} />
                                 </Link>
                             </div>
                             <div className="col-lg-3">
-                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='夜市'>
+                                <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }} state='夜市'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/夜市.jpg')} />
                                 </Link>
                             </div>

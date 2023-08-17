@@ -20,12 +20,12 @@
 }
 
 
-.nav-link {
+.sidebar-link {
     color: white;
     position: relative;
 }
 
-.nav-link::after {
+.sidebar-link::after {
     content: "";
     display: block;
     width: 0%;
@@ -37,11 +37,11 @@
     transition: .2s .2s;
 }
 
-.nav-link:hover {
+.sidebar-link:hover {
     color: white;
 }
 
-.nav-link:hover::after {
+.sidebar-link:hover::after {
     width: 100%;
     left: 0;
 }

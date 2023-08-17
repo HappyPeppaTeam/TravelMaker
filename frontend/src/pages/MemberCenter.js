@@ -161,7 +161,7 @@ const MemberCenter = () => {
             <div className="container-fluid shadow p-0 bg-white" id="body-container">
                 <div className="d-flex flex-nowrap row" id="content-container">
                     {/* side bar */}
-                    <Sidebar></Sidebar>
+                    <Sidebar MemberCenter="active"></Sidebar>
                     {/* main content */}
                     <div className="flex-fill" id="content">
                         <section className="bg-light">

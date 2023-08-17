@@ -1,6 +1,5 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.css";
-import './css/navbar.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import Navbar from "./components/Navbar";

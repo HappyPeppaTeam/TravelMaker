@@ -120,7 +120,7 @@ function JourneyThumbnail({ journey, setShow, setClickJourney, setPageTitle, set
     const handleThumbnailClick = (e) => {
         e.preventDefault();
 
-    
+
 
 
 
@@ -373,38 +373,88 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
 
         const reqUrl = "http://localhost/TravelMaker/Backend/public/api/updateJourney";
 
-        axios.put(reqUrl, requestData)
-            .then(response => {
-                console.log("Update joruney: ", response);
-            })
-            .then(() => {
-                setPageTitle(journeyData.title);
-                const editJourney = journeys.map(journey =>
-                (
-                    journey.journey_id === journeyData.journeyId ? { ...journey, journey_name: journeyData.title } : journey
-                ));
-                setJourneys(editJourney);
-                setShow(2);
-            })
-            .catch(error => {
-                console.error("Error: ", error);
-            });
-        
 
-        const reqImgUploadUrl = "http://localhost/TravelMaker/Backend/public/api/uploadJourneyImages";
-        const imageReqForm = new FormData();
 
-        imageReqForm.append('journey_id', journeyData.journeyId);
-        uploadImg.imagesData.forEach((image, index) => {
-            imageReqForm.append(`images[${index}]`, image);
-          });
-        axios.post(reqImgUploadUrl, imageReqForm)
-        .then(response => {
-            console.log(response);
-        })
-        .catch(error => {
-            console.error("Error uploading images: ", error);
-        })
+        if (uploadImg.imagesData.length > 0) {
+            axios.put(reqUrl, requestData)
+                .then(response => {
+                    console.log("Update journey:", response);
+
+                    // Now handle image upload
+                    const reqImgUploadUrl = "http://localhost/TravelMaker/Backend/public/api/uploadJourneyImages";
+                    const imageReqForm = new FormData();
+
+                    imageReqForm.append('journey_id', journeyData.journeyId);
+                    uploadImg.imagesData.forEach((image, index) => {
+                        imageReqForm.append(`images[${index}]`, image);
+                    });
+
+                    return axios.post(reqImgUploadUrl, imageReqForm);
+                })
+                .then(imageResponse => {
+                    console.log("Image upload response:", imageResponse);
+                    setPageTitle(journeyData.title);
+                    setShow(2);
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        }
+
+        else{
+            axios.put(reqUrl, requestData)
+                .then(response => {
+                    console.log("Update joruney: ", response);
+                })
+                .then(() => {
+                    setPageTitle(journeyData.title);
+                    // const editJourney = journeys.map(journey =>
+                    // (
+                    //     journey.journey_id === journeyData.journeyId ? { ...journey, journey_name: journeyData.title } : journey
+                    // ));
+                    // setJourneys(editJourney);
+                    setShow(2);
+                })
+                .catch(error => {
+                    console.error("Error: ", error);
+                });
+        }
+
+
+
+
+        // const reqImgUploadUrl = "http://localhost/TravelMaker/Backend/public/api/uploadJourneyImages";
+        // const imageReqForm = new FormData();
+
+        // imageReqForm.append('journey_id', journeyData.journeyId);
+        // uploadImg.imagesData.forEach((image, index) => {
+        //     imageReqForm.append(`images[${index}]`, image);
+        // });
+        // axios.post(reqImgUploadUrl, imageReqForm)
+        //     .then(response => {
+        //         console.log(response);
+        //     })
+        //     .catch(error => {
+        //         console.error("Error uploading images: ", error);
+        //     })
+
+        // if (uploadImg.imagesData.length > 0){
+        //     const reqImgUploadUrl = "http://localhost/TravelMaker/Backend/public/api/uploadJourneyImages";
+        //     const imageReqForm = new FormData();
+
+        //     imageReqForm.append('journey_id', journeyData.journeyId);
+        //     uploadImg.imagesData.forEach((image, index) => {
+        //         imageReqForm.append(`images[${index}]`, image);
+        //       });
+        //     axios.post(reqImgUploadUrl, imageReqForm)
+        //     .then(response => {
+        //         console.log(response);
+        //     })
+        //     .catch(error => {
+        //         console.error("Error uploading images: ", error);
+        //     })
+        // }
+
 
 
 
@@ -418,7 +468,8 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
 
             axios.delete(reqUrl, {
                 params: {
-                    journey_id: journeyData.journeyId
+                    journey_id: journeyData.journeyId,
+                    images: journeyData.images
                 }
             })
                 .then(response => {

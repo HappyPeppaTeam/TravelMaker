@@ -123,15 +123,18 @@ class JourneyController extends Controller
 
     function deleteJourney(Request $request)
     {
-        DB::transaction();
+        DB::beginTransaction();
         try {
             $journeyId = $request['journey_id'];
+            $images = $request['images'];
             $rowsDeleted = DB::delete("delete from journey where journey_id = ?", [$journeyId]);
             $delEventRes = $this->deleteEvents($journeyId);
+            $delImages = $this->deleteImages2($journeyId, $images);
             if ($rowsDeleted > 0) {
                 DB::commit();
                 return response("Delete {$journeyId} successfully. Event handling: {$delEventRes}");
             } else {
+                DB::commit();
                 return response("Journey with ID {$journeyId} not found", 404);
             }
         } catch (Exception $e) {
@@ -239,6 +242,11 @@ class JourneyController extends Controller
             $uploadCount = 0;
             DB::beginTransaction();
             $getCurrentJourneyImages = DB::select("select * from journey_image where journey_id = ?", [$journeyId]);
+            $isHaveThumbnail = DB::select(
+                "
+                select thumbnail_id from journey where journey_id = ? and thumbnail_id is not null;
+                "
+            , [$journeyId]);
             foreach($files as $file){
                 if ($file->isValid()){
                     $fileName = $file->getClientOriginalName();
@@ -252,7 +260,7 @@ class JourneyController extends Controller
                     ,[$fileName, $path, $journeyId]);
                     
                    
-                    if ($uploadCount == 0 && !$getCurrentJourneyImages){
+                    if ($uploadCount == 0){
                         $isThumbnail = $this->insertThumbnailImg($journeyId, $path);
                     }
 
@@ -313,12 +321,52 @@ class JourneyController extends Controller
 
 
     function deleteImages(Request $request) {
-        $journeyId = $request['journey_id'];
-        $images = $request['images'];
-
+        
         DB::beginTransaction();
         
-        DB::delete("delete from journey_image where journey_id = ? ;", [$journeyId]);
+        try {
+
+            $journeyId = $request['journey_id'];
+            $images = $request['images'];
+            // var_dump($images);
+            // die($images[0]);
+            foreach($images as $image){
+                // echo($image['image_url']);
+                $imageUrl = $image["image_url"];
+                Storage::disk('public')->delete($imageUrl);
+                DB::delete("delete from journey_image where journey_id = ? and image_url = ?;", [$journeyId, $imageUrl]);
+            }
+            DB::commit();
+            return response()->json(['message' => 'delete images succeed.']);
+        }
+        catch (Exception $e){
+            DB::rollBack();
+            throw $e;
+        }
+
+
+    }
+
+    function deleteImages2($journeyId, $images) {
+        
+        DB::beginTransaction();
+        
+        try {
+            // var_dump($images);
+            // die($images[0]);
+            foreach($images as $image){
+                // echo($image['image_url']);
+                $imageUrl = $image["image_url"];
+                Storage::disk('public')->delete($imageUrl);
+                DB::delete("delete from journey_image where journey_id = ? and image_url = ?;", [$journeyId, $imageUrl]);
+            }
+            DB::commit();
+            return response()->json(['message' => 'delete images succeed.']);
+        }
+        catch (Exception $e){
+            DB::rollBack();
+            throw $e;
+        }
 
 
     }

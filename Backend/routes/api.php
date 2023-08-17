@@ -409,6 +409,10 @@ Route::post('/addEvents', [JourneyController::class, 'addNewEvents']);
 Route::post('/updateEvents', [JourneyController::class, 'updateEvents']);
 Route::post('/uploadJourneyImages', [JourneyController::class, 'uploadImage']);
 Route::get('/getJourneyImages', [JourneyController::class, 'getImage']);
+Route::post('/deleteJourneyImages', [JourneyController::class, 'deleteImages']);
+
+
+
 
 
 

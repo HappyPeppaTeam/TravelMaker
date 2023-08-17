@@ -132,7 +132,7 @@ function JourneyThumbnail({ journey, setShow, setClickJourney, setPageTitle, set
 
     return (
         <div
-            className="col-md-6 col-lg-4 col-xl-3 p-2 d-flex align-items-center justify-content-center dropdown"
+            className="col-md-6 col-lg-4 col-xl-3 p-3 d-flex align-items-center justify-content-center dropdown"
         >
             <div className="rounded shadow"
                 style={thumbNailStyle} onClick={handleThumbnailClick}>
@@ -291,6 +291,20 @@ const JourneyDetail = ({ setShow, journeyData, calendarViewRef, setPageTitle }) 
 
 const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef, setPageTitle, calendarEditViewObj, setUploadImg, uploadImg, journeys, setJourneys }) => {
 
+    const imageViewStyle = {
+        // backgroundColor: 'rgb(233, 231, 253, 0.5)',
+        backgroundColor: 'rgb(178, 210, 232, 0.5)',
+        borderRadius: '10px',
+        minHeight: '200px'
+    }
+
+    const imageStyle = {
+        width: "100%",
+        height: "200px",
+        objectFit: "cover",
+    }
+
+
     const editFormStyle = {
         borderRadius: '10px',
     }
@@ -299,6 +313,13 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
         borderRadius: '10px',
         backgroundColor: 'rgb(178, 210, 232, 0.5)',
     }
+
+
+    // image checkbox
+
+
+
+
 
     const handleEditCancel = (e) => {
         e.preventDefault();
@@ -401,7 +422,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
                 });
         }
 
-        else{
+        else {
             axios.put(reqUrl, requestData)
                 .then(response => {
                     console.log("Update joruney: ", response);
@@ -491,12 +512,13 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
 
 
     return (
-        <>
+        <div className='p-3'>
             <div className='d-flex mb-3'>
+                <h2 className='mb-0'>基本資料</h2>
                 <div className='ms-auto text-danger fs-4' onClick={handleDelete}><i className="bi bi-trash3"></i><span>刪除</span></div>
             </div>
             <div id="newJourneyForm1" className='p-3 shadow bg-light mb-3' style={editFormStyle}>
-                <div className="my-3">
+                <div className="mb-3">
                     <label htmlFor="inputJourneyName" className="form-label">行程名稱</label>
                     <input type="text" className="form-control" id="inputJourneyName" aria-describedby="inputJourneyName"
                         placeholder="ex. 金瓜石兩日遊"
@@ -512,87 +534,114 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
                 </div>
                 <div className="my-3">
                     <label htmlFor="inputJourneyDays" className="form-label">行程天數</label>
-                    <input type="number" className="form-control" id="inputJourneyDays" aria-describedby="inputJourneyDays"
+                    <input type="number" min="1" className="form-control" id="inputJourneyDays" aria-describedby="inputJourneyDays"
                     />
                 </div>
             </div>
-
-            <div className='mb-3 p-3' style={calendarContainerStyle}>
+            <h2 className='mt-5 mb-3'>行程表</h2>
+            <div className='mb-3 p-3 shadow' style={calendarContainerStyle}>
                 <div id="calendarEditContainer" ref={calendarEditViewRef}>
 
                 </div>
             </div>
 
-
-            <div id="newJourneyForm3" className='p-3 shadow bg-light' style={editFormStyle}>
+            <h2 className='mt-5 mb-3'>圖片</h2>
+            <div id='imageForm' className='p-3 shadow bg-light mb-3' style={editFormStyle}>
                 <div className="mb-3">
-                    <div className="mb-3">
-                        <div className="mb-1">加入圖片</div>
-                        <label htmlFor="formFileMultiple" className="form-label">本機上傳</label>
-                        {/* <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*' ref={inputRef} onChange={handleUpload}/> */}
-                        <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*'
-                            onChange={(e) => {
-                                handleUpload(e);
+                    <label htmlFor="formFileMultiple" className="form-label">上傳圖片</label>
+                    {/* <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*' ref={inputRef} onChange={handleUpload}/> */}
+                    <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*'
+                        onChange={(e) => {
+                            handleUpload(e);
 
-                            }}
-                            ref={inputRef} />
+                        }}
+                        ref={inputRef} />
 
 
-                        <div className='row row-cols-2 row-cols-lg-3 mt-3 g-3'>
-                            {images.map((image, index) => {
-                                return (
-                                    <div className='col' key={index}>
-                                        <img className='selectedImg w-100' src={image.url} alt={image.name} />
-                                        <div className='imgInfo'>
-                                            <div className='fileName w-100 d-flex justify-content-between align-items-center'>
-                                                <p className='m-0 py-2 text-white text-center'>{image.name}</p>
-                                                <button className='btn remove' onClick={(e) => handleRemove(e, index)}><i className="bi bi-x-circle fs-4"></i></button>
-                                            </div>
+                    <div className='row row-cols-2 row-cols-lg-3 mt-3 g-3 mx-0 shadow' style={calendarContainerStyle}>
+                        {images.map((image, index) => {
+                            return (
+                                <div className='col' key={index}>
+                                    <img className='selectedImg w-100' src={image.url} alt={image.name} />
+                                    <div className='imgInfo'>
+                                        <div className='fileName w-100 d-flex justify-content-between align-items-center'>
+                                            <p className='m-0 py-2 text-white text-center'>{image.name}</p>
+                                            <button className='btn remove' onClick={(e) => handleRemove(e, index)}><i className="bi bi-x-circle fs-4"></i></button>
                                         </div>
                                     </div>
-                                )
-                            })}
-                        </div>
-
-
-                        <div className="container-fluid mt-3" id='imageContainer'></div>
+                                </div>
+                            )
+                        })}
                     </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="publicRadio" className="form-label">公開設定</label>
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="privacyRadio" value={1} id="publicRadio"
-                                checked={journeyData.privacy === 1}
-                                onChange={handlePrivacyChange} />
-                            <label className="form-check-label" htmlFor="publicRadio">
-                                公開
-                            </label>
-                        </div>
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="privacyRadio" value={0} id="privateRadio"
-                                checked={journeyData.privacy === 0}
-                                onChange={handlePrivacyChange} />
-                            <label className="form-check-label" htmlFor="privateRadio">
-                                不公開
-                            </label>
+
+                    <div className="container-fluid mt-3" id='imageContainer'></div>
+                </div>
+
+
+                <div className='mb-3'>
+                
+                        <div className='mb-3'>行程圖片</div>
+                        <div className='shadow p-3' style={imageViewStyle}>
+                            <div className='row g-2'>
+
+                                {/* TODO */}
+
+
+                                {journeyData.images.map((image, index) => (
+                                    <div key={index} className='col-md-6 col-lg-4 col-xl-3'>
+                                        <img src={`http://localhost/TravelMaker/Backend/storage/app/public/${image.image_url}`} className='rounded shadow' style={imageStyle}></img>
+                                    </div>
+                                ))}
+
+
+
+
+                                {/* TODO */}
+
+                            </div>
                         </div>
                     </div>
+            </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="inputNoteJourney" className="form-label">備註</label>
-                        <textarea className="form-control" id="inputNoteJourney" rows="3"
-                            value={journeyData.description}
-                            onChange={handleDescriptionChange}
-                        ></textarea>
+            <div id="newJourneyForm3" className='p-3 shadow bg-light' style={editFormStyle}>
+
+
+                <div className="mb-3">
+                    <label htmlFor="publicRadio" className="form-label">公開設定</label>
+                    <div className="form-check">
+                        <input className="form-check-input" type="radio" name="privacyRadio" value={1} id="publicRadio"
+                            checked={journeyData.privacy === 1}
+                            onChange={handlePrivacyChange} />
+                        <label className="form-check-label" htmlFor="publicRadio">
+                            公開
+                        </label>
+                    </div>
+                    <div className="form-check">
+                        <input className="form-check-input" type="radio" name="privacyRadio" value={0} id="privateRadio"
+                            checked={journeyData.privacy === 0}
+                            onChange={handlePrivacyChange} />
+                        <label className="form-check-label" htmlFor="privateRadio">
+                            不公開
+                        </label>
                     </div>
                 </div>
+
+                <div className="mb-3">
+                    <label htmlFor="inputNoteJourney" className="form-label">備註</label>
+                    <textarea className="form-control" id="inputNoteJourney" rows="3"
+                        value={journeyData.description}
+                        onChange={handleDescriptionChange}
+                    ></textarea>
+                </div>
+                
             </div>
 
             <div className='d-flex justify-content-center my-5'>
                 <button className='btn btn-primary mx-3' onClick={handleUpdateSubmit}>確定</button>
                 <button className='btn btn-secondary mx-3' onClick={handleEditCancel}>取消</button>
             </div>
-        </>
+        </div>
     )
 }
 
@@ -922,13 +971,15 @@ const MyJourney = () => {
             <div className='container-fluid p-0 d-flex'>
                 <Sidebar />
                 <div className='container rounded my-4' style={containerStyle}>
-                    <div className='d-flex align-items-end'>
+                    <div className='d-flex align-items-end px-3'>
                         <h1 className='mb-0'>{pageTitle}</h1>
                         {show === 1 && <div className='ms-auto'>
                             <Link to="/journey/newjourney" className='fs-4 add-journey-link' style={linkStyle}><i className="bi bi-plus-lg"></i><span className="ms-1">建立行程</span></Link>
                         </div>}
                     </div>
-                    <hr></hr>
+                    <div className='px-3'>
+                        <hr></hr>
+                    </div>
                     {show === 1 && <div className='container'>
                         <div className='row'>
                             {journeys.map((journey, index) => (

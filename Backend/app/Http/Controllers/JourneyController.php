@@ -132,7 +132,7 @@ class JourneyController extends Controller
             $delImages = $this->deleteImages2($journeyId, $images);
             if ($rowsDeleted > 0) {
                 DB::commit();
-                return response("Delete {$journeyId} successfully. Event handling: {$delEventRes}");
+                return response("Delete {$journeyId} successfully. Event handling: {$delEventRes}, delete images: {$delImages}");
             } else {
                 DB::commit();
                 return response("Journey with ID {$journeyId} not found", 404);

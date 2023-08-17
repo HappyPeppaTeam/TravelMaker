@@ -37,14 +37,14 @@ export default function Attractions() {
                     <Link to="/journey" className="button-hyperlink">自助旅遊排程</Link>
                 </div> */}
             </div>
-            <div style={{ 'backgroundColor': '#487797' }}>
+            <div>
                 <div style={{ 'paddingTop': '1%' }} className="image-container">
                     <div className="container">
-                        <h3 style={{ 'float': 'left' }}>推薦景點</h3>
+                        <h3 style={{ 'float': 'left' }}><b>推薦景點</b></h3>
                         <Link to="/attractions/Attractionmore" style={{ 'float': 'right' }} className="bottom-line" state="新北">more</Link>
                     </div>
                     <div className="container" style={{ 'clear': 'both' }}>
-                        <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                        <div className="row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
                             {attractionPicture.map((item, index) => {
                                 if (index <= 3) {
                                     return (
@@ -64,11 +64,11 @@ export default function Attractions() {
                 </div>
                 <div style={{ 'paddingTop': '1%' }} className="image-container">
                     <div className="container">
-                        <h3 style={{ 'float': 'left' }}>依地區分類</h3>
+                        <h3 style={{ 'float': 'left' }}><b>依地區分類</b></h3>
                         <Link to="/attractions/Attractioncountry" style={{ 'float': 'right' }} className="bottom-line">more</Link>
                     </div>
                     <div className="container" style={{ 'clear': 'both' }}>
-                        <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                        <div className="row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='新北'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/new_taipei.jpg')} />
@@ -94,11 +94,11 @@ export default function Attractions() {
                 </div>
                 <div style={{ 'paddingTop': '1%', 'paddingBottom': '1%' }} className="image-container">
                     <div className="container">
-                        <h3 style={{ 'float': 'left' }}>依種類分類</h3>
+                        <h3 style={{ 'float': 'left' }}><b>依種類分類</b></h3>
                         <Link to="/attractions/Attractionattraction" style={{ 'float': 'right' }} className="bottom-line">more</Link>
                     </div>
                     <div className="container" style={{ 'clear': 'both' }}>
-                        <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                        <div className="row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore" style={{ 'textDecoration': 'none', 'color': 'black' }}state='人文景點'>
                                     <img style={{ 'maxWidth': '100%' }} src={require('../district/人文景點.jpg')} />

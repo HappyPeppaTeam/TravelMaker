@@ -11,9 +11,9 @@
 }
 
 
-.sidebar-link:hover {
+/* .sidebar-link:hover {
     background-color: var(--bs-primary);
-}
+} */
 
 .active-text:hover {
     color: var(--bs-primary);

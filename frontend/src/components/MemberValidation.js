@@ -72,15 +72,6 @@ const memberValidateField = (fieldName, value, passowrd, originalPassword) => {
 
 const registerFormValidate = (userData) => {
 
-  // function hashString(input) {
-  //   let hash = 0;
-  //   for (let i = 0; i < input.length; i++) {
-  //     hash = (hash << 5) - hash + input.charCodeAt(i);
-  //     hash = hash & hash; // 强制转换为 32 位整数
-  //   }
-  //   return hash;
-  // }
-
   let valid = true;
   // alert([...userData.entries()].map(entry => entry.join(': ')).join('\n'));
   if (userData.hasOwnProperty("username") && !userData.get('username')) {

@@ -647,7 +647,8 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
                                         )} */}
                                         {selectImage.includes(image) && (
                                             <div className="check-icon-overlay rounded">
-                                                <i className="bi bi-check"></i>
+                                                {/* <i className="bi bi-check"></i> */}
+                                                <i class="bi bi-x-lg"></i>
                                             </div>
                                         )}
                                         {/* {console.log("select images: ", selectImage)} */}

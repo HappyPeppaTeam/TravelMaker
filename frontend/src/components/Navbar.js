@@ -21,6 +21,8 @@ export default function Navbar() {
   const logoutModal = useRef(null);
   const messageToast = useRef(null);
   const navbarCollapse = useRef(null);
+  const [showMemberCenterLink, setShowMemberCenterLink] = useState(false);
+  const [showRegisterLink, setShowRegisterLink] = useState(true);
 
   useEffect(() => {
     handleToken();
@@ -61,9 +63,6 @@ export default function Navbar() {
       setTimeout(() => {
         // 隐藏 Toast
         messageToast.current.hide();
-        // window.location.href = '/';
-        window.location.reload();
-        // 2秒后重新加载页面
       }, 2000);
     }
   };

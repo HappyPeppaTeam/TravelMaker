@@ -27,21 +27,18 @@ const LoginModal = ({ closeloginModal, onResponse, openMessageToast }) => {
       }
       const data = response.data.message;
       // Handle the response from the backend, if needed
-      onResponse(data);
+      onResponse(data,true);
       closeloginModal();
       openMessageToast();
       if (Cookies.get('role') === 'admin') {
         window.location.href = 'http://localhost:3000/Admin';
       }
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
       console.log('Response from backend:', data);
     } catch (error) {
       // Handle error, if any
       closeloginModal();
       console.error(error);
-      onResponse('帳號或密碼錯誤')
+      onResponse('帳號或密碼錯誤',false)
       openMessageToast();
     }
   };

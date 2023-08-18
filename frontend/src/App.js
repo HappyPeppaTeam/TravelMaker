@@ -24,8 +24,6 @@ import RestaurantType from './pages/RestaurantType';
 import RestaurantSearch from './pages/RestaurantSearch';
 import RestaurantInner from './pages/RestaurantInner';
 import RestaurantComment from './pages/RestaurantComment';
-import Journey from "./pages/Journey";
-import NewJourneyTest from "./pages/NewJourneyTest";
 import JourneyForm from "./pages/JourneyForm";
 import MyJourney from "./pages/MyJourney";
 import Admin from "./pages/Admin";
@@ -70,7 +68,7 @@ function App() {
           <Route path='/ErrorPage/:errorCode' element={<ErrorPage />}></Route>
           <Route path='/ForgotPassword' element={<ForgotPassword />}></Route>
           <Route path='/resetPassword/:token' element={<ResetPassword />}></Route>
-          <Route path='/Farvorite' element={<Farvorite />}></Route>
+          {/* <Route path='/Farvorite' element={<Farvorite />}></Route> */}
         </Routes>
       <Footer/>
     </div>

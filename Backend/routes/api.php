@@ -14,6 +14,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Mail\ResetPasswordMail;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 
 
 
@@ -416,12 +417,19 @@ Route::get('/auth/google/login', [AuthController::class,'googleLogin'])->name('g
 // Journey Api
 
 Route::get('/getJourneys',[JourneyController::class, 'getUserJourneys']);
+Route::get('/getJourneyId',[JourneyController::class, 'getJourneyId']);
+
 Route::get('/getEvents',[JourneyController::class, 'getJourneyEvents']);
 Route::post('/addJourney',[JourneyController::class, 'addNewJourney']);
 Route::delete('/deleteJourney',[JourneyController::class, 'deleteJourney']);
 Route::put('/updateJourney', [JourneyController::class, 'updateJourney']);
 Route::post('/addEvents', [JourneyController::class, 'addNewEvents']);
 Route::post('/updateEvents', [JourneyController::class, 'updateEvents']);
+Route::post('/uploadJourneyImages', [JourneyController::class, 'uploadImage']);
+Route::get('/getJourneyImages', [JourneyController::class, 'getImage']);
+Route::post('/deleteJourneyImages', [JourneyController::class, 'deleteImages']);
+
+
 
 
 
@@ -533,6 +541,3 @@ Route::post('/getMessagerPhoto',function(Request $request){
     $userPhoto=DB::select('select head_photo from users where user_id = ?',[$userId]);
     return response()->json($userPhoto);
 });
-
-
-

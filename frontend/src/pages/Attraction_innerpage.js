@@ -15,11 +15,11 @@ export default function Attraction_innerpage() {
     const commentModal = useRef(null);
 
     const [spotData, setSpotData] = useState([{}]);
-   
+
 
     useEffect(() => {
         commentModal.current = new Modal('#rest-comment');
-        
+
         // (async () => {
         //     const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/test`);
         //     console.log(response);
@@ -369,49 +369,53 @@ export default function Attraction_innerpage() {
                                 <span className="visually-hidden">Next</span>
                             </button> */}
                         </div>
-                        <div style={{ 'display': 'flex' }}>
+                        <div style={{ 'display': 'flex', 'justify-content': 'space-between' }}>
                             <h1>
                                 <b>
                                     {state.Name}
                                 </b>
                             </h1>
+                            {/* <h1 style={{ 'float': 'right' }}><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                            </svg></h1> */}
+                    </div>
+
+                    <h5>
+                        {state.DescriptionDetail}
+                    </h5>
+                    <hr className='inner-pagger-border'></hr>
+                    <div className='row'>
+                        <div className='col-6' >
+                            <h3><b>資訊</b></h3>
+                            <hr style={{ 'border': '1px solid black' }}></hr>
+                            <h4 style={{ float: 'left' }}><b>地址:</b></h4><h4>{state.Address}</h4>
+                            <hr style={{ 'border': '1px solid black' }}></hr>
+                            <h4 style={{ float: 'left' }}><b>電話:</b></h4><h4>{state.Phone}</h4>
+                            <hr style={{ 'border': '1px solid black' }}></hr>
+                            <h4><b>開放時間:</b></h4>
+                            <h5 style={{ 'display': 'flex' }}>
+                                {state.OpenTime}
+                            </h5>
                         </div>
-                        <h5>
-                            {state.DescriptionDetail}
-                        </h5>
-                        <hr className='inner-pagger-border'></hr>
-                        <div className='row'>
-                            <div className='col-6' >
-                                <h3><b>資訊</b></h3>
-                                <hr style={{ 'border': '1px solid black' }}></hr>
-                                <h4 style={{ float: 'left' }}><b>地址:</b></h4><h4>{state.Address}</h4>
-                                <hr style={{ 'border': '1px solid black' }}></hr>
-                                <h4 style={{ float: 'left' }}><b>電話:</b></h4><h4>{state.Phone}</h4>
-                                <hr style={{ 'border': '1px solid black' }}></hr>
-                                <h4><b>開放時間:</b></h4>
-                                <h5 style={{ 'display': 'flex' }}>
-                                    {state.OpenTime}
-                                </h5>
-                            </div>
-                            <div className="col-6">
-                                <div style={{ 'marginLeft': '10%' }}>
-                                    <h3><b>交通資訊</b></h3>
-                                    <hr style={{ 'border': '1px', 'solid': 'black', 'width': '100%' }}></hr>
-                                    {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.835250205995!2d120.67618207629839!3d24.142423273611676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d12ca93cb15%3A0xbd0f6a8f559b6d54!2z6Ie65Lit56ys5LqM5biC5aC0!5e0!3m2!1szh-TW!2stw!4v1691584479756!5m2!1szh-TW!2stw"
+                        <div className="col-6">
+                            <div style={{ 'marginLeft': '10%' }}>
+                                <h3><b>交通資訊</b></h3>
+                                <hr style={{ 'border': '1px', 'solid': 'black', 'width': '100%' }}></hr>
+                                {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.835250205995!2d120.67618207629839!3d24.142423273611676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d12ca93cb15%3A0xbd0f6a8f559b6d54!2z6Ie65Lit56ys5LqM5biC5aC0!5e0!3m2!1szh-TW!2stw!4v1691584479756!5m2!1szh-TW!2stw"
                                         width="100%" height="100%" style={{ 'border': '0' }} allowfullscreen="" loading="lazy"
                                         referrerpolicy="no-referrer-when-downgrade"></iframe> */}
-                                    <iframe src={state.mapurl}
-                                        width="95%" height="100%" style={{ 'border': '0' }} allowfullscreen="" loading="lazy"
-                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                </div>
-                                <div style={{ 'marginLeft': '10%', 'paddingTop': '1%' }}>
-                                    <h6>
-                                        {state.Transportation}
-                                    </h6>
-                                </div>
+                                <iframe src={state.mapurl}
+                                    width="95%" height="100%" style={{ 'border': '0' }} allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                            <div style={{ 'marginLeft': '10%', 'paddingTop': '1%' }}>
+                                <h6>
+                                    {state.Transportation}
+                                </h6>
                             </div>
                         </div>
-                        {/* <hr className="inner-pagger-border"></hr>
+                    </div>
+                    {/* <hr className="inner-pagger-border"></hr>
                         <div style={{ 'clear': 'both' }}>
                             <fieldset className="rm-fieldset attraction-message">
                                 <img className="img-fluid-message" src="#" />
@@ -450,7 +454,7 @@ export default function Attraction_innerpage() {
                                 </div>
                             </fieldset>
                         </div> */}
-                        {/* <button id="openReviewModal"
+                    {/* <button id="openReviewModal"
                             style={{ 'borderRadius': '12px', 'marginBottom': '5px', 'padding': '10px 25px', 'float': 'left' }}>寫評論
                         </button>
                         <div className="review-modal">
@@ -467,35 +471,35 @@ export default function Attraction_innerpage() {
                             <button id="submitReview">提交</button>
                             <button id="cancelReview">取消</button>
                         </div>*/}
-                        <button className="btn btn-primary" style={{ width: '200px' }} data-bs-toggle="modal"
-                            data-bs-target="#rest-comment">寫下評論</button>
+                    <button className="btn btn-primary" style={{ width: '200px' }} data-bs-toggle="modal"
+                        data-bs-target="#rest-comment">寫下評論</button>
 
-                        <div data-bs-backdrop="static" id="rest-comment" className="modal" tabIndex="-1">
-                            <div className="modal-dialog">
-                                <div className="modal-content">
-                                    <div className="modal-header">
-                                        <h5 className="modal-title">留下評論:</h5>
-                                        <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div className="modal-body">
-                                        <textarea id="rest-leave-comment" name="rest-leave-comment" rows="4"
-                                            cols="50"></textarea>
-                                        <br />
-                                        <input type='file'></input>
-                                    </div>
-                                    <div className="modal-footer">
-                                        <input type="submit" value="提交" />
-                                    </div>
+                    <div data-bs-backdrop="static" id="rest-comment" className="modal" tabIndex="-1">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title">留下評論:</h5>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div className="modal-body">
+                                    <textarea id="rest-leave-comment" name="rest-leave-comment" rows="4"
+                                        cols="50"></textarea>
+                                    <br />
+                                    <input type='file'></input>
+                                </div>
+                                <div className="modal-footer">
+                                    <input type="submit" value="提交" />
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <Link to="/Attraction_innerpage/Attraction_forun" style={{ 'float': 'right' }} className="bottom-line" target="_blank">more</Link>
-                        </div>
+                    </div>
+                    <div>
+                        <Link to="/Attraction_innerpage/Attraction_forun" style={{ 'float': 'right' }} className="bottom-line" target="_blank">more</Link>
                     </div>
                 </div>
             </div>
+        </div >
         </>
     )
 }

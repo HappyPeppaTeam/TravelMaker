@@ -127,10 +127,26 @@ Route::post('/albums/{token}/{album_id}', function (Request $request, $token, $a
                 'description' => $request->input('description'),
             ]);
     
-        // 移除原有相片
-        DB::table('album_photos')
-            ->where('album_id', $album_id)
-            ->delete();
+        // 移除使用者選擇的原有相片
+        $photoIdsToDelete = $request->input('removedImg');
+
+        if ($photoIdsToDelete) {
+            DB::table('album_photos')
+                ->whereIn('image_id', $photoIdsToDelete)
+                ->delete();
+        }
+
+        // 檢查相簿是否還有相片
+        $remainingPhotoCount = DB::table('album_photos')
+        ->where('album_id', $album_id)
+        ->count();
+
+        // 刪除相簿（如果沒有相片了）
+        if ($remainingPhotoCount === 0) {
+            DB::table('albums')
+                ->where('album_id', $album_id)
+                ->delete();
+        }
 
         // 處理上傳的相片內容
         if ($request->has('images')) {
@@ -160,6 +176,7 @@ Route::post('/albums/{token}/{album_id}', function (Request $request, $token, $a
         return response()->json(['error' => 'Error updating album and photos'. $e->getMessage()], 500);
     }
 });
+
 Route::post('/register',function(Request $request){
     $userName = $request['username'];
     $password = $request['password'];
@@ -325,6 +342,7 @@ Route::get('/getBoardTextAndImage',function() {
     return response()->json($data);
 });
 
+
 Route::get('/getBoardText/{boardText_id}', function ($board_text_id) {
     // 取得 board_text 資料及關聯的使用者名稱
     $boardText = DB::table('board_text')
@@ -370,7 +388,7 @@ return response()->json($postMessage,200);
 });
 //get文章 boardTextId 下所有留言
 Route::get('/getMessage/{boardTextId}',function($boardTextId){
-$getMessage=DB::select('select mb.*, COALESCE(u.head_photo, \'default.jpg\') AS head_photo
+$getMessage=DB::select('select mb.*, COALESCE(u.head_photo, \'default.jpg\') AS head_photo , full_name
 FROM message_board mb
 LEFT JOIN users u ON mb.user_id = u.user_id
 WHERE mb.board_text_id = ?;',[$boardTextId]);
@@ -439,6 +457,7 @@ Route::post('/createBoardText', function (Request $request) {
     $text = $request->input('text');
     $postingUserId = $request->input('postingUserId'); // Assuming you have a way to get the posting user ID
     $type = $request->input('type'); // Assuming you have a way to get the posting user ID
+    $DiscussionId = $request->input('DiscussionId'); // Assuming you have a way to get the posting user ID
     $cityId = $request->input('cityId'); // Assuming you have a way to get the posting user ID
     date_default_timezone_set('Asia/Taipei');
     $postTime=date("Y-m-d H:i:s");
@@ -451,6 +470,7 @@ Route::post('/createBoardText', function (Request $request) {
         'posting_time' => $postTime,
         'type' => $type,
         'posting_user_id' => $postingUserId,
+        'Discussion_board_id' => $DiscussionId,
         'Discussion_board_area' => $cityId,
     ]);
 
@@ -508,7 +528,8 @@ Route::get('/spotSummary',function(){
     return response()->json($data);
 });
 
-Route::get('/getMessagerPhoto',function(Request $request){
+Route::post('/getMessagerPhoto',function(Request $request){
     $userId=$request['userId'];
-    $userPhoto=DB::select('select head_photo form users where user_id = ?',[$userId]);
+    $userPhoto=DB::select('select head_photo from users where user_id = ?',[$userId]);
+    return response()->json($userPhoto);
 });

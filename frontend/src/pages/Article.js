@@ -1,54 +1,51 @@
 import '../css/Forumstyles.css';
 import '../css/Article.css';
-import MessageBoard from "../components/MessageBoard";
+import MessageBoardInput from "../components/MessageBoardInput";
 import DiscussionBoard from '../components/DiscussionBoardList';
 import ArticleComponents from '../components/ArticleComponents';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'
+import axios from 'axios';
 
 export default function Article() {
+    const [userData, setUserData] = useState([]);
     let { state } = useLocation()
-    console.log(state);
+
+    useEffect(() => {
+        // Replace 'YOUR_BACKEND_API_ENDPOINT' with the actual API endpoint
+        axios.get(`http://localhost/TravelMaker/Backend/public/api/getBoardText/${state}`)
+            .then(response => {
+                setUserData(response.data); // Assuming response.data contains user data
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
+            });
+    }, []);
 
     return (
         <div className="main">
             {/* <!-- 導覽列 --> */}
             <DiscussionBoard></DiscussionBoard>
             {/* <!-- 文章 --> */}
-            <section
-                className="container Article-page"
-                style={{ border: "1px saddlebrown solid" }}
-            >
+            <section className="container Article-page">
                 <div className="row">
                     {/* <!-- user --> */}
-                    <div
-                        className="col-12 col-lg-3 col-xl-2 Article-user"
-                        id=""
-                        style={{ border: "1px red solid" }}
-                    >
+                    <div className="col-12 col-lg-3 col-xl-2 Article-user">
                         <div className="Article-user-card">
-                            <a href="" target="_blank">
-                                <img className="" src={require('../images/headimage.jpg')} alt="" />
-                            </a>
+                            <img src={`http://localhost/TravelMaker/Backend/public/storage/${userData.head_photo}`} alt="" />
                             <div className="Article-user-item">
-                                <div className="Article-user-item-username">
-                                    <a href="" target="_blank">UserID</a>
-                                    <p>註冊日期</p>
+                                <div className="Article-user-item-user">
+                                    <p className="Article-user-item-username-userid">{userData.full_name}</p>
+                                    <p className="Article-user-item-user-regiterdate">{userData.register_time}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     {/* <!-- 文章內容 --> */}
-                    <div
-                        className="col-12 col-lg-9 col-xl-10 Article-information-main"
-                        style={{ border: "1px blue solid", backgroundColor: "aquamarine" }}
-                    >
+                    <div className="col-12 col-lg-9 col-xl-10 Article-information-main bg-light">
                         <ArticleComponents board_text_id={state}></ArticleComponents>
                         <hr />
-                        <div
-                            className="Article-information-main-footer"
-                            style={{ border: "1px blueviolet solid" }}
-                        >
+                        <div className="Article-information-main-footer" >
                             <div className="Article-information-main-footer-left">
                                 <button className="btn">
                                     <svg
@@ -80,22 +77,14 @@ export default function Article() {
                                 </button>
                             </div>
                             <div className="Article-information-main-footer-right">
-                                <button className="btn">回覆</button>
+                                <label className="btn btn-primary" htmlFor="MessageRe">留言</label>
                             </div>
                         </div>
-                        <div
-                            className="Article-information-footer-messageboard"
-                            style={{ border: "1px gold solid", backgroundColor: "aliceblue" }}
-                        >
-                            <div
-                                className="Article-information-footer-messageboard"
-                                style={{ border: "1px firebrick solid", height: "20px" }}
-                            ></div>
-                            <div
-                                className="Article-information-footer-messageboard-user"
-                                style={{ border: "1px khaki solid" }}
-                                >
-                                <MessageBoard></MessageBoard>
+                        <hr />
+                        <div className="bg-blue-3">
+                            <div className="Article-information-footer-messageboard"></div>
+                            <div className="Article-information-footer-messageboard-user">
+                                <MessageBoardInput board_text_id={state}></MessageBoardInput>
                             </div>
                         </div>
                     </div>

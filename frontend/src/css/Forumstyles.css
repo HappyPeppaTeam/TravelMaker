@@ -16,7 +16,8 @@
 }
 .sub-discussion-board {
     display: flex;
-    justify-content: left;
+    /* justify-content: left; */
+    justify-content: center;
 }
 .sub-discussion-board button{
     width: 145px;
@@ -26,6 +27,11 @@
 .sub-discussion-board-home button{
     width: 145px;
     height: 35px;
+}
+
+.sub-discussion-board-home {
+    display: flex;
+    justify-content: center;
 }
 
 .sub-discussion-board-home a {
@@ -40,5 +46,5 @@
 
 /* 精選文章 */
 .card-img-size {
-    border-radius: 20px 20px 0 0;
+    border-radius: 5px 5px 0 0;
 }

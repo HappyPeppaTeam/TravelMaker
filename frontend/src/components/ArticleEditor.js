@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 function useImage() {
@@ -73,6 +73,8 @@ function ArticleEditor() {
     const [exceedLimit, setExceedLimit] = useState(false);
     const userId = Cookies.get('userId');
 
+    const navigate = useNavigate();
+
     const locationMapping = {
         '1': '1', // '1' 对应 '北部討論版'
         '2': '8', // '2' 对应 '中部討論版'
@@ -110,6 +112,10 @@ function ArticleEditor() {
             setExceedLimit(false);
         }
     };
+
+    const handleBack = () => {
+        navigate(-1);
+      };
 
     const handleSubmit = async (event) => {
         const ArticleData = new FormData();
@@ -241,7 +247,7 @@ function ArticleEditor() {
 
                 </div>
                 <div className='post_article'>
-                    <button className='btn btn-danger' type="submit">取消發文</button>
+                    <button className='btn btn-danger' type="button" onClick={handleBack}>取消發文</button>
                     <button className='btn btn-primary' type="button" onClick={handleSubmit} disabled={exceedLimit}>我要發文</button>
                 </div>
             </form>

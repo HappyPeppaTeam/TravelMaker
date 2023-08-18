@@ -1,32 +1,37 @@
 .bg-blue-1 {
-    background-color: #2F4E63;
+  background-color: #2f4e63;
 }
 
 .bg-blue-2 {
-    background-color: #B2D2E8;
+  background-color: #b2d2e8;
 }
 
 .bg-blue-3 {
-    background-color: #6BB3E3;
+  background-color: #6bb3e3;
 }
 
 /* 導覽列 */
 .discussion-board {
-    padding: 0.5em;
-}
-.sub-discussion-board {
-    display: flex;
-    /* justify-content: left; */
-    justify-content: center;
-}
-.sub-discussion-board button{
-    width: 145px;
-    height: 35px;
+  padding: 0.5em;
 }
 
-.sub-discussion-board-home button{
-    width: 145px;
-    height: 35px;
+.forum-Addarticle {
+    position: fixed;
+    bottom: 60px;
+    right: 0.5em;
+    z-index: 999;
+    transition: bottom 0.3s ease;
+}
+
+.forum-Addarticle button {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.forum-Addarticle a {
+  text-decoration: none;
+  color: white;
 }
 
 .sub-discussion-board-home {
@@ -39,12 +44,31 @@
     color: white;
 }
 
+.sub-discussion-board {
+  display: flex;
+  justify-content: center;
+}
+.sub-discussion-board button {
+  width: 145px;
+  height: 35px;
+}
+
+.sub-discussion-board-home button {
+  width: 145px;
+  height: 35px;
+}
+
+.sub-discussion-board-home a {
+  text-decoration: none;
+  color: white;
+}
+
 /* 輪播圖 */
-.forum-carousel img{
-    object-fit: cover;
+.forum-carousel img {
+  object-fit: cover;
 }
 
 /* 精選文章 */
 .card-img-size {
-    border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
 }

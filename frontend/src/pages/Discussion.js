@@ -39,7 +39,7 @@ export default function Discussion() {
                     </button>
                 </div>
                 {/* <!-- 上分頁 --> */}
-                <div className="page">
+                {/* <div className="page">
                     <nav aria-label="Page navigation example">
                         <ul className="pagination">
                             <li className="page-item">
@@ -59,7 +59,7 @@ export default function Discussion() {
                             </li>
                         </ul>
                     </nav>
-                </div>
+                </div> */}
 
                 {/* <!-- 討論串 --> */}
                 <div className="row flex mx-0">

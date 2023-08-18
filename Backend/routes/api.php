@@ -127,10 +127,26 @@ Route::post('/albums/{token}/{album_id}', function (Request $request, $token, $a
                 'description' => $request->input('description'),
             ]);
     
-        // 移除原有相片
-        DB::table('album_photos')
-            ->where('album_id', $album_id)
-            ->delete();
+        // 移除使用者選擇的原有相片
+        $photoIdsToDelete = $request->input('removedImg');
+
+        if ($photoIdsToDelete) {
+            DB::table('album_photos')
+                ->whereIn('image_id', $photoIdsToDelete)
+                ->delete();
+        }
+
+        // 檢查相簿是否還有相片
+        $remainingPhotoCount = DB::table('album_photos')
+        ->where('album_id', $album_id)
+        ->count();
+
+        // 刪除相簿（如果沒有相片了）
+        if ($remainingPhotoCount === 0) {
+            DB::table('albums')
+                ->where('album_id', $album_id)
+                ->delete();
+        }
 
         // 處理上傳的相片內容
         if ($request->has('images')) {
@@ -160,6 +176,7 @@ Route::post('/albums/{token}/{album_id}', function (Request $request, $token, $a
         return response()->json(['error' => 'Error updating album and photos'. $e->getMessage()], 500);
     }
 });
+
 Route::post('/register',function(Request $request){
     $userName = $request['username'];
     $password = $request['password'];

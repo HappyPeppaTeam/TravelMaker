@@ -9,7 +9,7 @@ import 'aos/dist/aos.css';
 const { useEffect } = React;
 
 const article = await axios.get(`http://localhost/TravelMaker/Backend/public/api/getBoardTextAndImage`);
-console.log(article.data);
+
 const spot = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction`);
 
 const spotSummary = await axios.get(`http://localhost/TravelMaker/Backend/public/api/spotSummary`);
@@ -57,7 +57,7 @@ const settings = {
     slidesToShow: 4,
     slidesToScroll: 4,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 3500,
     responsive: [
       {
         breakpoint: 1024,
@@ -85,10 +85,14 @@ const settings = {
       }
     ]
 };
+
+const handleLink = () => {
+  window.scrollTo(0, 0);
+}
 const renderContent = spotSummary.data.map((item,index) => {
   if(index >= 14 && index <= 21) {
     return (
-      <Link to="/Attractionmore/Attraction_innerpage" className="cardLink" key={index} state={spot.data[index]}>
+      <Link to="/Attractionmore/Attraction_innerpage" className="cardLink" key={index} state={spot.data[index]} onClick={handleLink}>
               <div className="card m-2 shadow-sm cardScale spotCard">
                 <img
                   src={item.PictureUrl1}
@@ -119,7 +123,7 @@ const TravelPlan = ({data}) => {
         <div className="row g-0">
           <div className="col-lg-4">
             <img
-              src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+              src={`http://localhost/TravelMaker/Backend/public/storage/${data.image_path}`}
               className="img-fluid round h-100"
               alt="..."
             />
@@ -222,7 +226,7 @@ export default function Home() {
 
           <div className="popularRestaurant mb-5" data-aos="fade-up">
             <h2 className="fw-bold">熱門餐廳</h2>
-            <p className="mb-0">沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
+            <p className="mb-0">沒有想法嗎? 快來看看各式精選料理 !</p>
             <div className="row row-cols-2 mt-4">
               <div className="col">
                 <RestaurantCard data={restaurant[0]}></RestaurantCard>
@@ -235,7 +239,7 @@ export default function Home() {
 
           <div className="popularSpot" data-aos="fade-up">
             <h2 className="fw-bold">熱門景點</h2>
-            <p className="mb-0">沒有想法嗎? 快來看看旅遊達人們怎麼玩 !</p>
+            <p className="mb-0">沒有想法嗎? 快來看看熱門景點有哪些 !</p>
             <Slider settings={settings} renderContent={renderContent}/>
           </div>
         </div>

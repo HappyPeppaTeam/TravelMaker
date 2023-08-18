@@ -14,7 +14,7 @@ class AlbumController extends Controller
         $validator = Validator::make($request->all(), [
             'album_name' => 'required|string|max:20',
             'tag' => 'required|string|max:20',
-            'description' => 'nullable|string|max:255',
+            'description' => 'required',
             'images' => 'required|array',
         ]);
 

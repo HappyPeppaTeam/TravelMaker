@@ -1,12 +1,14 @@
 .album {
     height: 200px;
     background-size: cover;
+    border-radius: 20px;
 }
 
 .albumLink:hover .card-title {
     bottom: 20px;
     transform: scale(1.2);
-    color: black;
+    /* color: black; */
+    color: white;
 }
 
 .albumLink:hover .album {
@@ -16,13 +18,16 @@
 
 .albumBody {
     position: relative;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+    border-radius: 20px;
 }
 
 .albumTitle {
     position: absolute;
     bottom: 0;
     transition: all .4s;
-    color: rgb(70, 68, 68);
+    /* color: rgb(70, 68, 68); */
+    color: white;
     text-shadow: 1px 1px 2px pink;
 }
 
@@ -50,4 +55,14 @@
     .slick-prev, .slick-next {
         top: 45%;
     }
+}
+
+.addNewAlbum {
+    background: gray;
+    border-radius: 20px;
+}
+
+.plusIcon {
+    font-size: 2rem;
+    color: #2F4E63;
 }

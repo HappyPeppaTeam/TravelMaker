@@ -30,13 +30,23 @@
 }
 
 .forum-Addarticle a {
+  text-decoration: none;
+  color: white;
+}
+
+.sub-discussion-board-home {
+    display: flex;
+    justify-content: center;
+}
+
+.sub-discussion-board-home a {
     text-decoration: none;
     color: white;
 }
 
 .sub-discussion-board {
   display: flex;
-  justify-content: left;
+  justify-content: center;
 }
 .sub-discussion-board button {
   width: 145px;

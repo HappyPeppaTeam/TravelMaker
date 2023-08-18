@@ -70,7 +70,7 @@ function App() {
           <Route path='/ErrorPage/:errorCode' element={<ErrorPage />}></Route>
           <Route path='/ForgotPassword' element={<ForgotPassword />}></Route>
           <Route path='/resetPassword/:token' element={<ResetPassword />}></Route>
-          <Route path='/Farvorite' element={<Farvorite />}></Route>
+          {/* <Route path='/Farvorite' element={<Farvorite />}></Route> */}
         </Routes>
       <Footer/>
     </div>

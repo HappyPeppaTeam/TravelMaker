@@ -541,6 +541,3 @@ Route::post('/getMessagerPhoto',function(Request $request){
     $userPhoto=DB::select('select head_photo from users where user_id = ?',[$userId]);
     return response()->json($userPhoto);
 });
-
-
-

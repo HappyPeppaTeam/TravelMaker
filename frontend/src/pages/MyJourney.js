@@ -802,18 +802,18 @@ const MyJourney = () => {
             user_id: userId
         }
 
-        if (show !== 3) {
-            axios.get(reqJourneysUrl, {
-                params: reqParams
+        
+        axios.get(reqJourneysUrl, {
+            params: reqParams
+        })
+            .then(response => {
+                setJourneys(response.data);
+                console.log("Journeys: ", response.data);
             })
-                .then(response => {
-                    setJourneys(response.data);
-                    console.log("Journeys: ", response.data);
-                })
-                .catch((error) => {
-                    console.error('Axios error:', error);
-                });
-        }
+            .catch((error) => {
+                console.error('Axios error:', error);
+            });
+        
 
 
         // setShow(1);
@@ -988,7 +988,7 @@ const MyJourney = () => {
 
         }
 
-    }, [show, journeyData.journeyId]);
+    }, [show, journeyData]);
 
 
     const eventModalRef = useRef(null);

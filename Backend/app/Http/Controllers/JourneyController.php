@@ -64,7 +64,7 @@ class JourneyController extends Controller
 
             $isInsert = DB::insert(
                 "
-                insert into Journey (journey_name, description, user_id, privacy, thumbnail_id)
+                insert into journey (journey_name, description, user_id, privacy, thumbnail_id)
                 values(?, ?, ?, ?, ?);
                 ",
                 [$journeyName, $journeyDescription, $userId, $privacy, $thumbnailId]

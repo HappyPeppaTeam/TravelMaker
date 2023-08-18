@@ -886,7 +886,7 @@ export default function RestaurantSearch() {
                                 const matchedZipCode = zipcode.find(zip => zip.ZipCode === item.ZipCode);
                                 return (
                                     <div className="col-xl-4 col-sm-6 p-3">
-                                        <a href="" style={{ 'text-decoration': 'none' }}>
+                                        <Link to="/restaurant/inner" style={{ 'text-decoration': 'none' }} state={item.ID}>
                                             <div className="card rest-card ">
                                                 <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
                                                 <div className="rest-container p-3">
@@ -897,7 +897,7 @@ export default function RestaurantSearch() {
                                                     )}
                                                 </div>
                                             </div>
-                                        </a>
+                                        </Link>
                                     </div>
                                 )
                             } else if
@@ -905,7 +905,7 @@ export default function RestaurantSearch() {
                                 const matchedZipCode = zipcode.find(zip => zip.ZipCode === item.ZipCode);
                                 return (
                                     <div className="col-xl-4 col-sm-6 p-3">
-                                        <a href="" style={{ 'text-decoration': 'none' }}>
+                                        <Link to="/restaurant/inner" style={{ 'text-decoration': 'none' }} state={item.ID}>
                                             <div className="card rest-card ">
                                                 <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
                                                 <div className="rest-container p-3">
@@ -916,7 +916,7 @@ export default function RestaurantSearch() {
                                                     )}
                                                 </div>
                                             </div>
-                                        </a>
+                                        </Link>
                                     </div>
                                 )
                             } else if
@@ -924,7 +924,7 @@ export default function RestaurantSearch() {
                                 const matchedZipCode = zipcode.find(zip => zip.ZipCode === item.ZipCode);
                                 return (
                                     <div className="col-xl-4 col-sm-6 p-3">
-                                        <a href="" style={{ 'text-decoration': 'none' }}>
+                                        <Link to="/restaurant/inner" style={{ 'text-decoration': 'none' }} state={item.ID}>
                                             <div className="card rest-card ">
                                                 <img src={item.PictureUrl1 === null ? "https://img.lovepik.com/free-png/20210919/lovepik-hand-painted-cloud-png-image_400633131_wh1200.png" : item.PictureUrl1} alt={item.Name} />
                                                 <div className="rest-container p-3">
@@ -935,7 +935,7 @@ export default function RestaurantSearch() {
                                                     )}
                                                 </div>
                                             </div>
-                                        </a>
+                                        </Link>
                                     </div>
                                 )
                             }

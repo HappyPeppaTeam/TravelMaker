@@ -4,7 +4,7 @@ export default function RestaurantArea() {
     return (
         <div class="rest-main">
             <div class="rest-container">
-                <div className="p-4"><Link className="rm-link-style" to="">餐廳</Link>＞<Link className="rm-link-style" to="/restaurant/type">餐廳分類</Link></div>
+                <div className="p-4"><Link className="rm-link-style" to="/restaurant">餐廳</Link>＞<Link className="rm-link-style" to="/restaurant/type">餐廳分類</Link></div>
                 <div class="row">
                     <div class="col-xl-3 col-sm-6 p-3 p-3">
                         <div class="card rest-card text-center">

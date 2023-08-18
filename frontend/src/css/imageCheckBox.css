@@ -1,0 +1,72 @@
+/* Image Checkbox Style */
+.image-checkbox {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.image-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.image-checkbox img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.image-checkbox img.selected {
+    border-color: #007bff;
+    /* Change the color as needed */
+}
+
+.image-checkbox img.delete-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    display: none;
+}
+
+.image-checkbox input[type="checkbox"]:checked~img.delete-image {
+    display: block;
+}
+
+.checkbox-img-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.check-icon-overlay {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Add a semi-transparent background */
+
+}
+
+
+.check-icon-overlay i {
+    font-size: 24px; /* Adjust the icon size as needed */
+    color: #fff; /* Set the icon color */
+  }

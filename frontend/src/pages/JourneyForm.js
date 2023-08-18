@@ -11,8 +11,9 @@ import { Modal } from 'bootstrap';
 
 import Sidebar from '../components/Sidebar';
 import BotSidebar from '../components/BotSidebar';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import '../css/createAlbum.css';
+import Cookies from 'js-cookie';
 
 
 function useImage() {
@@ -20,7 +21,7 @@ function useImage() {
   const [images, setImages] = useState([]);
   const [imagesData, setImagesData] = useState([]);
 
-  console.log(imagesData);
+  // console.log(imagesData);
   // 上傳圖片
   const handleUpload = (e) => {
     const images = [...e.target.files].map((file) => {
@@ -83,7 +84,7 @@ const StepOne = ({ formData, setFormData }) => {
 
   const formStyle = {
     backgroundColor: 'rgb(178, 210, 232, 0.5)',
-    minHeight: '500px',
+    minHeight: '300px',
   }
 
   const handleTitle = (e) => {
@@ -110,19 +111,19 @@ const StepOne = ({ formData, setFormData }) => {
     }))
   }
 
-  const handleJourneyEnd = (e) => {
-    e.preventDefault();
-    const endDay = moment(formData.journeyStart).add(e.target.value, 'days').format('YYYY-MM-DD');
-    setFormData((prevData) => ({
-      ...prevData,
-      journeyEnd: endDay,
-    }))
-  }
+  // const handleJourneyEnd = (e) => {
+  //   e.preventDefault();
+  //   const endDay = moment(formData.journeyStart).add(e.target.value, 'days').format('YYYY-MM-DD');
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     journeyEnd: endDay,
+  //   }))
+  // }
 
 
   return (
     <div id="newJourneyForm1" className='p-3 shadow rounded' style={formStyle}>
-      <div className="my-3">
+      <div className="mb-3">
         <label htmlFor="inputJourneyName" className="form-label">行程名稱</label>
         <input type="text" className="form-control" id="inputJourneyName" aria-describedby="inputJourneyName"
           placeholder="ex. 金瓜石兩日遊"
@@ -141,11 +142,11 @@ const StepOne = ({ formData, setFormData }) => {
         <input type="date" className="form-control" id="inputJourneyStart" aria-describedby="inputJourneyStart"
           onChange={handleJourneyStart} />
       </div>
-      <div className="my-3">
+      {/* <div className="my-3">
         <label htmlFor="inputJourneyDays" className="form-label">行程天數</label>
-        <input type="number" className="form-control" id="inputJourneyDays" aria-describedby="inputJourneyDays"
+        <input type="number" min="1" className="form-control" id="inputJourneyDays" aria-describedby="inputJourneyDays"
           onChange={handleJourneyEnd} />
-      </div>
+      </div> */}
     </div>
   )
 }
@@ -188,16 +189,16 @@ const StepThree = ({ formData, setFormData }) => {
     }))
   }
 
-  const handlePrivacyChange = (e) => {
-    e.preventDefault();
-    const newPrivacyValue = parseInt(e.target.value);
-    setFormData((prevData) => ({
-      ...prevData,
-      privacy: newPrivacyValue,
-    }))
-  }
+  // const handlePrivacyChange = (e) => {
+  //   e.preventDefault();
+  //   const newPrivacyValue = parseInt(e.target.value);
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     privacy: newPrivacyValue,
+  //   }))
+  // }
 
-  const { images, imagesData, handleUpload, handleRemove, handleRemoveAll, inputRef } = useImage();
+  const { images, imagesData, handleUpload, handleRemove, inputRef } = useImage();
 
   useEffect(() => {
     setFormData((prevData) => ({
@@ -205,14 +206,14 @@ const StepThree = ({ formData, setFormData }) => {
       images: images,
       imagesData: imagesData
     }))
+
   }, [imagesData, images])
 
   return (
     <div id="newJourneyForm3" className='p-3 shadow rounded' style={formStyle}>
       <div className="mb-3">
         <div className="mb-3">
-          <div className="mb-1">加入圖片</div>
-          <label htmlFor="formFileMultiple" className="form-label">本機上傳</label>
+          <label htmlFor="formFileMultiple" className="form-label">圖片上傳</label>
           {/* <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*' ref={inputRef} onChange={handleUpload}/> */}
           <input className="form-control mb-2" type="file" id="formFileMultiple" multiple accept='image/*'
             onChange={(e) => {
@@ -226,7 +227,7 @@ const StepThree = ({ formData, setFormData }) => {
             {images.map((image, index) => {
               return (
                 <div className='col' key={index}>
-                  <img className='selectedImg w-100' src={image.url} />
+                  <img className='selectedImg w-100' src={image.url} alt={image.name}/>
                   <div className='imgInfo'>
                     <div className='fileName w-100 d-flex justify-content-between align-items-center'>
                       <p className='m-0 py-2 text-white text-center'>{image.name}</p>
@@ -238,32 +239,11 @@ const StepThree = ({ formData, setFormData }) => {
             })}
           </div>
 
-          <label htmlFor="fromAlbum" className="form-label">相簿上傳</label>
-
-          <div className="input-group mb-3">
-            <button className="btn btn-outline-secondary dropdown-toggle" data-bs-auto-close="outside"
-              data-bs-toggle="dropdown" type="button" id="fromAlbum" aria-expanded="false">
-              選擇相簿
-            </button>
-            <ul className="dropdown-menu" id="albumMenu">
-
-              <li><a className="dropdown-item" href="#" data-bs-toggle="modal"
-                data-bs-target="#albumModal">新北兩日遊</a></li>
-              <li><a className="dropdown-item" href="#" data-bs-toggle="modal"
-                data-bs-target="#albumModal">金瓜石之旅</a></li>
-              <li><a className="dropdown-item" href="#" data-bs-toggle="modal"
-                data-bs-target="#albumModal">安平好熱</a></li>
-              <li><a className="dropdown-item" href="#">我的收藏</a></li>
-
-            </ul>
-            <input type="text" className="form-control" placeholder="" aria-label="Example text with button addon"
-              aria-describedby="button-addon1" />
-          </div>
-
+          
           <div className="container-fluid mt-3" id='imageContainer'></div>
         </div>
 
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <label htmlFor="publicRadio" className="form-label">公開設定</label>
           <div className="form-check">
             <input className="form-check-input" type="radio" name="privacyRadio" value={1} id="publicRadio"
@@ -281,7 +261,7 @@ const StepThree = ({ formData, setFormData }) => {
               不公開
             </label>
           </div>
-        </div>
+        </div> */}
 
         <div className="mb-3">
           <label htmlFor="inputNoteJourney" className="form-label">備註</label>
@@ -300,24 +280,36 @@ const StepFour = ({ calendarBrowseRef, formData }) => {
   const formStyle = {
     backgroundColor: 'rgb(178, 210, 232, 0.5)',
     minHeight: '500px',
+    borderRadius: '10px',
     // display: 'none'
+  }
+
+  const sectionStyle = {
+    backgroundColor: 'rgb(178, 210, 232, 0.5)',
+    minHeight: '100px',
+    borderRadius: '10px',
   }
 
 
 
   return (
-    <div id="newJourneyBrowse" className='rounded shadow p-3' style={formStyle}>
+    <div id="newJourneyBrowse" className='p-3' >
 
       <div id="browseCalendarContainer" className="w-100 mb-3" >
-        <h2>行程表</h2>
-        <div id="browserCalendar" ref={calendarBrowseRef}>
+        <h2 className='mb-3'>行程表</h2>
+        <div id="browserCalendar" ref={calendarBrowseRef} className='p-3 shadow' style={formStyle}>
 
         </div>
       </div>
-      <div id="browseTextContainer" className="w-100 mb-3" >
-        <h2>目的地: {formData.destination}</h2>
+      <div id="browseTextContainer" className="w-100 my-5" >
+        <h2>目的地: </h2>
+        <div className='shadow mb-5 d-flex align-items-center' style={sectionStyle}>
+          <p className='fs-2 ps-3'>{formData.destination}</p> 
+        </div>
         <h2>備註</h2>
-        <p>{formData.description}</p>
+        <div className='shadow mb-5 p-3' style={sectionStyle}>
+          <p>{formData.description}</p>
+        </div>
       </div>
       <div id="browseImageContainer" className="w-100 mb-3">
         <h2>相片</h2>
@@ -384,9 +376,9 @@ const EventAddModal = ({ modalTitle, handleModalSave, handleCloseModal, handleRe
             </div>
           </div>
           <div className="modal-footer">
-            {modalTitle === "修改活動" && <button type="button" className="btn btn-danger me-auto" onClick={handleRemoveEvent}>Remove Event</button>}
-            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={handleCloseModal}>Cancel</button>
-            <button type="button" className="btn btn-primary" id="saveEventChanges" onClick={handleModalSave}>Save Changes</button>
+            {modalTitle === "修改活動" && <button type="button" className="btn btn-danger me-auto" onClick={handleRemoveEvent}>刪除活動</button>}
+            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={handleCloseModal}>取消</button>
+            <button type="button" className="btn btn-primary" id="saveEventChanges" onClick={handleModalSave}>確認</button>
           </div>
         </div>
       </div>
@@ -479,6 +471,7 @@ const NowJourneyForm = () => {
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,listWeek'
         },
+        dayMaxEvents: true,
         themeSystem: 'bootstrap5',
         editable: false,
         events: formData.events,
@@ -489,7 +482,7 @@ const NowJourneyForm = () => {
       console.log(formData);
     }
 
-    if (step == 3) {
+    if (step === 3) {
 
       const currentEvents = calendarObjRef.current.getEvents().map(({ title, start, end, extendedProps }) => ({
         title: title,
@@ -517,7 +510,7 @@ const NowJourneyForm = () => {
     destination: "",
     userId: 0,
     privacy: 0,
-    thumbnailId: 0,
+    thumbnailId: "",
     journeyStart: "",
     journeyEnd: "",
     images: [],
@@ -530,7 +523,7 @@ const NowJourneyForm = () => {
 
     setFormData((prevData) => ({
       ...prevData,
-      userId: 1,
+      userId: Cookies.get('userId'),
     }))
   }, []);
 
@@ -621,26 +614,141 @@ const NowJourneyForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const reqUrl = "http://localhost/TravelMaker/Backend/public/api/addJourney";
 
+
+    const reqUrl = "http://localhost/TravelMaker/Backend/public/api/addJourney";
     const requestData = {
       title: formData.title,
       description: formData.description,
       events: formData.events,
       thumbnail_id: formData.thumbnailId,
-      privacy: formData.privacy,
+      // privacy: formData.privacy,
+      privacy: 0,
       user_id: formData.userId
     };
 
-    axios.post(reqUrl, requestData)
-      .then(response => {
-        console.log("response: ", response.data);
-      })
-      .catch(error => {
-        console.error("Error: ", error);
+    console.log(formData.thumbnailId);
+
+    
+    // get journeyId request data
+
+    const reqJourneyIdUrl = `http://localhost/TravelMaker/Backend/public/api/getJourneyId`;
+    const reqJourneyIdParams = {
+      title: formData.title,
+      user_id: formData.userId
+    }
+
+     // get upload image request data
+    const reqImgUploadUrl = "http://localhost/TravelMaker/Backend/public/api/uploadJourneyImages";
+    const imageReqForm = new FormData();
+
+    console.log(formData.imagesData);
+    
+    if (formData.imagesData.length !== 0) {
+      console.log('image request: ', formData.imagesData);
+      formData.imagesData.forEach((image, index) => {
+        imageReqForm.append(`images[${index}]`, image);
       });
 
-    window.location = "http://localhost:3000/journey"
+      // with image upload
+      axios.post(reqUrl, requestData)
+      .then(response => {
+        console.log("response: ", response.data);
+        return  axios.get(reqJourneyIdUrl, {
+          params: reqJourneyIdParams
+        })
+      })
+      .then(response => {
+        const journeyId = response.data['journey_id'];
+        imageReqForm.append('journey_id', journeyId);
+        return axios.post(reqImgUploadUrl, imageReqForm);
+      })
+      .then(uploadResponse => {
+        console.log(uploadResponse); 
+      })
+      .then(() => {
+        window.location = "http://localhost:3000/journey";
+      }) 
+      .catch(error => {
+        console.error("Error: ", error);
+      })
+      
+    }
+    else {
+      // no image upload
+      console.log('no image request');
+      axios.post(reqUrl, requestData)
+        .then(response => {
+          console.log("response: ", response.data);
+        })
+        .then(() => {
+          window.location = "http://localhost:3000/journey";
+        }) 
+        .catch(error => {
+          console.error("Error: ", error);
+        })
+    }
+
+    
+
+
+
+      
+
+    
+    
+    
+
+    // axios.get(reqJourneyIdUrl, {
+    //   params: reqJourneyIdParams
+    // })
+    // .then(response => {
+    //   const journeyId = response.data['journey_id'];
+    //   imageReqForm.append('journey_id', journeyId);
+    //   return axios.post(reqImgUploadUrl, imageReqForm);
+    // })
+    // .then(uploadResponse => {
+    //   console.log(uploadResponse); 
+    // })
+    // .then(() => {
+    //   window.location = "http://localhost:3000/journey";
+    // }) 
+    // .catch(error => {
+    //   console.error("Error: ", error);
+    // })
+
+
+    // axios.get(reqJourneyIdUrl, {
+    //   params: reqJourneyIdParams
+    // })
+    // .then(response => {
+    //   journeyId = response.data['journey_id'];
+    //   // console.log(response.data);
+    // })
+    // .catch(error => {
+    //   console.error("Error: ", error);
+    // });
+
+    
+    // axios.post(reqImgUploadUrl, imageReqForm)
+    // .then(response => {
+    //   console.log(response);
+    // })
+    // .catch(error => {
+    //   console.error("Error: ", error);
+    // });
+
+   
+
+
+    
+
+
+
+    // console.log(formData.imagesData);
+    // console.log(imageReqForm.get('images'));
+    // window.location = "http://localhost:3000/journey";
+    
   }
 
 

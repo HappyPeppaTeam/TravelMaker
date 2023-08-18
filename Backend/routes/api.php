@@ -14,6 +14,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Mail\ResetPasswordMail;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 
 
 
@@ -127,10 +128,26 @@ Route::post('/albums/{token}/{album_id}', function (Request $request, $token, $a
                 'description' => $request->input('description'),
             ]);
     
-        // 移除原有相片
-        DB::table('album_photos')
-            ->where('album_id', $album_id)
-            ->delete();
+        // 移除使用者選擇的原有相片
+        $photoIdsToDelete = $request->input('removedImg');
+
+        if ($photoIdsToDelete) {
+            DB::table('album_photos')
+                ->whereIn('image_id', $photoIdsToDelete)
+                ->delete();
+        }
+
+        // 檢查相簿是否還有相片
+        $remainingPhotoCount = DB::table('album_photos')
+        ->where('album_id', $album_id)
+        ->count();
+
+        // 刪除相簿（如果沒有相片了）
+        if ($remainingPhotoCount === 0) {
+            DB::table('albums')
+                ->where('album_id', $album_id)
+                ->delete();
+        }
 
         // 處理上傳的相片內容
         if ($request->has('images')) {
@@ -160,6 +177,7 @@ Route::post('/albums/{token}/{album_id}', function (Request $request, $token, $a
         return response()->json(['error' => 'Error updating album and photos'. $e->getMessage()], 500);
     }
 });
+
 Route::post('/register',function(Request $request){
     $userName = $request['username'];
     $password = $request['password'];
@@ -399,12 +417,19 @@ Route::get('/auth/google/login', [AuthController::class,'googleLogin'])->name('g
 // Journey Api
 
 Route::get('/getJourneys',[JourneyController::class, 'getUserJourneys']);
+Route::get('/getJourneyId',[JourneyController::class, 'getJourneyId']);
+
 Route::get('/getEvents',[JourneyController::class, 'getJourneyEvents']);
 Route::post('/addJourney',[JourneyController::class, 'addNewJourney']);
 Route::delete('/deleteJourney',[JourneyController::class, 'deleteJourney']);
 Route::put('/updateJourney', [JourneyController::class, 'updateJourney']);
 Route::post('/addEvents', [JourneyController::class, 'addNewEvents']);
 Route::post('/updateEvents', [JourneyController::class, 'updateEvents']);
+Route::post('/uploadJourneyImages', [JourneyController::class, 'uploadImage']);
+Route::get('/getJourneyImages', [JourneyController::class, 'getImage']);
+Route::post('/deleteJourneyImages', [JourneyController::class, 'deleteImages']);
+
+
 
 
 

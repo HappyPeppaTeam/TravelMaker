@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Modal, Toast, Collapse } from 'bootstrap';
+import '../css/navbar.css';
 import RegisterModal from './Register';
 import LoginModal from './Login';
 import LogoutModal from './Logout';
@@ -20,12 +21,12 @@ export default function Navbar() {
   const logoutModal = useRef(null);
   const messageToast = useRef(null);
   const navbarCollapse = useRef(null);
-  const [showMemberCenterLink, setShowMemberCenterLink] = useState(false);
-  const [showRegisterLink, setShowRegisterLink] = useState(true);
+  const [showMemberCenterAndLogoutLink, setShowMemberCenterAndLogoutLink] = useState(false);
+  const [showRegisterAndLoginLink, setShowRegisterAndLoginLink] = useState(true);
 
   useEffect(() => {
     handleToken();
-    setUsername(Cookies.get('fullName'));
+    // setUsername(Cookies.get('fullName'));
     registerModal.current = new Modal('#registerModal', {
       backdrop: 'static',
     });
@@ -41,19 +42,26 @@ export default function Navbar() {
     navbarCollapse.current = new Collapse('#navbarNav', {
       toggle: false
     });
-  },[]);
+  }, []);
 
   const handleCollapse = () => {
     navbarCollapse.current.toggle();
-  } 
-  
+  }
+
 
   const handleToken = () => {
     if (Cookies.get('token')) {
       setCheckToken(true);
     }
   }
-  const handleResponse = (data) => {
+  const handleResponse = (data, linkStatus) => {
+    console.log('測試用＋' + linkStatus);
+    if (linkStatus) {
+      setShowMemberCenterAndLogoutLink(true);
+      setShowRegisterAndLoginLink(false);
+      setUsername(Cookies.get('fullName'));
+      handleToken();
+    }
     setMessage(data); // Assuming the backend returns a "message" field in the response
   };
   const openMessageToast = () => {
@@ -68,7 +76,7 @@ export default function Navbar() {
   const closeMessageToast = () => {
     messageToast.current.hide();
     // window.location.href = '/';
-    window.location.reload();
+    // window.location.reload();
   };
 
   const openRegisterModal = () => {
@@ -113,7 +121,7 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <div className="ms-auto me-3 d-none d-lg-block">
               {/* <img src="../images/dark-mode.png" style={{ height: '40px' }} alt=""/> */}
-              </div>
+            </div>
             <ul className="navbar-nav py-3">
               <li className="nav-item">
               </li>
@@ -124,19 +132,31 @@ export default function Navbar() {
                 )}
 
               <li className="nav-item">
-                {checkToken ? (
+                {/* {checkToken ? (
                   <Link className="nav-link text-white" to='/memberCenter' >會員中心</Link>
                 ) : (
                     <Link className="nav-link text-white" onClick={openRegisterModal}>註冊</Link>
-                  )}
+                  )} */}
+                {showMemberCenterAndLogoutLink && (
+                  <Link className="nav-link text-white" to='/memberCenter'>會員中心</Link>
+                )}
+                {showRegisterAndLoginLink && (
+                  <Link className="nav-link text-white" onClick={openRegisterModal}>註冊</Link>
+                )}
 
               </li>
               <li className="nav-item ms-lg-2">
-                {checkToken ? (
+                {/* {checkToken ? (
                   <Link className="nav-link text-white" onClick={openlogoutModal}>登出</Link>
                 ) : (
                     <Link className="nav-link text-white" onClick={openloginModal}>登入</Link>
-                  )}
+                  )} */}
+                  {showMemberCenterAndLogoutLink && (
+                  <Link className="nav-link text-white" onClick={openlogoutModal}>登出</Link>
+                )}
+                {showRegisterAndLoginLink && (
+                  <Link className="nav-link text-white" onClick={openloginModal}>登入</Link>
+                )}
               </li>
             </ul>
           </div>

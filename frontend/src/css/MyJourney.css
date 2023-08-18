@@ -48,3 +48,11 @@
 .more-detail:hover {
     background-color: rgba(211, 211, 211, 0.582);
 }
+
+.add-journey-link {
+    color: #2F4E63;
+}
+
+.add-journey-link:hover {
+    color: var(--bs-primary);
+}

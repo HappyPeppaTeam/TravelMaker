@@ -18,7 +18,7 @@ const Album = () => {
     const albumModal = useRef(null);
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const token = Cookies.get('token');
-console.log(albumList);
+    
     useEffect(() => {
         albumModal.current = new Modal('#albumModal',{
             backdrop: 'static',
@@ -30,7 +30,7 @@ console.log(albumList);
             setAllAlbums(data);
         })();
     },[])
-console.log(allAlbums);
+
     const handleDropDown = () => {
         setDropdownVisible(!dropdownVisible);
     };
@@ -64,7 +64,7 @@ console.log(allAlbums);
         <AlbumModal closeAlbumModal={closeAlbumModal} albumData={albumData}/>
         <div className="container-fluid shadow p-0 bg-white" id="body-container">
             <div className="d-flex flex-nowrap row container-fluid m-0 p-0" id="content-container">
-                <Sidebar></Sidebar>
+                <Sidebar Album="active"></Sidebar>
                 <div className="flex-fill px-0 justify-content-center" id="content" style={{height: "100%", minHeight: "calc(100vh - 70px)"}}>
                     <div className='wrap m-5'>
                         <div className="d-flex justify-content-between align-items-center mb-3">
@@ -118,6 +118,15 @@ console.log(allAlbums);
                                 </div>
                                 )
                             })}
+                            <div className="col">
+                                <Link to='/album/create' className='albumLink'>
+                                    <div className="card m-2 album">
+                                        <div className="card-body addNewAlbum d-flex align-items-center justify-content-center">
+                                            <i className="bi bi-plus-lg plusIcon"></i>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

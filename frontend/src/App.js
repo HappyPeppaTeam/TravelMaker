@@ -1,6 +1,5 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.css";
-import './css/navbar.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import Navbar from "./components/Navbar";
@@ -25,8 +24,6 @@ import RestaurantType from './pages/RestaurantType';
 import RestaurantSearch from './pages/RestaurantSearch';
 import RestaurantInner from './pages/RestaurantInner';
 import RestaurantComment from './pages/RestaurantComment';
-import Journey from "./pages/Journey";
-import NewJourneyTest from "./pages/NewJourneyTest";
 import JourneyForm from "./pages/JourneyForm";
 import MyJourney from "./pages/MyJourney";
 import Admin from "./pages/Admin";
@@ -36,6 +33,7 @@ import Discussion from "./pages/Discussion";
 import AddArticle from "./pages/AddArticle";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import Farvorite from "./pages/Farvorite";
 
 
 function App() {
@@ -70,6 +68,7 @@ function App() {
           <Route path='/ErrorPage/:errorCode' element={<ErrorPage />}></Route>
           <Route path='/ForgotPassword' element={<ForgotPassword />}></Route>
           <Route path='/resetPassword/:token' element={<ResetPassword />}></Route>
+          {/* <Route path='/Farvorite' element={<Farvorite />}></Route> */}
         </Routes>
       <Footer/>
     </div>

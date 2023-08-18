@@ -24,8 +24,6 @@ import RestaurantType from './pages/RestaurantType';
 import RestaurantSearch from './pages/RestaurantSearch';
 import RestaurantInner from './pages/RestaurantInner';
 import RestaurantComment from './pages/RestaurantComment';
-import Journey from "./pages/Journey";
-import NewJourneyTest from "./pages/NewJourneyTest";
 import JourneyForm from "./pages/JourneyForm";
 import MyJourney from "./pages/MyJourney";
 import Admin from "./pages/Admin";

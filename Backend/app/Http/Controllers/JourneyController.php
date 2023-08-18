@@ -13,7 +13,7 @@ class JourneyController extends Controller
     function getUserJourneys(Request $request)
     {
         $userId = $request['user_id'];
-        $journeys = DB::select("select * from Journey where user_id = ?", [$userId]);
+        $journeys = DB::select("select * from journey where user_id = ?", [$userId]);
 
         foreach ($journeys as $journey) {
             $duration = (array) $this->getJourneyDuration($journey->journey_id)[0];
@@ -43,7 +43,7 @@ class JourneyController extends Controller
     function getJourneyEvents(Request $request)
     {
         $journeyId = $request['journey_id'];
-        $events = DB::select("select * from Journey_event where journey_id = ?", [$journeyId]);
+        $events = DB::select("select * from journey_event where journey_id = ?", [$journeyId]);
         return response()->json($events);
     }
 

@@ -16,7 +16,8 @@ import { Modal } from 'bootstrap';
 import moment from 'moment';
 import withAuthorization from '../hook/withAuthorization';
 
-const DEFUALT_IMG_URL = "http://localhost/TravelMaker/Backend/storage/app/public/images/defaultJourney.jpg";
+// const DEFUALT_IMG_URL = "http://localhost/TravelMaker/Backend/storage/app/public/images/defaultJourney.jpg";
+const DEFUALT_IMG_URL = "../images/default-journey.jpg";
 
 
 function useImage() {
@@ -1081,7 +1082,7 @@ const MyJourney = () => {
     return (
         <>
             <div className='container-fluid p-0 d-flex'>
-                <Sidebar />
+                <Sidebar journey="active"/>
                 <div className='container rounded my-4' style={containerStyle}>
                     <div className='d-flex align-items-end px-3'>
                         <h1 className='mb-0'>{pageTitle}</h1>

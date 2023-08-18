@@ -26,7 +26,7 @@ export default function Navbar() {
 
   useEffect(() => {
     handleToken();
-    // setUsername(Cookies.get('fullName'));
+    setUsername(Cookies.get('fullName'));
     registerModal.current = new Modal('#registerModal', {
       backdrop: 'static',
     });
@@ -137,12 +137,12 @@ export default function Navbar() {
                 ) : (
                     <Link className="nav-link text-white" onClick={openRegisterModal}>註冊</Link>
                   )} */}
-                {showMemberCenterAndLogoutLink && (
+                {showMemberCenterAndLogoutLink || checkToken ? (
                   <Link className="nav-link text-white" to='/memberCenter'>會員中心</Link>
-                )}
-                {showRegisterAndLoginLink && (
+                ):null}
+                {showRegisterAndLoginLink && !checkToken?(
                   <Link className="nav-link text-white" onClick={openRegisterModal}>註冊</Link>
-                )}
+                ):null}
 
               </li>
               <li className="nav-item ms-lg-2">
@@ -151,12 +151,12 @@ export default function Navbar() {
                 ) : (
                     <Link className="nav-link text-white" onClick={openloginModal}>登入</Link>
                   )} */}
-                  {showMemberCenterAndLogoutLink && (
+                {showMemberCenterAndLogoutLink || checkToken  ? (
                   <Link className="nav-link text-white" onClick={openlogoutModal}>登出</Link>
-                )}
-                {showRegisterAndLoginLink && (
+                ):null}
+                {showRegisterAndLoginLink && !checkToken? (
                   <Link className="nav-link text-white" onClick={openloginModal}>登入</Link>
-                )}
+                ):null}
               </li>
             </ul>
           </div>

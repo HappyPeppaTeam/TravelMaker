@@ -39,7 +39,7 @@ export default function Discussion() {
                     </button>
                 </div>
                 {/* <!-- 上分頁 --> */}
-                <div className="page">
+                {/* <div className="page">
                     <nav aria-label="Page navigation example">
                         <ul className="pagination">
                             <li className="page-item">
@@ -59,7 +59,7 @@ export default function Discussion() {
                             </li>
                         </ul>
                     </nav>
-                </div>
+                </div> */}
 
                 {/* <!-- 討論串 --> */}
                 <div className="row flex mx-0">
@@ -70,7 +70,7 @@ export default function Discussion() {
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    value=""
+                                    value="1"
                                     id="親子"
                                 />
                                 <label className="form-check-label" htmlFor="親子"> 親子 </label>
@@ -79,7 +79,7 @@ export default function Discussion() {
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    value=""
+                                    value="2"
                                     id="露營"
 
                                 />
@@ -89,7 +89,7 @@ export default function Discussion() {
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    value=""
+                                    value="3"
                                     id="登山"
 
                                 />
@@ -99,7 +99,7 @@ export default function Discussion() {
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    value=""
+                                    value="4"
                                     id="老街"
 
                                 />
@@ -109,7 +109,7 @@ export default function Discussion() {
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    value=""
+                                    value="5"
                                     id="溫泉"
 
                                 />

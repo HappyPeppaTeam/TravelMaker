@@ -16,7 +16,8 @@ import { Modal } from 'bootstrap';
 import moment from 'moment';
 import withAuthorization from '../hook/withAuthorization';
 
-const DEFUALT_IMG_URL = "http://localhost/TravelMaker/Backend/storage/app/public/images/defaultJourney.jpg";
+// const DEFUALT_IMG_URL = "http://localhost/TravelMaker/Backend/storage/app/public/images/defaultJourney.jpg";
+const DEFUALT_IMG_URL = "../images/default-journey.jpg";
 
 
 function useImage() {

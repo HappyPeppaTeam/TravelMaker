@@ -15,11 +15,11 @@ export default function Attraction_innerpage() {
     const commentModal = useRef(null);
 
     const [spotData, setSpotData] = useState([{}]);
-
+   
 
     useEffect(() => {
         commentModal.current = new Modal('#rest-comment');
-
+        
         // (async () => {
         //     const response = await axios.get(`http://localhost/TravelMaker/Backend/public/api/test`);
         //     console.log(response);

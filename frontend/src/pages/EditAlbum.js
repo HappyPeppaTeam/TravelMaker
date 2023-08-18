@@ -13,7 +13,6 @@ function useImage() {
     const [images, setImages] = useState([]);
     const [imagesData, setImagesData] = useState([]);
 
-    console.log(imagesData);
     // 上傳圖片
     const handleUpload = (e) => {
       const images = [...e.target.files].map((file) => {
@@ -74,14 +73,26 @@ const EditAlbum = () => {
     const [ albumName, setAlbumName ] = useState(state.album_name);
     const [ tag, setTag ] = useState(state.tag);
     const [ description, setDescription ] = useState(state.description);
-
+    const [ albumImages, setAlbumImages ] =useState(state.photos);
+    const [ removedImg, setRemovedImg ] = useState([]);
     const token = Cookies.get('token');
+
+    const removeExistingImg = (e,imgIndex,imgId) => {
+        e.preventDefault();
+        setRemovedImg([...removedImg,imgId]);
+        const newData = albumImages.filter((item,index) => index !== imgIndex);
+        setAlbumImages(newData);
+    }
 
     const handleSubmit = async (e) => {
         const formData = new FormData();
         formData.append('album_name',albumName);
         formData.append('tag',tag);
         formData.append('description',description);
+
+        removedImg.forEach((imgId) => {
+            formData.append('removedImg[]',imgId);
+        });
 
         imagesData.forEach((image,index) => {
             formData.append(`images[${index}]`,image);
@@ -140,13 +151,26 @@ const EditAlbum = () => {
                             <span className='btn btn-outline-danger' onClick={(e) => handleRemoveAll(e)}>移除全部圖片</span>
 
                             <div className='row row-cols-2 row-cols-lg-3 mt-3 g-3'>
+                                {albumImages.map((image,index) => {
+                                    return (
+                                        <div className='col' key={index}>
+                                            <img className='selectedImg w-100' src={`http://localhost/TravelMaker/Backend/public/storage/${image.image_url}`} />
+                                            <div className='imgInfo'>
+                                                <div className='fileName w-100 d-flex justify-content-between align-items-center'>
+                                                    <p className='m-0 py-2 ps-2 text-white text-center'>{image.image_name}</p>
+                                                    <button className='btn remove' value={image.image_id} data-id={image.image_id} onClick={(e) => removeExistingImg(e,index,image.image_id)}><i className="bi bi-x-circle fs-4"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })}
                                 {images.map((image,index) => {
                                     return (
                                     <div className='col' key={index}>
                                         <img className='selectedImg w-100' src={image.url} />
                                         <div className='imgInfo'>
                                             <div className='fileName w-100 d-flex justify-content-between align-items-center'>
-                                                <p className='m-0 py-2 text-white text-center'>{image.name}</p>
+                                                <p className='m-0 py-2 ps-2 text-white text-center'>{image.name}</p>
                                                 <button className='btn remove' onClick={(e) => handleRemove(e,index)}><i className="bi bi-x-circle fs-4"></i></button>
                                             </div>
                                         </div>

@@ -63,7 +63,7 @@ export default function Attractioncountry() {
                     <Link to="/journey" className="button-hyperlink">自助旅遊排程</Link>
                 </div> */}
             </div>
-            <div style={{ 'display': 'grid', 'backgroundColor': '#487797' }}>
+            <div style={{ 'display': 'grid'}}>
                 <div className="container-fluid d-flex m-0 p-0">
                     <div className="sidenav">
                         <Link to="/attractions/Attractionattraction"><h3 style={{ 'color': 'black' }}><b>種類</b></h3></Link>
@@ -335,7 +335,7 @@ export default function Attractioncountry() {
                         </div>
                     </div>
                     <div className="container image-container" style={{ paddingTop: '0.75rem' }}>
-                        <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                        <div className="row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
                             <div className="col-lg-3">
                                 <Link to="/attractions/Attractionmore" state='基隆'>
                                     <img className="img-thumbnail2" src={require('../district/keelung.jpg')} />

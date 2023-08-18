@@ -50,8 +50,7 @@ const CollapseMenu = () => {
 
 
 
-function Sidebar() {
-
+function Sidebar({ Album, MemberCenter }) {
 
     const sideBarStyle = {
         height: '100%',
@@ -82,7 +81,7 @@ function Sidebar() {
 
                 <ul className="nav nav-pills flex-column mb-auto">
                     <li className="nav-item">
-                        <Link to="/memberCenter" className="nav-link text-white d-flex align-items-center">
+                        <Link to="/memberCenter" className={`nav-link sidebar-link text-white d-flex align-items-center ${ MemberCenter ? 'active' : ""}`}>
                             <i className="bi bi-person-vcard-fill"></i>
                             <span className="d-none d-sm-inline px-2">
                                 基本資料
@@ -98,7 +97,7 @@ function Sidebar() {
                         </a>
                     </li> */}
                     <li>
-                        <Link to="/journey" className="nav-link text-white d-flex align-items-center">
+                        <Link to="/journey" className={`nav-link sidebar-link text-white d-flex align-items-center `}>
                             <i className="bi bi-calendar-week"></i>
                             <span className="d-none d-sm-inline px-2">
                                 我的行程
@@ -106,7 +105,7 @@ function Sidebar() {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/album" className="nav-link text-white d-flex align-items-center">
+                        <Link to="/album" className={`nav-link sidebar-link text-white d-flex align-items-center ${Album ? 'active' : ""}`}>
                             <i className="bi bi-image"></i>
                             <span className="d-none d-sm-inline px-2">
                                 我的相簿
@@ -115,7 +114,7 @@ function Sidebar() {
                     </li>
                      <li>
                         <a href="#my-collection-submenu"
-                            className="nav-link text-white d-flex align-items-center"
+                            className="nav-link sidebar-link text-white d-flex align-items-center"
                             data-bs-toggle="collapse" role="button" onClick={handleCollapse}>
                             <i className="bi bi-star-fill"></i>
                             <span className="d-none d-sm-inline px-2">

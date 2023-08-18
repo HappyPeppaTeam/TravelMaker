@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 function useImage() {
     const inputRef = useRef(null);
@@ -70,10 +71,19 @@ function ArticleEditor() {
     const [content, setContent] = useState('');
     const { images, imagesData, handleUpload, handleRemove, handleRemoveAll, inputRef } = useImage();
     const [exceedLimit, setExceedLimit] = useState(false);
+    const userId = Cookies.get('userId');
 
+    const locationMapping = {
+        '1': '1', // '1' 对应 '北部討論版'
+        '2': '8', // '2' 对应 '中部討論版'
+        '3': '13', // '3' 对应 '南部討論版'
+        '4': '18', // '4' 对应 '花東離島討論版'
+    };
 
     const handleBoardChange = (event) => {
-        setBoard(event.target.value);
+        const selectBoard = event.target.value;
+        setBoard(selectBoard);
+        setLocation(locationMapping[selectBoard]);
     };
 
     const handleLocationChange = (event) => {
@@ -91,10 +101,10 @@ function ArticleEditor() {
     const handleContentChange = (event) => {
         const inputValue = event.target.value;
         setContent(inputValue);
-    
+
         // 當超過1000個字符時，將字數標記為紅色
-        if (inputValue.length > 1000) {
-            alert('已超過1000字限制！');
+        if (inputValue.length > 2000) {
+            alert('已超過2000字限制！');
             setExceedLimit(true);
         } else {
             setExceedLimit(false);
@@ -103,30 +113,29 @@ function ArticleEditor() {
 
     const handleSubmit = async (event) => {
         const ArticleData = new FormData();
-        ArticleData.append('Discussion_board_area', Board)
-        ArticleData.append('board_text_id', Location)
-        ArticleData.append('Text_type', Topic)
-        ArticleData.append('Text_title', Title)
-        ArticleData.append('Text', content)
-        imagesData.forEach((image,index) => {
-            ArticleData.append(`images[${index}]`,image);
+        ArticleData.append('postingUserId', userId)
+        ArticleData.append('DiscussionId', Board)
+        ArticleData.append('cityId', Location)
+        ArticleData.append('type', Topic)
+        ArticleData.append('textTitle', Title)
+        ArticleData.append('text', content)
+        imagesData.forEach((image, index) => {
+            ArticleData.append(`image[${index}]`, image);
         });
+        const response = await axios.post('http://localhost/TravelMaker/Backend/public/api/createBoardText', ArticleData);
+        if (response.data) {
+            alert('文章發布成功！');
+            window.location.href = "/forum";
+
+        } else {
+            console.log("post Miss!")
+        }
         event.preventDefault();
-        // test用
-        // console.log(ArticleData.get('Discussion_board_area'));
-        // console.log(ArticleData);
-        // // Here you can perform the submission logic
-        // console.log('Submitted:', {
-        //     Board,
-        //     Location,
-        //     Topic,
-        //     content,
-        // });
     };
 
     return (
         <div>
-            <form className='row' onSubmit={handleSubmit}>
+            <form className='row'>
                 <h1>文章發布</h1>
                 <div className="col-md select-board">
                     <label htmlFor="board" className="form-label">選擇討論版</label>
@@ -142,28 +151,37 @@ function ArticleEditor() {
                     <label htmlFor="location" className="form-label">選擇地點</label>
                     <select id="location" className="form-select" value={Location} onChange={handleLocationChange}>
                         <option disabled>請選擇</option>
-                        <option value="1">臺北市</option>
-                        <option value="2">新北市</option>
-                        <option value="3">宜蘭縣</option>
-                        <option value="4">基隆市</option>
-                        <option value="5">桃園市</option>
-                        <option value="6">新竹市</option>
-                        <option value="7">新竹縣</option>
-                        <option value="8">臺中市</option>
-                        <option value="9">苗栗縣</option>
-                        <option value="10">彰化縣</option>
-                        <option value="11">南投縣</option>
-                        <option value="12">雲林縣</option>
-                        <option value="13">嘉義市</option>
-                        <option value="14">嘉義縣</option>
-                        <option value="15">臺南市</option>
-                        <option value="16">高雄市</option>
-                        <option value="17">屏東縣</option>
-                        <option value="18">花蓮縣</option>
-                        <option value="19">臺東縣</option>
-                        <option value="20">澎湖縣</option>
-                        <option value="21">金門縣</option>
-                        <option value="22">連江縣</option>
+                        {Board === '1' && (<>
+                            <option value="1">臺北市</option>
+                            <option value="2">新北市</option>
+                            <option value="3">宜蘭縣</option>
+                            <option value="4">基隆市</option>
+                            <option value="5">桃園市</option>
+                            <option value="6">新竹市</option>
+                            <option value="7">新竹縣</option>
+                        </>)}
+                        {Board === '2' && (<>
+                            <option value="8">臺中市</option>
+                            <option value="9">苗栗縣</option>
+                            <option value="10">彰化縣</option>
+                            <option value="11">南投縣</option>
+                            <option value="12">雲林縣</option>
+                        </>)}
+                        {Board === '3' && (<>
+                            <option value="13">嘉義市</option>
+                            <option value="14">嘉義縣</option>
+                            <option value="15">臺南市</option>
+                            <option value="16">高雄市</option>
+                            <option value="17">屏東縣</option>
+                        </>)}
+                        {Board === '4' && (<>
+                            <option value="18">花蓮縣</option>
+                            <option value="19">臺東縣</option>
+                            <option value="20">澎湖縣</option>
+                            <option value="21">金門縣</option>
+                            <option value="22">連江縣</option>
+                        </>)}
+
                     </select>
                 </div>
                 <div className="col-md select-topic">
@@ -188,7 +206,7 @@ function ArticleEditor() {
                         <h3>文章內容</h3>
                         <textarea id="content" className="addtext_text" placeholder="請輸入文字" onChange={handleContentChange} />
                         <div className="addtext">
-                            字數：{content.length} / 1000
+                            字數：{content.length} / 2000
                         </div>
                     </label>
                 </div>
@@ -223,7 +241,8 @@ function ArticleEditor() {
 
                 </div>
                 <div className='post_article'>
-                    <button className='btn btn-primary' type="submit" disabled={exceedLimit}>我要發文</button>
+                    <button className='btn btn-danger' type="submit">取消發文</button>
+                    <button className='btn btn-primary' type="button" onClick={handleSubmit} disabled={exceedLimit}>我要發文</button>
                 </div>
             </form>
 

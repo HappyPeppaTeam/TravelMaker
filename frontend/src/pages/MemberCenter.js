@@ -1,5 +1,4 @@
 import '../css/sidebar.css';
-// import '../css/album.css';
 import Sidebar from '../components/Sidebar';
 import ImageUploadButton from '../components/ImageUploadButton';
 import React from 'react';

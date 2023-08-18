@@ -36,6 +36,7 @@ import Discussion from "./pages/Discussion";
 import AddArticle from "./pages/AddArticle";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import Farvorite from "./pages/Farvorite";
 
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
           <Route path='/ErrorPage/:errorCode' element={<ErrorPage />}></Route>
           <Route path='/ForgotPassword' element={<ForgotPassword />}></Route>
           <Route path='/resetPassword/:token' element={<ResetPassword />}></Route>
+          <Route path='/Farvorite' element={<Farvorite />}></Route>
         </Routes>
       <Footer/>
     </div>

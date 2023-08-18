@@ -9,11 +9,8 @@ import 'aos/dist/aos.css';
 const { useEffect } = React;
 
 const article = await axios.get(`http://localhost/TravelMaker/Backend/public/api/getBoardTextAndImage`);
-<<<<<<< HEAD
 
-=======
 console.log(article.data);
->>>>>>> Eric
 const spot = await axios.get(`http://localhost/TravelMaker/Backend/public/api/attraction`);
 
 const spotSummary = await axios.get(`http://localhost/TravelMaker/Backend/public/api/spotSummary`);

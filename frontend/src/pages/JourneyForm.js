@@ -471,6 +471,7 @@ const NowJourneyForm = () => {
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,listWeek'
         },
+        dayMaxEvents: true,
         themeSystem: 'bootstrap5',
         editable: false,
         events: formData.events,

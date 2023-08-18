@@ -196,6 +196,51 @@ const EventAddModal = ({ modalTitle, handleModalSave, handleCloseModal, handleRe
     )
 }
 
+// TODO
+const ImageCarousel = () => {
+
+    return (
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="..." class="d-block w-100" alt="..." />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>First slide label</h5>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="..." class="d-block w-100" alt="..." />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Second slide label</h5>
+                            <p>Some representative placeholder content for the second slide.</p>
+                        </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="..." class="d-block w-100" alt="..." />
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Third slide label</h5>
+                            <p>Some representative placeholder content for the third slide.</p>
+                        </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    )
+}
+
 const JourneyDetail = ({ setShow, journeyData, calendarViewRef, setPageTitle }) => {
 
     const browserCalendarStyle = {
@@ -287,7 +332,6 @@ const JourneyDetail = ({ setShow, journeyData, calendarViewRef, setPageTitle }) 
         </div>
     )
 }
-
 
 
 const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef, setPageTitle, calendarEditViewObj, setUploadImg, uploadImg, journeys, setJourneys }) => {
@@ -442,7 +486,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
                 });
         }
 
-        if (selectImage.length > 0){
+        if (selectImage.length > 0) {
             const reqDeletImgUrl = "http://localhost/TravelMaker/Backend/public/api/deleteJourneyImages";
             const reqDeletImgData = {
                 journey_id: journeyData.journeyId,
@@ -450,12 +494,12 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
             }
 
             axios.post(reqDeletImgUrl, reqDeletImgData)
-            .then(response => {
-                console.log("Delete image response: ", response);
-            })
-            .catch(error => {
-                console.error("Error deleting images: ", error);
-            })
+                .then(response => {
+                    console.log("Delete image response: ", response);
+                })
+                .catch(error => {
+                    console.error("Error deleting images: ", error);
+                })
         }
 
 
@@ -526,7 +570,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
 
     }
 
-    
+
 
 
 
@@ -667,7 +711,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
                     </div>
                 </div>
             </div>
-            
+
             <label htmlFor="inputNoteJourney" className="form-label h2 mt-5 mb-3">備註</label>
             <div id="newJourneyForm3" className='p-3 shadow bg-light' style={editFormStyle}>
 
@@ -692,7 +736,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
                     </div>
                 </div> */}
 
-                   
+
                 <div className="">
                     <textarea className="form-control" id="inputNoteJourney" rows="3"
                         value={journeyData.description}
@@ -712,6 +756,7 @@ const JourneyEdit = ({ setShow, journeyData, setJourneyData, calendarEditViewRef
 
 
 const MyJourney = () => {
+
 
 
 
@@ -899,6 +944,7 @@ const MyJourney = () => {
                 },
                 themeSystem: 'bootstrap5',
                 editable: false,
+                dayMaxEvents: true,
                 events: journeyData.events.map((event) => ({
                     title: event.event_name,
                     start: new Date(event.start_time),

@@ -1,6 +1,7 @@
 .album {
     height: 200px;
     background-size: cover;
+    border-radius: 20px;
 }
 
 .albumLink:hover .card-title {
@@ -17,6 +18,8 @@
 
 .albumBody {
     position: relative;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+    border-radius: 20px;
 }
 
 .albumTitle {
@@ -52,4 +55,14 @@
     .slick-prev, .slick-next {
         top: 45%;
     }
+}
+
+.addNewAlbum {
+    background: gray;
+    border-radius: 20px;
+}
+
+.plusIcon {
+    font-size: 2rem;
+    color: #2F4E63;
 }

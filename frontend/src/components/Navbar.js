@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Modal, Toast, Collapse } from 'bootstrap';
+import '../css/navbar.css';
 import RegisterModal from './Register';
 import LoginModal from './Login';
 import LogoutModal from './Logout';

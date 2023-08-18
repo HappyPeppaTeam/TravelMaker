@@ -23,13 +23,29 @@ body {
   height: 2px;
   background-color: #6BB3E3;
   position: absolute;
-  right: 0;
+  right: 85%;
   transition: .2s .2s;
 }
 .nav-link:hover {
   color: white;
 }
 .nav-link:hover::after {
-  width: 100%;
+  width: 15%;
   left: 0;
+}
+@media (min-width: 576px) {
+  .nav-link::after {
+    right: 90%;
+  }
+  .nav-link:hover::after {
+    width: 10%;
+  }
+}
+@media (min-width: 992px) {
+  .nav-link::after {
+    right: 0;
+  }
+  .nav-link:hover::after {
+    width: 100%;
+  }
 }

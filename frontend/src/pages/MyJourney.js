@@ -1082,7 +1082,7 @@ const MyJourney = () => {
     return (
         <>
             <div className='container-fluid p-0 d-flex'>
-                <Sidebar />
+                <Sidebar journey="active"/>
                 <div className='container rounded my-4' style={containerStyle}>
                     <div className='d-flex align-items-end px-3'>
                         <h1 className='mb-0'>{pageTitle}</h1>

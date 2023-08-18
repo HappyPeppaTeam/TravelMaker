@@ -50,7 +50,7 @@ const CollapseMenu = () => {
 
 
 
-function Sidebar({ Album, MemberCenter }) {
+function Sidebar({ Album, MemberCenter, journey }) {
 
     const sideBarStyle = {
         height: '100%',
@@ -97,7 +97,7 @@ function Sidebar({ Album, MemberCenter }) {
                         </a>
                     </li> */}
                     <li>
-                        <Link to="/journey" className={`nav-link sidebar-link text-white d-flex align-items-center `}>
+                        <Link to="/journey" className={`nav-link sidebar-link text-white d-flex align-items-center ${ journey ? 'active' : ""}`}>
                             <i className="bi bi-calendar-week"></i>
                             <span className="d-none d-sm-inline px-2">
                                 我的行程

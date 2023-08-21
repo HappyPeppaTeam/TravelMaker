@@ -17,7 +17,13 @@ Travel Maker 讓行程安排輕鬆又便利
 - 彈性化行程內容
   - 行程備註
   - 活動圖片
+
+![journey](./demo_images/journey.png)
 ### 5. 相簿分享
+- 相簿內容增查修刪
+- 依分類進行相簿篩選
+  
+![image](./demo_images/album.png)
 
 
 ## 如何開始

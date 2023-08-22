@@ -1,14 +1,17 @@
 # TravelMaker
-TravelMaker - iSpan Final Project
-
 Travel Maker 讓行程安排輕鬆又便利
 
 ## 主要功能
 
 ### 1. 旅遊資訊
+- 種類:帶你前往適合的新地方。
+- 地區:方便查詢周遭景點。
 
+![attraction](./demo_images/attraction.jpg)
 ### 2. 美食餐廳
+餐廳頁面主要功能為前端網頁顯示資料庫內的餐廳資訊，以及透過JavaScript編寫的篩選功能。餐廳資訊會依卡片形式呈現，可以根據dropdown選單的checkbox，來分別針對"地區"及"類型"進行雙重複選功能，或是根據分類連結來進行篩選，並呈現篩選列印資料，搜尋結果頁面就會呈現出經過該條件篩選的內容。點擊卡片後進入餐廳內頁可以查看詳細資料，包含餐廳營業時間、地點、google map等資訊。
 
+![restaurant](./demo_images/restaurant.png)
 
 ### 3. 會員系統
 
@@ -22,8 +25,11 @@ Travel Maker 讓行程安排輕鬆又便利
 ### 5. 相簿分享
 - 相簿內容增查修刪
 - 依分類進行相簿篩選
-  
-![image](./demo_images/album.png)
+
+![album](./demo_images/album.png)
+
+
+## 使用技術
 
 
 ## 如何開始

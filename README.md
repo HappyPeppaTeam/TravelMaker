@@ -29,7 +29,17 @@ Travel Maker 讓行程安排輕鬆又便利
 ![album](./demo_images/album.png)
 
 ### 6. 論壇交流
+- 討論串功能
+  - 抓取5筆最新文章呈現 
+- 文章留言板功能
+  - 讓使用者可以與網友互動
 
+![forum2](./demo_images/forum2.png)
+
+- 文章發布功能
+  - 可以選擇討論版、地點、主題、上傳圖片並進行文章發布
+
+![forum3](./demo_images/forum3.png)
 ## 使用技術
 
 

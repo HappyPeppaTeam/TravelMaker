@@ -34,13 +34,17 @@ Travel Maker 讓行程安排輕鬆又便利
 
 ### 3. 會員系統 
 - 登入
-![Login](./demo_images/Login.png)
+
 - 註冊
 - 會員中心
 - 欄位驗證
 - 密碼強度驗證
 - 快速登入及註冊Google Auth 第三方Api
 - 前端驗證錯誤頁面
+  ![Login](./demo_images/Login.png)
+  ![Register](./demo_images/Register.png)
+  ![FieldVaildation](./demo_images/FieldVaildation.png)
+  ![GoogleAuthValidation](./demo_images/GoogleAuthValidation.png)
 
 ### 4. 行程助手
 - 視覺化行程管理

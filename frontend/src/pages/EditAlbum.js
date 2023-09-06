@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Sidebar from '../components/Sidebar';
+import Swal from 'sweetalert2';
 
 const { useState, useRef, useEffect } = React;
 
@@ -101,9 +102,18 @@ const EditAlbum = () => {
         try {
             const response = await axios.post(`http://localhost/TravelMaker/Backend/public/api/albums/${token}/${state.album_id}`,formData)
             .then((res) => {
-                alert('相簿已成功更新!')
+                // alert('相簿已成功更新!')
+                Swal.fire({
+                    position: 'center-center',
+                    icon: 'success',
+                    title: '相簿已成功更新!',
+                    showConfirmButton: false,
+                    timer: 2000,
+                  })
             });
-            window.location='http://localhost:3000/album';
+            setTimeout(() => {
+                window.location='http://localhost:3000/album';
+            },1000);
         } catch (error) {
             console.log('Error:',error.response);
         }

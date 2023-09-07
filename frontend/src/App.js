@@ -18,7 +18,6 @@ import Attractionattraction from "./pages/Attractionattraction";
 import Attractioncountry from "./pages/Attractioncountry";
 import Attractionmore from "./pages/Attractionmore";
 import Attraction_innerpage from "./pages/Attraction_innerpage";
-import Attraction_forun from "./pages/Attraction_forun";
 import RestaurantArea from './pages/RestaurantArea';
 import RestaurantType from './pages/RestaurantType';
 import RestaurantSearch from './pages/RestaurantSearch';
@@ -50,7 +49,6 @@ function App() {
           <Route path='/attractions/Attractionattraction' element={<Attractionattraction/>}></Route>
           <Route path='/attractions/Attractionmore' element={<Attractionmore/>}></Route>
           <Route path='/Attractionmore/Attraction_innerpage' element={<Attraction_innerpage/>}></Route>
-          <Route path='/Attraction_innerpage/Attraction_forun' element={<Attraction_forun/>}></Route>
           <Route path='/memberCenter' element={<MemberCenter/>}></Route>
           <Route path='/forum' element={<Forum/>}></Route>
           <Route path='/forum/discussion/:id' element={<Discussion/>}></Route>

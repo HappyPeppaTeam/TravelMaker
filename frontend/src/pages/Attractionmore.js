@@ -1,6 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
 import '../css/attractions.css';
-// import '../css/bootstrap.css';
 
 import React from 'react';
 import axios from 'axios';
@@ -47,13 +46,6 @@ export default function Attractionmore() {
         })();
     }, []);
 
-
-
-
-
-
-
-    // console.log(attractionPicture);
     const [ZipID, setZipID] = useState([{}]);
     console.log(ZipID);
     useEffect(() => {
@@ -95,13 +87,12 @@ export default function Attractionmore() {
     return (
         <>
             <div className="backgroundmountain">
-                {/* <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" /> */}
-                {/* <div className="container hyperlink-location" >
+                <div className="container hyperlink-location" >
                     <Link to="/restaurant" className="button-hyperlink">餐廳</Link>
                     <Link to="/attractions" className="button-hyperlink">景點</Link>
                     <Link to="/forum" className="button-hyperlink">討論區</Link>
                     <Link to="/journey" className="button-hyperlink">自助旅遊排程</Link>
-                </div> */}
+                </div>
             </div>
             <div style={{ 'display': 'grid' }}>
                 <div className="container-fluid d-flex m-0 p-0">
@@ -414,22 +405,6 @@ export default function Attractionmore() {
                                 </div>
                             )
                         })}
-                        <div className="pagination-wrapper">
-                            <div className="pagination">
-                                <Link to="#">&laquo;</Link>
-                                <Link to="#" className="active">1</Link>
-                                <Link to="#">2</Link>
-                                <Link to="#">3</Link>
-                                <Link to="#">4</Link>
-                                <Link to="#">5</Link>
-                                <Link to="#">6</Link>
-                                <Link to="#">7</Link>
-                                <Link to="#">8</Link>
-                                <Link to="#">9</Link>
-                                <Link to="#">10</Link>
-                                <Link to="#">&raquo;</Link>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

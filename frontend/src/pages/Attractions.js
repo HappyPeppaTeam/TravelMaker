@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import '../css/attractions.css';
-// import '../css/bootstrap.css';
 
 import React from 'react';
 import axios from 'axios';
@@ -29,19 +28,18 @@ export default function Attractions() {
     return (
         <>
             <div className="backgroundmountain">
-                {/* <input className="search-bar" type="text" name="search" id="search" placeholder="搜尋欄" /> */}
-                {/* <div className="container hyperlink-location" >
+                <div className="container hyperlink-location" >
                     <Link to="/restaurant"className="button-hyperlink">餐廳</Link>
                     <Link to="/attractions" className="button-hyperlink" onClick={() => window.location.reload()}>景點</Link>
                     <Link to="/forum" className="button-hyperlink">討論區</Link>
                     <Link to="/journey" className="button-hyperlink">自助旅遊排程</Link>
-                </div> */}
+                </div>
             </div>
             <div>
                 <div style={{ 'paddingTop': '1%' }} className="image-container">
                     <div className="container">
                         <h3 style={{ 'float': 'left' }}><b>推薦景點</b></h3>
-                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right' }} className="bottom-line" state="新北">more</Link>
+                        <Link to="/attractions/Attractionmore" style={{ 'float': 'right' }} className="bottom-line" state="臺灣">more</Link>
                     </div>
                     <div className="container" style={{ 'clear': 'both' }}>
                         <div className="row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
